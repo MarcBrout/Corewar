@@ -5,12 +5,12 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Thu Mar 10 15:36:17 2016 
+## Last update Thu Mar 10 16:10:56 2016 
 ##
 
 NAME		=	asm
 
-SRCS		=	srcs/main.c \
+SRCS		=	srcs/lexer/lexer.c \
 
 OBJS		=	$(SRCS:.c=.o)
 
