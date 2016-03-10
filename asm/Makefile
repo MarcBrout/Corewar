@@ -1,40 +1,75 @@
 ##
-## Makefile for Makefile in /home/mmaud/Rendu/Semestre_2/System_Unix/
+## Makefile for ASM in /home/bougon_p/rendu/CPE_2015_corewar/asm
+## 
+## Made by bougon_p
+## Login   <bougon_p@epitech.net>
+## 
+## Started on  Thu Mar 10 14:59:56 2016 bougon_p
+## Last update Thu Mar 10 15:09:42 2016 bougon_p
 ##
-## Made by Maud MAREL
-## Login   <marel_m@epitech.net>
-##
-## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Thu Mar 10 15:36:17 2016 
-##
 
-NAME		=	asm
+# USEFUL VARIABLES
 
-SRCS		=	srcs/main.c \
+RM      =	rm -rf
 
-OBJS		=	$(SRCS:.c=.o)
+GREEN	=	\033[1;32m
 
-CFLAGS		+=	-W -Wall -Wextra
+WHITE	=	\033[0m
 
-CFLAGS		+=	-Iinclude/
+ECHO	=	echo -e
 
-CFLAGS		+=	$(LIBS)
 
-FLAGS		=	$(LDFLAGS)
+# SOURCES VARIABLES
 
-CC		=	gcc -g
+PARSER		=	srcs/parser/
 
-RM		=	rm -f
+LEXER		=	srcs/lexer/
 
-$(NAME):		$(OBJS)
-			$(CC) $(OBJS) -o $(NAME) $(FLAGS)
+SRC		=	$(PARSER)parser.c \
+			$(LEXER)lexer.c
 
-all:			$(NAME)
+OBJS    	=	$(SRC:.c=.o)
 
-clean:
-			$(RM) $(OBJS)
 
-fclean:			clean
-			$(RM) $(NAME)
+# LIBRARY VARIABLES
 
-re:			fclean all
+# LIBPATH =	lib/
+
+# LIB	=
+
+# LDFLAGS =	-lmy -L$(LIBPATH)
+
+
+# PROJECT VARIABLES
+
+NAME	=	asm
+
+IFLAG	=	-Iinclude/
+
+CFLAGS  =	-W -Wall -Wextra -g $(IFLAG)
+
+CC      =	gcc $(CFLAGS)
+
+
+
+# PROJECT RULES
+
+$(NAME)		: 	$(OBJS)
+			@$(ECHO) "$(GREEN)\n> Compiling project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+
+all		:	$(NAME) 
+
+clean		:
+			@$(RM) $(OBJS)
+			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+
+fclean		: 	clean
+			@$(RM) $(NAME)
+			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+
+re		:	fclean all
+
+.c.o		:
+			@$(CC) -c $< -o $@
+			@$(ECHO) "$(GREEN)[OK] > $<\t \t $(WHITE)"
