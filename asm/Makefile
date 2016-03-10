@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Thu Mar 10 16:19:17 2016 
+## Last update Thu Mar 10 15:36:42 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -34,16 +34,15 @@ SRC		=	$(PARSER)parser.c \
 OBJS    	=	$(SRC:.c=.o)
 
 
-# LIBRARY VARIABLES
+# LIBRARY VARIABLES                                                   
 
-# LIBPATH =	lib/
+LIBPATH =       lib/
 
-# LIB	=
-
-# LDFLAGS =	-lmy -L$(LIBPATH)
-
+LDFLAGS =       -lmy -L$(LIBPATH)
 
 # PROJECT VARIABLES
+
+NAME	=	asm
 
 IFLAG	=	-Iinclude/
 
@@ -57,7 +56,7 @@ CC      =	gcc $(CFLAGS)
 
 $(NAME)		: 	$(OBJS)
 			@$(ECHO) "$(GREEN)\n> Compiling project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
-			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+			@$(CC) -o $(NAME) $(OBJS)
 
 all		:	$(NAME)
 
