@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Thu Mar 10 16:21:00 2016 bougon_p
+## Last update Fri Mar 11 13:55:15 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -28,13 +28,16 @@ LEXER		=	srcs/lexer/
 TOOLS		=	srcs/tools/
 
 SRC		=	$(PARSER)parser.c \
-			# $(LEXER)lexer.c \
-			# $(TOOLS)get_next_line.c
+			$(LEXER)lexer.c \
+			$(LEXER)check_name.c \
+			$(LEXER)check_comment.c \
+			$(LEXER)check_instructions.c \
+			$(TOOLS)get_next_line.c
 
 OBJS    	=	$(SRC:.c=.o)
 
 
-# LIBRARY VARIABLES                                                   
+# LIBRARY VARIABLES
 
 LIBPATH =       lib/
 

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Thu Mar 10 16:58:12 2016 bougon_p
+** Last update Fri Mar 11 13:54:40 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -16,6 +16,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+#include "get_next_line.h"
+
 # define COREWAR_EXEC_MAGIC 0xea83f3
 
 typedef struct		s_header
@@ -25,5 +27,13 @@ typedef struct		s_header
   int			prog_size;
   char			comment[2049];
 }			t_header;
+
+typedef struct		s_instruc
+{
+  char			**ins;
+}			t_instruc;
+
+char			*get_next_line(int);
+int			check_name(t_header *, char *);
 
 #endif /* !HEADER_H_ */
