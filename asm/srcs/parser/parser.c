@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Fri Mar 11 13:59:26 2016 
+** Last update Fri Mar 11 15:16:23 2016 bougon_p
 */
 
 #include "asm.h"
@@ -22,26 +22,35 @@ int	my_strlen(char *str)
   return (i);
 }
 
-void	my_putstr_err(char *str)
+int	sizeofextens(char *name)
 {
-  write(2, str, my_strlen(str));
+  int	i;
+  int	p;
+
+  p = 0;
+  i = my_strlen(name);
+  while (name[--i] != '.' && i >= 0)
+    p++;
+  return (p + 1);
 }
 
-int	create_file(t_header *head)
+int	create_file(t_header *head, char *name)
 {
   int	fd;
-  char	*name;
+  char	*new_name;
 
-  if ((name = strdup(&head->prog_name[0])) == NULL)
+  if ((new_name = malloc(sizeof(char) * my_strlen(name) + 1)) == NULL)
+    return (1);
+  set_line_null(new_name, my_strlen(name));
+  strncpy(new_name, name, my_strlen(name) - sizeofextens(name));
+  if ((new_name = realloc
+       (new_name, my_strlen(name) - sizeofextens(name) + 5)) == NULL)
     return (my_putstr_err("asm : error: malloc error\n"), 1);
-  if ((name = realloc(name, my_strlen(name) + 5)) == NULL)
-    return (my_putstr_err("asm : error: malloc error\n"), 1);
-  name[my_strlen(name)] = 0;
-  strcat(name, ".cor");
-  if ((fd = open(name, O_WRONLY | O_CREAT | O_TRUNC,
+  strcat(new_name, ".cor");
+  if ((fd = open(new_name, O_WRONLY | O_CREAT | O_TRUNC,
 		 S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)) == -1)
     return (my_putstr_err("asm : error: open error\n"), 1);
-  free(name);
+  free(new_name);
   return (fd);
 }
 
@@ -57,25 +66,48 @@ int	convert_bigend_to_littleend_int(int var)
   return (tmp);
 }
 
-void	write_magic(int fd)
+int	write_magic(int fd)
 {
   int	magic;
 
   magic = COREWAR_EXEC_MAGIC;
   magic = convert_bigend_to_littleend_int(magic);
-  write(fd, &magic, sizeof(magic));
-
-
-  /* write(fd, ptr, 4); */
+  if ((write(fd, &magic, sizeof(magic)) == -1) == -1)
+    return (-1);
+  return (0);
 }
 
-int	parser(t_header *head)
+int	write_name()
+{
+  return (0);
+}
+
+int	write_prog_size()
+{
+  return (0);
+}
+
+int	write_comment()
+{
+  return (0);
+}
+
+
+int	write_header(char *name, int fd, t_header *head)
+{
+  write_magic(fd);
+  write_name();
+  write_prog_size();
+  write_comment();
+}
+
+int	parser(char *name, t_header *head)
 {
   int	fd;
 
-  if ((fd = create_file(head)) == 1)
+  if ((fd = create_file(head, name)) == 1)
     return (1);
-  write_magic(fd);
+  write_header(name, fd, head);
   close(fd);
   return (0);
 }

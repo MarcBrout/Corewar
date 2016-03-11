@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Fri Mar 11 14:00:02 2016 
+## Last update Fri Mar 11 15:17:02 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -33,7 +33,8 @@ SRC		=	srcs/main.c \
 			$(LEXER)check_name.c \
 			$(LEXER)check_comment.c \
 			$(LEXER)check_instructions.c \
-			$(TOOLS)get_next_line.c
+			$(TOOLS)get_next_line.c \
+			$(TOOLS)str_null.c
 
 OBJS    	=	$(SRC:.c=.o)
 
