@@ -1,8 +1,0 @@
-
-	.name "Tyron"
-
-
-	sti r1, %:hi, %1
-hi:	live %123
-	ld %0, r3
-	zjmp %:hi

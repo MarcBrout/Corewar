@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Fri Mar 11 13:42:53 2016 
+** Last update Fri Mar 11 15:57:21 2016 
 */
 
 #include "asm.h"
@@ -26,10 +26,8 @@ char	*epure_file_comment(char *file, int i)
   while (file && (file[i] == ' ' || file[i] == '\t') && file[i])
     i++;
   j = 0;
-  if ((new = malloc(sizeof(char) * strlen(file) - i + 1)) == NULL)
-    {
-      return (NULL);
-    }
+  if ((new = malloc(sizeof(char) * (strlen(file) - i + 1))) == NULL)
+    return (malloc_fail(), NULL);
   while (file[i] != '\0')
     {
       new[j] = file[i];
@@ -65,6 +63,7 @@ int	check_comment(t_header *header, char *file)
   if (strncmp(new, ".comment", 8) != 0
       || (new[8] != ' ' && new[8] != '\t'))
     {
+      header->comment[0] = '\0';
       write(1, "warning: no comment specified\n", 30);
       return (1);
     }
@@ -72,6 +71,7 @@ int	check_comment(t_header *header, char *file)
     return (-1);
   if (check_double_quote_comment(new) == -1)
     {
+      header->comment[0] = '\0';
       write(1, "warning: no comment specified\n", 30);
       return (1);
     }
