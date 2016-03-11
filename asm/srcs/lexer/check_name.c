@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:09:07 2016
-** Last update Thu Mar 10 17:56:51 2016 
+** Last update Fri Mar 11 14:16:23 2016 
 */
 
 #include "asm.h"
@@ -27,7 +27,7 @@ char	*epure_file_name(char *file, int i)
     i++;
   j = 0;
   if ((new = malloc(sizeof(char) * strlen(file) - i + 1)) == NULL)
-    return (NULL);
+    return (malloc_fail(), NULL);
   while (file[i] != '\0')
     {
       new[j] = file[i];
