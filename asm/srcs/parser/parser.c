@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Fri Mar 11 15:16:23 2016 bougon_p
+** Last update Fri Mar 11 15:57:54 2016 bougon_p
 */
 
 #include "asm.h"
@@ -22,50 +22,6 @@ int	my_strlen(char *str)
   return (i);
 }
 
-int	sizeofextens(char *name)
-{
-  int	i;
-  int	p;
-
-  p = 0;
-  i = my_strlen(name);
-  while (name[--i] != '.' && i >= 0)
-    p++;
-  return (p + 1);
-}
-
-int	create_file(t_header *head, char *name)
-{
-  int	fd;
-  char	*new_name;
-
-  if ((new_name = malloc(sizeof(char) * my_strlen(name) + 1)) == NULL)
-    return (1);
-  set_line_null(new_name, my_strlen(name));
-  strncpy(new_name, name, my_strlen(name) - sizeofextens(name));
-  if ((new_name = realloc
-       (new_name, my_strlen(name) - sizeofextens(name) + 5)) == NULL)
-    return (my_putstr_err("asm : error: malloc error\n"), 1);
-  strcat(new_name, ".cor");
-  if ((fd = open(new_name, O_WRONLY | O_CREAT | O_TRUNC,
-		 S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)) == -1)
-    return (my_putstr_err("asm : error: open error\n"), 1);
-  free(new_name);
-  return (fd);
-}
-
-int	convert_bigend_to_littleend_int(int var)
-{
-  int	tmp;
-
-  tmp = 0;
-  tmp = (var & 0xFF000000) >> 24;
-  tmp |= ((var & 0x00FF0000) >> 8);
-  tmp |= (var & 0x0000FF00) << 8;
-  tmp |= ((var & 0x000000FF) << 24);
-  return (tmp);
-}
-
 int	write_magic(int fd)
 {
   int	magic;
@@ -77,18 +33,33 @@ int	write_magic(int fd)
   return (0);
 }
 
-int	write_name()
+int	write_name(t_header *head, int fd)
 {
+  int	size;
+  int	i;
+
+  i = -1;
+  size = 129;
+  write(fd, &head->prog_name[0], my_strlen(&head->prog_name[0]));
+  size -= my_strlen(&head->prog_name[0]);
+  while (++i < size)
+    write(fd, "\0", 1);
   return (0);
 }
 
-int	write_prog_size()
+int	write_prog_size(t_header *head, int fd)
 {
+  int	prog_size;
+
+  prog_size = head->prog_size;
+  prog_size = convert_bigend_to_littleend_int(prog_size);
+  write(fd, &prog_size, sizeof(prog_size));
   return (0);
 }
 
 int	write_comment()
 {
+
   return (0);
 }
 
@@ -96,9 +67,9 @@ int	write_comment()
 int	write_header(char *name, int fd, t_header *head)
 {
   write_magic(fd);
-  write_name();
-  write_prog_size();
-  write_comment();
+  write_name(head, fd);
+  write_prog_size(head, fd);
+  write_comment(head, fd);
 }
 
 int	parser(char *name, t_header *head)
@@ -107,6 +78,7 @@ int	parser(char *name, t_header *head)
 
   if ((fd = create_file(head, name)) == 1)
     return (1);
+  head->prog_size = 22;
   write_header(name, fd, head);
   close(fd);
   return (0);
