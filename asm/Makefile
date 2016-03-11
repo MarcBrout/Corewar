@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Fri Mar 11 14:00:02 2016 
+## Last update Fri Mar 11 14:14:24 2016 
 ##
 
 # USEFUL VARIABLES
@@ -27,13 +27,16 @@ LEXER		=	srcs/lexer/
 
 TOOLS		=	srcs/tools/
 
+ERROR		=	srcs/error/
+
 SRC		=	srcs/main.c \
 			$(PARSER)parser.c \
 			$(LEXER)lexer.c \
 			$(LEXER)check_name.c \
 			$(LEXER)check_comment.c \
 			$(LEXER)check_instructions.c \
-			$(TOOLS)get_next_line.c
+			$(TOOLS)get_next_line.c \
+			$(ERROR)error_stop.c
 
 OBJS    	=	$(SRC:.c=.o)
 
