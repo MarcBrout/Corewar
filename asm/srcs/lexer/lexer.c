@@ -5,13 +5,13 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:41:48 2016
-** Last update Thu Mar 10 18:07:15 2016 
+** Last update Fri Mar 11 13:59:35 2016 
 */
 
 #include "asm.h"
 #include <string.h>
 
-int	check_file(t_header *header, t_instruc *instruc, char *str)
+int	lexer(t_header *header, t_instruc *instruc, char *str)
 {
   int	fd;
   char	*file;
@@ -27,17 +27,4 @@ int	check_file(t_header *header, t_instruc *instruc, char *str)
     return (-1);
   check_instructions(instruc);
   return (0);
-}
-
-int		main(int ac, char **av)
-{
-  t_header	header;
-  t_instruc	instruc;
-
-  if (ac != 2)
-    {
-      write(2, "Wrong arguments\n", 16);
-      return (-1);
-    }
-  check_file(&header, &instruc, av[1]);
 }

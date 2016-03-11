@@ -5,10 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Fri Mar 11 13:40:50 2016 bougon_p
+** Last update Fri Mar 11 13:59:26 2016 
 */
 
-#include "header.h"
+#include "asm.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -77,18 +77,5 @@ int	parser(t_header *head)
     return (1);
   write_magic(fd);
   close(fd);
-  return (0);
-}
-
-int	main()
-{
-  t_header	head;
-
-  head.prog_name[0] = 'N';
-  head.prog_name[1] = 'A';
-  head.prog_name[2] = 'M';
-  head.prog_name[3] = 'E';
-  head.prog_name[4] = 0;
-  parser(&head);
   return (0);
 }
