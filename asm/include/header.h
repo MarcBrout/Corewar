@@ -5,11 +5,18 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Thu Mar 10 15:37:36 2016 
+** Last update Thu Mar 10 16:58:12 2016 bougon_p
 */
 
 #ifndef HEADER_H_
 # define HEADER_H_
+
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <unistd.h>
+
+# define COREWAR_EXEC_MAGIC 0xea83f3
 
 typedef struct		s_header
 {
