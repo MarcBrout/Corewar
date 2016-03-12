@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Fri Mar 11 15:57:54 2016 bougon_p
+** Last update Sat Mar 12 16:04:06 2016 bougon_p
 */
 
 #include "asm.h"
@@ -42,7 +42,7 @@ int	write_name(t_header *head, int fd)
   size = 129;
   write(fd, &head->prog_name[0], my_strlen(&head->prog_name[0]));
   size -= my_strlen(&head->prog_name[0]);
-  while (++i < size)
+  while (++i < size + 3)
     write(fd, "\0", 1);
   return (0);
 }
@@ -57,9 +57,17 @@ int	write_prog_size(t_header *head, int fd)
   return (0);
 }
 
-int	write_comment()
+int	write_comment(t_header *head, int fd)
 {
+  int	size;
+  int	i;
 
+  size = 2049;
+  i = -1;
+  size -= my_strlen(&head->comment[0]);
+  write(fd, &head->comment[0], my_strlen(&head->comment[0]));
+  while (++i < size + 3)
+    write(fd, "\0", 1);
   return (0);
 }
 
