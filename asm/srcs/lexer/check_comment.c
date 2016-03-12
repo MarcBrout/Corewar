@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Fri Mar 11 15:57:21 2016 
+** Last update Fri Mar 11 17:05:24 2016 
 */
 
 #include "asm.h"
@@ -17,26 +17,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
-
-char	*epure_file_comment(char *file, int i)
-{
-  int	j;
-  char	*new;
-
-  while (file && (file[i] == ' ' || file[i] == '\t') && file[i])
-    i++;
-  j = 0;
-  if ((new = malloc(sizeof(char) * (strlen(file) - i + 1))) == NULL)
-    return (malloc_fail(), NULL);
-  while (file[i] != '\0')
-    {
-      new[j] = file[i];
-      i++;
-      j++;
-    }
-  new[j] = '\0';
-  return (new);
-}
 
 int	check_double_quote_comment(char *file)
 {
@@ -58,7 +38,7 @@ int	check_comment(t_header *header, char *file)
   int	i;
   int	j;
 
-  if ((new = epure_file_comment(file, 0)) == NULL)
+  if ((new = epure_file_name_com(file, 0)) == NULL)
     return (-1);
   if (strncmp(new, ".comment", 8) != 0
       || (new[8] != ' ' && new[8] != '\t'))
@@ -67,7 +47,7 @@ int	check_comment(t_header *header, char *file)
       write(1, "warning: no comment specified\n", 30);
       return (1);
     }
-  if ((new = epure_file_comment(file, 9)) == NULL)
+  if ((new = epure_file_name_com(file, 9)) == NULL)
     return (-1);
   if (check_double_quote_comment(new) == -1)
     {

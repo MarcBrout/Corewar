@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:09:07 2016
-** Last update Fri Mar 11 14:16:23 2016 
+** Last update Fri Mar 11 17:05:40 2016 
 */
 
 #include "asm.h"
@@ -17,26 +17,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
-
-char	*epure_file_name(char *file, int i)
-{
-  int	j;
-  char	*new;
-
-  while (file && (file[i] == ' ' || file[i] == '\t') && file[i])
-    i++;
-  j = 0;
-  if ((new = malloc(sizeof(char) * strlen(file) - i + 1)) == NULL)
-    return (malloc_fail(), NULL);
-  while (file[i] != '\0')
-    {
-      new[j] = file[i];
-      i++;
-      j++;
-    }
-  new[j] = '\0';
-  return (new);
-}
 
 int	check_double_quote_name(char *file)
 {
@@ -58,7 +38,7 @@ int	check_name(t_header *header, char *file)
   int	i;
   int	j;
 
-  if ((new = epure_file_name(file, 0)) == NULL)
+  if ((new = epure_file_name_com(file, 0)) == NULL)
     return (-1);
   if (strncmp(new, ".name", 5) != 0
       || (new[5] != ' ' && new[5] != '\t'))
@@ -66,7 +46,7 @@ int	check_name(t_header *header, char *file)
       write(2, "wrong .name\n", 12);
       return (-1);
     }
-  if ((new = epure_file_name(file, 6)) == NULL)
+  if ((new = epure_file_name_com(file, 6)) == NULL)
     return (-1);
   if (check_double_quote_name(new) == -1)
     {
