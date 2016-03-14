@@ -5,11 +5,10 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:57:50 2015 marc brout
-## Last update Fri Feb 26 18:24:46 2016 marc brout
+## Last update Mon Mar 14 18:20:24 2016 marc brout
 ##
 
 SRC	= my_getnbr.c \
-	my_power_rec.c \
 	my_putchar.c \
 	my_put_nbr.c \
 	my_putstr.c \
@@ -36,7 +35,7 @@ HEADMY	= my.h
 
 HEADNE	= get_next_line.h
 
-CC	= cc
+CC	= gcc -W -Wall -Werror
 
 RM	= rm -f
 
