@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 17:04:35 2016
-** Last update Fri Mar 11 17:06:32 2016 
+** Last update Sun Mar 13 19:28:25 2016 
 */
 
 #include "asm.h"
@@ -17,7 +17,7 @@ char	*epure_file_name_com(char *file, int i)
 
   while (file && (file[i] == ' ' || file[i] == '\t') && file[i])
     i++;
-  if ((new = malloc(sizeof(char) * (strlen(file) - i + 1))) == NULL)
+  if ((new = malloc(sizeof(char) * (my_strlen(file) - i + 1))) == NULL)
     return (malloc_fail(), NULL);
   j = 0;
   while (file[i] != '\0')
@@ -38,7 +38,7 @@ char	*epure_file_instruc(char *file, int i)
   while (file && (file[i] == ' '
 		  || file[i] == '\t' || file[i] == ',') && file[i])
     i++;
-  if ((new = malloc(sizeof(char) * (strlen(file) - i + 1))) == NULL)
+  if ((new = malloc(sizeof(char) * (my_strlen(file) - i + 1))) == NULL)
     return (malloc_fail(), NULL);
   j = 0;
   while (file[i] != '\0')

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Fri Mar 11 17:05:24 2016 
+** Last update Sun Mar 13 11:19:36 2016 
 */
 
 #include "asm.h"
@@ -27,7 +27,7 @@ int	check_double_quote_comment(char *file)
   i = 1;
   while (file[i] != '"')
     i++;
-  if (i != (strlen(file) - 1) || i > 2050)
+  if (i != (my_strlen(file) - 1) || i > 2050)
     return (-1);
   return (0);
 }
@@ -40,7 +40,7 @@ int	check_comment(t_header *header, char *file)
 
   if ((new = epure_file_name_com(file, 0)) == NULL)
     return (-1);
-  if (strncmp(new, ".comment", 8) != 0
+  if (my_strncmp(new, ".comment", 8) != 0
       || (new[8] != ' ' && new[8] != '\t'))
     {
       header->comment[0] = '\0';
@@ -57,7 +57,7 @@ int	check_comment(t_header *header, char *file)
     }
   i = 0;
   j = 0;
-  while (++i != (strlen(new) - 1))
+  while (++i != (my_strlen(new) - 1))
     {
       header->comment[j] = new[i];
       j++;

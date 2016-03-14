@@ -5,12 +5,12 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Sat Mar 12 18:26:50 2016 
+** Last update Sun Mar 13 19:03:15 2016 
 */
 
 #include "asm.h"
 
-int	check_if_label(char *new)
+int	check_instruc_label(char *new)
 {
   int	i;
 
@@ -23,7 +23,7 @@ int	check_if_label(char *new)
     }
   if (new[i] == LABEL_CHAR)
     {
-      printf("%s\n", new);
+      printf("label -> %s\n", new);
       return (0);
     }
   return (-1);
@@ -33,26 +33,26 @@ int			check_instruc_arg(t_instruc *instruc, char *file)
 {
   char			*new;
   int			i;
-  t_list_instruc	*inst;
+  t_list_instruc	*elem;
 
-  if ((inst = put_after(instruc)) == NULL)
+  if ((elem = add_list_after(instruc)) == NULL)
+    return (-1);
+  if ((elem->info = malloc(sizeof(t_info))) == NULL)
     return (-1);
   if ((new = epure_file_instruc(file, 0)) == NULL)
     return (-1);
-  i = 0;
-  while (i < 16)
-    {
-      if (strncmp(new,
-		  op_tab[i].mnemonique, strlen(op_tab[i].mnemonique)) == 0
-	  && new[strlen(op_tab[i].mnemonique)] == ' ')
-	{
-	  inst->info->name = strcpy(inst->info->name, op_tab[i].mnemonique);
-	  printf("%s\n", inst->info->name);
-	  return (0);
-	}
-      i++;
-    }
-  if (check_if_label(new) == -1)
+  i = -1;
+  while (++i < 16)
+    if (my_strncmp(new,
+		   op_tab[i].mnemonique, my_strlen(op_tab[i].mnemonique)) == 0
+	&& new[my_strlen(op_tab[i].mnemonique)] == ' ')
+      {
+	elem->info->name = malloc(sizeof(char) * (my_strlen(op_tab[i].mnemonique) + 1));
+	elem->info->name = my_strcpy(elem->info->name, op_tab[i].mnemonique);
+	check_stock_good_args(instruc, elem, new, i);
+	return (0);
+      }
+  if (check_instruc_label(new) == -1)
     return (-1);
   return (0);
 }
@@ -61,7 +61,7 @@ int	put_instruc(t_instruc *instruc, int fd)
 {
   char	*file;
 
-  while ((file = get_next_line(fd)) != NULL && strlen(file) == 0);
+  while ((file = get_next_line(fd)) != NULL && my_strlen(file) == 0);
   if (file != NULL)
     {
       if (check_instruc_arg(instruc, file) == -1)

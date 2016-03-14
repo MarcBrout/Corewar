@@ -6,3 +6,4 @@
 hi:	live %123
 	ld %0, r3
 	zjmp %:hi
+	aff r5

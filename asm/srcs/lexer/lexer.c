@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:41:48 2016
-** Last update Fri Mar 11 16:02:54 2016 bougon_p
+** Last update Sat Mar 12 18:39:36 2016 
 */
 
 #include "asm.h"
@@ -25,6 +25,6 @@ int	lexer(t_header *header, t_instruc *instruc, char *str)
   while ((file = get_next_line(fd)) != NULL && strlen(file) == 0);
   if ((n = check_comment(header, file)) == -1)
     return (-1);
-  /* check_instructions(instruc, fd); */
+  check_instructions(instruc, fd);
   return (0);
 }
