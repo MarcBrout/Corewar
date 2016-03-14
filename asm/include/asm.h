@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 14 19:06:54 2016 bougon_p
+** Last update Mon Mar 14 23:25:02 2016 
 */
 
 #ifndef HEADER_H_
@@ -119,6 +119,7 @@ int			check_direct_arg(t_list_instruc *, char *, int);
 int			check_registre_arg(t_list_instruc *, char *, int);
 int			check_indirect_arg(t_list_instruc *, char *, int);
 int			stock_args(t_list_instruc *, char *, int);
+int			check_end_instruc(char *, int);
 
 /*
 ** Parser functions

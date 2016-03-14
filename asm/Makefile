@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Mon Mar 14 19:05:05 2016 bougon_p
+## Last update Mon Mar 14 22:14:20 2016 
 ##
 
 # USEFUL VARIABLES
@@ -51,7 +51,6 @@ SRC		=	srcs/main.c \
 			$(LEXER)print_list.c \
 			$(TOOLS)get_next_line.c \
 			$(TOOLS)str_null.c \
-			$(TOOLS)my_strcat.c \
 			$(ERROR)error_stop.c
 
 OBJS    	=	$(SRC:.c=.o)
