@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Mar 11 15:29:29 2016 bougon_p
-** Last update Mon Mar 14 22:14:06 2016 
+** Last update Mon Mar 14 23:29:50 2016 
 */
 
 #include "asm.h"
@@ -14,11 +14,16 @@ int	sizeofextens(char *name)
 {
   int   i;
   int   p;
+  int	save_size;
 
   p = 0;
   i = my_strlen(name);
-  while (name[--i] != '.' && i >= 0)
+  save_size = i;
+  while (i >= 0 && name[--i] != '.')
     p++;
+  printf("i = %d\n", i);
+  if (i == -1)
+    return (0);
   return (p + 1);
 }
 
@@ -31,6 +36,7 @@ int	create_file(char *name)
     return (1);
   set_line_null(new_name, my_strlen(name));
   my_strncpy(new_name, name, my_strlen(name) - sizeofextens(name));
+  printf("name = %s && lentest = %d && len ext = %d\n", name, my_strlen(name), sizeofextens(name));
   if ((new_name = realloc
        (new_name, my_strlen(name) - sizeofextens(name) + 5)) == NULL)
     return (malloc_fail(), 1);

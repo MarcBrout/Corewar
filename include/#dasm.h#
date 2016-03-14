@@ -14,9 +14,11 @@
 # define USAGE "USAGE : ./dasm file.cor\n"
 # define UNUSED __attribute__((__unused__))
 
+typedef int			(*t_instruction)(int, int);
+
 typedef struct		s_dasm
 {
-  int			(*func[16])(int);
+  t_instruction		instruc[16];
 }			t_dasm;
 
 #endif /* !DASH_H_ */
