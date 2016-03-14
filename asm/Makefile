@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Mon Mar 14 10:13:37 2016 
+## Last update Mon Mar 14 18:11:21 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -58,9 +58,27 @@ OBJS    	=	$(SRC:.c=.o)
 
 # LIBRARY VARIABLES
 
-LIBPATH =       lib/
+LIBPATH =       ../lib/
+
+SRCLIB	=	$(LIBPATH)my/get_next_line.c \
+		$(LIBPATH)my/my_getnbr.c \
+		$(LIBPATH)my/my_power_rec.c \
+		$(LIBPATH)my/my_printf.c \
+		$(LIBPATH)my/my_printfcsspb.c \
+		$(LIBPATH)my/my_printfdiouxx.c \
+		$(LIBPATH)my/my_printfmetc.c \
+		$(LIBPATH)my/my_putchar.c \
+		$(LIBPATH)my/my_put_nbr.c \
+		$(LIBPATH)my/my_putstr.c \
+		$(LIBPATH)my/my_revstr.c \
+		$(LIBPATH)my/my_strcmp.c \
+		$(LIBPATH)my/my_strdup.c \
+		$(LIBPATH)my/my_strlen.c \
+		$(LIBPATH)my/my_strncmp.c \
 
 LDFLAGS =       -lmy -L$(LIBPATH)
+
+OBJSLIB	=	$(SRCLIB:.c=.o)
 
 # PROJECT VARIABLES
 
@@ -76,7 +94,9 @@ CC      =	gcc -g $(CFLAGS)
 
 # PROJECT RULES
 
-$(NAME)		: 	$(OBJS)
+$(NAME)		: 	$(OBJSLIB) $(OBJS)
+			@ar rc $(LIBPATH)libmy.a $(OBJSLIB)
+			@ranlib $(LIBPATH)libmy.a
 			@$(ECHO) "$(GREEN)\n> Compiling project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS)
 
@@ -84,10 +104,12 @@ all		:	$(NAME)
 
 clean		:
 			@$(RM) $(OBJS)
+			@$(RM) $(OBJSLIB)
 			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
+			@$(RM) $(LIBPATH)/libmy.a
 			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 re		:	fclean all
