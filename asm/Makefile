@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Mon Mar 14 18:37:51 2016 bougon_p
+## Last update Mon Mar 14 18:52:45 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -97,7 +97,7 @@ $(NAME)		: 	$(OBJSLIB) $(OBJS)
 			@ar rc $(LIBPATH)libmy.a $(OBJSLIB)
 			@ranlib $(LIBPATH)libmy.a
 			@$(ECHO) "$(GREEN)\n> Compiling project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
-			@$(CC) -o $(NAME) $(OBJS)
+			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 all		:	$(NAME)
 

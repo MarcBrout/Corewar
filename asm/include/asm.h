@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 14 18:37:42 2016 bougon_p
+** Last update Mon Mar 14 18:56:46 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -112,11 +112,23 @@ int			check_comment(t_header *, char *);
 int			check_instructions(t_instruc *, int);
 
 /*
+** Parser functions
+*/
+void	set_line_null(char *, int);
+int	convert_bigend_to_littleend_int(int);
+
+
+/*
 **Fonctions lib à enlever
 */
 
 int	my_strlen(char *);
 char	*my_strcpy(char *, char *);
 int	my_strncmp(char *, char *, int);
+
+/*
+** TOOLS
+*/
+char	*my_strncpy(char *, char *, int);
 
 #endif /* !HEADER_H_ */
