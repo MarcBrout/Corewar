@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 14 19:38:12 2016 
+** Last update Mon Mar 14 19:39:48 2016 
 */
 
 #ifndef HEADER_H_
@@ -13,6 +13,7 @@
 
 # include "get_next_line.h"
 # include "op.h"
+# include "my.h"
 
 # define COREWAR_EXEC_MAGIC 0xea83f3
 
