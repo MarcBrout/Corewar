@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 14 10:48:24 2016 marc brout
-** Last update Mon Mar 14 22:06:41 2016 marc brout
+** Last update Mon Mar 14 22:17:48 2016 marc brout
 */
 
 #include <stdio.h>
@@ -51,6 +51,10 @@ int		swap_integer(int nb)
 
 int		inst_live(int in, int out)
 {
+  int		player;
+
+  if (read(in, &player, 4) < 4)
+    return (1);
 
   return (0);
 }
