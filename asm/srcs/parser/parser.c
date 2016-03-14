@@ -5,22 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Sat Mar 12 16:04:06 2016 bougon_p
+** Last update Mon Mar 14 19:02:09 2016 bougon_p
 */
 
 #include "asm.h"
 #include <string.h>
 #include <stdlib.h>
-
-int	my_strlen(char *str)
-{
-  int	i;
-
-  i = 0;
-  while (str[i] != 0)
-    i++;
-  return (i);
-}
 
 int	write_magic(int fd)
 {
@@ -72,22 +62,23 @@ int	write_comment(t_header *head, int fd)
 }
 
 
-int	write_header(char *name, int fd, t_header *head)
+int	write_header(int fd, t_header *head)
 {
   write_magic(fd);
   write_name(head, fd);
   write_prog_size(head, fd);
   write_comment(head, fd);
+  return (0);
 }
 
 int	parser(char *name, t_header *head)
 {
   int	fd;
 
-  if ((fd = create_file(head, name)) == 1)
+  if ((fd = create_file(name)) == 1)
     return (1);
   head->prog_size = 22;
-  write_header(name, fd, head);
+  write_header(fd, head);
   close(fd);
   return (0);
 }

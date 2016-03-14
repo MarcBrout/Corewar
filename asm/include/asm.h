@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 14 19:51:03 2016 
+** Last update Mon Mar 14 19:06:54 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -100,6 +100,7 @@ typedef struct		s_instruc
 **Fonctions Lexer
 */
 
+int			lexer(t_header *, t_instruc *, char *);
 char			*get_next_line(int);
 int			check_name(t_header *, char *);
 char			*epure_file_name_com(char *, int);
@@ -120,9 +121,19 @@ int			check_indirect_arg(t_list_instruc *, char *, int);
 int			stock_args(t_list_instruc *, char *, int);
 
 /*
-**Fonctions Lib
+** Parser functions
 */
 
-char			*my_strncpy(char *, char *, int);
+int	parser(char *, t_header *);
+void	set_line_null(char *, int);
+int	convert_bigend_to_littleend_int(int);
+int	create_file(char *);
+
+/*
+** TOOLS
+*/
+
+char	*my_strncpy(char *, char *, int);
+char	*my_strcat(char *, char *);
 
 #endif /* !HEADER_H_ */
