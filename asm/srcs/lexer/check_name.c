@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:09:07 2016
-** Last update Fri Mar 11 17:05:40 2016 
+** Last update Sun Mar 13 11:18:45 2016 
 */
 
 #include "asm.h"
@@ -27,7 +27,7 @@ int	check_double_quote_name(char *file)
   i = 1;
   while (file[i] != '"')
     i++;
-  if (i != (strlen(file) - 1) || i > 130)
+  if (i != (my_strlen(file) - 1) || i > 130)
     return (-1);
   return (0);
 }
@@ -40,7 +40,7 @@ int	check_name(t_header *header, char *file)
 
   if ((new = epure_file_name_com(file, 0)) == NULL)
     return (-1);
-  if (strncmp(new, ".name", 5) != 0
+  if (my_strncmp(new, ".name", 5) != 0
       || (new[5] != ' ' && new[5] != '\t'))
     {
       write(2, "wrong .name\n", 12);
@@ -55,7 +55,7 @@ int	check_name(t_header *header, char *file)
     }
   i = 0;
   j = 0;
-  while (++i != (strlen(new) - 1))
+  while (++i != (my_strlen(new) - 1))
     {
       header->prog_name[j] = new[i];
       j++;
