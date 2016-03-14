@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 14 10:48:24 2016 marc brout
-** Last update Mon Mar 14 15:42:15 2016 marc brout
+** Last update Mon Mar 14 22:06:41 2016 marc brout
 */
 
 #include <stdio.h>
@@ -44,20 +44,37 @@ int		swap_integer(int nb)
 {
   int		ret;
 
-  ret = ((nb >> 24) & 0xff) |
-    ((nb << 8) & 0xff0000) |
-    ((nb >> 8) & 0xff00) |
-    ((nb << 24) & 0xff000000);
+  ret = ((nb >> 24) & 0xff) | ((nb << 8) & 0xff0000) |
+    ((nb >> 8) & 0xff00) | ((nb << 24) & 0xff000000);
   return (ret);
+}
+
+int		inst_live(int in, int out)
+{
+
+  return (0);
+}
+
+int		prog_name_comment(int out, t_header *head)
+{
+  if (write(out, "\t.name \"", 8) < 0 ||
+      write(out, head->prog_name, my_strlen(head->prog_name)) < 0 ||
+      write(out, "\"\n", 2) < 0 ||
+      write(out, "\t.name \"", 8) < 0 ||
+      write(out, head->comment, my_strlen(head->comment)) < 0 ||
+      write(out, "\"\n\n", 3) < 0)
+    return (1);
+  return (0);
 }
 
 int		dasm(const char *file)
 {
   int		fd;
-  header_t	head;
+  int		out;
+  t_header	head;
 
   if ((fd = open(file, O_RDONLY)) < 0 ||
-      (read(fd, &head, sizeof(header_t))) < (int)sizeof(header_t))
+      (read(fd, &head, sizeof(t_header))) < (int)sizeof(t_header))
     return (1);
   my_printf("magic = %x\nProg_name = %s\nProg_size = %d\ncomment = %s\n",
 	    head.magic, head.prog_name, head.prog_size / 8, head.comment);
@@ -66,6 +83,10 @@ int		dasm(const char *file)
     head.magic = swap_integer(head.magic);
   if ((head.magic != COREWAR_EXEC_MAGIC) || (!head.prog_size))
     return (1);
+  if ((out = open("./test.s", O_CREAT | O_WRONLY,
+		  S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH)) < 0)
+    return (1);
+  prog_name_comment(out, &head);
   return (0);
 }
 

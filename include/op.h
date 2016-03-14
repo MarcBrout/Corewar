@@ -1,19 +1,28 @@
 /*
-** op.h
+** op.h for corewar
 **
-** Nicolas Sadirac
-** Tue Jul 13 18:53:48 1993
+** Made by marc brout
+** Login   <brout_m@epitech.net>
+**
+** Started on  Mon Mar 14 20:56:37 2016 marc brout
+** Last update Mon Mar 14 21:21:24 2016 marc brout
 */
 
+#ifndef OP_H_
+# define OP_H_
 
-#ifndef _OP_H_
-# define _OP_H_
+#define MEM_SIZE                (6 * 1024)
+/*
+** modulo de l'index <
+*/
 
+#define IDX_MOD                 512
 
+/*
+** this may not be changed 2^*IND_SIZE
+*/
 
-#define MEM_SIZE                (6*1024)
-#define IDX_MOD                 512   /* modulo de l'index < */
-#define MAX_ARGS_NUMBER         4     /* this may not be changed 2^*IND_SIZE */
+#define MAX_ARGS_NUMBER         4
 
 #define COMMENT_CHAR            '#'
 #define LABEL_CHAR              ':'
@@ -26,75 +35,78 @@
 #define COMMENT_CMD_STRING      ".comment"
 
 /*
- ** regs
- */
+** regs
+** r1 <--> rx
+*/
 
-#define REG_NUMBER      16              /* r1 <--> rx */
+#define REG_NUMBER      16
 
 /*
- **
- */
+**
+*/
 
-typedef char    args_type_t;
+typedef char    t_args_type;
 
-#define T_REG           1       /* registre */
-#define T_DIR           2       /* directe  (ld  #1,r1  met 1 dans r1) */
-#define T_IND           4       /* indirecte toujours relatif
-                                   ( ld 1,r1 met ce qu'il y a l'adress (1+pc)
-                                   dans r1 (4 octecs )) */
-#define T_LAB           8       /* LABEL */
+/* T_REG = registre
+** T_DIR = directe  (ld  #1,r1  met 1 dans r1)
+** T_IND indirecte toujours relatif
+** ( ld 1,r1 met ce qu'il y a l'adress (1+pc)
+** dans r1 (4 octecs ))
+*/
 
-struct  op_s
+#define T_REG           1
+#define T_DIR           2
+#define T_IND           4
+
+/*
+** LABEL
+*/
+
+#define T_LAB           8
+
+struct  t_op
 {
    char         *mnemonique;
    char         nbr_args;
-   args_type_t  type[MAX_ARGS_NUMBER];
+   t_args_type  type[MAX_ARGS_NUMBER];
    char         code;
    int          nbr_cycles;
    char         *comment;
 };
 
-typedef struct op_s     op_t;
+/*
+** size en octet
+*/
+
+#define IND_SIZE        2
+#define REG_SIZE        4
+#define DIR_SIZE        REG_SIZE
 
 /*
- ** size
- */
+** header
+*/
 
-#define IND_SIZE        2               /* en octet */
-#define REG_SIZE        4               /* en octet */
-#define DIR_SIZE        REG_SIZE        /* en octet */
-
-/*
- ** op_tab
- */
-
-
-extern  op_t    op_tab[];
-
-
-/*
- ** header
- */
 #define PROG_NAME_LENGTH        128
 #define COMMENT_LENGTH          2048
+#define COREWAR_EXEC_MAGIC      0xea83f3
 
-struct header_s
+struct s_header
 {
    int  magic;
-#define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
-   char prog_name[PROG_NAME_LENGTH+1];
+   char prog_name[PROG_NAME_LENGTH + 1];
    int  prog_size;
-   char comment[COMMENT_LENGTH+1];
+   char comment[COMMENT_LENGTH + 1];
 };
 
-typedef struct header_s header_t;
+typedef struct s_header t_header;
 
 /*
- ** live
- */
+** live
+** CYCLE_TO_DIE = nombre de cycle pour etre déclarer mort
+*/
 
-#define CYCLE_TO_DIE    1536    /* nombre de cycle pour etre d\'eclarer mort */
+#define CYCLE_TO_DIE    1536
 #define CYCLE_DELTA     5
 #define NBR_LIVE        40
 
-#endif
+#endif /* !OP_H_ */
