@@ -5,12 +5,12 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Mon Mar 14 10:55:19 2016 
+** Last update Mon Mar 14 19:50:41 2016 
 */
 
 #include "asm.h"
 
-int	check_if_label(t_list_instruc *elem, char *file, int i)
+int	check_if_label(char *file, int i)
 {
   if (file[i] != LABEL_CHAR)
     return (-1);
@@ -19,14 +19,16 @@ int	check_if_label(t_list_instruc *elem, char *file, int i)
 	 && file[i] != '\0')
     {
       if (check_char(file[i]) == -1)
-	return (-1);
+	{
+	  printf("%c\n", file[i]);
+	  return (-1);
+	}
       i++;
     }
-  printf("label-> %s\n", file);
   return (0);
 }
 
-int	check_if_val(t_list_instruc *elem, char *file, int i)
+int	check_if_val(char *file, int i)
 {
   while ((file[i] != ' ' || file[i] != '\t' || file[i] != ',')
 	 && file[i] != '\0')
@@ -52,8 +54,8 @@ int	check_direct_arg(t_list_instruc *elem, char *file, int pos)
   arg = my_strncpy(arg, file, i);
   if (arg[0] != DIRECT_CHAR)
     return (-1);
-  if (check_if_label(elem, arg, 1) == -1
-      && check_if_val(elem, arg, 1) == -1)
+  if (check_if_label(arg, 1) == -1
+      && check_if_val(arg, 1) == -1)
     return (-1);
   if (stock_args(elem, arg, pos) == -1)
     return (-1);
@@ -72,8 +74,8 @@ int	check_indirect_arg(t_list_instruc *elem, char *file, int pos)
   if ((arg = malloc(sizeof(char) * (i + 1))) == NULL)
     return (malloc_fail(), -1);
   arg = my_strncpy(arg, file, i);
-  if (check_if_label(elem, arg, 0) == -1
-      && check_if_val(elem, arg, 0) == -1)
+  if (check_if_label(arg, 0) == -1
+      && check_if_val(arg, 0) == -1)
     return (-1);
   if (stock_args(elem, arg, pos) == -1)
     return (-1);
@@ -94,8 +96,6 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   if ((arg = malloc(sizeof(char) * (i + 1))) == NULL)
     return (malloc_fail(), -1);
   arg = my_strncpy(arg, file, i);
-  if (stock_args(elem, arg, pos) == -1)
-    return (-1);
   file = malloc(sizeof(char) * my_strlen(arg));
   i = 1;
   j = 0;
@@ -110,6 +110,7 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   nb = atoi(file);
   if (nb < 1 || nb > 16)
     return (-1);
-  printf("reg -> %s\n", file);
+  if (stock_args(elem, arg, pos) == -1)
+    return (-1);
   return (0);
 }

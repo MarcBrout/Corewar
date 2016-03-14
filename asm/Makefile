@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Mon Mar 14 18:11:21 2016 bougon_p
+## Last update Mon Mar 14 19:53:09 2016 
 ##
 
 # USEFUL VARIABLES
@@ -46,9 +46,9 @@ SRC		=	srcs/main.c \
 			$(LEXER)check_good_args.c \
 			$(LEXER)my_strcmp.c \
 			$(LEXER)my_strcpy.c \
-			$(LEXER)my_strdup.c \
 			$(LEXER)my_strncmp.c \
 			$(LEXER)my_strncpy.c \
+			$(LEXER)print_list.c \
 			$(TOOLS)get_next_line.c \
 			$(TOOLS)str_null.c \
 			$(ERROR)error_stop.c
@@ -62,7 +62,6 @@ LIBPATH =       ../lib/
 
 SRCLIB	=	$(LIBPATH)my/get_next_line.c \
 		$(LIBPATH)my/my_getnbr.c \
-		$(LIBPATH)my/my_power_rec.c \
 		$(LIBPATH)my/my_printf.c \
 		$(LIBPATH)my/my_printfcsspb.c \
 		$(LIBPATH)my/my_printfdiouxx.c \
@@ -98,7 +97,7 @@ $(NAME)		: 	$(OBJSLIB) $(OBJS)
 			@ar rc $(LIBPATH)libmy.a $(OBJSLIB)
 			@ranlib $(LIBPATH)libmy.a
 			@$(ECHO) "$(GREEN)\n> Compiling project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
-			@$(CC) -o $(NAME) $(OBJS)
+			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 all		:	$(NAME)
 
