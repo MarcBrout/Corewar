@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 14 18:56:46 2016 bougon_p
+** Last update Mon Mar 14 19:06:54 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -100,6 +100,7 @@ typedef struct		s_instruc
 **Fonctions Lexer
 */
 
+int			lexer(t_header *, t_instruc *, char *);
 char			*get_next_line(int);
 int			check_name(t_header *, char *);
 char			*epure_file_name_com(char *, int);
@@ -110,25 +111,29 @@ char			*epure_file_instruc(char *, int);
 void			malloc_fail();
 int			check_comment(t_header *, char *);
 int			check_instructions(t_instruc *, int);
+int			check_which_instruc(t_instruc *, t_list_instruc *,
+					    char *);
+int			check_stock_good_args(t_list_instruc *, char *, int);
+void			print_list(t_instruc *);
+int			check_direct_arg(t_list_instruc *, char *, int);
+int			check_registre_arg(t_list_instruc *, char *, int);
+int			check_indirect_arg(t_list_instruc *, char *, int);
+int			stock_args(t_list_instruc *, char *, int);
 
 /*
 ** Parser functions
 */
+
+int	parser(char *, t_header *);
 void	set_line_null(char *, int);
 int	convert_bigend_to_littleend_int(int);
-
-
-/*
-**Fonctions lib à enlever
-*/
-
-int	my_strlen(char *);
-char	*my_strcpy(char *, char *);
-int	my_strncmp(char *, char *, int);
+int	create_file(char *);
 
 /*
 ** TOOLS
 */
+
 char	*my_strncpy(char *, char *, int);
+char	*my_strcat(char *, char *);
 
 #endif /* !HEADER_H_ */

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Mar 11 15:29:29 2016 bougon_p
-** Last update Mon Mar 14 18:55:02 2016 bougon_p
+** Last update Mon Mar 14 19:05:22 2016 bougon_p
 */
 
 #include "asm.h"
@@ -34,7 +34,7 @@ int	create_file(char *name)
   if ((new_name = realloc
        (new_name, my_strlen(name) - sizeofextens(name) + 5)) == NULL)
     return (malloc_fail(), 1);
-  strcat(new_name, ".cor");
+  my_strcat(new_name, ".cor");
   if ((fd = open(new_name, O_WRONLY | O_CREAT | O_TRUNC,
                  S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)) == -1)
     return (1);

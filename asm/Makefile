@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Mon Mar 14 18:52:45 2016 bougon_p
+## Last update Mon Mar 14 19:05:05 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -51,6 +51,7 @@ SRC		=	srcs/main.c \
 			$(LEXER)print_list.c \
 			$(TOOLS)get_next_line.c \
 			$(TOOLS)str_null.c \
+			$(TOOLS)my_strcat.c \
 			$(ERROR)error_stop.c
 
 OBJS    	=	$(SRC:.c=.o)
@@ -62,6 +63,7 @@ LIBPATH =       ../lib/
 
 SRCLIB	=	$(LIBPATH)my/get_next_line.c \
 		$(LIBPATH)my/my_getnbr.c \
+		$(LIBPATH)my/my_power_rec.c \
 		$(LIBPATH)my/my_printf.c \
 		$(LIBPATH)my/my_printfcsspb.c \
 		$(LIBPATH)my/my_printfdiouxx.c \
