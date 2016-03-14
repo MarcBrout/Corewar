@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Mon Mar 14 10:55:19 2016 
+** Last update Mon Mar 14 12:01:00 2016 
 */
 
 #include "asm.h"
@@ -19,10 +19,12 @@ int	check_if_label(t_list_instruc *elem, char *file, int i)
 	 && file[i] != '\0')
     {
       if (check_char(file[i]) == -1)
-	return (-1);
+	{
+	  printf("%c\n", file[i]);
+	  return (-1);
+	}
       i++;
     }
-  printf("label-> %s\n", file);
   return (0);
 }
 
@@ -94,8 +96,6 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   if ((arg = malloc(sizeof(char) * (i + 1))) == NULL)
     return (malloc_fail(), -1);
   arg = my_strncpy(arg, file, i);
-  if (stock_args(elem, arg, pos) == -1)
-    return (-1);
   file = malloc(sizeof(char) * my_strlen(arg));
   i = 1;
   j = 0;
@@ -110,6 +110,7 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   nb = atoi(file);
   if (nb < 1 || nb > 16)
     return (-1);
-  printf("reg -> %s\n", file);
+  if (stock_args(elem, arg, pos) == -1)
+    return (-1);
   return (0);
 }

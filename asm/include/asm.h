@@ -1,4 +1,3 @@
-
 /*
 ** header.h for header in /home/marel_m/Rendu/Semestre_2/CPE/CPE_2015_corewar/asm
 **
@@ -6,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 14 18:36:09 2016 bougon_p
+** Last update Mon Mar 14 18:37:42 2016 bougon_p
 */
 
 #ifndef HEADER_H_
