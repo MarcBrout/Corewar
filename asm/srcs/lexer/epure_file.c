@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 17:04:35 2016
-** Last update Sun Mar 13 19:28:25 2016 
+** Last update Mon Mar 14 22:11:57 2016 
 */
 
 #include "asm.h"
@@ -49,4 +49,15 @@ char	*epure_file_instruc(char *file, int i)
     }
   new[j] = '\0';
   return (new);
+}
+
+int	check_end_instruc(char *file, int i)
+{
+  while (file && file[i] != '\0')
+    {
+      if (file[i] != ' ' && file[i] != '\t' && file[i] != ',')
+	return (-1);
+      i++;
+    }
+  return (0);
 }
