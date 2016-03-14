@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 14 18:58:02 2016 
+** Last update Mon Mar 14 19:38:12 2016 
 */
 
 #ifndef HEADER_H_
@@ -110,12 +110,5 @@ void			malloc_fail();
 int			check_comment(t_header *, char *);
 int			check_instructions(t_instruc *, int);
 
-/*
-**Fonctions lib à enlever
-*/
-
-int	my_strlen(char *);
-char	*my_strcpy(char *, char *);
-int	my_strncmp(char *, char *, int);
 
 #endif /* !HEADER_H_ */
