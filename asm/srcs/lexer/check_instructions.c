@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Mon Mar 14 19:21:54 2016 
+** Last update Mon Mar 14 19:53:39 2016 
 */
 
 #include "asm.h"
@@ -45,9 +45,8 @@ int	check_which_instruc(t_instruc *instruc, t_list_instruc *elem, char *file)
 		   op_tab[i].mnemonique, my_strlen(op_tab[i].mnemonique)) == 0
 	&& file[my_strlen(op_tab[i].mnemonique)] == ' ')
       {
-	elem->info->name = malloc(sizeof(char) * (my_strlen(op_tab[i].mnemonique) + 1));
-	elem->info->name = my_strcpy(elem->info->name, op_tab[i].mnemonique);
-	if (check_stock_good_args(instruc, elem, file, i) == -1)
+	elem->info->name = my_strdup(op_tab[i].mnemonique);
+	if (check_stock_good_args(elem, file, i) == -1)
 	  return (-1);
 	return (0);
       }

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 14 19:39:48 2016 
+** Last update Mon Mar 14 19:51:03 2016 
 */
 
 #ifndef HEADER_H_
@@ -110,6 +110,19 @@ char			*epure_file_instruc(char *, int);
 void			malloc_fail();
 int			check_comment(t_header *, char *);
 int			check_instructions(t_instruc *, int);
+int			check_which_instruc(t_instruc *, t_list_instruc *,
+					    char *);
+int			check_stock_good_args(t_list_instruc *, char *, int);
+void			print_list(t_instruc *);
+int			check_direct_arg(t_list_instruc *, char *, int);
+int			check_registre_arg(t_list_instruc *, char *, int);
+int			check_indirect_arg(t_list_instruc *, char *, int);
+int			stock_args(t_list_instruc *, char *, int);
 
+/*
+**Fonctions Lib
+*/
+
+char			*my_strncpy(char *, char *, int);
 
 #endif /* !HEADER_H_ */

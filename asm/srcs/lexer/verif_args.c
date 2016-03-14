@@ -5,13 +5,12 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 11:45:19 2016
-** Last update Mon Mar 14 12:02:06 2016 
+** Last update Mon Mar 14 19:48:14 2016 
 */
 
 #include "asm.h"
 
-int	verif_one_arg(t_instruc *instruc, t_list_instruc *elem,
-		      char *file, int i)
+int	verif_one_arg(t_list_instruc *elem, char *file, int i)
 {
   if (i == 0 || i == 14 || i == 11 || i == 8)
     {
@@ -24,8 +23,7 @@ int	verif_one_arg(t_instruc *instruc, t_list_instruc *elem,
   return (0);
 }
 
-int	verif_two_args(t_instruc *instruc, t_list_instruc *elem,
-		       char *file, int i)
+int	verif_two_args(t_list_instruc *elem, char *file, int i)
 {
   char	*new;
 
@@ -53,8 +51,7 @@ int	verif_two_args(t_instruc *instruc, t_list_instruc *elem,
     }
   return (0);
 }
-int	verif_three_args(t_instruc *instruc, t_list_instruc *elem,
-			 char *file, int i)
+int	verif_three_args(t_list_instruc *elem, char *file, int i)
 {
   char	*new;
   if (i == 3 || i == 4)
@@ -75,8 +72,7 @@ int	verif_three_args(t_instruc *instruc, t_list_instruc *elem,
   return (0);
 }
 
-int	check_stock_good_args(t_instruc *instruc, t_list_instruc *elem,
-			      char *file, int i)
+int	check_stock_good_args(t_list_instruc *elem, char *file, int i)
 {
   char	*new;
   int	j;
@@ -92,16 +88,16 @@ int	check_stock_good_args(t_instruc *instruc, t_list_instruc *elem,
     return (-1);
   if (op_tab[i].nbr_args == 3)
     {
-      if (verif_three_args(instruc, elem, new, i) == -1)
+      if (verif_three_args(elem, new, i) == -1)
 	return (-1);
     }
   else if (op_tab[i].nbr_args == 2)
     {
-      if (verif_two_args(instruc, elem, new, i) == -1)
+      if (verif_two_args(elem, new, i) == -1)
 	return (-1);
     }
   else
-    if (verif_one_arg(instruc, elem, new, i) == -1)
+    if (verif_one_arg(elem, new, i) == -1)
       return (-1);
   return (0);
 }
