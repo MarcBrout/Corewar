@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Tue Mar 15 18:19:30 2016 bougon_p
+** Last update Tue Mar 15 21:07:27 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -16,6 +16,7 @@
 # include "my.h"
 
 # define COREWAR_EXEC_MAGIC 0xea83f3
+# define NB_INSTRUCTIONS 16
 
 
 typedef struct		s_header
@@ -56,6 +57,11 @@ typedef struct		s_instruc
   t_list_label		*lab;
 }			t_instruc;
 
+typedef struct  s_tabinstr
+{
+  int           (**tabinstr)(t_info *, int);
+}               t_tabinstr;
+
 /*
 **Fonctions Lexer
 */
@@ -87,7 +93,7 @@ int			check_end_instruc(char *, int);
 
 int	parser(char *, t_header *, t_instruc *);
 int	write_header(int, t_header *);
-int	write_code(int, t_instruc *);
+int	write_code(int, t_instruc *, t_tabinstr *, char **);
 void	set_line_null(char *, int);
 int	convert_bigend_to_littleend_int(int);
 int	create_file(char *);
@@ -98,5 +104,26 @@ int	create_file(char *);
 
 char	*my_strncpy(char *, char *, int);
 char	*my_strcat(char *, char *);
+
+/*
+** Instruction functions
+*/
+
+int	w_live(t_info *, int);
+int	w_ld(t_info *, int);
+int	w_st(t_info *, int);
+int	w_add(t_info *, int);
+int	w_sub(t_info *, int);
+int	w_and(t_info *, int);
+int	w_or(t_info *, int);
+int	w_xor(t_info *, int);
+int	w_zjmp(t_info *, int);
+int	w_ldi(t_info *, int);
+int	w_sti(t_info *, int);
+int	w_fork(t_info *, int);
+int	w_lld(t_info *, int);
+int	w_lldi(t_info *, int);
+int	w_lfork(t_info *, int);
+int	w_aff(t_info *, int);
 
 #endif /* !HEADER_H_ */
