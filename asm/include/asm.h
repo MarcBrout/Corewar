@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Tue Mar 15 17:39:48 2016 
+** Last update Tue Mar 15 18:19:30 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -85,7 +85,9 @@ int			check_end_instruc(char *, int);
 ** Parser functions
 */
 
-int	parser(char *, t_header *);
+int	parser(char *, t_header *, t_instruc *);
+int	write_header(int, t_header *);
+int	write_code(int, t_instruc *);
 void	set_line_null(char *, int);
 int	convert_bigend_to_littleend_int(int);
 int	create_file(char *);

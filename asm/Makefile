@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Tue Mar 15 18:05:27 2016 bougon_p
+## Last update Tue Mar 15 18:23:55 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -34,6 +34,8 @@ SRC		=	srcs/main.c \
 			$(PARSER)parser.c \
 			$(PARSER)create_file.c \
 			$(PARSER)convert.c \
+			$(PARSER)header.c \
+			$(PARSER)code.c \
 			$(LEXER)lexer.c \
 			$(LEXER)check_name.c \
 			$(LEXER)check_comment.c \
