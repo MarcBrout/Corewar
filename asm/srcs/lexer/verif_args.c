@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 11:45:19 2016
-** Last update Mon Mar 14 19:48:14 2016 
+** Last update Mon Mar 14 23:28:10 2016 
 */
 
 #include "asm.h"
@@ -20,6 +20,8 @@ int	verif_one_arg(t_list_instruc *elem, char *file, int i)
   else if (i == 15)
     if (check_registre_arg(elem, file, 1) == -1)
       return (-1);
+  if (check_end_instruc(file, my_strlen(elem->info->arg_1)) == -1)
+    return (-1);
   return (0);
 }
 
@@ -49,11 +51,15 @@ int	verif_two_args(t_list_instruc *elem, char *file, int i)
 	  && check_registre_arg(elem, new, 2) == -1)
 	return (-1);
     }
+  if (check_end_instruc(new, my_strlen(elem->info->arg_2)) == -1)
+    return (-1);
   return (0);
 }
+
 int	verif_three_args(t_list_instruc *elem, char *file, int i)
 {
   char	*new;
+
   if (i == 3 || i == 4)
     {
       if (check_registre_arg(elem, file, 1) == -1)
@@ -69,6 +75,63 @@ int	verif_three_args(t_list_instruc *elem, char *file, int i)
       if (check_registre_arg(elem, new, 3) == -1)
 	return (-1);
     }
+  else if (i == 5 || i == 6 || i == 7)
+    {
+      if (check_registre_arg(elem, file, 1) == -1
+	  && check_direct_arg(elem, file, 1) == -1
+	  && check_indirect_arg(elem, file, 1) == -1)
+	return (-1);
+      if ((new = epure_file_instruc(file,
+				    my_strlen(elem->info->arg_1))) == NULL)
+	return (-1);
+      if (check_registre_arg(elem, file, 2) == -1
+	  && check_direct_arg(elem, file, 2) == -1
+	  && check_indirect_arg(elem, file, 2) == -1)
+	return (-1);
+      if ((new = epure_file_instruc(new,
+				    my_strlen(elem->info->arg_2))) == NULL)
+	return (-1);
+      if (check_registre_arg(elem, new, 3) == -1)
+	return (-1);
+    }
+  else if (i == 9 || i == 13)
+    {
+      if (check_registre_arg(elem, file, 1) == -1
+	  && check_direct_arg(elem, file, 1) == -1
+	  && check_indirect_arg(elem, file, 1) == -1)
+	return (-1);
+      if ((new = epure_file_instruc(file,
+				    my_strlen(elem->info->arg_1))) == NULL)
+	return (-1);
+      if (check_registre_arg(elem, new, 2) == -1
+	  && check_direct_arg(elem, new, 2) == -1)
+	return (-1);
+      if ((new = epure_file_instruc(new,
+				    my_strlen(elem->info->arg_2))) == NULL)
+	return (-1);
+      if (check_registre_arg(elem, new, 3) == -1)
+	return (-1);
+    }
+  else
+    {
+      if (check_registre_arg(elem, file, 1) == -1)
+	return (-1);
+      if ((new = epure_file_instruc(file,
+				    my_strlen(elem->info->arg_1))) == NULL)
+	return (-1);
+      if (check_registre_arg(elem, new, 2) == -1
+	  && check_direct_arg(elem, new, 2) == -1
+	  && check_indirect_arg(elem, new, 2) == -1)
+	return (-1);
+      if ((new = epure_file_instruc(new,
+				    my_strlen(elem->info->arg_2))) == NULL)
+	return (-1);
+      if (check_registre_arg(elem, new, 3) == -1
+	  && check_direct_arg(elem, new, 3) == -1)
+	return (-1);
+    }
+  if (check_end_instruc(new, my_strlen(elem->info->arg_3)) == -1)
+    return (-1);
   return (0);
 }
 
@@ -99,5 +162,6 @@ int	check_stock_good_args(t_list_instruc *elem, char *file, int i)
   else
     if (verif_one_arg(elem, new, i) == -1)
       return (-1);
+  free(new);
   return (0);
 }

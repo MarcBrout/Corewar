@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 14 19:06:54 2016 bougon_p
+** Last update Tue Mar 15 17:39:48 2016 
 */
 
 #ifndef HEADER_H_
@@ -17,54 +17,6 @@
 
 # define COREWAR_EXEC_MAGIC 0xea83f3
 
-enum			check_one_arg
-  {
-    LIVE,
-    LFORK,
-    FORK,
-    ZJMP,
-    AFF,
-    MAX_ONE_ARG
-  };
-
-typedef struct		s_check_one_arg
-{
-  char			*arg;
-  void			(*ft_one)();
-}			t_check_one_arg;
-
-enum			check_two_args
-  {
-    LD,
-    LLD,
-    ST,
-    MAX_TWO_ARGS
-  };
-
-typedef struct		s_check_two_arg
-{
-  char			*arg;
-  void			(*ft_two)();
-}			t_check_two_arg;
-
-enum			check_three_args
-  {
-    ADD,
-    SUB,
-    AND,
-    OR,
-    XOR,
-    LDI,
-    LLDI,
-    STI,
-    MAX_THREE_ARGS
-  };
-
-typedef struct		s_check_three_arg
-{
-  char			*arg;
-  void			(*ft_three)();
-}			t_check_three_arg;
 
 typedef struct		s_header
 {
@@ -90,10 +42,18 @@ typedef struct		s_list_instruc
   struct s_list_instruc	*prev;
 }			t_list_instruc;
 
+typedef struct		s_list_label
+{
+  char			*name;
+  struct s_list_label	*next;
+  struct s_list_label	*prev;
+}			t_list_label;
+
 typedef struct		s_instruc
 {
   int			lenght;
   t_list_instruc	*root;
+  t_list_label		*lab;
 }			t_instruc;
 
 /*
@@ -119,6 +79,7 @@ int			check_direct_arg(t_list_instruc *, char *, int);
 int			check_registre_arg(t_list_instruc *, char *, int);
 int			check_indirect_arg(t_list_instruc *, char *, int);
 int			stock_args(t_list_instruc *, char *, int);
+int			check_end_instruc(char *, int);
 
 /*
 ** Parser functions
