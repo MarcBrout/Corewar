@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Wed Mar 16 12:25:12 2016 
+** Last update Wed Mar 16 12:26:02 2016 
 */
 
 #ifndef HEADER_H_
@@ -59,7 +59,6 @@ typedef struct		s_instruc
   t_list_label		*lab;
 }			t_instruc;
 
-<<<<<<< HEAD
 enum			three_args
   {
     ADD,
