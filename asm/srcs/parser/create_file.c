@@ -5,10 +5,13 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Mar 11 15:29:29 2016 bougon_p
-** Last update Tue Mar 15 18:04:53 2016 bougon_p
+** Last update Wed Mar 16 10:38:53 2016 
 */
 
 #include "asm.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 int	sizeofextens(char *name)
 {

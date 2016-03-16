@@ -5,13 +5,15 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Mon Mar 14 22:41:04 2016 
+** Last update Wed Mar 16 12:14:04 2016 
 */
 
 #include "asm.h"
 
-int	check_if_label(char *file, int i)
+int		check_if_label(t_instruc *instruc, char *file, int i)
 {
+  t_list_label	*new;
+
   if (file[i] != LABEL_CHAR)
     return (-1);
   i++;
@@ -19,12 +21,12 @@ int	check_if_label(char *file, int i)
 	 && file[i] != '\0')
     {
       if (check_char(file[i]) == -1)
-	{
-	  printf("%c\n", file[i]);
-	  return (-1);
-	}
+	return (-1);
       i++;
     }
+  if ((new = add_list_after_label(instruc)) == NULL)
+    return (-1);
+  new->name = my_strdup(file);
   return (0);
 }
 
@@ -40,7 +42,8 @@ int	check_if_val(char *file, int i)
   return (0);
 }
 
-int	check_direct_arg(t_list_instruc *elem, char *file, int pos)
+int	check_direct_arg(t_instruc *instruc, t_list_instruc *elem,
+			 char *file, int pos)
 {
   int	i;
   char	*arg;
@@ -52,17 +55,16 @@ int	check_direct_arg(t_list_instruc *elem, char *file, int pos)
   if ((arg = malloc(sizeof(char) * (i + 1))) == NULL)
     return (malloc_fail(), -1);
   arg = my_strncpy(arg, file, i);
-  if (arg[0] != DIRECT_CHAR)
-    return (-1);
-  if (check_if_label(arg, 1) == -1
-      && check_if_val(arg, 1) == -1)
-    return (-1);
-  if (stock_args(elem, arg, pos) == -1)
+  if (arg[0] != DIRECT_CHAR
+      || (check_if_label(instruc, arg, 1) == -1
+	  && check_if_val(arg, 1) == -1)
+      || stock_args(elem, arg, pos) == -1)
     return (-1);
   return (0);
 }
 
-int	check_indirect_arg(t_list_instruc *elem, char *file, int pos)
+int	check_indirect_arg(t_instruc *instruc, t_list_instruc *elem,
+			   char *file, int pos)
 {
   int	i;
   char	*arg;
@@ -74,10 +76,9 @@ int	check_indirect_arg(t_list_instruc *elem, char *file, int pos)
   if ((arg = malloc(sizeof(char) * (i + 1))) == NULL)
     return (malloc_fail(), -1);
   arg = my_strncpy(arg, file, i);
-  if (check_if_label(arg, 0) == -1
-      && check_if_val(arg, 0) == -1)
-    return (-1);
-  if (stock_args(elem, arg, pos) == -1)
+  if ((check_if_label(instruc, arg, 0) == -1
+       && check_if_val(arg, 0) == -1)
+      || stock_args(elem, arg, pos) == -1)
     return (-1);
   free(arg);
   return (0);
@@ -86,9 +87,9 @@ int	check_indirect_arg(t_list_instruc *elem, char *file, int pos)
 int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
 {
   int	i;
-  char	*arg;
   int	nb;
   int	j;
+  char	*arg;
 
   i = 0;
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
@@ -103,16 +104,10 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   j = 0;
   while (arg[i] != ' ' && arg[i] != ',' && arg[i] != '\t'
 	 && arg[i] != '\0')
-    {
-      file[j] = arg[i];
-      j++;
-      i++;
-    }
+    file[j++] = arg[i++];
   file[j] = '\0';
   nb = atoi(file);
-  if (nb < 1 || nb > 16)
-    return (-1);
-  if (stock_args(elem, arg, pos) == -1)
+  if (nb < 1 || nb > 16 || stock_args(elem, arg, pos) == -1)
     return (-1);
   free(file);
   return (0);

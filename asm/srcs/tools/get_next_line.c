@@ -5,10 +5,16 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar  8 10:28:08 2016 bougon_p
-** Last update Thu Mar 10 13:48:21 2016 bougon_p
+** Last update Wed Mar 16 10:37:07 2016 
 */
 
 #include "get_next_line.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 char	*my_realloc(char *line)
 {

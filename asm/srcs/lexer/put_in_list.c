@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 15:43:13 2016
-** Last update Tue Mar 15 16:43:56 2016 
+** Last update Tue Mar 15 19:38:09 2016 
 */
 
 #include "asm.h"
@@ -49,6 +49,7 @@ int		create_list_label(t_instruc *instruc)
   instruc->lab = new;
   new->prev = new;
   new->next = new;
+  instruc->lenght_label = 1;
   return (0);
 }
 
@@ -65,5 +66,6 @@ t_list_label	*add_list_after_label(t_instruc *instruc)
       instruc->lab->prev->next = new;
       instruc->lab->prev = new;
     }
+  instruc->lenght_label++;
   return (new);
 }

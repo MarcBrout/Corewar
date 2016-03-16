@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Tue Mar 15 18:23:55 2016 bougon_p
+## Last update Wed Mar 16 11:49:17 2016 
 ##
 
 # USEFUL VARIABLES
@@ -40,14 +40,15 @@ SRC		=	srcs/main.c \
 			$(LEXER)check_name.c \
 			$(LEXER)check_comment.c \
 			$(LEXER)check_instructions.c \
+			$(LEXER)check_label.c \
 			$(LEXER)epure_file.c \
 			$(LEXER)put_in_list.c \
 			$(LEXER)check_char.c \
 			$(LEXER)check_stock.c \
+			$(LEXER)check_if_label_exist.c \
 			$(LEXER)verif_args.c \
+			$(LEXER)instruc_three_args.c \
 			$(LEXER)check_good_args.c \
-			$(LEXER)my_strcmp.c \
-			$(LEXER)my_strcpy.c \
 			$(LEXER)my_strncmp.c \
 			$(LEXER)my_strncpy.c \
 			$(LEXER)print_list.c \

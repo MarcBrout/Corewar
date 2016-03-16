@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Tue Mar 15 19:12:54 2016 
+** Last update Wed Mar 16 12:23:22 2016 
 */
 
 #ifndef HEADER_H_
@@ -16,6 +16,7 @@
 # include "my.h"
 
 # define COREWAR_EXEC_MAGIC 0xea83f3
+# define UNUSED __attribute__((__unused__))
 
 
 typedef struct		s_header
@@ -53,8 +54,28 @@ typedef struct		s_instruc
 {
   int			lenght;
   t_list_instruc	*root;
+  int			lenght_label;
   t_list_label		*lab;
 }			t_instruc;
+
+enum			three_args
+  {
+    ADD,
+    SUB,
+    AND,
+    OR,
+    XOR,
+    LDI,
+    STI,
+    LLDI,
+    MAX_THREE_ARGS
+  };
+
+typedef struct		s_three_args
+{
+  int			ins;
+  int			(*ft_three)(t_instruc *, t_list_instruc *, char *);
+}			t_three_args;
 
 /*
 **Fonctions Lexer
@@ -71,15 +92,26 @@ char			*epure_file_instruc(char *, int);
 void			malloc_fail();
 int			check_comment(t_header *, char *);
 int			check_instructions(t_instruc *, int);
+int			check_instruc_label(t_instruc *, t_list_instruc *,
+					    char *, int);
 int			check_which_instruc(t_instruc *, t_list_instruc *,
 					    char *, int);
-int			check_stock_good_args(t_list_instruc *, char *, int);
-void			print_list(t_instruc *);
-int			check_direct_arg(t_list_instruc *, char *, int);
+int			check_stock_good_args(t_instruc *, t_list_instruc *,
+					      char *, int);
+void			print_list(t_header *, t_instruc *);
+int			check_direct_arg(t_instruc *, t_list_instruc *,
+					 char *, int);
 int			check_registre_arg(t_list_instruc *, char *, int);
-int			check_indirect_arg(t_list_instruc *, char *, int);
+int			check_indirect_arg(t_instruc *, t_list_instruc *,
+					   char *, int);
 int			stock_args(t_list_instruc *, char *, int);
 int			check_end_instruc(char *, int);
+int			check_if_label_exist(t_instruc *);
+int			create_list_label(t_instruc *);
+t_list_label		*add_list_after_label(t_instruc *);
+int			verif_three_args(t_instruc *, t_list_instruc *,
+					 char *, int);
+t_three_args		*init_tab_three_args();
 
 /*
 ** Parser functions

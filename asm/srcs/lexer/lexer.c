@@ -5,11 +5,14 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:41:48 2016
-** Last update Sat Mar 12 18:39:36 2016 
+** Last update Wed Mar 16 10:39:16 2016 
 */
 
 #include "asm.h"
 #include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 int	lexer(t_header *header, t_instruc *instruc, char *str)
 {
@@ -25,6 +28,10 @@ int	lexer(t_header *header, t_instruc *instruc, char *str)
   while ((file = get_next_line(fd)) != NULL && strlen(file) == 0);
   if ((n = check_comment(header, file)) == -1)
     return (-1);
-  check_instructions(instruc, fd);
+  if (check_instructions(instruc, fd) == -1)
+    return (-1);
+  if (check_if_label_exist(instruc) == -1)
+    return (-1);
+  print_list(header, instruc);
   return (0);
 }

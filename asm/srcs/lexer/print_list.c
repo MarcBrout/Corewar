@@ -5,18 +5,34 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Mon Mar 14 11:30:23 2016
-** Last update Mon Mar 14 19:13:28 2016 
+** Last update Wed Mar 16 10:30:55 2016 
 */
 
 #include "asm.h"
 
-void			print_list(t_instruc *instruc)
+void		print_list_label(t_instruc *instruc)
+{
+  t_list_label	*tmp;
+  int		i;
+
+  i = 0;
+  printf("\nLabel:\n");
+  tmp = instruc->lab->next;
+  while (i < instruc->lenght_label - 1)
+    {
+      printf("%s\n", tmp->name);
+      tmp = tmp->next;
+      i++;
+    }
+}
+
+void			print_list(t_header *header, t_instruc *instruc)
 {
   int			i;
   t_list_instruc	*tmp;
 
   i = 0;
-  printf("\n");
+  printf("%s\n%s\n\n", header->prog_name, header->comment);
   tmp = instruc->root->next;
   while (i < instruc->lenght - 1)
     {
@@ -26,4 +42,5 @@ void			print_list(t_instruc *instruc)
       tmp = tmp->next;
       i++;
     }
+  print_list_label(instruc);
 }

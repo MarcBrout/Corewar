@@ -5,10 +5,11 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 14:10:16 2016
-** Last update Fri Mar 11 14:14:53 2016 
+** Last update Wed Mar 16 10:40:02 2016 
 */
 
 #include "asm.h"
+#include <unistd.h>
 
 void	malloc_fail()
 {
