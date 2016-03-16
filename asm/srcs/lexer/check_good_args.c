@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Wed Mar 16 12:14:04 2016 
+** Last update Wed Mar 16 19:03:57 2016 
 */
 
 #include "asm.h"
@@ -32,6 +32,9 @@ int		check_if_label(t_instruc *instruc, char *file, int i)
 
 int	check_if_val(char *file, int i)
 {
+  if ((file[i] < '0' || file[i] > '9') && file[i] != '-')
+    return (-1);
+  i++;
   while ((file[i] != ' ' || file[i] != '\t' || file[i] != ',')
 	 && file[i] != '\0')
     {
@@ -80,7 +83,6 @@ int	check_indirect_arg(t_instruc *instruc, t_list_instruc *elem,
        && check_if_val(arg, 0) == -1)
       || stock_args(elem, arg, pos) == -1)
     return (-1);
-  free(arg);
   return (0);
 }
 
@@ -109,6 +111,5 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   nb = atoi(file);
   if (nb < 1 || nb > 16 || stock_args(elem, arg, pos) == -1)
     return (-1);
-  free(file);
   return (0);
 }

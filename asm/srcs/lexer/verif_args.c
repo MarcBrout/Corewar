@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 11:45:19 2016
-** Last update Wed Mar 16 14:45:23 2016 bougon_p
+** Last update Wed Mar 16 19:00:32 2016 
 */
 
 #include "asm.h"
@@ -107,6 +107,5 @@ int	check_stock_good_args(t_instruc *instruc, t_list_instruc *elem,
     return (-1);
   if (how_many_args(instruc, elem, new, i)== -1)
     return (-1);
-  free(new);
   return (0);
 }

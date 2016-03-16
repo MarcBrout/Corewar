@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Wed Mar 16 11:04:29 2016 
+** Last update Wed Mar 16 22:53:38 2016 
 */
 
 #include "asm.h"
@@ -17,22 +17,26 @@ int	check_which_instruc(t_instruc *instruc, t_list_instruc *elem,
 
   i = -1;
   while (++i < 16)
-    if (my_strncmp(file,
-		   op_tab[i].mnemonique, my_strlen(op_tab[i].mnemonique)) == 0
-	&& file[my_strlen(op_tab[i].mnemonique)] == ' ')
-      {
-	elem->info->name = my_strdup(op_tab[i].mnemonique);
-	if (check_stock_good_args(instruc, elem, file, i) == -1)
-	  return (-1);
-	return (0);
-      }
+    {
+      if (my_strncmp(file,
+		     op_tab[i].mnemonique, my_strlen(op_tab[i].mnemonique)) == 0
+	  && (file[my_strlen(op_tab[i].mnemonique)] == ' '
+	      || file[my_strlen(op_tab[i].mnemonique)] == '\t'))
+	{
+	  elem->info->name = my_strdup(op_tab[i].mnemonique);
+	  if (check_stock_good_args(instruc, elem, file, i) == -1)
+	    return (-1);
+	  return (0);
+	}
+    }
   if (elem->info->label == NULL)
     if (check_instruc_label(instruc, elem, file, fd) == -1)
       return (-1);
   return (0);
 }
 
-int			check_instruc_arg(t_instruc *instruc, char *file, int fd)
+int			check_instruc_arg(t_instruc *instruc,
+					  char *file, int fd)
 {
   char			*new;
   t_list_instruc	*elem;
@@ -51,6 +55,19 @@ int			check_instruc_arg(t_instruc *instruc, char *file, int fd)
   return (0);
 }
 
+int	if_comment_text(char *file)
+{
+  int	i;
+
+  i = 0;
+  while (file && (file[i] == ' ' || file[i] == '\t' || file[i] == ',')
+	 && file[i] != '\0')
+    i++;
+  if (file[i] == '#')
+    return (-1);
+  return (0);
+}
+
 int	put_instruc(t_instruc *instruc, int fd)
 {
   char	*file;
@@ -58,6 +75,8 @@ int	put_instruc(t_instruc *instruc, int fd)
   while ((file = get_next_line(fd)) != NULL && my_strlen(file) == 0);
   if (file != NULL)
     {
+      if (if_comment_text(file) == -1)
+	put_instruc(instruc, fd);
       if (check_instruc_arg(instruc, file, fd) == -1)
 	return (-1);
       put_instruc(instruc, fd);
@@ -70,5 +89,6 @@ int	check_instructions(t_instruc *instruc, int fd)
   if (create_list(instruc) == -1 || create_list_label(instruc) == -1)
     return (-1);
   put_instruc(instruc, fd);
+  print_list(instruc);
   return (0);
 }

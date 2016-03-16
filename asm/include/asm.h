@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Wed Mar 16 14:51:51 2016 bougon_p
+** Last update Wed Mar 16 19:00:54 2016 
 */
 
 #ifndef HEADER_H_
@@ -104,7 +104,7 @@ int			check_which_instruc(t_instruc *, t_list_instruc *,
 					    char *, int);
 int			check_stock_good_args(t_instruc *, t_list_instruc *,
 					      char *, int);
-void			print_list(t_header *, t_instruc *);
+void			print_list(t_instruc *);
 int			check_direct_arg(t_instruc *, t_list_instruc *,
 					 char *, int);
 int			check_registre_arg(t_list_instruc *, char *, int);

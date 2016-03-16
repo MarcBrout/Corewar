@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 13:57:07 2016
-** Last update Tue Mar 15 18:08:40 2016 bougon_p
+** Last update Wed Mar 16 18:20:37 2016 
 */
 
 #include "asm.h"
@@ -21,6 +21,6 @@ int		main(int ac, char **av)
       return (-1);
     }
   lexer(&header, &instruc, av[1]);
-  parser(av[1], &header, &instruc);
+  /* parser(av[1], &header, &instruc); */
   return (0);
 }
