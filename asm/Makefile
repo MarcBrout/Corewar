@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Wed Mar 16 12:25:27 2016 
+## Last update Wed Mar 16 14:26:25 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -68,7 +68,6 @@ SRC		=	srcs/main.c \
 			$(LEXER)my_strncmp.c \
 			$(LEXER)my_strncpy.c \
 			$(LEXER)print_list.c \
-			$(TOOLS)get_next_line.c \
 			$(TOOLS)str_null.c \
 			$(TOOLS)my_strcat.c \
 			$(ERROR)error_stop.c

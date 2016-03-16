@@ -5,20 +5,20 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Wed Mar 16 12:26:02 2016 
+** Last update Wed Mar 16 14:51:51 2016 bougon_p
 */
 
 #ifndef HEADER_H_
 # define HEADER_H_
 
-# include "get_next_line.h"
 # include "op.h"
 # include "my.h"
+
+# include <unistd.h>
 
 # define COREWAR_EXEC_MAGIC 0xea83f3
 # define UNUSED __attribute__((__unused__))
 # define NB_INSTRUCTIONS 16
-
 
 typedef struct		s_header
 {

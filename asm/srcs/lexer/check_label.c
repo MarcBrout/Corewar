@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar 16 11:03:52 2016
-** Last update Wed Mar 16 11:04:31 2016 
+** Last update Wed Mar 16 14:47:36 2016 bougon_p
 */
 
 #include "asm.h"
@@ -39,7 +39,8 @@ int	check_instruc_label(t_instruc *instruc, t_list_instruc *elem,
 	return (-1);
       elem->info->label = my_strncpy(elem->info->label, new, i + 1);
       if ((new = epure_file_instruc(new, my_strlen(elem->info->label))) == NULL
-	  || ((my_strlen(new) == 0 && (new = check_empty_label(instruc, new, fd)) == NULL))
+	  || ((my_strlen(new) == 0
+	       && (new = check_empty_label(instruc, new, fd)) == NULL))
 	  || check_which_instruc(instruc, elem, new, fd) == -1)
 	return (-1);
       return (0);

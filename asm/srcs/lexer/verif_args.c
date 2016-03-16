@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 11:45:19 2016
-** Last update Wed Mar 16 12:22:11 2016 
+** Last update Wed Mar 16 14:45:23 2016 bougon_p
 */
 
 #include "asm.h"
@@ -52,7 +52,7 @@ int	verif_two_args(t_instruc *instruc, t_list_instruc *elem,
   return (0);
 }
 
-int     verif_three_args(t_instruc *instruc, t_list_instruc *elem,
+int	verif_three_args(t_instruc *instruc, t_list_instruc *elem,
 			 char *file, int i)
 {
   t_three_args  *fptrtab;

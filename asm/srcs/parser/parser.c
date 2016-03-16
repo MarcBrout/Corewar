@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Wed Mar 16 12:24:49 2016 
+** Last update Wed Mar 16 14:46:45 2016 bougon_p
 */
 
 #include "asm.h"
@@ -38,6 +38,8 @@ int	init_tabinstr(t_tabinstr *tabinstr)
 
 char	**init_instr_end(char **tab)
 {
+  if ((tab[9] = my_strdup("ldi")) == NULL)
+    return (NULL);
   if ((tab[10] = my_strdup("sti")) == NULL)
     return (NULL);
   if ((tab[11] = my_strdup("fork")) == NULL)
@@ -50,7 +52,7 @@ char	**init_instr_end(char **tab)
     return (NULL);
   if ((tab[15] = my_strdup("aff")) == NULL)
     return (NULL);
-  return(tab);
+  return (tab);
 }
 
 char	**init_instr()
@@ -77,8 +79,6 @@ char	**init_instr()
   if ((tab[7] = my_strdup("xor")) == NULL)
     return (NULL);
   if ((tab[8] = my_strdup("zjmp")) == NULL)
-    return (NULL);
-  if ((tab[9] = my_strdup("ldi")) == NULL)
     return (NULL);
   return (init_instr_end(tab));
 }
