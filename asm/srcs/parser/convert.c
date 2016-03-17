@@ -5,12 +5,22 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Mar 11 15:36:33 2016 bougon_p
-** Last update Fri Mar 11 15:40:27 2016 bougon_p
+** Last update Thu Mar 17 00:13:12 2016 bougon_p
 */
 
 #include "asm.h"
 
-int	convert_bigend_to_littleend_int(int var)
+int	convert_littleend_to_bigend_short(int var)
+{
+  int   tmp;
+
+  tmp = 0;
+  tmp = (var & 0xFF00) >> 8;
+  tmp |= ((var & 0x00FF) << 8);
+  return (tmp);
+}
+
+int	convert_littleend_to_bigend_int(int var)
 {
   int   tmp;
 

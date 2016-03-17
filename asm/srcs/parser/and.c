@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:29:39 2016 bougon_p
-** Last update Tue Mar 15 21:41:12 2016 bougon_p
+** Last update Wed Mar 16 21:31:34 2016 bougon_p
 */
 
 #include "asm.h"
@@ -16,6 +16,8 @@ int	w_and(t_info *info, int fd)
 
   istr = 0x06;
   if (write(fd, &istr, sizeof(istr)) == -1)
+    return (1);
+  if (w_coding_byte(fd, info) == -1)
     return (1);
   return (0);
 }

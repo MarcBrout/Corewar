@@ -5,12 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:31:15 2016 bougon_p
-** Last update Tue Mar 15 21:44:20 2016 bougon_p
+** Last update Wed Mar 16 21:45:37 2016 bougon_p
 */
 
 #include "asm.h"
 
-int	w_zjmp(t_info *info, int fd)
+int	w_zjmp(UNUSED t_info *info, int fd)
 {
   char	istr;
 

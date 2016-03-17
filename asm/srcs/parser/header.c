@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:20:22 2016 bougon_p
-** Last update Tue Mar 15 18:22:42 2016 bougon_p
+** Last update Wed Mar 16 23:48:37 2016 bougon_p
 */
 
 #include "asm.h"
@@ -17,7 +17,7 @@ int	write_magic(int fd)
   int	magic;
 
   magic = COREWAR_EXEC_MAGIC;
-  magic = convert_bigend_to_littleend_int(magic);
+  magic = convert_littleend_to_bigend_int(magic);
   if ((write(fd, &magic, sizeof(magic)) == -1) == -1)
     return (1);
   return (0);
@@ -42,7 +42,7 @@ int	write_prog_size(t_header *head, int fd)
   int	prog_size;
 
   prog_size = head->prog_size;
-  prog_size = convert_bigend_to_littleend_int(prog_size);
+  prog_size = convert_littleend_to_bigend_int(prog_size);
   write(fd, &prog_size, sizeof(prog_size));
   return (0);
 }

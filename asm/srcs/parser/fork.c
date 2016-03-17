@@ -5,12 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:32:55 2016 bougon_p
-** Last update Tue Mar 15 21:47:00 2016 bougon_p
+** Last update Wed Mar 16 22:06:54 2016 bougon_p
 */
 
 #include "asm.h"
 
-int	w_fork(t_info *info, int fd)
+int	w_fork(UNUSED t_info *info, int fd)
 {
   char	istr;
 

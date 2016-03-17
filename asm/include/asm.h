@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Thu Mar 17 14:03:27 2016 
+** Last update Thu Mar 17 14:46:51 2016 
 */
 
 #ifndef HEADER_H_
@@ -16,7 +16,12 @@
 
 # include <unistd.h>
 
-# define COREWAR_EXEC_MAGIC 0xea83f3
+
+/*
+** Debug includes
+*/
+# include <stdio.h>
+
 # define UNUSED __attribute__((__unused__))
 # define NB_INSTRUCTIONS 16
 
@@ -129,7 +134,8 @@ int	parser(char *, t_header *, t_instruc *);
 int	write_header(int, t_header *);
 int	write_code(int, t_instruc *, t_tabinstr *, char **);
 void	set_line_null(char *, int);
-int	convert_bigend_to_littleend_int(int);
+int	convert_littleend_to_bigend_int(int);
+int	convert_littleend_to_bigend_short(int);
 int	create_file(char *);
 
 /*
@@ -143,6 +149,7 @@ char	*my_strcat(char *, char *);
 ** Instruction functions
 */
 
+int	w_coding_byte(int, t_info *);
 int	w_live(t_info *, int);
 int	w_ld(t_info *, int);
 int	w_st(t_info *, int);
