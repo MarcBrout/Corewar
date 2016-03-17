@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Mar 16 20:14:07 2016 bougon_p
-** Last update Wed Mar 16 21:40:08 2016 bougon_p
+** Last update Thu Mar 17 15:40:43 2016 bougon_p
 */
 
 #include "asm.h"
@@ -58,7 +58,7 @@ char	check_arg3(t_info *info, int i)
   return (0x00);
 }
 
-int	w_coding_byte(int fd, t_info *info)
+char	w_coding_byte(int fd, t_info *info)
 {
   char	byte;
   int	i;
@@ -76,5 +76,5 @@ int	w_coding_byte(int fd, t_info *info)
     }
   if (write(fd, &byte, sizeof(byte)) == -1)
     return (-1);
-  return (0);
+  return (byte);
 }

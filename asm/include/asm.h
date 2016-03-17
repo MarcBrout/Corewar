@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Thu Mar 17 14:46:51 2016 
+** Last update Thu Mar 17 15:55:42 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -149,7 +149,10 @@ char	*my_strcat(char *, char *);
 ** Instruction functions
 */
 
-int	w_coding_byte(int, t_info *);
+int	w_reg(int, char *);
+int	w_int(int, char *);
+int	w_short(int, char *);
+char	w_coding_byte(int, t_info *);
 int	w_live(t_info *, int);
 int	w_ld(t_info *, int);
 int	w_st(t_info *, int);
