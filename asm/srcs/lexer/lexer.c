@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:41:48 2016
-** Last update Wed Mar 16 19:01:07 2016 
+** Last update Thu Mar 17 10:20:27 2016 
 */
 
 #include "asm.h"
@@ -22,10 +22,12 @@ int	lexer(t_header *header, t_instruc *instruc, char *str)
 
   if ((fd = open(str, O_RDONLY)) == -1)
     return (-1);
-  while ((file = get_next_line(fd)) != NULL && strlen(file) == 0);
+  while (((file = get_next_line(fd)) != NULL && strlen(file) == 0)
+	 || if_comment_text(file) == -1);
   if (check_name(header, file) == -1)
     return (-1);
-  while ((file = get_next_line(fd)) != NULL && strlen(file) == 0);
+  while (((file = get_next_line(fd)) != NULL && strlen(file) == 0)
+	 || if_comment_text(file) == -1);
   if ((n = check_comment(header, file)) == -1)
     return (-1);
   if (check_instructions(instruc, fd) == -1)

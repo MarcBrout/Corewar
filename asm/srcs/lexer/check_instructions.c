@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Wed Mar 16 22:53:38 2016 
+** Last update Thu Mar 17 14:03:41 2016 
 */
 
 #include "asm.h"
@@ -72,11 +72,14 @@ int	put_instruc(t_instruc *instruc, int fd)
 {
   char	*file;
 
-  while ((file = get_next_line(fd)) != NULL && my_strlen(file) == 0);
+  while ((file = get_next_line(fd)) != NULL && (my_strlen(file) == 0
+						|| check_line(file) == -1));
+  if (file == NULL)
+    return (0);
+  if (if_comment_text(file) == -1)
+    put_instruc(instruc, fd);
   if (file != NULL)
     {
-      if (if_comment_text(file) == -1)
-	put_instruc(instruc, fd);
       if (check_instruc_arg(instruc, file, fd) == -1)
 	return (-1);
       put_instruc(instruc, fd);
@@ -88,7 +91,8 @@ int	check_instructions(t_instruc *instruc, int fd)
 {
   if (create_list(instruc) == -1 || create_list_label(instruc) == -1)
     return (-1);
-  put_instruc(instruc, fd);
+  if (put_instruc(instruc, fd) == -1)
+    return (-1);
   print_list(instruc);
   return (0);
 }

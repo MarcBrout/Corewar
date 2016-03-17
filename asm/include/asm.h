@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Wed Mar 16 19:00:54 2016 
+** Last update Thu Mar 17 14:03:27 2016 
 */
 
 #ifndef HEADER_H_
@@ -118,6 +118,8 @@ t_list_label		*add_list_after_label(t_instruc *);
 int			verif_three_args(t_instruc *, t_list_instruc *,
 					 char *, int);
 t_three_args		*init_tab_three_args();
+int			if_comment_text(char *);
+int			check_line(char *);
 
 /*
 ** Parser functions

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar 16 11:24:18 2016
-** Last update Wed Mar 16 12:22:18 2016 
+** Last update Thu Mar 17 14:42:57 2016 
 */
 
 #include "asm.h"
@@ -38,9 +38,9 @@ int	regdirin_regdirin_reg(t_instruc *instruc, t_list_instruc *elem,
        && check_indirect_arg(instruc, elem, file, 1) == -1)
       || (new = epure_file_instruc(file,
 				   my_strlen(elem->info->arg_1))) == NULL
-      || (check_registre_arg(elem, file, 2) == -1
-	  && check_direct_arg(instruc, elem, file, 2) == -1
-	  && check_indirect_arg(instruc, elem, file, 2) == -1)
+      || (check_registre_arg(elem, new, 2) == -1
+	  && check_direct_arg(instruc, elem, new, 2) == -1
+	  && check_indirect_arg(instruc, elem, new, 2) == -1)
       || (new = epure_file_instruc(new,
 				   my_strlen(elem->info->arg_2))) == NULL
       || check_registre_arg(elem, new, 3) == -1)

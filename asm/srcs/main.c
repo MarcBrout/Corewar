@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 13:57:07 2016
-** Last update Wed Mar 16 18:20:37 2016 
+** Last update Thu Mar 17 10:11:12 2016 
 */
 
 #include "asm.h"
@@ -14,13 +14,16 @@ int		main(int ac, char **av)
 {
   t_header	header;
   t_instruc	instruc;
+  int		i;
 
-  if (ac != 2)
+  if (ac == 1)
     {
       write(2, "Wrong arguments\n", 16);
       return (-1);
     }
-  lexer(&header, &instruc, av[1]);
+  i = 0;
+  while (++i < ac)
+    lexer(&header, &instruc, av[i]);
   /* parser(av[1], &header, &instruc); */
   return (0);
 }

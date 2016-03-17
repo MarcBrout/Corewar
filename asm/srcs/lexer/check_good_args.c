@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Wed Mar 16 19:03:57 2016 
+** Last update Thu Mar 17 14:44:45 2016 
 */
 
 #include "asm.h"
@@ -32,7 +32,7 @@ int		check_if_label(t_instruc *instruc, char *file, int i)
 
 int	check_if_val(char *file, int i)
 {
-  if ((file[i] < '0' || file[i] > '9') && file[i] != '-')
+  if (file[i] < '0' && file[i] > '9' && file[i] != '-')
     return (-1);
   i++;
   while ((file[i] != ' ' || file[i] != '\t' || file[i] != ',')

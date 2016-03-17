@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar 16 11:03:52 2016
-** Last update Wed Mar 16 22:24:26 2016 
+** Last update Thu Mar 17 10:50:07 2016 
 */
 
 #include "asm.h"
@@ -18,7 +18,7 @@ char	*check_empty_label(t_instruc *instruc, char *new, int fd)
   if (my_strlen(new) == 0)
     {
       check_empty_label(instruc, new, fd);
-      return ;
+      return (0);
     }
   else
     return (new);
