@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Thu Mar 17 14:03:41 2016 
+** Last update Thu Mar 17 16:26:23 2016 
 */
 
 #include "asm.h"
@@ -60,6 +60,7 @@ int	if_comment_text(char *file)
   int	i;
 
   i = 0;
+  printf("%s\n", file);
   while (file && (file[i] == ' ' || file[i] == '\t' || file[i] == ',')
 	 && file[i] != '\0')
     i++;
@@ -93,6 +94,5 @@ int	check_instructions(t_instruc *instruc, int fd)
     return (-1);
   if (put_instruc(instruc, fd) == -1)
     return (-1);
-  print_list(instruc);
   return (0);
 }

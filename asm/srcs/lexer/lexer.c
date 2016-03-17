@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:41:48 2016
-** Last update Thu Mar 17 10:20:27 2016 
+** Last update Thu Mar 17 16:09:35 2016 
 */
 
 #include "asm.h"
@@ -30,8 +30,7 @@ int	lexer(t_header *header, t_instruc *instruc, char *str)
 	 || if_comment_text(file) == -1);
   if ((n = check_comment(header, file)) == -1)
     return (-1);
-  if (check_instructions(instruc, fd) == -1)
-    return (-1);
+  check_instructions(instruc, fd);
   if (check_if_label_exist(instruc) == -1)
     return (-1);
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Wed Mar 16 14:46:45 2016 bougon_p
+** Last update Thu Mar 17 20:26:42 2016 bougon_p
 */
 
 #include "asm.h"
@@ -91,7 +91,7 @@ int		parser(char *name, t_header *head, t_instruc *instruc)
 
   if ((fd = create_file(name)) == 1)
     return (1);
-  head->prog_size = 22;
+  head->prog_size = 32;
   if (write_header(fd, head) == 1)
     return (1);
   init_tabinstr(&tabinstr);
