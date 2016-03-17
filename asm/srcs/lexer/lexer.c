@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:41:48 2016
-** Last update Wed Mar 16 10:39:16 2016 
+** Last update Wed Mar 16 19:01:07 2016 
 */
 
 #include "asm.h"
@@ -32,6 +32,5 @@ int	lexer(t_header *header, t_instruc *instruc, char *str)
     return (-1);
   if (check_if_label_exist(instruc) == -1)
     return (-1);
-  print_list(header, instruc);
   return (0);
 }

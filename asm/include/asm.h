@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Wed Mar 16 23:50:37 2016 bougon_p
+** Last update Thu Mar 17 01:37:42 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -22,7 +22,6 @@
 */
 # include <stdio.h>
 
-/* # define COREWAR_EXEC_MAGIC 0xEA83F3 */
 # define UNUSED __attribute__((__unused__))
 # define NB_INSTRUCTIONS 16
 
@@ -110,7 +109,7 @@ int			check_which_instruc(t_instruc *, t_list_instruc *,
 					    char *, int);
 int			check_stock_good_args(t_instruc *, t_list_instruc *,
 					      char *, int);
-void			print_list(t_header *, t_instruc *);
+void			print_list(t_instruc *);
 int			check_direct_arg(t_instruc *, t_list_instruc *,
 					 char *, int);
 int			check_registre_arg(t_list_instruc *, char *, int);
