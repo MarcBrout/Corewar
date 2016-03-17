@@ -5,12 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:25:05 2016 bougon_p
-** Last update Tue Mar 15 21:17:08 2016 bougon_p
+** Last update Wed Mar 16 22:20:11 2016 bougon_p
 */
 
 #include "asm.h"
 
-int	w_live(t_info *info, int fd)
+int	w_live(UNUSED t_info *info, int fd)
 {
   char	istr;
 
