@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Mon Mar 21 10:54:52 2016 marc brout
+** Last update Mon Mar 21 14:12:06 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -32,4 +32,32 @@ typedef enum		e_vm_index
     AFF			= 16
   }			t_vm_index;
 
-#endif VM_H_
+typedef	struct		s_pc
+{
+  unsigned int		pc;
+  struct s_pc		*next;
+}			t_pc;
+
+typedef struct		s_champion
+{
+  char			valid;
+  char			alive;
+  int			order;
+  char			name[PROG_NAME_LENGTH + 1];
+  t_pc			*pc;
+}			t_champion;
+
+typedef struct		s_data
+{
+  int			dump;
+  t_champion		champ[4];
+}			t_data;
+
+typedef struct		s_pars
+{
+  char			*arg;
+  int			(*chk_arg)(char **, int *, t_data *);
+  struct s_pars		*next;
+}			t_pars;
+
+#endif /* !VM_H_ */
