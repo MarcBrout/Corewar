@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 15:43:13 2016
-** Last update Sat Mar 12 19:05:46 2016 
+** Last update Tue Mar 15 19:38:09 2016 
 */
 
 #include "asm.h"
@@ -37,5 +37,35 @@ t_list_instruc		*add_list_after(t_instruc *instruc)
       instruc->root->prev = new;
     }
   instruc->lenght++;
+  return (new);
+}
+
+int		create_list_label(t_instruc *instruc)
+{
+  t_list_label	*new;
+
+  if ((new = malloc(sizeof(t_list_label))) == NULL)
+    return (malloc_fail(), -1);
+  instruc->lab = new;
+  new->prev = new;
+  new->next = new;
+  instruc->lenght_label = 1;
+  return (0);
+}
+
+t_list_label	*add_list_after_label(t_instruc *instruc)
+{
+  t_list_label	*new;
+
+  if ((new = malloc(sizeof(t_list_label))) == NULL)
+    return (malloc_fail(), NULL);
+  if (instruc->lab != NULL)
+    {
+      new->prev = instruc->lab->prev;
+      new->next = instruc->lab;
+      instruc->lab->prev->next = new;
+      instruc->lab->prev = new;
+    }
+  instruc->lenght_label++;
   return (new);
 }

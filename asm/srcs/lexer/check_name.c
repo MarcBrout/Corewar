@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:09:07 2016
-** Last update Sun Mar 13 11:18:45 2016 
+** Last update Thu Mar 17 10:17:16 2016 
 */
 
 #include "asm.h"
@@ -56,11 +56,7 @@ int	check_name(t_header *header, char *file)
   i = 0;
   j = 0;
   while (++i != (my_strlen(new) - 1))
-    {
-      header->prog_name[j] = new[i];
-      j++;
-    }
+    header->prog_name[j++] = new[i];
   header->prog_name[j] = '\0';
-  printf("%s\n", header->prog_name);
   return (0);
 }

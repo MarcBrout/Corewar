@@ -2,8 +2,8 @@
 	.comment "Just a basic pompes, traction program"
 
 
-	sti r1, %:hi, %1
-hi:	live %123
+	sti r1, %42, %1
+	live %123
 	ld %0, r3
-	zjmp %:hi
+	zjmp %42
 	aff r5

@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Mon Mar 14 19:05:05 2016 bougon_p
+## Last update Thu Mar 17 15:51:01 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -34,22 +34,42 @@ SRC		=	srcs/main.c \
 			$(PARSER)parser.c \
 			$(PARSER)create_file.c \
 			$(PARSER)convert.c \
+			$(PARSER)header.c \
+			$(PARSER)code.c \
+			$(PARSER)live.c \
+			$(PARSER)ld.c \
+			$(PARSER)st.c \
+			$(PARSER)add.c \
+			$(PARSER)sub.c \
+			$(PARSER)and.c \
+			$(PARSER)or.c \
+			$(PARSER)xor.c \
+			$(PARSER)zjmp.c \
+			$(PARSER)ldi.c \
+			$(PARSER)sti.c \
+			$(PARSER)fork.c \
+			$(PARSER)lld.c \
+			$(PARSER)lldi.c \
+			$(PARSER)lfork.c \
+			$(PARSER)aff.c \
+			$(PARSER)code_byte.c \
+			$(PARSER)w_args.c \
 			$(LEXER)lexer.c \
 			$(LEXER)check_name.c \
 			$(LEXER)check_comment.c \
 			$(LEXER)check_instructions.c \
+			$(LEXER)check_label.c \
 			$(LEXER)epure_file.c \
 			$(LEXER)put_in_list.c \
 			$(LEXER)check_char.c \
 			$(LEXER)check_stock.c \
+			$(LEXER)check_if_label_exist.c \
 			$(LEXER)verif_args.c \
+			$(LEXER)instruc_three_args.c \
 			$(LEXER)check_good_args.c \
-			$(LEXER)my_strcmp.c \
-			$(LEXER)my_strcpy.c \
 			$(LEXER)my_strncmp.c \
 			$(LEXER)my_strncpy.c \
 			$(LEXER)print_list.c \
-			$(TOOLS)get_next_line.c \
 			$(TOOLS)str_null.c \
 			$(TOOLS)my_strcat.c \
 			$(ERROR)error_stop.c

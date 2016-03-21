@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Sun Mar 13 11:19:36 2016 
+** Last update Wed Mar 16 10:25:42 2016 
 */
 
 #include "asm.h"
@@ -32,6 +32,12 @@ int	check_double_quote_comment(char *file)
   return (0);
 }
 
+void	no_comment(t_header *header)
+{
+  header->comment[0] = '\0';
+  write(1, "warning: no comment specified\n", 30);
+}
+
 int	check_comment(t_header *header, char *file)
 {
   char	*new;
@@ -43,26 +49,20 @@ int	check_comment(t_header *header, char *file)
   if (my_strncmp(new, ".comment", 8) != 0
       || (new[8] != ' ' && new[8] != '\t'))
     {
-      header->comment[0] = '\0';
-      write(1, "warning: no comment specified\n", 30);
+      no_comment(header);
       return (1);
     }
   if ((new = epure_file_name_com(file, 9)) == NULL)
     return (-1);
   if (check_double_quote_comment(new) == -1)
     {
-      header->comment[0] = '\0';
-      write(1, "warning: no comment specified\n", 30);
+      no_comment(header);
       return (1);
     }
   i = 0;
   j = 0;
   while (++i != (my_strlen(new) - 1))
-    {
-      header->comment[j] = new[i];
-      j++;
-    }
+    header->comment[j++] = new[i];
   header->comment[j] = '\0';
-  printf("%s\n", header->comment);
   return (0);
 }
