@@ -6,11 +6,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-<<<<<<< HEAD
-** Last update Mon Mar 21 14:42:28 2016 benjamin duhieu
-=======
-** Last update Mon Mar 21 17:51:42 2016 marc brout
->>>>>>> 7efb1abd21c07df99b9f2ae0181a0ed2682ee0a7
+** Last update Mon Mar 21 21:18:57 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -69,7 +65,7 @@ typedef struct		s_champion
 typedef struct		s_data
 {
   int			dump;
-  int			place_champ;
+  int			i;
   t_champion		champ[4];
   char			*ram;
   char			*ramv;
