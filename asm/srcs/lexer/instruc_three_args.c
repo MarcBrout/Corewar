@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar 16 11:24:18 2016
-** Last update Mon Mar 21 12:10:00 2016 Marel la plus belle <3
+** Last update Mon Mar 21 19:08:23 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -14,17 +14,20 @@ int	reg_reg_reg(UNUSED t_instruc *instruc, t_list_instruc *elem,
 		    char *file)
 {
   char	*new;
+  char	*new2;
 
   if (check_registre_arg(elem, file, 1) == -1
       || (new = epure_file_instruc(file,
 				   my_strlen(elem->info->arg_1))) == NULL
       || check_registre_arg(elem, new, 2) == -1
-      || (new = epure_file_instruc(new,
+      || (new2 = epure_file_instruc(new,
 				   my_strlen(elem->info->arg_2))) == NULL
-      || check_registre_arg(elem, new, 3) == -1)
+      || check_registre_arg(elem, new2, 3) == -1)
     return (-1);
-  if (check_end_instruc(new, my_strlen(elem->info->arg_3)) == -1)
+  if (check_end_instruc(new2, my_strlen(elem->info->arg_3)) == -1)
     return (-1);
+  free(new);
+  free(new2);
   return (0);
 }
 
@@ -32,6 +35,7 @@ int	regdirin_regdirin_reg(t_instruc *instruc, t_list_instruc *elem,
 			      char *file)
 {
   char	*new;
+  char	*new2;
 
   if ((check_registre_arg(elem, file, 1) == -1
        && check_direct_arg(instruc, elem, file, 1) == -1
@@ -41,12 +45,14 @@ int	regdirin_regdirin_reg(t_instruc *instruc, t_list_instruc *elem,
       || (check_registre_arg(elem, new, 2) == -1
 	  && check_direct_arg(instruc, elem, new, 2) == -1
 	  && check_indirect_arg(instruc, elem, new, 2) == -1)
-      || (new = epure_file_instruc(new,
-				   my_strlen(elem->info->arg_2))) == NULL
-      || check_registre_arg(elem, new, 3) == -1)
+      || (new2 = epure_file_instruc(new,
+				    my_strlen(elem->info->arg_2))) == NULL
+      || check_registre_arg(elem, new2, 3) == -1)
     return (-1);
-  if (check_end_instruc(new, my_strlen(elem->info->arg_3)) == -1)
+  if (check_end_instruc(new2, my_strlen(elem->info->arg_3)) == -1)
     return (-1);
+  free(new);
+  free(new2);
   return (0);
 }
 
@@ -54,6 +60,7 @@ int	regdirin_regdir_reg(t_instruc *instruc, t_list_instruc *elem,
 			    char *file)
 {
   char	*new;
+  char	*new2;
 
   if ((check_registre_arg(elem, file, 1) == -1
        && check_direct_arg(instruc, elem, file, 1) == -1
@@ -62,12 +69,14 @@ int	regdirin_regdir_reg(t_instruc *instruc, t_list_instruc *elem,
 				   my_strlen(elem->info->arg_1))) == NULL
       || (check_registre_arg(elem, new, 2) == -1
 	  && check_direct_arg(instruc, elem, new, 2) == -1)
-      || (new = epure_file_instruc(new,
-				   my_strlen(elem->info->arg_2))) == NULL
-      || check_registre_arg(elem, new, 3) == -1)
+      || (new2 = epure_file_instruc(new,
+				    my_strlen(elem->info->arg_2))) == NULL
+      || check_registre_arg(elem, new2, 3) == -1)
     return (-1);
-  if (check_end_instruc(new, my_strlen(elem->info->arg_3)) == -1)
+  if (check_end_instruc(new2, my_strlen(elem->info->arg_3)) == -1)
     return (-1);
+  free(new);
+  free(new2);
   return (0);
 }
 
@@ -75,6 +84,7 @@ int	reg_regdirin_regdir(t_instruc *instruc, t_list_instruc *elem,
 			    char *file)
 {
   char	*new;
+  char	*new2;
 
   if (check_registre_arg(elem, file, 1) == -1
       || (new = epure_file_instruc(file,
@@ -82,13 +92,15 @@ int	reg_regdirin_regdir(t_instruc *instruc, t_list_instruc *elem,
       || (check_registre_arg(elem, new, 2) == -1
 	  && check_direct_arg(instruc, elem, new, 2) == -1
 	  && check_indirect_arg(instruc, elem, new, 2) == -1)
-      || (new = epure_file_instruc(new,
-				   my_strlen(elem->info->arg_2))) == NULL
-      || (check_registre_arg(elem, new, 3) == -1
-	  && check_direct_arg(instruc, elem, new, 3) == -1))
+      || (new2 = epure_file_instruc(new,
+				    my_strlen(elem->info->arg_2))) == NULL
+      || (check_registre_arg(elem, new2, 3) == -1
+	  && check_direct_arg(instruc, elem, new2, 3) == -1))
     return (-1);
-  if (check_end_instruc(new, my_strlen(elem->info->arg_3)) == -1)
+  if (check_end_instruc(new2, my_strlen(elem->info->arg_3)) == -1)
     return (-1);
+  free(new);
+  free(new2);
   return (0);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:09:07 2016
-** Last update Thu Mar 17 10:17:16 2016 
+** Last update Mon Mar 21 18:52:13 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -46,6 +46,7 @@ int	check_name(t_header *header, char *file)
       write(2, "wrong .name\n", 12);
       return (-1);
     }
+  free(new);
   if ((new = epure_file_name_com(file, 6)) == NULL)
     return (-1);
   if (check_double_quote_name(new) == -1)
@@ -58,5 +59,6 @@ int	check_name(t_header *header, char *file)
   while (++i != (my_strlen(new) - 1))
     header->prog_name[j++] = new[i];
   header->prog_name[j] = '\0';
+  free(new);
   return (0);
 }

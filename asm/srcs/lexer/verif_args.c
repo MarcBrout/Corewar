@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 11:45:19 2016
-** Last update Mon Mar 21 12:03:57 2016 Marel la plus belle <3
+** Last update Mon Mar 21 19:44:48 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -49,6 +49,7 @@ int	verif_two_args(t_instruc *instruc, t_list_instruc *elem,
       return (-1);
   if (check_end_instruc(new, my_strlen(elem->info->arg_2)) == -1)
     return (-1);
+  free(new);
   return (0);
 }
 
@@ -66,9 +67,9 @@ int	verif_three_args(t_instruc *instruc, t_list_instruc *elem,
       {
 	if (fptrtab[j].ft_three(instruc, elem, file) == -1)
 	  return (-1);
-	return (0);
+	return (free(fptrtab), 0);
       }
-  return (0);
+  return (free(fptrtab), 0);
 }
 
 int	how_many_args(t_instruc *instruc, t_list_instruc *elem,
@@ -94,19 +95,22 @@ int	check_stock_good_args(t_instruc *instruc, t_list_instruc *elem,
 			      char *file, int i)
 {
   char	*new;
+  char	*cpy;
   int	j;
   int	l;
 
   j = my_strlen(elem->info->name);
-  if ((new = malloc(sizeof(char) * (my_strlen(file) - j + 1))) == NULL)
+  if ((cpy = malloc(sizeof(char) * (my_strlen(file) - j + 1))) == NULL)
     return (malloc_fail(), -1);
   l = 0;
   while (file[j] != '\0')
-    new[l++] = file[j++];
-  new[l] = '\0';
-  if ((new = epure_file_instruc(new, 0)) == NULL)
+    cpy[l++] = file[j++];
+  cpy[l] = '\0';
+  if ((new = epure_file_instruc(cpy, 0)) == NULL)
     return (-1);
+  free(cpy);
   if (how_many_args(instruc, elem, new, i)== -1)
     return (-1);
+  free(new);
   return (0);
 }
