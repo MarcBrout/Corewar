@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Thu Mar 17 20:26:42 2016 bougon_p
+** Last update Mon Mar 21 17:50:16 2016 bougon_p
 */
 
 #include "asm.h"
@@ -96,9 +96,6 @@ int		parser(char *name, t_header *head, t_instruc *instruc)
     return (1);
   init_tabinstr(&tabinstr);
   instr = init_instr();
-  int i = -1;
-  while (++i < NB_INSTRUCTIONS)
-    printf("%s\n", instr[i]);
   if (write_code(fd, instruc, &tabinstr, instr) == 1)
     return (1);
   close(fd);

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Mar 15 19:47:32 2016
-** Last update Fri Mar 18 18:25:38 2016 
+** Last update Mon Mar 21 12:04:28 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -19,7 +19,7 @@ char	*copy_lab(char *str)
   i = 2;
   j = 0;
   if ((new = malloc(sizeof(char) * (my_strlen(str) - 1))) == NULL)
-    return (NULL);
+    return (malloc_fail(), NULL);
   while (str[i] != '\0')
     {
       new[j] = str[i];

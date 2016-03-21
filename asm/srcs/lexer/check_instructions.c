@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Fri Mar 18 18:43:13 2016 
+** Last update Mon Mar 21 12:08:44 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -58,7 +58,7 @@ int			check_instruc_arg(t_instruc *instruc,
     return (0);
   if ((elem = add_list_after(instruc)) == NULL
       || (elem->info = malloc(sizeof(t_info))) == NULL)
-    return (-1);
+    return (malloc_fail(), -1);
   elem->info->name = NULL;
   elem->info->arg_1 = NULL;
   elem->info->arg_2 = NULL;

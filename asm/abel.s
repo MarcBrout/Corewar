@@ -1,4 +1,9 @@
 	.name "Abel"
 	.comment "L'amer noir."
 
-	and r1, %10, r1
+	sti r1, %2, %3
+	live %234
+	ld %1, r3
+	zjmp %10
+	sub r1, r2, r3
+	add r1, r2, r3
