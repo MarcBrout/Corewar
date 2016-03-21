@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Thu Mar 17 15:51:01 2016 bougon_p
+## Last update Mon Mar 21 19:52:17 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -28,6 +28,8 @@ LEXER		=	srcs/lexer/
 TOOLS		=	srcs/tools/
 
 ERROR		=	srcs/error/
+
+FREE		=	srcs/free/
 
 SRC		=	srcs/main.c \
 			srcs/op.c \
@@ -72,7 +74,9 @@ SRC		=	srcs/main.c \
 			$(LEXER)print_list.c \
 			$(TOOLS)str_null.c \
 			$(TOOLS)my_strcat.c \
-			$(ERROR)error_stop.c
+			$(ERROR)error_stop.c \
+			$(FREE)free_tab.c \
+			$(FREE)pars_free.c \
 
 OBJS    	=	$(SRC:.c=.o)
 
