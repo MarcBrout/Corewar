@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 12:07:50 2016 marc brout
-** Last update Mon Mar 21 14:08:34 2016 marc brout
+** Last update Mon Mar 21 17:57:52 2016 marc brout
 */
 
 #include <unistd.h>
@@ -14,8 +14,6 @@
 #include <fnctl.h>
 #include "load.h"
 #include "op.h"
-
-char		endian;
 
 char		endianness()
 {
@@ -40,8 +38,7 @@ int		check_header(int fd, t_header *head)
   int		size;
   char		c;
 
-  if ((ret = read(fd, head, sizeof(t_header))
-       < (int)sizeof(t_header)))
+  if ((ret = read(fd, head, sizeof(t_header)) < (int)sizeof(t_header)))
     return (1);
   if (endian)
     {
@@ -49,7 +46,7 @@ int		check_header(int fd, t_header *head)
       head->prog_size = swap_integer(head->prog_size);
     }
   if (head.magic != COREWAR_EXEC_MAGIC)
-    return (1);
+    return (2);
   size = 0;
   while ((ret = read(fd, &c, 1)))
     size += 1;
@@ -70,24 +67,47 @@ void		copy(char *src, char *dst)
     }
 }
 
-t_champion	*load_champion(const char *champion_file, int order)
+int		init_champs(t_data *data)
 {
-  t_champion	*champion;
+  int		i;
+
+  i = 0;
+  while (i < 4)
+    {
+      if (!(data->champ[i].pc = malloc(sizeof(t_pc))))
+	return (my_put_error(MALLOC_ERROR, 1));
+      data->champ[i].pc->pc = -1;
+      data->champ[i].valid = 1;
+      data->champ[i].alive = 1;
+      data->champ[i].order = -1;
+      my_bzero(data->champ[i].name, PROG_NAME_LENGTH + 1, 0);
+    }
+  return (0);
+}
+
+int		load_champion(t_champion *champion,
+			      const char *champion_file)
+{
   t_header	head;
   int		fd;
+  int		err;
 
-  if (!(champion = malloc(sizeof(t_champion))) ||
-      !(champion->pc = malloc(sizeof(t_pc))) ||
-      (fd = open(champion_file, O_RDONLY)) < 0 ||
-      check_header(fd, &head))
-    return (NULL);
-  my_bzero(champion->name, PROG_NAME_LENGTH + 1);
+  if (my_revstrncmpcst(champion_file, ".cor", 4))
+    return (my_put_file_str(champion_file, NOCOREWAR, 1));
+  if ((fd = open(champion_file, O_RDONLY)) < 0)
+    return (my_put_file_noaccess(champion_file, 1));
+  if ((err = check_header(fd, &head)))
+    {
+      close(fd);
+      if (err == 2)
+	return (my_put_file_str(champion_file, NOCOREWAR, 1));
+      return (my_put_file_str(champion_file, CORRUPT, 1));
+    }
+  champion->path = champion_file;
+  champion->size = head->prog_size;
   my_strcpy(head->prog_name, champion->name);
-  champion->valid = 1;
-  champion->alive = 1;
-  champion->order = order;
-  champion->next = NULL;
-  return (champion);
+  close(fd);
+  return (0);
 }
 
 int	main(int ac, char **av)

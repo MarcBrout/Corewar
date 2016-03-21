@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Fri Mar 18 17:50:08 2016 bougon_p
+** Last update Mon Mar 21 21:08:06 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -142,6 +142,7 @@ int	create_file(char *);
 ** TOOLS
 */
 
+void	free_tab(char **);
 char	*my_strncpy(char *, char *, int);
 char	*my_strcat(char *, char *);
 

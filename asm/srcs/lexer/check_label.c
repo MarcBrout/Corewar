@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar 16 11:03:52 2016
-** Last update Thu Mar 17 10:50:07 2016 
+** Last update Mon Mar 21 12:05:35 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -36,7 +36,7 @@ int	check_instruc_label(t_instruc *instruc, t_list_instruc *elem,
   if (new[i] == LABEL_CHAR)
     {
       if ((elem->info->label = malloc(sizeof(char) * (i + 2))) == NULL)
-	return (-1);
+	return (malloc_fail(), -1);
       elem->info->label = my_strncpy(elem->info->label, new, i + 1);
       if ((new = epure_file_instruc(new, my_strlen(elem->info->label))) == NULL
 	  || ((my_strlen(new) == 0

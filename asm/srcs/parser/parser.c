@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Mon Mar 21 20:54:53 2016 bougon_p
+** Last update Mon Mar 21 21:05:46 2016 bougon_p
 */
 
 #include "asm.h"
@@ -99,6 +99,6 @@ int		parser(char *name, t_header *head, t_instruc *instruc)
     return (1);
   close(fd);
   free_tab(instr);
-  free(tabinstr->tabinstr);
+  free(tabinstr.tabinstr);
   return (0);
 }

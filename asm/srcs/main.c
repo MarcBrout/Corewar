@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 13:57:07 2016
-** Last update Mon Mar 21 19:43:41 2016 bougon_p
+** Last update Mon Mar 21 21:15:27 2016 bougon_p
 */
 
 #include "asm.h"
@@ -24,6 +24,5 @@ int		main(int ac, char **av)
     return (-1);
   print_list(&instruc);
   parser(av[1], &header, &instruc);
-  free_parser(&header, &instruc);
   return (0);
 }

@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Mon Mar 21 19:52:17 2016 bougon_p
+## Last update Mon Mar 21 21:09:36 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -76,7 +76,6 @@ SRC		=	srcs/main.c \
 			$(TOOLS)my_strcat.c \
 			$(ERROR)error_stop.c \
 			$(FREE)free_tab.c \
-			$(FREE)pars_free.c \
 
 OBJS    	=	$(SRC:.c=.o)
 

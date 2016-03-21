@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 15:43:13 2016
-** Last update Tue Mar 15 19:38:09 2016 
+** Last update Mon Mar 21 12:08:33 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -28,7 +28,7 @@ t_list_instruc		*add_list_after(t_instruc *instruc)
   t_list_instruc	*new;
 
   if ((new = malloc(sizeof(t_list_instruc))) == NULL)
-    return (malloc_fail(), NULL);
+    return (NULL);
   if (instruc->root != NULL)
     {
       new->prev = instruc->root->prev;

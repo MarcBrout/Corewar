@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 11:45:19 2016
-** Last update Wed Mar 16 19:00:32 2016 
+** Last update Mon Mar 21 12:03:57 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -98,7 +98,8 @@ int	check_stock_good_args(t_instruc *instruc, t_list_instruc *elem,
   int	l;
 
   j = my_strlen(elem->info->name);
-  new = malloc(sizeof(char) * (my_strlen(file) - j + 1));
+  if ((new = malloc(sizeof(char) * (my_strlen(file) - j + 1))) == NULL)
+    return (malloc_fail(), -1);
   l = 0;
   while (file[j] != '\0')
     new[l++] = file[j++];
