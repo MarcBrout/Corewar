@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 13:29:10 2016 benjamin duhieu
-** Last update Mon Mar 21 14:08:45 2016 benjamin duhieu
+** Last update Mon Mar 21 14:14:03 2016 benjamin duhieu
 */
 
 #include "pars.h"
@@ -20,7 +20,7 @@ int	chk_dump(char **av, int *i, t_data *data)
       *i += 1;
       return (0);
     }
-  if (!(res = my_getnbr(av[*i + 1])) || res > CYCLE_TO_DIE)
+  if (!(res = my_getnbr_prog(av[*i + 1])) || res > CYCLE_TO_DIE)
     return (1);
   data->dump = res;
   *i += 2;
