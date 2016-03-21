@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar 16 11:24:18 2016
-** Last update Thu Mar 17 14:42:57 2016 
+** Last update Mon Mar 21 12:10:00 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -97,7 +97,7 @@ t_three_args	*init_tab_three_args()
   t_three_args	*tab;
 
   if ((tab = malloc(sizeof(t_three_args) * MAX_THREE_ARGS)) == NULL)
-    return (NULL);
+    return (malloc_fail(), NULL);
   tab[ADD].ins = 3;
   tab[ADD].ft_three = &reg_reg_reg;
   tab[SUB].ins = 4;
