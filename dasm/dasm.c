@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 14 10:48:24 2016 marc brout
-** Last update Mon Mar 14 22:17:48 2016 marc brout
+** Last update Tue Mar 15 18:29:49 2016 marc brout
 */
 
 #include <stdio.h>
@@ -40,6 +40,15 @@ int		test_endianness()
   return (x[0]);
 }
 
+char		coding_byte(int fd)
+{
+  char		cb;
+
+  if (read(fd, &cb, 1) < 1)
+    return (-1);
+  return (cb);
+}
+
 int		swap_integer(int nb)
 {
   int		ret;
@@ -49,14 +58,25 @@ int		swap_integer(int nb)
   return (ret);
 }
 
-int		inst_live(int in, int out)
+int		inst_live(int in, UNUSED int out)
 {
   int		player;
+  char		*tmp;
 
   if (read(in, &player, 4) < 4)
     return (1);
-
+  player = 123123;
+  tmp = setnbr(player);
+  my_printf("%s\n", tmp);
   return (0);
+}
+
+int		inst_sti(int in, UNUSED int out)
+{
+  char		cb;
+
+  if ((cb = coding_byte(in)) < 0)
+
 }
 
 int		prog_name_comment(int out, t_header *head)
@@ -91,6 +111,7 @@ int		dasm(const char *file)
 		  S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH)) < 0)
     return (1);
   prog_name_comment(out, &head);
+  inst_live(fd, out);
   return (0);
 }
 

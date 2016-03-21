@@ -5,10 +5,13 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Jan 22 05:11:57 2016 bougon_p
-** Last update Mon Mar 14 22:09:06 2016 bougon_p
+** Last update Mon Mar 14 22:41:51 2016 marc brout
 */
 
-#include "tetris.h"
+#include <stdlib.h>
+#include <math.h>
+#include "dasm.h"
+#include "my.h"
 
 char	*cleanstr(char *nbr)
 {
@@ -18,7 +21,7 @@ char	*cleanstr(char *nbr)
 
   if ((clean = malloc(sizeof(char) * 10)) == NULL)
     return (NULL);
-  clean = set_line_null(clean, 10);
+  set_line_null(clean, 10);
   p = 0;
   while (nbr[p++] == '0' && p < 10);
   if (p == 10)
@@ -48,6 +51,6 @@ char	*setnbr(int nbr)
   set_line_null(numb, 10);
   i = 0;
   while (p >= 0)
-    numb[p--] = ((nbr / (int)(my_pow(10, i++)) % 10) + '0');
+    numb[p--] = ((nbr / (int)(my_power_rec(10, i++)) % 10) + '0');
   return (cleanstr(numb));
 }
