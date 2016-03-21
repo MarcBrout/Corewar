@@ -5,12 +5,14 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Mon Mar 14 10:57:11 2016 marc brout
-## Last update Mon Mar 14 21:21:47 2016 marc brout
+## Last update Mon Mar 14 22:41:08 2016 marc brout
 ##
 
 SRCP	= ./
 
 SRC     = $(SRCP)dasm.c \
+	$(SRCP)setnbr.c \
+	$(SRCP)str_null.c
 
 OBJS    = $(SRC:.c=.o)
 
@@ -22,7 +24,7 @@ CFLAGS  =  -W -Wall -Werror
 
 HDFLAGS = -I../include/
 
-LDFLAGS = -lmy -L../lib
+LDFLAGS = -lmy -L../lib -lm
 
 RM      = rm -f
 
