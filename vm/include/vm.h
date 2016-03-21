@@ -6,7 +6,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Mon Mar 21 17:51:42 2016 marc brout
+** Last update Mon Mar 21 23:02:47 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -21,11 +21,11 @@
 # define NOCOREWAR " is not a corewar executable\n"
 # define CORRUPT " is corrupted\n"
 
-extern char		endian;
+extern char		g_endian;
 
 typedef enum		e_vm_index
   {
-    FIRST		= 0,
+    ERROR_NULL		= 0,
     LIVE		= 1,
     LD			= 2,
     ST			= 3,
@@ -65,7 +65,7 @@ typedef struct		s_champion
 typedef struct		s_data
 {
   int			dump;
-  t_champion		champ[4];
+  t_champion		*champ[4];
   char			*ram;
   char			*ramv;
 }			t_data;
