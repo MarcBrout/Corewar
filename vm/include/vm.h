@@ -1,3 +1,4 @@
+
 /*
 ** vm.h for vm
 **
@@ -5,11 +6,22 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Mon Mar 21 14:12:06 2016 marc brout
+** Last update Mon Mar 21 17:51:42 2016 marc brout
 */
 
 #ifndef VM_H_
 # define VM_H_
+
+/*
+** ERROR OUTPUTS
+*/
+
+# define OVERLAP "Overlap detected.\n"
+# define MALLOC_ERROR "Can't perform malloc\n"
+# define NOCOREWAR " is not a corewar executable\n"
+# define CORRUPT " is corrupted\n"
+
+extern char		endian;
 
 typedef enum		e_vm_index
   {
@@ -34,15 +46,18 @@ typedef enum		e_vm_index
 
 typedef	struct		s_pc
 {
-  unsigned int		pc;
+  int			pc;
   struct s_pc		*next;
 }			t_pc;
 
 typedef struct		s_champion
 {
+  const char		*path;
   char			valid;
   char			alive;
   int			order;
+  int			fd;
+  unsigned int		size;
   char			name[PROG_NAME_LENGTH + 1];
   t_pc			*pc;
 }			t_champion;
@@ -51,6 +66,8 @@ typedef struct		s_data
 {
   int			dump;
   t_champion		champ[4];
+  char			*ram;
+  char			*ramv;
 }			t_data;
 
 typedef struct		s_pars
