@@ -5,11 +5,13 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Mon Mar 21 23:08:46 2016 benjamin duhieu
+** Last update Mon Mar 21 23:37:43 2016 marc brout
 */
 
 #ifndef VM_H_
 # define VM_H_
+
+# include "op.h"
 
 /*
 ** ERROR OUTPUTS

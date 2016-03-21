@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 21:08:10 2016 benjamin duhieu
-** Last update Mon Mar 21 21:29:45 2016 benjamin duhieu
+** Last update Mon Mar 21 23:49:06 2016 marc brout
 */
 
 #include "vm.h"
@@ -21,11 +21,9 @@ void		swap_champ(t_data *data, int i)
 
 void		order_champ(t_data *data)
 {
-  t_champion	tmp[4];
   int		i;
   int		a;
 
-  count = -1;
   i = -1;
   while (++i < 3)
     {
