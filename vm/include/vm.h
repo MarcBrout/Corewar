@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Mon Mar 21 23:37:43 2016 marc brout
+** Last update Tue Mar 22 00:17:20 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -78,5 +78,58 @@ typedef struct		s_pars
   int			(*chk_arg)(char **, int *, t_data *);
   struct s_pars		*next;
 }			t_pars;
+
+
+/*
+** load_file.c
+*/
+
+char			endianness();
+int			swap_integer(int nb);
+int			check_header(int fd, t_header *head);
+void			copy(char *src, char *dst);
+int			init_champs(t_data *data);
+int			load_champion(t_champion *champion,
+				      const char *champion_file);
+
+/*
+** vm.c
+*/
+
+int			my_put_file_str(const char *file,
+					const char *str,
+					int err);
+int			my_put_file_noaccess(const char *file,
+					     int err);
+int			my_put_error(const char *str,
+				     int err);
+int			my_put_usage(char **av,
+				     int err);
+
+/*
+** misc.c
+*/
+
+void			my_putnbr_tofd(int nb, int fd);
+int			my_strlencst(const char *str);
+int			my_mystrcmpcst(const char *str1,
+				       const char *str2);
+int			my_revstrncmpcst(const char *str1,
+					 const char *str2);
+char			*my_strcatcst(const char *str1,
+				      const char *str2);
+char			*get_name(const char *str1,
+				  const char *str2);
+/*
+** set_vm_memory.c
+*/
+
+int			init_ram(t_data *data);
+int			copy_champion_to_ram(t_champion *champion,
+					     char *ram);
+int			size_champs(t_champion *champ[4],
+				    int first,
+				    int *nb);
+int			place_all_champions(t_data *data);
 
 #endif /* !VM_H_ */

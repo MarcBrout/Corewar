@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 14:45:48 2016 marc brout
-** Last update Tue Mar 22 00:00:34 2016 marc brout
+** Last update Tue Mar 22 00:02:27 2016 marc brout
 */
 
 #include <unistd.h>
@@ -25,7 +25,7 @@ int		my_put_file_noaccess(const char *file,
 {
   write(2, "File ", 5);
   write(2, file, my_strlen((char *)file));
-  wrtie(2, " not accessible\n", 16);
+  write(2, " not accessible\n", 16);
   return (err);
 }
 
