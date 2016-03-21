@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Fri Mar 18 17:50:08 2016 bougon_p
+** Last update Mon Mar 21 19:27:08 2016 Marel la plus belle <3
 */
 
 #ifndef HEADER_H_
@@ -16,10 +16,10 @@
 
 # include <unistd.h>
 
-
 /*
 ** Debug includes
 */
+
 # include <stdio.h>
 
 # define UNUSED __attribute__((__unused__))
@@ -142,8 +142,14 @@ int	create_file(char *);
 ** TOOLS
 */
 
-char	*my_strncpy(char *, char *, int);
+char	*my_strndup(char *, int);
 char	*my_strcat(char *, char *);
+
+/*
+** FREE
+*/
+
+void	free_list(t_instruc *);
 
 /*
 ** Instruction functions

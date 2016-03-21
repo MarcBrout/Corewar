@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 12:07:50 2016 marc brout
-** Last update Mon Mar 21 17:57:52 2016 marc brout
+** Last update Mon Mar 21 23:02:53 2016 marc brout
 */
 
 #include <unistd.h>
@@ -38,7 +38,8 @@ int		check_header(int fd, t_header *head)
   int		size;
   char		c;
 
-  if ((ret = read(fd, head, sizeof(t_header)) < (int)sizeof(t_header)))
+  if ((ret = read(fd, head, sizeof(t_header)) <
+       (int)sizeof(t_header)))
     return (1);
   if (endian)
     {
@@ -74,13 +75,15 @@ int		init_champs(t_data *data)
   i = 0;
   while (i < 4)
     {
-      if (!(data->champ[i].pc = malloc(sizeof(t_pc))))
+      if (!(data->champ[i] = malloc(sizeof(t_champion))) ||
+	  !(data->champ[i]->pc = malloc(sizeof(t_pc))))
 	return (my_put_error(MALLOC_ERROR, 1));
-      data->champ[i].pc->pc = -1;
-      data->champ[i].valid = 1;
-      data->champ[i].alive = 1;
-      data->champ[i].order = -1;
-      my_bzero(data->champ[i].name, PROG_NAME_LENGTH + 1, 0);
+      data->champ[i]->pc->pc = -1;
+      data->champ[i]->valid = 0;
+      data->champ[i]->alive = 1;
+      data->champ[i]->order = -1;
+      my_bzero(data->champ[i]->name,
+	       PROG_NAME_LENGTH + 1, 0);
     }
   return (0);
 }
@@ -112,7 +115,7 @@ int		load_champion(t_champion *champion,
 
 int	main(int ac, char **av)
 {
-  endian = endianness();
+  g_endian = endianness();
   load_champion(av[1]);
   return (0);
 }

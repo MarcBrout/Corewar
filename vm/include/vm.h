@@ -1,4 +1,3 @@
-
 /*
 ** vm.h for vm
 **
@@ -6,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Mon Mar 21 21:18:57 2016 benjamin duhieu
+** Last update Mon Mar 21 23:08:46 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -21,11 +20,11 @@
 # define NOCOREWAR " is not a corewar executable\n"
 # define CORRUPT " is corrupted\n"
 
-extern char		endian;
+extern char		g_endian;
 
 typedef enum		e_vm_index
   {
-    FIRST		= 0,
+    ERROR_NULL		= 0,
     LIVE		= 1,
     LD			= 2,
     ST			= 3,
@@ -66,7 +65,7 @@ typedef struct		s_data
 {
   int			dump;
   int			i;
-  t_champion		champ[4];
+  t_champion		*champ[4];
   char			*ram;
   char			*ramv;
 }			t_data;

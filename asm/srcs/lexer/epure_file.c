@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 17:04:35 2016
-** Last update Fri Mar 18 16:53:26 2016 
+** Last update Mon Mar 21 20:12:23 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -68,7 +68,7 @@ int	check_end_instruc(char *file, int i)
 {
   while (file && file[i] != '\0')
     {
-      if (file[i] == '#')
+      if (file[i] == '#' || file[i] == ';')
 	return (0);
       else if (file[i] != ' ' && file[i] != '\t' && file[i] != ',')
 	return (-1);
