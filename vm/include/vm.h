@@ -1,4 +1,3 @@
-
 /*
 ** vm.h for vm
 **
@@ -6,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Mon Mar 21 23:02:47 2016 marc brout
+** Last update Mon Mar 21 23:04:35 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -66,6 +65,7 @@ typedef struct		s_data
 {
   int			dump;
   t_champion		*champ[4];
+  int			place_champ;
   char			*ram;
   char			*ramv;
 }			t_data;

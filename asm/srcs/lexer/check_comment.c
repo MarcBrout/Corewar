@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Wed Mar 16 10:25:42 2016 
+** Last update Mon Mar 21 18:42:34 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -50,8 +50,9 @@ int	check_comment(t_header *header, char *file)
       || (new[8] != ' ' && new[8] != '\t'))
     {
       no_comment(header);
-      return (1);
+      return (free(new), 1);
     }
+  free(new);
   if ((new = epure_file_name_com(file, 9)) == NULL)
     return (-1);
   if (check_double_quote_comment(new) == -1)
@@ -64,5 +65,6 @@ int	check_comment(t_header *header, char *file)
   while (++i != (my_strlen(new) - 1))
     header->comment[j++] = new[i];
   header->comment[j] = '\0';
+  free(new);
   return (0);
 }
