@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Tue Mar 22 19:07:37 2016 marc brout
+## Last update Tue Mar 22 19:10:38 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -150,7 +150,7 @@ CC      =	gcc -g $(CFLAGS) $(IFLAG)
 
 $(NAME)		: 	$(COREWAR) $(OBJS)
 			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n\
- Compiling \"$(NAME)\" project with \"$(CC)\"\n\n>>>>>>>>>>>>>>>\
+ Compiling \"$(NAME)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>>\
  \t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
@@ -158,7 +158,7 @@ $(COREWAR)	:	$(OBJSLIB) $(OBJSCOR)
 			@$(ECHO) "$(GREEN)\n> Compiling Library\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 			@ar rc $(LIBPATH)libmy.a $(OBJSLIB)
 			@ranlib $(LIBPATH)libmy.a
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\n Compiling \"$(COREWAR)\" project with \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\n Compiling \"$(COREWAR)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 			@$(CC) -o $(COREWAR) $(OBJSCOR) $(LDFLAGS)
 
 all		:	$(NAME)
