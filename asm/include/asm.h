@@ -5,22 +5,24 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Tue Mar 22 13:40:16 2016 bougon_p
+** Last update Tue Mar 22 23:12:00 2016 bougon_p
 */
 
 #ifndef HEADER_H_
 # define HEADER_H_
 
-# include "op.h"
-# include "my.h"
-
 # include <unistd.h>
+# include <stdbool.h>
 
 /*
 ** Debug includes
 */
 
 # include <stdio.h>
+
+# include "op.h"
+# include "my.h"
+
 
 # define UNUSED __attribute__((__unused__))
 # define NB_INSTRUCTIONS 16
@@ -52,6 +54,7 @@ typedef struct		s_list_instruc
 typedef struct		s_list_label
 {
   char			*name;
+  int			addr;
   struct s_list_label	*next;
   struct s_list_label	*prev;
 }			t_list_label;
@@ -63,6 +66,8 @@ typedef struct		s_instruc
   int			lenght_label;
   t_list_label		*lab;
   int			nb_l;
+  int			addr_wrt;
+  int			addr_vir;
 }			t_instruc;
 
 enum			three_args
@@ -86,7 +91,7 @@ typedef struct		s_three_args
 
 typedef struct  s_tabinstr
 {
-  int           (**tabinstr)(t_info *, int);
+  int           (**tabinstr)(t_info *, int, t_instruc *);
 }               t_tabinstr;
 
 /*
@@ -132,12 +137,15 @@ int			check_line(char *);
 */
 
 int	parser(char *, t_header *, t_instruc *);
-int	write_header(int, t_header *);
+int	write_header(int, t_header *, t_instruc *);
 int	write_code(int, t_instruc *, t_tabinstr *, char **);
 void	set_line_null(char *, int);
 int	convert_littleend_to_bigend_int(int);
 int	convert_littleend_to_bigend_short(int);
 int	create_file(char *);
+bool	check_short_lab(t_info *, t_instruc *);
+bool	check_int_lab(t_info *, t_instruc *);
+int	write_prog_size(t_header *, t_instruc *, int);
 
 /*
 ** TOOLS
@@ -171,21 +179,21 @@ int	w_reg(int, char *);
 int	w_int(int, char *);
 int	w_short(int, char *);
 char	w_coding_byte(int, t_info *);
-int	w_live(t_info *, int);
-int	w_ld(t_info *, int);
-int	w_st(t_info *, int);
-int	w_add(t_info *, int);
-int	w_sub(t_info *, int);
-int	w_and(t_info *, int);
-int	w_or(t_info *, int);
-int	w_xor(t_info *, int);
-int	w_zjmp(t_info *, int);
-int	w_ldi(t_info *, int);
-int	w_sti(t_info *, int);
-int	w_fork(t_info *, int);
-int	w_lld(t_info *, int);
-int	w_lldi(t_info *, int);
-int	w_lfork(t_info *, int);
-int	w_aff(t_info *, int);
+int	w_live(t_info *, int, t_instruc *);
+int	w_ld(t_info *, int, t_instruc *);
+int	w_st(t_info *, int, t_instruc *);
+int	w_add(t_info *, int, t_instruc *);
+int	w_sub(t_info *, int, t_instruc *);
+int	w_and(t_info *, int, t_instruc *);
+int	w_or(t_info *, int, t_instruc *);
+int	w_xor(t_info *, int, t_instruc *);
+int	w_zjmp(t_info *, int, t_instruc *);
+int	w_ldi(t_info *, int, t_instruc *);
+int	w_sti(t_info *, int, t_instruc *);
+int	w_fork(t_info *, int, t_instruc *);
+int	w_lld(t_info *, int, t_instruc *);
+int	w_lldi(t_info *, int, t_instruc *);
+int	w_lfork(t_info *, int, t_instruc *);
+int	w_aff(t_info *, int, t_instruc *);
 
 #endif /* !HEADER_H_ */

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:20:22 2016 bougon_p
-** Last update Mon Mar 21 17:54:48 2016 Marel la plus belle <3
+** Last update Tue Mar 22 23:23:14 2016 bougon_p
 */
 
 #include "asm.h"
@@ -37,13 +37,25 @@ int	write_name(t_header *head, int fd)
   return (0);
 }
 
-int	write_prog_size(t_header *head, int fd)
+int	write_prog_size(UNUSED t_header *head, t_instruc *instruc ,int fd)
 {
-  int	prog_size;
+  int		prog_size;
+  int		addr;
+  static bool	need_writtin = false;
 
-  prog_size = head->prog_size;
-  prog_size = convert_littleend_to_bigend_int(prog_size);
-  write(fd, &prog_size, sizeof(prog_size));
+  printf("J'écris le prog size\n");
+  prog_size = 0;
+  addr = 136;
+  if (!need_writtin)
+    write(fd, &prog_size, sizeof(prog_size));
+  else
+    {
+      prog_size = instruc->addr_wrt + instruc->addr_vir;
+      lseek(fd, addr, SEEK_SET);
+      prog_size = convert_littleend_to_bigend_int(prog_size);
+      write(fd, &prog_size, sizeof(prog_size));
+    }
+  need_writtin = true;
   return (0);
 }
 
@@ -61,13 +73,13 @@ int	write_comment(t_header *head, int fd)
   return (0);
 }
 
-int	write_header(int fd, t_header *head)
+int	write_header(int fd, t_header *head, t_instruc *instruc)
 {
   if (write_magic(fd) == 1)
     return (1);
   if (write_name(head, fd) == 1)
     return (1);
-  if (write_prog_size(head, fd) == 1)
+  if (write_prog_size(head, instruc, fd) == 1)
     return (1);
   if (write_comment(head, fd) == 1)
     return (1);

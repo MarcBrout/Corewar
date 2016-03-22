@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Tue Mar 22 11:51:40 2016 bougon_p
+** Last update Tue Mar 22 23:11:33 2016 bougon_p
 */
 
 #include "asm.h"
@@ -88,14 +88,17 @@ int		parser(char *name, t_header *head, t_instruc *instruc)
   t_tabinstr	tabinstr;
   char		**instr;
 
+  instruc->addr_wrt = 0;
+  instruc->addr_vir = 0;
   if ((fd = create_file(name)) == 1)
     return (1);
-  head->prog_size = 32;
-  if (write_header(fd, head) == 1)
+  if (write_header(fd, head, instruc) == 1)
     return (1);
   init_tabinstr(&tabinstr);
   instr = init_instr();
   if (write_code(fd, instruc, &tabinstr, instr) == 1)
+    return (1);
+  if (write_prog_size(head, instruc, fd) == 1)
     return (1);
   close(fd);
   free_tab(instr);

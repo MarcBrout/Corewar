@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Tue Mar 22 13:45:27 2016 bougon_p
+## Last update Tue Mar 22 22:21:57 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -56,6 +56,7 @@ SRC		=	asm/srcs/main.c \
 			$(PARSER)aff.c \
 			$(PARSER)code_byte.c \
 			$(PARSER)w_args.c \
+			$(PARSER)labs.c \
 			$(LEXER)lexer.c \
 			$(LEXER)check_name.c \
 			$(LEXER)check_comment.c \
