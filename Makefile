@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Tue Mar 22 14:32:24 2016 marel_m
+## Last update Tue Mar 22 18:51:31 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -17,6 +17,32 @@ GREEN	=	\033[1;32m
 WHITE	=	\033[0m
 
 ECHO	=	echo -e
+
+# COREWAR VARIABLES
+
+VM		=	corewar/vm/
+
+PARSING		=	corewar/parsing/
+
+LOAD		=	corewar/load_file/
+
+SRCCOR		=	$(PARSING)pars.c \
+			$(PARSING)prog_number.c \
+			$(PARSING)order_champ.c \
+			$(PARSING)list_arg.c \
+			$(PARSING)my_getnbr.c \
+			$(PARSING)func_arg.c \
+			$(LOAD)load_file.c \
+			$(LOAD)my_bzero.c \
+			$(VM)vm.c \
+			$(VM)launch_match.c \
+			$(VM)dump.c \
+			$(VM)run_one_cycle.c \
+			$(VM)misc.c \
+			$(VM)get_high_scores.c \
+			$(VM)set_vm_memory.c
+
+OBJSCOR    	=	$(SRCCOR:.c=.o)
 
 
 # SOURCES VARIABLES
@@ -32,8 +58,8 @@ ERROR		=	asm/srcs/error/
 FREE		=	asm/srcs/free/
 
 SRC		=	asm/srcs/main.c \
-			asm/srcs/op.c \
 			asm/srcs/print_list.c \
+			asm/srcs/op.c \
 			$(PARSER)parser.c \
 			$(PARSER)create_file.c \
 			$(PARSER)convert.c \
@@ -106,35 +132,44 @@ LDFLAGS =       -lmy -L$(LIBPATH)
 
 OBJSLIB	=	$(SRCLIB:.c=.o)
 
+
 # PROJECT VARIABLES
 
 NAME	=	asm/asm
 
-IFLAG	=	-Iasm/include/
+COREWAR =	corewar/corewar
 
-CFLAGS  =	-W -Wall -Wextra $(IFLAG)
+IFLAG	=	-Iasm/include/ -Icorewar/include/
 
-CC      =	gcc -g $(CFLAGS)
+CFLAGS  =	-W -Wall -Wextra
 
+CC      =	gcc -g $(CFLAGS) $(IFLAG)
 
 
 # PROJECT RULES
 
-$(NAME)		: 	$(OBJSLIB) $(OBJS)
+$(NAME)		: 	$(COREWAR) $(OBJS)
+			@$(ECHO) "$(GREEN)\n> Compiling \"$(NAME)\" project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+
+$(COREWAR)	:	$(OBJSLIB) $(OBJSCOR)
+			@$(ECHO) "$(GREEN)\n> Compiling Library\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 			@ar rc $(LIBPATH)libmy.a $(OBJSLIB)
 			@ranlib $(LIBPATH)libmy.a
-			@$(ECHO) "$(GREEN)\n> Compiling project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
-			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+			@$(ECHO) "$(GREEN)\n> Compiling \"$(COREWAR)\" project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(CC) -o $(COREWAR) $(OBJSCOR) $(LDFLAGS)
 
 all		:	$(NAME)
 
 clean		:
 			@$(RM) $(OBJS)
 			@$(RM) $(OBJSLIB)
+			@$(RM) $(OBJSCOR)
 			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
+			@$(RM) $(COREWAR)
 			@$(RM) $(LIBPATH)/libmy.a
 			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 

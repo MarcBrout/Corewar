@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 16:16:26 2016 marc brout
-** Last update Tue Mar 22 01:01:14 2016 marc brout
+** Last update Tue Mar 22 17:33:34 2016 marc brout
 */
 
 #include <sys/types.h>
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "vm.h"
+#include "my.h"
 
 int	init_ram(t_data *data)
 {
@@ -35,15 +36,19 @@ int		copy_champion_to_ram(t_champion *champion,
   if (champion->valid)
     {
       if ((fd = open(champion->path, O_RDONLY)) < 0)
-	return (my_put_file_noaccess(champion->path, 1));
+	return (my_put_file_noaccess(champion->path, -1));
       if (read(fd, &head, sizeof(t_header)) < (int)sizeof(t_header)
 	  || read(fd, ram, champion->size) < champion->size)
 	{
 	  close(fd);
-	  return (my_put_file_str(champion->path, CORRUPT, 1));
+	  return (my_put_file_str(champion->path, CORRUPT, -1));
 	}
       close(fd);
+      /* my_printf("LOL2\n"); */
+      /* my_printf("champsize = %d\n", champion->size); */
+      return (champion->size);
     }
+  /* my_printf("LOL3\n"); */
   return (0);
 }
 
@@ -80,18 +85,27 @@ int		place_all_champions(t_data *data)
   if ((MEM_SIZE - size_champs(data->champ, 0, &nb)) <= 0)
     return (my_put_error(OVERLAP, 1));
   first = 1;
-  copy_champion_to_ram(data->champ[0], data->ram);
-  rest = MEM_SIZE - data->champ[0]->size;
+  if ((rest = copy_champion_to_ram(data->champ[0], data->ram))
+      < 0)
+    return (1);
+  rest = MEM_SIZE - rest;
   pos = data->champ[0]->size;
-  nb -= 1;
   while (first < 4 && nb > 0)
     {
-      rest_unit = rest / (nb + 1);
-      pos += rest;
-      copy_champion_to_ram(data->champ[first], &data->ram[pos]);
-      rest -= (data->champ[first]->size + rest_unit);
+      /* my_printf("MEM_SIZE = %d\n rest = %d  ", MEM_SIZE, rest); */
+      /* my_printf("sizechamps = %d\n", size_champs(data->champ, first, &nb)); */
+      rest_unit = (rest - size_champs(data->champ, first, &nb)) /
+		   (nb + 1);
+      /* my_printf("rest_unit = %d  \n", rest_unit); */
+      pos += rest_unit;
+      /* my_printf("first = %d, nb = %d\n", first,  nb); */
+      /* my_printf("pos = %d\n", pos); */
+      if (copy_champion_to_ram(data->champ[first],
+			       &data->ram[pos]) < 0)
+	return (1);
+      pos += data->champ[first]->size;
+      rest -= (rest_unit + data->champ[first]->size);
       first += 1;
-      nb -= 1;
     }
   return (0);
 }

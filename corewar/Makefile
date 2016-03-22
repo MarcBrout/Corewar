@@ -5,7 +5,7 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Mon Mar 21 23:17:37 2016 marc brout
-## Last update Tue Mar 22 01:06:15 2016 benjamin duhieu
+## Last update Tue Mar 22 18:19:18 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -36,6 +36,9 @@ SRC		=	$(PARSING)pars.c \
 			$(LOAD)load_file.c \
 			$(LOAD)my_bzero.c \
 			$(VM)vm.c \
+			$(VM)launch_match.c \
+			$(VM)dump.c \
+			$(VM)run_one_cycle.c \
 			$(VM)misc.c \
 			$(VM)get_high_scores.c \
 			$(VM)set_vm_memory.c
@@ -73,9 +76,11 @@ NAME	=	corewar
 
 IFLAG	=	-Iinclude/
 
-CFLAGS  =	-W -Wall -Wextra $(IFLAG)
+DEBUG	=	-g
 
-CC      =	gcc -g $(CFLAGS)
+CFLAGS  =	$(DEBUG) -W -Wall -Wextra $(IFLAG)
+
+CC      =	gcc $(CFLAGS)
 
 
 
@@ -84,7 +89,9 @@ CC      =	gcc -g $(CFLAGS)
 $(NAME)		: 	$(OBJSLIB) $(OBJS)
 			@ar rc $(LIBPATH)libmy.a $(OBJSLIB)
 			@ranlib $(LIBPATH)libmy.a
-			@$(ECHO) "$(GREEN)\n> Compiling project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n \
+Compiling \"$(NAME)\" project with \"$(CC)\"\t \
+\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 all		:	$(NAME)
@@ -92,12 +99,14 @@ all		:	$(NAME)
 clean		:
 			@$(RM) $(OBJS)
 			@$(RM) $(OBJSLIB)
-			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n> Cleaning repository\t \
+>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
 			@$(RM) $(LIBPATH)/libmy.a
-			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t \
+>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 re		:	fclean all
 

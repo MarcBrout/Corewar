@@ -5,12 +5,13 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Tue Mar 22 00:41:07 2016 marc brout
+** Last update Tue Mar 22 18:48:23 2016 marc brout
 */
 
 #ifndef VM_H_
 # define VM_H_
 
+# include "asm.h"
 # include "op.h"
 
 /*
@@ -25,30 +26,11 @@
 
 char		g_endian;
 
-typedef enum		e_vm_index
-  {
-    ERROR_NULL		= 0,
-    LIVE		= 1,
-    LD			= 2,
-    ST			= 3,
-    ADD			= 4,
-    SUB			= 5,
-    AND			= 6,
-    OR			= 7,
-    XOR			= 8,
-    ZJUMP		= 9,
-    LDI			= 10,
-    STI			= 11,
-    FORK		= 12,
-    LLD			= 13,
-    LLDI		= 14,
-    LFORK		= 15,
-    AFF			= 16
-  }			t_vm_index;
-
 typedef	struct		s_pc
 {
-  int			pc;
+  int			carry;
+  int			reg[16];
+  int			cycle;
   struct s_pc		*next;
 }			t_pc;
 
@@ -56,7 +38,7 @@ typedef struct		s_champion
 {
   const char		*path;
   char			valid;
-  char			alive;
+  int			alive;
   int			order;
   int			fd;
   unsigned int		size;
@@ -66,6 +48,7 @@ typedef struct		s_champion
 
 typedef struct		s_data
 {
+  int			nblive;
   int			dump;
   int			i;
   t_champion		*champ[4];
@@ -79,6 +62,15 @@ typedef struct		s_pars
   int			(*chk_arg)(char **, int *, t_data *);
   struct s_pars		*next;
 }			t_pars;
+
+/*
+** dump.c
+*/
+
+void			dump(char *ram);
+void			octect_to_base(char octect,
+				       char hexa[2],
+				       char *base);
 
 /*
 ** load_file.c
@@ -181,5 +173,24 @@ int			pars_arg(char **, t_pars  *, t_data *);
 int			check_prog_number_value(t_data *);
 void			put_order_in_champ(t_data *, int);
 void			recheck_prog_number(t_data *);
+
+/*
+** run_one_cycle.c
+*/
+
+void			copy_registres(t_pc *src,
+				       t_pc *dst);
+int			add_pc(t_pc *pc, int pos,
+			       int cycle);
+int			run_one_cycle(t_data *data);
+
+/*
+** launch_match.c
+*/
+
+int			count_players_alive(t_champion *champ[4]);
+void			set_players(t_champion *champ[4]);
+void			check_winner(t_champion *champ[4]);
+int			launch_match(t_data *data);
 
 #endif /* !VM_H_ */
