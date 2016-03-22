@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 14 20:56:37 2016 marc brout
-** Last update Mon Mar 14 21:21:24 2016 marc brout
+** Last update Tue Mar 22 18:56:20 2016 marc brout
 */
 
 #ifndef OP_H_
@@ -64,7 +64,7 @@ typedef char    t_args_type;
 
 #define T_LAB           8
 
-struct  t_op
+typedef struct  op_s
 {
    char         *mnemonique;
    char         nbr_args;
@@ -72,7 +72,9 @@ struct  t_op
    char         code;
    int          nbr_cycles;
    char         *comment;
-};
+}		op_t;
+
+extern op_t op_tab[];
 
 /*
 ** size en octet
@@ -90,15 +92,15 @@ struct  t_op
 #define COMMENT_LENGTH          2048
 #define COREWAR_EXEC_MAGIC      0xea83f3
 
-struct s_header
-{
-   int  magic;
-   char prog_name[PROG_NAME_LENGTH + 1];
-   int  prog_size;
-   char comment[COMMENT_LENGTH + 1];
-};
+/* struct s_header */
+/* { */
+/*    int  magic; */
+/*    char prog_name[PROG_NAME_LENGTH + 1]; */
+/*    int  prog_size; */
+/*    char comment[COMMENT_LENGTH + 1]; */
+/* }; */
 
-typedef struct s_header t_header;
+/* typedef struct s_header t_header; */
 
 /*
 ** live
@@ -106,7 +108,7 @@ typedef struct s_header t_header;
 */
 
 #define CYCLE_TO_DIE    1536
-#define CYCLE_DELTA     5
-#define NBR_LIVE        40
+#define CYCLE_DELTA     4
+#define NBR_LIVE        2048
 
 #endif /* !OP_H_ */

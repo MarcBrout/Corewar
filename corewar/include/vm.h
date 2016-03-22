@@ -5,12 +5,13 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Tue Mar 22 17:57:44 2016 marc brout
+** Last update Tue Mar 22 18:48:23 2016 marc brout
 */
 
 #ifndef VM_H_
 # define VM_H_
 
+# include "asm.h"
 # include "op.h"
 
 /*
@@ -24,27 +25,6 @@
 # define MISS_COR "Missing corewar executable\n"
 
 char		g_endian;
-
-typedef enum		e_vm_index
-  {
-    ERROR_NULL		= 0,
-    LIVE		= 1,
-    LD			= 2,
-    ST			= 3,
-    ADD			= 4,
-    SUB			= 5,
-    AND			= 6,
-    OR			= 7,
-    XOR			= 8,
-    ZJUMP		= 9,
-    LDI			= 10,
-    STI			= 11,
-    FORK		= 12,
-    LLD			= 13,
-    LLDI		= 14,
-    LFORK		= 15,
-    AFF			= 16
-  }			t_vm_index;
 
 typedef	struct		s_pc
 {

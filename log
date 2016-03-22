@@ -1,0 +1,815 @@
+asm/srcs/op.c:17:1: erreur : unknown type name ‘op_t’
+ op_t    op_tab[] =
+ ^
+asm/srcs/op.c:19:5: attention : accolades autour d'une initialisation de scalaire
+     {"live", 1, {T_DIR}, 1, 10, "alive"},
+     ^
+asm/srcs/op.c:19:5: note : (near initialization for ‘op_tab[0]’)
+asm/srcs/op.c:19:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"live", 1, {T_DIR}, 1, 10, "alive"},
+      ^
+asm/srcs/op.c:19:6: note : (near initialization for ‘op_tab[0]’)
+asm/srcs/op.c:19:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:19:6: note : (near initialization for ‘op_tab[0]’)
+asm/srcs/op.c:19:14: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"live", 1, {T_DIR}, 1, 10, "alive"},
+              ^
+asm/srcs/op.c:19:14: note : (near initialization for ‘op_tab[0]’)
+asm/srcs/op.c:19:5: attention : accolades autour d'une initialisation de scalaire
+     {"live", 1, {T_DIR}, 1, 10, "alive"},
+     ^
+asm/srcs/op.c:19:5: note : (near initialization for ‘op_tab[0]’)
+asm/srcs/op.c:19:17: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"live", 1, {T_DIR}, 1, 10, "alive"},
+                 ^
+asm/srcs/op.c:19:17: note : (near initialization for ‘op_tab[0]’)
+asm/srcs/op.c:19:26: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"live", 1, {T_DIR}, 1, 10, "alive"},
+                          ^
+asm/srcs/op.c:19:26: note : (near initialization for ‘op_tab[0]’)
+asm/srcs/op.c:19:29: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"live", 1, {T_DIR}, 1, 10, "alive"},
+                             ^
+asm/srcs/op.c:19:29: note : (near initialization for ‘op_tab[0]’)
+asm/srcs/op.c:19:33: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"live", 1, {T_DIR}, 1, 10, "alive"},
+                                 ^
+asm/srcs/op.c:19:33: note : (near initialization for ‘op_tab[0]’)
+asm/srcs/op.c:20:5: attention : accolades autour d'une initialisation de scalaire
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+     ^
+asm/srcs/op.c:20:5: note : (near initialization for ‘op_tab[1]’)
+asm/srcs/op.c:20:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+      ^
+asm/srcs/op.c:20:6: note : (near initialization for ‘op_tab[1]’)
+asm/srcs/op.c:20:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:20:6: note : (near initialization for ‘op_tab[1]’)
+asm/srcs/op.c:20:12: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+            ^
+asm/srcs/op.c:20:12: note : (near initialization for ‘op_tab[1]’)
+asm/srcs/op.c:20:5: attention : accolades autour d'une initialisation de scalaire
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+     ^
+asm/srcs/op.c:20:5: note : (near initialization for ‘op_tab[1]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:20:31: note : in expansion of macro ‘T_REG’
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+                               ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[1]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:20:31: note : in expansion of macro ‘T_REG’
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+                               ^
+asm/srcs/op.c:20:15: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+               ^
+asm/srcs/op.c:20:15: note : (near initialization for ‘op_tab[1]’)
+asm/srcs/op.c:20:39: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+                                       ^
+asm/srcs/op.c:20:39: note : (near initialization for ‘op_tab[1]’)
+asm/srcs/op.c:20:42: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+                                          ^
+asm/srcs/op.c:20:42: note : (near initialization for ‘op_tab[1]’)
+asm/srcs/op.c:20:45: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},
+                                             ^
+asm/srcs/op.c:20:45: note : (near initialization for ‘op_tab[1]’)
+asm/srcs/op.c:21:5: attention : accolades autour d'une initialisation de scalaire
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+     ^
+asm/srcs/op.c:21:5: note : (near initialization for ‘op_tab[2]’)
+asm/srcs/op.c:21:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+      ^
+asm/srcs/op.c:21:6: note : (near initialization for ‘op_tab[2]’)
+asm/srcs/op.c:21:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:21:6: note : (near initialization for ‘op_tab[2]’)
+asm/srcs/op.c:21:12: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+            ^
+asm/srcs/op.c:21:12: note : (near initialization for ‘op_tab[2]’)
+asm/srcs/op.c:21:5: attention : accolades autour d'une initialisation de scalaire
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+     ^
+asm/srcs/op.c:21:5: note : (near initialization for ‘op_tab[2]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:59:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_IND           4
+                         ^
+asm/srcs/op.c:21:23: note : in expansion of macro ‘T_IND’
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+                       ^
+asm/include/op.h:59:25: note : (near initialization for ‘op_tab[2]’)
+ #define T_IND           4
+                         ^
+asm/srcs/op.c:21:23: note : in expansion of macro ‘T_IND’
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+                       ^
+asm/srcs/op.c:21:15: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+               ^
+asm/srcs/op.c:21:15: note : (near initialization for ‘op_tab[2]’)
+asm/srcs/op.c:21:39: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+                                       ^
+asm/srcs/op.c:21:39: note : (near initialization for ‘op_tab[2]’)
+asm/srcs/op.c:21:42: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+                                          ^
+asm/srcs/op.c:21:42: note : (near initialization for ‘op_tab[2]’)
+asm/srcs/op.c:21:45: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store"},
+                                             ^
+asm/srcs/op.c:21:45: note : (near initialization for ‘op_tab[2]’)
+asm/srcs/op.c:22:5: attention : accolades autour d'une initialisation de scalaire
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+     ^
+asm/srcs/op.c:22:5: note : (near initialization for ‘op_tab[3]’)
+asm/srcs/op.c:22:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+      ^
+asm/srcs/op.c:22:6: note : (near initialization for ‘op_tab[3]’)
+asm/srcs/op.c:22:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:22:6: note : (near initialization for ‘op_tab[3]’)
+asm/srcs/op.c:22:13: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+             ^
+asm/srcs/op.c:22:13: note : (near initialization for ‘op_tab[3]’)
+asm/srcs/op.c:22:5: attention : accolades autour d'une initialisation de scalaire
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+     ^
+asm/srcs/op.c:22:5: note : (near initialization for ‘op_tab[3]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:22:24: note : in expansion of macro ‘T_REG’
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+                        ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[3]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:22:24: note : in expansion of macro ‘T_REG’
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+                        ^
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:22:31: note : in expansion of macro ‘T_REG’
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+                               ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[3]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:22:31: note : in expansion of macro ‘T_REG’
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+                               ^
+asm/srcs/op.c:22:16: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+                ^
+asm/srcs/op.c:22:16: note : (near initialization for ‘op_tab[3]’)
+asm/srcs/op.c:22:39: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+                                       ^
+asm/srcs/op.c:22:39: note : (near initialization for ‘op_tab[3]’)
+asm/srcs/op.c:22:42: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+                                          ^
+asm/srcs/op.c:22:42: note : (near initialization for ‘op_tab[3]’)
+asm/srcs/op.c:22:46: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
+                                              ^
+asm/srcs/op.c:22:46: note : (near initialization for ‘op_tab[3]’)
+asm/srcs/op.c:23:5: attention : accolades autour d'une initialisation de scalaire
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+     ^
+asm/srcs/op.c:23:5: note : (near initialization for ‘op_tab[4]’)
+asm/srcs/op.c:23:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+      ^
+asm/srcs/op.c:23:6: note : (near initialization for ‘op_tab[4]’)
+asm/srcs/op.c:23:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:23:6: note : (near initialization for ‘op_tab[4]’)
+asm/srcs/op.c:23:13: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+             ^
+asm/srcs/op.c:23:13: note : (near initialization for ‘op_tab[4]’)
+asm/srcs/op.c:23:5: attention : accolades autour d'une initialisation de scalaire
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+     ^
+asm/srcs/op.c:23:5: note : (near initialization for ‘op_tab[4]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:23:24: note : in expansion of macro ‘T_REG’
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+                        ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[4]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:23:24: note : in expansion of macro ‘T_REG’
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+                        ^
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:23:31: note : in expansion of macro ‘T_REG’
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+                               ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[4]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:23:31: note : in expansion of macro ‘T_REG’
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+                               ^
+asm/srcs/op.c:23:16: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+                ^
+asm/srcs/op.c:23:16: note : (near initialization for ‘op_tab[4]’)
+asm/srcs/op.c:23:39: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+                                       ^
+asm/srcs/op.c:23:39: note : (near initialization for ‘op_tab[4]’)
+asm/srcs/op.c:23:42: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+                                          ^
+asm/srcs/op.c:23:42: note : (near initialization for ‘op_tab[4]’)
+asm/srcs/op.c:23:46: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
+                                              ^
+asm/srcs/op.c:23:46: note : (near initialization for ‘op_tab[4]’)
+asm/srcs/op.c:24:5: attention : accolades autour d'une initialisation de scalaire
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+     ^
+asm/srcs/op.c:24:5: note : (near initialization for ‘op_tab[5]’)
+asm/srcs/op.c:24:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+      ^
+asm/srcs/op.c:24:6: note : (near initialization for ‘op_tab[5]’)
+asm/srcs/op.c:24:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:24:6: note : (near initialization for ‘op_tab[5]’)
+asm/srcs/op.c:24:13: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+             ^
+asm/srcs/op.c:24:13: note : (near initialization for ‘op_tab[5]’)
+asm/srcs/op.c:24:5: attention : accolades autour d'une initialisation de scalaire
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+     ^
+asm/srcs/op.c:24:5: note : (near initialization for ‘op_tab[5]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:24:40: note : in expansion of macro ‘T_REG’
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+                                        ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[5]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:24:40: note : in expansion of macro ‘T_REG’
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+                                        ^
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:24:63: note : in expansion of macro ‘T_REG’
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+                                                               ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[5]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:24:63: note : in expansion of macro ‘T_REG’
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+                                                               ^
+asm/srcs/op.c:24:16: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+                ^
+asm/srcs/op.c:24:16: note : (near initialization for ‘op_tab[5]’)
+asm/srcs/op.c:24:71: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+                                                                       ^
+asm/srcs/op.c:24:71: note : (near initialization for ‘op_tab[5]’)
+asm/srcs/op.c:24:74: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+                                                                          ^
+asm/srcs/op.c:24:74: note : (near initialization for ‘op_tab[5]’)
+asm/srcs/op.c:25:6: attention : éléments en excès dans l'initialisation d'un scalaire
+      "et (and  r1, r2, r3   r1&r2 -> r3"},
+      ^
+asm/srcs/op.c:25:6: note : (near initialization for ‘op_tab[5]’)
+asm/srcs/op.c:26:5: attention : accolades autour d'une initialisation de scalaire
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+     ^
+asm/srcs/op.c:26:5: note : (near initialization for ‘op_tab[6]’)
+asm/srcs/op.c:26:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+      ^
+asm/srcs/op.c:26:6: note : (near initialization for ‘op_tab[6]’)
+asm/srcs/op.c:26:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:26:6: note : (near initialization for ‘op_tab[6]’)
+asm/srcs/op.c:26:12: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+            ^
+asm/srcs/op.c:26:12: note : (near initialization for ‘op_tab[6]’)
+asm/srcs/op.c:26:5: attention : accolades autour d'une initialisation de scalaire
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+     ^
+asm/srcs/op.c:26:5: note : (near initialization for ‘op_tab[6]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:26:39: note : in expansion of macro ‘T_REG’
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+                                       ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[6]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:26:39: note : in expansion of macro ‘T_REG’
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+                                       ^
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:26:62: note : in expansion of macro ‘T_REG’
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+                                                              ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[6]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:26:62: note : in expansion of macro ‘T_REG’
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+                                                              ^
+asm/srcs/op.c:26:15: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+               ^
+asm/srcs/op.c:26:15: note : (near initialization for ‘op_tab[6]’)
+asm/srcs/op.c:26:70: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+                                                                      ^
+asm/srcs/op.c:26:70: note : (near initialization for ‘op_tab[6]’)
+asm/srcs/op.c:26:73: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+                                                                         ^
+asm/srcs/op.c:26:73: note : (near initialization for ‘op_tab[6]’)
+asm/srcs/op.c:27:6: attention : éléments en excès dans l'initialisation d'un scalaire
+      "ou  (or   r1, r2, r3   r1 | r2 -> r3"},
+      ^
+asm/srcs/op.c:27:6: note : (near initialization for ‘op_tab[6]’)
+asm/srcs/op.c:28:5: attention : accolades autour d'une initialisation de scalaire
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+     ^
+asm/srcs/op.c:28:5: note : (near initialization for ‘op_tab[7]’)
+asm/srcs/op.c:28:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+      ^
+asm/srcs/op.c:28:6: note : (near initialization for ‘op_tab[7]’)
+asm/srcs/op.c:28:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:28:6: note : (near initialization for ‘op_tab[7]’)
+asm/srcs/op.c:28:13: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+             ^
+asm/srcs/op.c:28:13: note : (near initialization for ‘op_tab[7]’)
+asm/srcs/op.c:28:5: attention : accolades autour d'une initialisation de scalaire
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+     ^
+asm/srcs/op.c:28:5: note : (near initialization for ‘op_tab[7]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:28:40: note : in expansion of macro ‘T_REG’
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+                                        ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[7]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:28:40: note : in expansion of macro ‘T_REG’
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+                                        ^
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:28:63: note : in expansion of macro ‘T_REG’
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+                                                               ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[7]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:28:63: note : in expansion of macro ‘T_REG’
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+                                                               ^
+asm/srcs/op.c:28:16: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+                ^
+asm/srcs/op.c:28:16: note : (near initialization for ‘op_tab[7]’)
+asm/srcs/op.c:28:71: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+                                                                       ^
+asm/srcs/op.c:28:71: note : (near initialization for ‘op_tab[7]’)
+asm/srcs/op.c:28:74: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+                                                                          ^
+asm/srcs/op.c:28:74: note : (near initialization for ‘op_tab[7]’)
+asm/srcs/op.c:29:6: attention : éléments en excès dans l'initialisation d'un scalaire
+      "ou (xor  r1, r2, r3   r1^r2 -> r3"},
+      ^
+asm/srcs/op.c:29:6: note : (near initialization for ‘op_tab[7]’)
+asm/srcs/op.c:30:5: attention : accolades autour d'une initialisation de scalaire
+     {"zjmp", 1, {T_DIR}, 9, 20, "jump if zero"},
+     ^
+asm/srcs/op.c:30:5: note : (near initialization for ‘op_tab[8]’)
+asm/srcs/op.c:30:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"zjmp", 1, {T_DIR}, 9, 20, "jump if zero"},
+      ^
+asm/srcs/op.c:30:6: note : (near initialization for ‘op_tab[8]’)
+asm/srcs/op.c:30:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:30:6: note : (near initialization for ‘op_tab[8]’)
+asm/srcs/op.c:30:14: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"zjmp", 1, {T_DIR}, 9, 20, "jump if zero"},
+              ^
+asm/srcs/op.c:30:14: note : (near initialization for ‘op_tab[8]’)
+asm/srcs/op.c:30:5: attention : accolades autour d'une initialisation de scalaire
+     {"zjmp", 1, {T_DIR}, 9, 20, "jump if zero"},
+     ^
+asm/srcs/op.c:30:5: note : (near initialization for ‘op_tab[8]’)
+asm/srcs/op.c:30:17: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"zjmp", 1, {T_DIR}, 9, 20, "jump if zero"},
+                 ^
+asm/srcs/op.c:30:17: note : (near initialization for ‘op_tab[8]’)
+asm/srcs/op.c:30:26: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"zjmp", 1, {T_DIR}, 9, 20, "jump if zero"},
+                          ^
+asm/srcs/op.c:30:26: note : (near initialization for ‘op_tab[8]’)
+asm/srcs/op.c:30:29: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"zjmp", 1, {T_DIR}, 9, 20, "jump if zero"},
+                             ^
+asm/srcs/op.c:30:29: note : (near initialization for ‘op_tab[8]’)
+asm/srcs/op.c:30:33: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"zjmp", 1, {T_DIR}, 9, 20, "jump if zero"},
+                                 ^
+asm/srcs/op.c:30:33: note : (near initialization for ‘op_tab[8]’)
+asm/srcs/op.c:31:5: attention : accolades autour d'une initialisation de scalaire
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+     ^
+asm/srcs/op.c:31:5: note : (near initialization for ‘op_tab[9]’)
+asm/srcs/op.c:31:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+      ^
+asm/srcs/op.c:31:6: note : (near initialization for ‘op_tab[9]’)
+asm/srcs/op.c:31:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:31:6: note : (near initialization for ‘op_tab[9]’)
+asm/srcs/op.c:31:13: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+             ^
+asm/srcs/op.c:31:13: note : (near initialization for ‘op_tab[9]’)
+asm/srcs/op.c:31:5: attention : accolades autour d'une initialisation de scalaire
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+     ^
+asm/srcs/op.c:31:5: note : (near initialization for ‘op_tab[9]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:58:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_DIR           2
+                         ^
+asm/srcs/op.c:31:40: note : in expansion of macro ‘T_DIR’
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+                                        ^
+asm/include/op.h:58:25: note : (near initialization for ‘op_tab[9]’)
+ #define T_DIR           2
+                         ^
+asm/srcs/op.c:31:40: note : in expansion of macro ‘T_DIR’
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+                                        ^
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:31:55: note : in expansion of macro ‘T_REG’
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+                                                       ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[9]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:31:55: note : in expansion of macro ‘T_REG’
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+                                                       ^
+asm/srcs/op.c:31:16: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+                ^
+asm/srcs/op.c:31:16: note : (near initialization for ‘op_tab[9]’)
+asm/srcs/op.c:31:63: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+                                                               ^
+asm/srcs/op.c:31:63: note : (near initialization for ‘op_tab[9]’)
+asm/srcs/op.c:31:67: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+                                                                   ^
+asm/srcs/op.c:31:67: note : (near initialization for ‘op_tab[9]’)
+asm/srcs/op.c:32:6: attention : éléments en excès dans l'initialisation d'un scalaire
+      "load index"},
+      ^
+asm/srcs/op.c:32:6: note : (near initialization for ‘op_tab[9]’)
+asm/srcs/op.c:33:5: attention : accolades autour d'une initialisation de scalaire
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+     ^
+asm/srcs/op.c:33:5: note : (near initialization for ‘op_tab[10]’)
+asm/srcs/op.c:33:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+      ^
+asm/srcs/op.c:33:6: note : (near initialization for ‘op_tab[10]’)
+asm/srcs/op.c:33:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:33:6: note : (near initialization for ‘op_tab[10]’)
+asm/srcs/op.c:33:13: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+             ^
+asm/srcs/op.c:33:13: note : (near initialization for ‘op_tab[10]’)
+asm/srcs/op.c:33:5: attention : accolades autour d'une initialisation de scalaire
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+     ^
+asm/srcs/op.c:33:5: note : (near initialization for ‘op_tab[10]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:33:24: note : in expansion of macro ‘T_REG’
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+                        ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[10]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:33:24: note : in expansion of macro ‘T_REG’
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+                        ^
+asm/include/op.h:58:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_DIR           2
+                         ^
+asm/srcs/op.c:33:47: note : in expansion of macro ‘T_DIR’
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+                                               ^
+asm/include/op.h:58:25: note : (near initialization for ‘op_tab[10]’)
+ #define T_DIR           2
+                         ^
+asm/srcs/op.c:33:47: note : in expansion of macro ‘T_DIR’
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+                                               ^
+asm/srcs/op.c:33:16: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+                ^
+asm/srcs/op.c:33:16: note : (near initialization for ‘op_tab[10]’)
+asm/srcs/op.c:33:63: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+                                                               ^
+asm/srcs/op.c:33:63: note : (near initialization for ‘op_tab[10]’)
+asm/srcs/op.c:33:67: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+                                                                   ^
+asm/srcs/op.c:33:67: note : (near initialization for ‘op_tab[10]’)
+asm/srcs/op.c:34:6: attention : éléments en excès dans l'initialisation d'un scalaire
+      "store index"},
+      ^
+asm/srcs/op.c:34:6: note : (near initialization for ‘op_tab[10]’)
+asm/srcs/op.c:35:5: attention : accolades autour d'une initialisation de scalaire
+     {"fork", 1, {T_DIR}, 12, 800, "fork"},
+     ^
+asm/srcs/op.c:35:5: note : (near initialization for ‘op_tab[11]’)
+asm/srcs/op.c:35:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"fork", 1, {T_DIR}, 12, 800, "fork"},
+      ^
+asm/srcs/op.c:35:6: note : (near initialization for ‘op_tab[11]’)
+asm/srcs/op.c:35:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:35:6: note : (near initialization for ‘op_tab[11]’)
+asm/srcs/op.c:35:14: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"fork", 1, {T_DIR}, 12, 800, "fork"},
+              ^
+asm/srcs/op.c:35:14: note : (near initialization for ‘op_tab[11]’)
+asm/srcs/op.c:35:5: attention : accolades autour d'une initialisation de scalaire
+     {"fork", 1, {T_DIR}, 12, 800, "fork"},
+     ^
+asm/srcs/op.c:35:5: note : (near initialization for ‘op_tab[11]’)
+asm/srcs/op.c:35:17: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"fork", 1, {T_DIR}, 12, 800, "fork"},
+                 ^
+asm/srcs/op.c:35:17: note : (near initialization for ‘op_tab[11]’)
+asm/srcs/op.c:35:26: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"fork", 1, {T_DIR}, 12, 800, "fork"},
+                          ^
+asm/srcs/op.c:35:26: note : (near initialization for ‘op_tab[11]’)
+asm/srcs/op.c:35:30: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"fork", 1, {T_DIR}, 12, 800, "fork"},
+                              ^
+asm/srcs/op.c:35:30: note : (near initialization for ‘op_tab[11]’)
+asm/srcs/op.c:35:35: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"fork", 1, {T_DIR}, 12, 800, "fork"},
+                                   ^
+asm/srcs/op.c:35:35: note : (near initialization for ‘op_tab[11]’)
+asm/srcs/op.c:36:5: attention : accolades autour d'une initialisation de scalaire
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+     ^
+asm/srcs/op.c:36:5: note : (near initialization for ‘op_tab[12]’)
+asm/srcs/op.c:36:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+      ^
+asm/srcs/op.c:36:6: note : (near initialization for ‘op_tab[12]’)
+asm/srcs/op.c:36:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:36:6: note : (near initialization for ‘op_tab[12]’)
+asm/srcs/op.c:36:13: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+             ^
+asm/srcs/op.c:36:13: note : (near initialization for ‘op_tab[12]’)
+asm/srcs/op.c:36:5: attention : accolades autour d'une initialisation de scalaire
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+     ^
+asm/srcs/op.c:36:5: note : (near initialization for ‘op_tab[12]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:36:32: note : in expansion of macro ‘T_REG’
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+                                ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[12]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:36:32: note : in expansion of macro ‘T_REG’
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+                                ^
+asm/srcs/op.c:36:16: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+                ^
+asm/srcs/op.c:36:16: note : (near initialization for ‘op_tab[12]’)
+asm/srcs/op.c:36:40: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+                                        ^
+asm/srcs/op.c:36:40: note : (near initialization for ‘op_tab[12]’)
+asm/srcs/op.c:36:44: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+                                            ^
+asm/srcs/op.c:36:44: note : (near initialization for ‘op_tab[12]’)
+asm/srcs/op.c:36:48: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load"},
+                                                ^
+asm/srcs/op.c:36:48: note : (near initialization for ‘op_tab[12]’)
+asm/srcs/op.c:37:5: attention : accolades autour d'une initialisation de scalaire
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+     ^
+asm/srcs/op.c:37:5: note : (near initialization for ‘op_tab[13]’)
+asm/srcs/op.c:37:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+      ^
+asm/srcs/op.c:37:6: note : (near initialization for ‘op_tab[13]’)
+asm/srcs/op.c:37:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:37:6: note : (near initialization for ‘op_tab[13]’)
+asm/srcs/op.c:37:14: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+              ^
+asm/srcs/op.c:37:14: note : (near initialization for ‘op_tab[13]’)
+asm/srcs/op.c:37:5: attention : accolades autour d'une initialisation de scalaire
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+     ^
+asm/srcs/op.c:37:5: note : (near initialization for ‘op_tab[13]’)
+In file included from asm/srcs/op.c:15:0:
+asm/include/op.h:58:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_DIR           2
+                         ^
+asm/srcs/op.c:37:41: note : in expansion of macro ‘T_DIR’
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+                                         ^
+asm/include/op.h:58:25: note : (near initialization for ‘op_tab[13]’)
+ #define T_DIR           2
+                         ^
+asm/srcs/op.c:37:41: note : in expansion of macro ‘T_DIR’
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+                                         ^
+asm/include/op.h:57:25: attention : éléments en excès dans l'initialisation d'un scalaire
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:37:56: note : in expansion of macro ‘T_REG’
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+                                                        ^
+asm/include/op.h:57:25: note : (near initialization for ‘op_tab[13]’)
+ #define T_REG           1
+                         ^
+asm/srcs/op.c:37:56: note : in expansion of macro ‘T_REG’
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+                                                        ^
+asm/srcs/op.c:37:17: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+                 ^
+asm/srcs/op.c:37:17: note : (near initialization for ‘op_tab[13]’)
+asm/srcs/op.c:37:64: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+                                                                ^
+asm/srcs/op.c:37:64: note : (near initialization for ‘op_tab[13]’)
+asm/srcs/op.c:37:68: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+                                                                    ^
+asm/srcs/op.c:37:68: note : (near initialization for ‘op_tab[13]’)
+asm/srcs/op.c:38:6: attention : éléments en excès dans l'initialisation d'un scalaire
+      "long load index"},
+      ^
+asm/srcs/op.c:38:6: note : (near initialization for ‘op_tab[13]’)
+asm/srcs/op.c:39:5: attention : accolades autour d'une initialisation de scalaire
+     {"lfork", 1, {T_DIR}, 15, 1000, "long fork"},
+     ^
+asm/srcs/op.c:39:5: note : (near initialization for ‘op_tab[14]’)
+asm/srcs/op.c:39:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"lfork", 1, {T_DIR}, 15, 1000, "long fork"},
+      ^
+asm/srcs/op.c:39:6: note : (near initialization for ‘op_tab[14]’)
+asm/srcs/op.c:39:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:39:6: note : (near initialization for ‘op_tab[14]’)
+asm/srcs/op.c:39:15: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lfork", 1, {T_DIR}, 15, 1000, "long fork"},
+               ^
+asm/srcs/op.c:39:15: note : (near initialization for ‘op_tab[14]’)
+asm/srcs/op.c:39:5: attention : accolades autour d'une initialisation de scalaire
+     {"lfork", 1, {T_DIR}, 15, 1000, "long fork"},
+     ^
+asm/srcs/op.c:39:5: note : (near initialization for ‘op_tab[14]’)
+asm/srcs/op.c:39:18: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lfork", 1, {T_DIR}, 15, 1000, "long fork"},
+                  ^
+asm/srcs/op.c:39:18: note : (near initialization for ‘op_tab[14]’)
+asm/srcs/op.c:39:27: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lfork", 1, {T_DIR}, 15, 1000, "long fork"},
+                           ^
+asm/srcs/op.c:39:27: note : (near initialization for ‘op_tab[14]’)
+asm/srcs/op.c:39:31: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lfork", 1, {T_DIR}, 15, 1000, "long fork"},
+                               ^
+asm/srcs/op.c:39:31: note : (near initialization for ‘op_tab[14]’)
+asm/srcs/op.c:39:37: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"lfork", 1, {T_DIR}, 15, 1000, "long fork"},
+                                     ^
+asm/srcs/op.c:39:37: note : (near initialization for ‘op_tab[14]’)
+asm/srcs/op.c:40:5: attention : accolades autour d'une initialisation de scalaire
+     {"aff", 1, {T_REG}, 16, 2, "aff"},
+     ^
+asm/srcs/op.c:40:5: note : (near initialization for ‘op_tab[15]’)
+asm/srcs/op.c:40:6: attention : initialization makes integer from pointer without a cast [-Wint-conversion]
+     {"aff", 1, {T_REG}, 16, 2, "aff"},
+      ^
+asm/srcs/op.c:40:6: note : (near initialization for ‘op_tab[15]’)
+asm/srcs/op.c:40:6: erreur : un élément de l'initialisation n'est pas évaluable lors du chargement
+asm/srcs/op.c:40:6: note : (near initialization for ‘op_tab[15]’)
+asm/srcs/op.c:40:13: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"aff", 1, {T_REG}, 16, 2, "aff"},
+             ^
+asm/srcs/op.c:40:13: note : (near initialization for ‘op_tab[15]’)
+asm/srcs/op.c:40:5: attention : accolades autour d'une initialisation de scalaire
+     {"aff", 1, {T_REG}, 16, 2, "aff"},
+     ^
+asm/srcs/op.c:40:5: note : (near initialization for ‘op_tab[15]’)
+asm/srcs/op.c:40:16: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"aff", 1, {T_REG}, 16, 2, "aff"},
+                ^
+asm/srcs/op.c:40:16: note : (near initialization for ‘op_tab[15]’)
+asm/srcs/op.c:40:25: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"aff", 1, {T_REG}, 16, 2, "aff"},
+                         ^
+asm/srcs/op.c:40:25: note : (near initialization for ‘op_tab[15]’)
+asm/srcs/op.c:40:29: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"aff", 1, {T_REG}, 16, 2, "aff"},
+                             ^
+asm/srcs/op.c:40:29: note : (near initialization for ‘op_tab[15]’)
+asm/srcs/op.c:40:32: attention : éléments en excès dans l'initialisation d'un scalaire
+     {"aff", 1, {T_REG}, 16, 2, "aff"},
+                                ^
+asm/srcs/op.c:40:32: note : (near initialization for ‘op_tab[15]’)
+asm/srcs/op.c:41:5: attention : accolades autour d'une initialisation de scalaire
+     {0, 0, {0}, 0, 0, 0}
+     ^
+asm/srcs/op.c:41:5: note : (near initialization for ‘op_tab[16]’)
+asm/srcs/op.c:41:9: attention : éléments en excès dans l'initialisation d'un scalaire
+     {0, 0, {0}, 0, 0, 0}
+         ^
+asm/srcs/op.c:41:9: note : (near initialization for ‘op_tab[16]’)
+asm/srcs/op.c:41:5: attention : accolades autour d'une initialisation de scalaire
+     {0, 0, {0}, 0, 0, 0}
+     ^
+asm/srcs/op.c:41:5: note : (near initialization for ‘op_tab[16]’)
+asm/srcs/op.c:41:12: attention : éléments en excès dans l'initialisation d'un scalaire
+     {0, 0, {0}, 0, 0, 0}
+            ^
+asm/srcs/op.c:41:12: note : (near initialization for ‘op_tab[16]’)
+asm/srcs/op.c:41:17: attention : éléments en excès dans l'initialisation d'un scalaire
+     {0, 0, {0}, 0, 0, 0}
+                 ^
+asm/srcs/op.c:41:17: note : (near initialization for ‘op_tab[16]’)
+asm/srcs/op.c:41:20: attention : éléments en excès dans l'initialisation d'un scalaire
+     {0, 0, {0}, 0, 0, 0}
+                    ^
+asm/srcs/op.c:41:20: note : (near initialization for ‘op_tab[16]’)
+asm/srcs/op.c:41:23: attention : éléments en excès dans l'initialisation d'un scalaire
+     {0, 0, {0}, 0, 0, 0}
+                       ^
+asm/srcs/op.c:41:23: note : (near initialization for ‘op_tab[16]’)
+make: *** [asm/srcs/op.o] Erreur 1
