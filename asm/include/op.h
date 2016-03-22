@@ -32,7 +32,7 @@
 #define REG_NUMBER      16              /* r1 <--> rx */
 
 /*
- ** 
+ **
  */
 
 typedef char    args_type_t;
@@ -44,7 +44,7 @@ typedef char    args_type_t;
                                    dans r1 (4 octecs )) */
 #define T_LAB           8       /* LABEL */
 
-struct  op_s    
+struct  op_s
 {
    char         *mnemonique;
    char         nbr_args;
@@ -54,7 +54,7 @@ struct  op_s
    char         *comment;
 };
 
-typedef struct op_s     op_t;
+typedef struct op_s	t_op;
 
 /*
  ** size
@@ -69,7 +69,7 @@ typedef struct op_s     op_t;
  */
 
 
-extern  op_t    op_tab[];
+extern  t_op    op_tab[];
 
 
 /*
@@ -90,7 +90,7 @@ struct header_s
 typedef struct header_s header_t;
 
 /*
- ** live 
+ ** live
  */
 
 #define CYCLE_TO_DIE    1536    /* nombre de cycle pour etre d\'eclarer mort */
