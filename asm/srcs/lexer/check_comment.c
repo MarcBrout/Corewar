@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Mon Mar 21 18:42:34 2016 Marel la plus belle <3
+** Last update Tue Mar 22 11:14:46 2016 marel_m
 */
 
 #include "asm.h"
@@ -38,7 +38,7 @@ void	no_comment(t_header *header)
   write(1, "warning: no comment specified\n", 30);
 }
 
-int	check_comment(t_header *header, char *file)
+int	check_comment(t_header *header, t_instruc *instruc, char *file)
 {
   char	*new;
   int	i;
@@ -66,5 +66,6 @@ int	check_comment(t_header *header, char *file)
     header->comment[j++] = new[i];
   header->comment[j] = '\0';
   free(new);
+  instruc->nb_l++;
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Mar 15 19:47:32 2016
-** Last update Mon Mar 21 22:46:00 2016 marel_m
+** Last update Tue Mar 22 11:17:49 2016 marel_m
 */
 
 #include "asm.h"
@@ -64,7 +64,7 @@ int		check_if_label_exist(t_instruc *instruc)
     {
       if (tmp->name != NULL)
 	if (check_in_list(instruc, tmp->name) == -1)
-	  return (-1);
+	  return (no_exist_label(instruc, tmp->name), -1);
       tmp = tmp->next;
       i++;
     }

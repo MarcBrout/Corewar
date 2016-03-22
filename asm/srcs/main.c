@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 13:57:07 2016
-** Last update Mon Mar 21 22:52:43 2016 marel_m
+** Last update Tue Mar 22 11:19:45 2016 marel_m
 */
 
 #include "asm.h"
@@ -25,12 +25,9 @@ int		main(int ac, char **av)
   while (++i < ac)
     {
       if (lexer(&header, &instruc, av[i]) == -1)
-	{
-	  printf("Error\n");
-	  return (-1);
-	}
+	return (-1);
       print_list(&instruc);
-      /* parser(av[i], &header, &instruc); */
+      parser(av[i], &header, &instruc);
       free_list(&instruc);
     }
   return (0);

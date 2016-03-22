@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 21 19:27:08 2016 Marel la plus belle <3
+** Last update Tue Mar 22 11:59:53 2016 marel_m
 */
 
 #ifndef HEADER_H_
@@ -62,6 +62,7 @@ typedef struct		s_instruc
   t_list_instruc	*root;
   int			lenght_label;
   t_list_label		*lab;
+  int			nb_l;
 }			t_instruc;
 
 enum			three_args
@@ -100,11 +101,11 @@ int			check_char(char);
 int			create_list(t_instruc *);
 t_list_instruc		*add_list_after(t_instruc *);
 char			*epure_file_instruc(char *, int);
-void			malloc_fail();
-int			check_comment(t_header *, char *);
+int			check_comment(t_header *, t_instruc *, char *);
 int			check_instructions(t_instruc *, int);
 int			check_instruc_label(t_instruc *, t_list_instruc *,
 					    char *, int);
+int			check_epure_line(char *, int);
 int			check_which_instruc(t_instruc *, t_list_instruc *,
 					    char *, int);
 int			check_stock_good_args(t_instruc *, t_list_instruc *,
@@ -150,6 +151,15 @@ char	*my_strcat(char *, char *);
 */
 
 void	free_list(t_instruc *);
+
+/*
+** Error
+*/
+
+void			malloc_fail();
+void	file_wrong(char *);
+void	no_exist_label(t_instruc *, char *);
+void	synthax_error(t_instruc *);
 
 /*
 ** Instruction functions
