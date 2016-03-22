@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Tue Mar 22 00:13:18 2016 benjamin duhieu
+** Last update Tue Mar 22 00:17:19 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -83,48 +83,48 @@ typedef struct		s_pars
 ** check arguments function: func_arg.c
 */
 
-int	check_arg(char **, int *, t_pars *, t_data *);
-int	chk_adress(char **, int *, t_data *);
-int	chk_dump(char **, int *, t_data *);
-int	chk_prog_nbr(char **, int *, t_data *);
+int			check_arg(char **, int *, t_pars *, t_data *);
+int			chk_adress(char **, int *, t_data *);
+int			chk_dump(char **, int *, t_data *);
+int			chk_prog_nbr(char **, int *, t_data *);
 
 /*
 ** list arguments : list_arg.c
 */
 
-int	add_adress_in_list(t_pars *);
-int	add_dump_in_list(t_pars *);
-int	add_prog_nbr_in_list(t_pars *);
-t_pars	*init_list();
+int			add_adress_in_list(t_pars *);
+int			add_dump_in_list(t_pars *);
+int			add_prog_nbr_in_list(t_pars *);
+t_pars			*init_list();
 
 /*
 ** annex_function.
 */
 
-int	my_getnbr_prog(char *);
-int	my_strcmp(char *, char *);
+int			my_getnbr_prog(char *);
+int			my_strcmp(char *, char *);
 
 /*
 ** list champion: order_champ.c
 */
 
-void	order_champ(t_data *);
-void	swap_champ(t_data *, int);
+void			order_champ(t_data *);
+void			swap_champ(t_data *, int);
 
 
 /*
 ** begin parsing arguments: pars.c
 */
 
-int	my_put_int_error(int, int);
-int	pars_arg(char **, t_pars  *, t_data *);
+int			my_put_int_error(int, int);
+int			pars_arg(char **, t_pars  *, t_data *);
 
 /*
 ** order my champ: prog_number.c
 */
 
-int	check_prog_number_value(t_data *);
-void	put_order_in_champ(t_data *, int);
-void	recheck_prog_number(t_data *);
+int			check_prog_number_value(t_data *);
+void			put_order_in_champ(t_data *, int);
+void			recheck_prog_number(t_data *);
 
 #endif /* !VM_H_ */
