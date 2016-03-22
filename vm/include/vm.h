@@ -1,4 +1,3 @@
-
 /*
 ** vm.h for vm
 **
@@ -6,15 +5,13 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-<<<<<<< HEAD
-** Last update Mon Mar 21 14:42:28 2016 benjamin duhieu
-=======
-** Last update Mon Mar 21 17:51:42 2016 marc brout
->>>>>>> 7efb1abd21c07df99b9f2ae0181a0ed2682ee0a7
+** Last update Tue Mar 22 00:41:07 2016 marc brout
 */
 
 #ifndef VM_H_
 # define VM_H_
+
+# include "op.h"
 
 /*
 ** ERROR OUTPUTS
@@ -24,12 +21,13 @@
 # define MALLOC_ERROR "Can't perform malloc\n"
 # define NOCOREWAR " is not a corewar executable\n"
 # define CORRUPT " is corrupted\n"
+# define MISS_COR "Missing corewar executable\n"
 
-extern char		endian;
+char		g_endian;
 
 typedef enum		e_vm_index
   {
-    FIRST		= 0,
+    ERROR_NULL		= 0,
     LIVE		= 1,
     LD			= 2,
     ST			= 3,
@@ -69,8 +67,8 @@ typedef struct		s_champion
 typedef struct		s_data
 {
   int			dump;
-  int			place_champ;
-  t_champion		champ[4];
+  int			i;
+  t_champion		*champ[4];
   char			*ram;
   char			*ramv;
 }			t_data;
@@ -81,5 +79,107 @@ typedef struct		s_pars
   int			(*chk_arg)(char **, int *, t_data *);
   struct s_pars		*next;
 }			t_pars;
+
+/*
+** load_file.c
+*/
+
+void			my_bzero(void *ptr, int size, char val);
+char			endianness();
+int			swap_integer(int nb);
+int			check_header(int fd, t_header *head);
+void			copy(char *src, char *dst);
+int			init_champs(t_data *data);
+int			load_champion(t_champion *champion,
+				      const char *champion_file);
+
+/*
+** vm.c
+*/
+
+int			my_put_file_str(const char *file,
+					const char *str,
+					int err);
+int			my_put_file_noaccess(const char *file,
+					     int err);
+int			my_put_error(const char *str,
+				     int err);
+int			my_put_usage(char **av,
+				     int err);
+
+/*
+** misc.c
+*/
+
+void			my_putnbr_tofd(int nb, int fd);
+int			my_strlencst(const char *str);
+int			my_mystrcmpcst(const char *str1,
+				       const char *str2);
+int			my_revstrncmpcst(const char *str1,
+					 const char *str2,
+					 int n);
+char			*my_strcatcst(const char *str1,
+				      const char *str2);
+char			*get_name(const char *str1,
+				  const char *str2);
+/*
+** set_vm_memory.c
+*/
+
+int			init_ram(t_data *data);
+int			copy_champion_to_ram(t_champion *champion,
+					     char *ram);
+int			size_champs(t_champion *champ[4],
+				    int first,
+				    int *nb);
+int			place_all_champions(t_data *data);
+
+/*
+** check arguments function: func_arg.c
+*/
+
+int			check_arg(char **, int *, t_pars *, t_data *);
+int			chk_adress(char **, int *, t_data *);
+int			chk_dump(char **, int *, t_data *);
+int			chk_prog_nbr(char **, int *, t_data *);
+
+/*
+** list arguments : list_arg.c
+*/
+
+int			add_adress_in_list(t_pars *);
+int			add_dump_in_list(t_pars *);
+int			add_prog_nbr_in_list(t_pars *);
+t_pars			*init_list();
+
+/*
+** annex_function.
+*/
+
+int			my_getnbr_prog(char *);
+int			my_strcmp(char *, char *);
+
+/*
+** list champion: order_champ.c
+*/
+
+void			order_champ(t_data *);
+void			swap_champ(t_data *, int);
+
+
+/*
+** begin parsing arguments: pars.c
+*/
+
+int			my_put_int_error(int, int);
+int			pars_arg(char **, t_pars  *, t_data *);
+
+/*
+** order my champ: prog_number.c
+*/
+
+int			check_prog_number_value(t_data *);
+void			put_order_in_champ(t_data *, int);
+void			recheck_prog_number(t_data *);
 
 #endif /* !VM_H_ */

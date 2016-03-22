@@ -5,14 +5,15 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 12:07:50 2016 marc brout
-** Last update Mon Mar 21 17:57:52 2016 marc brout
+** Last update Tue Mar 22 00:53:53 2016 marc brout
 */
 
+#include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fnctl.h>
-#include "load.h"
+#include <fcntl.h>
+#include "vm.h"
 #include "op.h"
 
 char		endianness()
@@ -27,6 +28,8 @@ char		endianness()
 
 int		swap_integer(int nb)
 {
+  int		ret;
+
   ret = ((nb >> 24) & 0xff) | ((nb <<8) & 0xff0000) |
     ((nb >> 8) & 0xff00) | ((nb << 24) & 0xff000000);
   return (ret);
@@ -38,14 +41,15 @@ int		check_header(int fd, t_header *head)
   int		size;
   char		c;
 
-  if ((ret = read(fd, head, sizeof(t_header)) < (int)sizeof(t_header)))
+  if ((ret = read(fd, head, sizeof(t_header)) <
+       (int)sizeof(t_header)))
     return (1);
-  if (endian)
+  if (g_endian)
     {
       head->magic = swap_integer(head->magic);
       head->prog_size = swap_integer(head->prog_size);
     }
-  if (head.magic != COREWAR_EXEC_MAGIC)
+  if (head->magic != COREWAR_EXEC_MAGIC)
     return (2);
   size = 0;
   while ((ret = read(fd, &c, 1)))
@@ -74,13 +78,16 @@ int		init_champs(t_data *data)
   i = 0;
   while (i < 4)
     {
-      if (!(data->champ[i].pc = malloc(sizeof(t_pc))))
+      if (!(data->champ[i] = malloc(sizeof(t_champion))) ||
+	  !(data->champ[i]->pc = malloc(sizeof(t_pc))))
 	return (my_put_error(MALLOC_ERROR, 1));
-      data->champ[i].pc->pc = -1;
-      data->champ[i].valid = 1;
-      data->champ[i].alive = 1;
-      data->champ[i].order = -1;
-      my_bzero(data->champ[i].name, PROG_NAME_LENGTH + 1, 0);
+      data->champ[i]->pc->pc = -1;
+      data->champ[i]->valid = 0;
+      data->champ[i]->alive = 1;
+      data->champ[i]->order = -1;
+      my_bzero(data->champ[i]->name,
+	       PROG_NAME_LENGTH + 1, 0);
+      i += 1;
     }
   return (0);
 }
@@ -92,6 +99,7 @@ int		load_champion(t_champion *champion,
   int		fd;
   int		err;
 
+  champion->path = champion_file;
   if (my_revstrncmpcst(champion_file, ".cor", 4))
     return (my_put_file_str(champion_file, NOCOREWAR, 1));
   if ((fd = open(champion_file, O_RDONLY)) < 0)
@@ -103,16 +111,8 @@ int		load_champion(t_champion *champion,
 	return (my_put_file_str(champion_file, NOCOREWAR, 1));
       return (my_put_file_str(champion_file, CORRUPT, 1));
     }
-  champion->path = champion_file;
-  champion->size = head->prog_size;
-  my_strcpy(head->prog_name, champion->name);
+  champion->size = head.prog_size;
+  copy(head.prog_name, champion->name);
   close(fd);
-  return (0);
-}
-
-int	main(int ac, char **av)
-{
-  endian = endianness();
-  load_champion(av[1]);
   return (0);
 }
