@@ -5,9 +5,14 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 16:16:26 2016 marc brout
-** Last update Mon Mar 21 22:57:20 2016 marc brout
+** Last update Tue Mar 22 00:00:10 2016 marc brout
 */
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include "vm.h"
 
 int	init_ram(t_data *data)
@@ -21,65 +26,15 @@ int	init_ram(t_data *data)
   return (0);
 }
 
-int		check_champs(t_champion *champ1,
-			     t_champion *champ2)
-{
-  int		pos;
-  int		pos2;
-
-  if (champ1->valid && champ2->valid)
-    {
-      if (champ1->pc->pc > -1 && champ2->pc->pc > -1)
-	{
-	  pos = champ1->pc->pc + champ1->size;
-	  pos2 = champ2->pc->pc + champ2->size;
-	  if ((pos >= champ2->pc->pc && pos <= pos2) ||
-	      (pos2 >= champ1->pc->pc && pos2 <= pos) ||
-	      (pos >= MEM_SIZE || pos2 >= MEM_SIZE))
-	    return (1);
-	}
-    }
-  else if (champ1->valid && champ1->pc->pc > -1
-	   champ1->pc->pc + champ1->size >= MEM_SIZE)
-    return (1);
-  else
-    if (champ2->valid && champ2->pc->pc > -1
-	champ2->pc->pc + champ2->size >= MEM_SIZE)
-      return (1);
-  return (0);
-}
-
-int		check_overlap(t_champion *champ[4])
-{
-  int		i;
-  int		j;
-
-  i = -1;
-  while (++i < 4)
-    {
-      j = -1;
-      while (++j < 4)
-	{
-	  if (j != i)
-	    {
-	      if (check_champs(champ[i], champ[j]))
-		return (1);
-	    }
-	}
-    }
-  return (0);
-}
-
 int		copy_champion_to_ram(t_champion *champion,
 				     char *ram)
 {
   t_header	head;
   int		fd;
-  int		i;
 
   if ((fd = open(champion->path, O_RDONLY)) < 0)
     return (my_put_file_noaccess(champion->path, 1));
-  if (read(fd, &head, sizeof(t_header)) < sizeof(t_header) ||
+  if (read(fd, &head, sizeof(t_header)) < (int)sizeof(t_header) ||
       read(fd, &ram[champion->pc->pc], champion->size) <
       champion->size)
     {
@@ -114,12 +69,13 @@ int		size_champs(t_champion *champ[4],
 
 int		place_all_champions(t_data *data)
 {
+  int		rest;
   int		rest_unit;
   int		nb;
   int		pos;
   int		first;
 
-  if ((MEM_SIZE - size_champs(data->champ, &nb)) <= 0)
+  if ((MEM_SIZE - size_champs(data->champ, 0, &nb)) <= 0)
     return (my_put_error(OVERLAP, 1));
   first = 1;
   copy_champion_to_ram(data->champ[0], data->ram);
@@ -130,10 +86,10 @@ int		place_all_champions(t_data *data)
     {
       rest_unit = rest / (nb + 1);
       pos += rest;
-      copy_champion_to_ram(data->champ[first], data->ram);
+      copy_champion_to_ram(data->champ[first], &data->ram[pos]);
       rest -= (data->champ[first]->size + rest_unit);
       first += 1;
-      nb - 1;
+      nb -= 1;
     }
   return (0);
 }

@@ -5,10 +5,11 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 13:29:10 2016 benjamin duhieu
-** Last update Mon Mar 21 22:46:11 2016 benjamin duhieu
+** Last update Mon Mar 21 23:49:59 2016 marc brout
 */
 
-#include "pars.h"
+#include <stdlib.h>
+#include "vm.h"
 
 int	chk_dump(char **av, int *i, t_data *data)
 {
@@ -42,7 +43,6 @@ int	chk_prog_nbr(char **av, int *i, t_data *data)
 {
   int	nbr;
   int	chk;
-  char	*str_nbr;
 
   if (!(nbr = my_getnbr_prog(av[*i + 1])))
     return (1);
@@ -51,7 +51,7 @@ int	chk_prog_nbr(char **av, int *i, t_data *data)
   if (chk == 4)
     data->champ[data->i]->order = nbr;
   else
-    return (my_put_error(str_nbr, 2));
+    return (my_put_int_error(nbr, 2));
   i += 2;
   return (0);
 }
@@ -66,10 +66,10 @@ int		check_arg(char **av, int *i, t_pars *arg, t_data *dat)
     {
       if (!(my_strcmp(av[*i], elem->arg, dat)))
 	{
-	  if ((chk = elem->arg(av, i)) == 1)
+	  if ((chk = elem->chk_arg(av, i, dat)) == 1)
 	    return (1);
 	  else if (chk == 2)
-	    return (3):
+	    return (3);
 	  return (0);
 	}
       elem = elem->next;

@@ -5,8 +5,10 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Thu Mar 17 11:04:39 2016 marc brout
-** Last update Mon Mar 21 17:32:14 2016 marc brout
+** Last update Mon Mar 21 23:57:27 2016 marc brout
 */
+
+#include <unistd.h>
 
 void		my_putnbr_tofd(int nb, int fd)
 {
