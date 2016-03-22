@@ -5,7 +5,7 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Mon Mar 21 23:17:37 2016 marc brout
-## Last update Tue Mar 22 18:19:18 2016 marc brout
+## Last update Tue Mar 22 19:08:57 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -74,7 +74,7 @@ OBJSLIB	=	$(SRCLIB:.c=.o)
 
 NAME	=	corewar
 
-IFLAG	=	-Iinclude/
+IFLAG	=	-Iinclude/ -I../asm/include
 
 DEBUG	=	-g
 
