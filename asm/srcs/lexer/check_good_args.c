@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Tue Mar 22 15:15:10 2016 marel_m
+** Last update Tue Mar 22 17:32:11 2016 marel_m
 */
 
 #include "asm.h"
@@ -107,8 +107,8 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
     file[j++] = arg[i++];
   file[j] = '\0';
   nb = atoi(file);
-  if (nb < 1 || nb > 16 || stock_args(elem, arg, pos) == -1)
-    return (-1);
   free(file);
+  if (nb < 1 || nb > 16 || stock_args(elem, arg, pos) == -1)
+    return (free(arg), -1);
   return (0);
 }

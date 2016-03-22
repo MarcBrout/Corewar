@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Tue Mar 22 15:22:46 2016 marel_m
+** Last update Tue Mar 22 17:21:10 2016 marel_m
 */
 
 #include <stdlib.h>
@@ -59,16 +59,18 @@ int	check_comment(t_header *header, t_instruc *instruc, char *file)
   if (my_strncmp(new, ".comment", 8) != 0
       || (new[8] != ' ' && new[8] != '\t'))
     {
+      if (my_strncmp(new, ".name", 5) == 0)
+	return (write(2, "Name can only be defined once.\n", 31), -1);
       no_comment(header);
       return (free(new), 1);
     }
   free(new);
+  instruc->nb_l++;
   if ((new = epure_file_name_com(file, 9)) == NULL)
     return (-1);
   if (check_double_quote_comment(new) == -1)
-    return (no_comment(header), 1);
+    return (synthax_error(instruc), -1);
   stock_comment(header, new);
   free(new);
-  instruc->nb_l++;
   return (0);
 }
