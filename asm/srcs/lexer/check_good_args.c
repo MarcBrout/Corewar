@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Mon Mar 21 21:49:13 2016 marel_m
+** Last update Tue Mar 22 17:32:11 2016 marel_m
 */
 
 #include "asm.h"
@@ -27,6 +27,7 @@ int		check_if_label(t_instruc *instruc, char *file, int i)
   if ((new = add_list_after_label(instruc)) == NULL)
     return (-1);
   new->name = my_strdup(file);
+  new->pos = instruc->nb_l;
   return (0);
 }
 
@@ -55,7 +56,8 @@ int	check_direct_arg(t_instruc *instruc, t_list_instruc *elem,
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
 	 && file[i] != '\0')
     i++;
-  arg = my_strndup(file, i);
+  if ((arg = my_strndup(file, i)) == NULL)
+    return (-1);
   if (arg[0] != DIRECT_CHAR
       || (check_if_label(instruc, arg, 1) == -1
 	  && check_if_val(arg, 1) == -1)
@@ -74,7 +76,8 @@ int	check_indirect_arg(t_instruc *instruc, t_list_instruc *elem,
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
 	 && file[i] != '\0')
     i++;
-  arg = my_strndup(file, i);
+  if ((arg = my_strndup(file, i)) == NULL)
+    return (-1);
   if ((check_if_label(instruc, arg, 0) == -1
        && check_if_val(arg, 0) == -1)
       || stock_args(elem, arg, pos) == -1)
@@ -93,7 +96,8 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
 	 && file[i] != '\0')
     i++;
-  arg = my_strndup(file, i);
+  if ((arg = my_strndup(file, i)) == NULL)
+    return (-1);
   if ((file = malloc(sizeof(char) * my_strlen(arg))) == NULL)
     return (malloc_fail(), -1);
   i = 1;
@@ -103,8 +107,8 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
     file[j++] = arg[i++];
   file[j] = '\0';
   nb = atoi(file);
-  if (nb < 1 || nb > 16 || stock_args(elem, arg, pos) == -1)
-    return (-1);
   free(file);
+  if (nb < 1 || nb > 16 || stock_args(elem, arg, pos) == -1)
+    return (free(arg), -1);
   return (0);
 }

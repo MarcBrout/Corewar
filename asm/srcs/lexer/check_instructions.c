@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Mon Mar 21 23:07:21 2016 marel_m
+** Last update Tue Mar 22 14:41:39 2016 marel_m
 */
 
 #include "asm.h"
@@ -75,22 +75,19 @@ int			check_instruc_arg(t_instruc *instruc,
 
 int		put_instruc(t_instruc *instruc, int fd)
 {
-  char		*new;
   char		*file;
-  static int	i;
 
-  i++;
   while ((file = get_next_line(fd)) != NULL)
     {
+      instruc->nb_l++;
       if (file[0] == '#' || file[0] == ';'
-	  || ((new = epure_file_instruc(file, 0)) == NULL)
 	  || my_strlen(file) == 0 || check_line(file) == -1
 	  || if_comment_text(file) == -1)
 	{
 	  if (put_instruc(instruc, fd) == -1)
 	    return (-1);
  	}
-      if (check_instruc_arg(instruc, file, fd) == -1)
+      else if (check_instruc_arg(instruc, file, fd) == -1)
 	return (-1);
       if (put_instruc(instruc, fd) == -1)
 	return (-1);

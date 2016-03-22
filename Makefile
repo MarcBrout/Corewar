@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Mon Mar 21 19:20:49 2016 Marel la plus belle <3
+## Last update Tue Mar 22 14:32:24 2016 marel_m
 ##
 
 # USEFUL VARIABLES
@@ -21,18 +21,19 @@ ECHO	=	echo -e
 
 # SOURCES VARIABLES
 
-PARSER		=	srcs/parser/
+PARSER		=	asm/srcs/parser/
 
-LEXER		=	srcs/lexer/
+LEXER		=	asm/srcs/lexer/
 
-TOOLS		=	srcs/tools/
+TOOLS		=	asm/srcs/tools/
 
-ERROR		=	srcs/error/
+ERROR		=	asm/srcs/error/
 
-FREE		=	srcs/free/
+FREE		=	asm/srcs/free/
 
-SRC		=	srcs/main.c \
-			srcs/op.c \
+SRC		=	asm/srcs/main.c \
+			asm/srcs/op.c \
+			asm/srcs/print_list.c \
 			$(PARSER)parser.c \
 			$(PARSER)create_file.c \
 			$(PARSER)convert.c \
@@ -69,11 +70,12 @@ SRC		=	srcs/main.c \
 			$(LEXER)verif_args.c \
 			$(LEXER)instruc_three_args.c \
 			$(LEXER)check_good_args.c \
-			$(LEXER)my_strncmp.c \
-			$(LEXER)my_strndup.c \
-			$(LEXER)print_list.c \
 			$(TOOLS)str_null.c \
 			$(TOOLS)my_strcat.c \
+			$(TOOLS)my_strncmp.c \
+			$(TOOLS)my_strndup.c \
+			$(TOOLS)my_put_nbr_error.c \
+			$(FREE)free_tab.c \
 			$(FREE)free_list_instruc.c \
 			$(ERROR)error_stop.c
 
@@ -82,7 +84,7 @@ OBJS    	=	$(SRC:.c=.o)
 
 # LIBRARY VARIABLES
 
-LIBPATH =       ../lib/
+LIBPATH =       lib/
 
 SRCLIB	=	$(LIBPATH)my/get_next_line.c \
 		$(LIBPATH)my/my_getnbr.c \
@@ -106,9 +108,9 @@ OBJSLIB	=	$(SRCLIB:.c=.o)
 
 # PROJECT VARIABLES
 
-NAME	=	asm
+NAME	=	asm/asm
 
-IFLAG	=	-Iinclude/
+IFLAG	=	-Iasm/include/
 
 CFLAGS  =	-W -Wall -Wextra $(IFLAG)
 

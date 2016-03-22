@@ -5,10 +5,9 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:09:07 2016
-** Last update Mon Mar 21 18:52:13 2016 Marel la plus belle <3
+** Last update Tue Mar 22 15:22:08 2016 marel_m
 */
 
-#include "asm.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -17,6 +16,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include "asm.h"
 
 int	check_double_quote_name(char *file)
 {
@@ -32,11 +32,21 @@ int	check_double_quote_name(char *file)
   return (0);
 }
 
+void	stock_name(t_header *header, char *file)
+{
+  int	i;
+  int	j;
+
+  i = 0;
+  j = 0;
+  while (++i != (my_strlen(file) - 1))
+    header->prog_name[j++] = file[i];
+  header->prog_name[j] = '\0';
+}
+
 int	check_name(t_header *header, char *file)
 {
   char	*new;
-  int	i;
-  int	j;
 
   if ((new = epure_file_name_com(file, 0)) == NULL)
     return (-1);
@@ -54,11 +64,7 @@ int	check_name(t_header *header, char *file)
       write(2, "wrong .name\n", 12);
       return (-1);
     }
-  i = 0;
-  j = 0;
-  while (++i != (my_strlen(new) - 1))
-    header->prog_name[j++] = new[i];
-  header->prog_name[j] = '\0';
+  stock_name(header, new);
   free(new);
   return (0);
 }

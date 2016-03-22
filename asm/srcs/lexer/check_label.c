@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar 16 11:03:52 2016
-** Last update Mon Mar 21 22:45:10 2016 marel_m
+** Last update Tue Mar 22 14:56:08 2016 marel_m
 */
 
 #include "asm.h"
@@ -13,7 +13,10 @@
 char	*check_empty_label(t_instruc *instruc, char *new, int fd)
 {
   while ((new = get_next_line(fd)) != NULL && my_strlen(new) == 0)
-    free(new);
+    {
+      instruc->nb_l++;
+      free(new);
+    }
   if ((new = epure_file_instruc(new, 0)) == NULL)
     return (NULL);
   if (my_strlen(new) == 0)
@@ -33,7 +36,7 @@ int	check_instruc_label(t_instruc *instruc, t_list_instruc *elem,
   i = -1;
   while (new && new[++i] != '\0' && new[i] != LABEL_CHAR)
     if (check_char(new[i]) == -1)
-      return (-1);
+      return (synthax_error(instruc), -1);
   if (new[i] == LABEL_CHAR)
     {
       elem->info->label = my_strndup(new, i + 1);
@@ -45,5 +48,5 @@ int	check_instruc_label(t_instruc *instruc, t_list_instruc *elem,
       free(new);
       return (0);
     }
-  return (-1);
+  return (synthax_error(instruc), -1);
 }
