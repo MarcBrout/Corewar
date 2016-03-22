@@ -5,11 +5,12 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 14:45:48 2016 marc brout
-** Last update Tue Mar 22 00:02:27 2016 marc brout
+** Last update Tue Mar 22 00:22:50 2016 marc brout
 */
 
 #include <unistd.h>
 #include "vm.h"
+#include "my.h"
 
 int		my_put_file_str(const char *file,
 				const char *str,

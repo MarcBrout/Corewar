@@ -5,7 +5,7 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Mon Mar 21 23:17:37 2016 marc brout
-## Last update Tue Mar 22 00:03:03 2016 marc brout
+## Last update Tue Mar 22 00:23:52 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -32,6 +32,7 @@ SRC		=	$(PARSING)pars.c \
 			$(PARSING)order_champ.c \
 			$(PARSING)my_getnbr.c \
 			$(PARSING)func_arg.c \
+			$(PARSING)list_arg.c \
 			$(LOAD)load_file.c \
 			$(LOAD)my_bzero.c \
 			$(VM)vm.c \

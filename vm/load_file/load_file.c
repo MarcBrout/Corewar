@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 12:07:50 2016 marc brout
-** Last update Mon Mar 21 23:53:11 2016 marc brout
+** Last update Tue Mar 22 00:53:53 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -87,6 +87,7 @@ int		init_champs(t_data *data)
       data->champ[i]->order = -1;
       my_bzero(data->champ[i]->name,
 	       PROG_NAME_LENGTH + 1, 0);
+      i += 1;
     }
   return (0);
 }
@@ -98,6 +99,7 @@ int		load_champion(t_champion *champion,
   int		fd;
   int		err;
 
+  champion->path = champion_file;
   if (my_revstrncmpcst(champion_file, ".cor", 4))
     return (my_put_file_str(champion_file, NOCOREWAR, 1));
   if ((fd = open(champion_file, O_RDONLY)) < 0)
@@ -109,9 +111,8 @@ int		load_champion(t_champion *champion,
 	return (my_put_file_str(champion_file, NOCOREWAR, 1));
       return (my_put_file_str(champion_file, CORRUPT, 1));
     }
-  champion->path = champion_file;
   champion->size = head.prog_size;
-  my_strcpy(head.prog_name, champion->name);
+  copy(head.prog_name, champion->name);
   close(fd);
   return (0);
 }

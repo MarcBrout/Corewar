@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Mon Mar 14 22:15:24 2016 bougon_p
-** Last update Mon Mar 14 22:49:42 2016 bougon_p
+** Last update Mon Mar 21 16:19:00 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -50,14 +50,4 @@ char	*setnbr(int nbr)
   while (p >= 0)
     numb[p--] = ((nbr / (int)(pow(10, i++)) % 10) + '0');
   return (cleanstr(numb));
-}
-
-int	main()
-{
-  char	*s;
-  int	nb = 123123;
-
-  s = setnbr(nb);
-  printf("%s\n", s);
-  free(s);
 }

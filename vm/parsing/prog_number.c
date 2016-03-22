@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 20:22:13 2016 benjamin duhieu
-** Last update Mon Mar 21 23:44:06 2016 marc brout
+** Last update Tue Mar 22 00:55:50 2016 marc brout
 */
 
 #include "vm.h"
@@ -39,9 +39,11 @@ void		recheck_prog_number(t_data *data)
   while (check_prog_number_value(data))
     {
       i = -1;
-      while (nbr != data->champ[++i]->order);
-      if (i == 4)
-	put_order_in_champ(data, nbr);
+      while (i < 3 && nbr != data->champ[++i]->order);
+      if (i == 3)
+	{
+	  put_order_in_champ(data, nbr);
+	}
       else
 	nbr++;
     }

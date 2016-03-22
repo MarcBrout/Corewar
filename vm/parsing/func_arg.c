@@ -5,11 +5,12 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 13:29:10 2016 benjamin duhieu
-** Last update Mon Mar 21 23:49:59 2016 marc brout
+** Last update Tue Mar 22 00:50:26 2016 marc brout
 */
 
 #include <stdlib.h>
 #include "vm.h"
+#include "my.h"
 
 int	chk_dump(char **av, int *i, t_data *data)
 {
@@ -52,7 +53,7 @@ int	chk_prog_nbr(char **av, int *i, t_data *data)
     data->champ[data->i]->order = nbr;
   else
     return (my_put_int_error(nbr, 2));
-  i += 2;
+  *i += 2;
   return (0);
 }
 
@@ -64,7 +65,8 @@ int		check_arg(char **av, int *i, t_pars *arg, t_data *dat)
   elem = arg->next;
   while (elem != NULL)
     {
-      if (!(my_strcmp(av[*i], elem->arg, dat)))
+      my_printf("%s\n", elem->arg);
+      if (!(my_strcmp(av[*i], elem->arg)))
 	{
 	  if ((chk = elem->chk_arg(av, i, dat)) == 1)
 	    return (1);

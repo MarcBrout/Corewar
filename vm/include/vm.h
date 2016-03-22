@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Tue Mar 22 00:17:20 2016 marc brout
+** Last update Tue Mar 22 00:41:07 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -21,8 +21,9 @@
 # define MALLOC_ERROR "Can't perform malloc\n"
 # define NOCOREWAR " is not a corewar executable\n"
 # define CORRUPT " is corrupted\n"
+# define MISS_COR "Missing corewar executable\n"
 
-extern char		g_endian;
+char		g_endian;
 
 typedef enum		e_vm_index
   {
@@ -79,11 +80,11 @@ typedef struct		s_pars
   struct s_pars		*next;
 }			t_pars;
 
-
 /*
 ** load_file.c
 */
 
+void			my_bzero(void *ptr, int size, char val);
 char			endianness();
 int			swap_integer(int nb);
 int			check_header(int fd, t_header *head);
@@ -115,7 +116,8 @@ int			my_strlencst(const char *str);
 int			my_mystrcmpcst(const char *str1,
 				       const char *str2);
 int			my_revstrncmpcst(const char *str1,
-					 const char *str2);
+					 const char *str2,
+					 int n);
 char			*my_strcatcst(const char *str1,
 				      const char *str2);
 char			*get_name(const char *str1,
@@ -131,5 +133,53 @@ int			size_champs(t_champion *champ[4],
 				    int first,
 				    int *nb);
 int			place_all_champions(t_data *data);
+
+/*
+** check arguments function: func_arg.c
+*/
+
+int			check_arg(char **, int *, t_pars *, t_data *);
+int			chk_adress(char **, int *, t_data *);
+int			chk_dump(char **, int *, t_data *);
+int			chk_prog_nbr(char **, int *, t_data *);
+
+/*
+** list arguments : list_arg.c
+*/
+
+int			add_adress_in_list(t_pars *);
+int			add_dump_in_list(t_pars *);
+int			add_prog_nbr_in_list(t_pars *);
+t_pars			*init_list();
+
+/*
+** annex_function.
+*/
+
+int			my_getnbr_prog(char *);
+int			my_strcmp(char *, char *);
+
+/*
+** list champion: order_champ.c
+*/
+
+void			order_champ(t_data *);
+void			swap_champ(t_data *, int);
+
+
+/*
+** begin parsing arguments: pars.c
+*/
+
+int			my_put_int_error(int, int);
+int			pars_arg(char **, t_pars  *, t_data *);
+
+/*
+** order my champ: prog_number.c
+*/
+
+int			check_prog_number_value(t_data *);
+void			put_order_in_champ(t_data *, int);
+void			recheck_prog_number(t_data *);
 
 #endif /* !VM_H_ */

@@ -5,11 +5,12 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 12:58:17 2016 benjamin duhieu
-** Last update Mon Mar 21 23:43:32 2016 marc brout
+** Last update Tue Mar 22 00:53:14 2016 marc brout
 */
 
 #include <unistd.h>
 #include "vm.h"
+#include "my.h"
 
 int		my_put_int_error(int nbr, int err)
 {
@@ -24,15 +25,20 @@ int		pars_arg(char **av, t_pars *arg, t_data *data)
   int	i;
   int	chk;
 
-  i = 0;
+  i = 1;
   while (av[i])
     {
       if ((chk = check_arg(av, &i, arg, data)) == 1)
 	return (my_put_usage(av, 1));
       else if (chk == 2)
 	{
-	  if (load_champion(&data->champ[data->i], av[i]))
-	    return (my_put_file_str(data->champ[data->i]->path, 2));
+	  my_printf("%s %d\n", av[i], i);
+	  if (av[i] == NULL)
+	    my_put_error(MISS_COR, 1);
+	  else if (load_champion(data->champ[data->i], av[i]))
+	    return (my_put_file_str
+		    (data->champ[data->i]->path,
+		     CORRUPT, 2));
 	  data->champ[data->i]->valid = 1;
 	  i += 1;
 	  data->i += 1;
@@ -52,9 +58,10 @@ int		main(int argc, char **argv)
 
   if (argc < 2 || !argv)
     return (my_put_usage(argv, 2));
-  g_endian = endianness();
   data.i = 0;
-  if (!(arg = init_list()) || init_ram(&data))
+  g_endian = endianness();
+  if (!(arg = init_list()) || init_ram(&data) ||
+      init_champs(&data))
     return (1);
   if (pars_arg(argv, arg, &data) || place_all_champions(&data))
     return (1);
