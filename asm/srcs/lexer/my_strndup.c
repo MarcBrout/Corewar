@@ -5,13 +5,21 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Mon Oct  5 11:17:08 2015 maud marel
-** Last update Wed Mar 16 10:33:54 2016 
+** Last update Tue Mar 22 11:37:45 2016 marel_m
 */
 
-char	*my_strncpy(char *dest, char *src, int n)
+#include <stdlib.h>
+#include "asm.h"
+
+char	*my_strndup(char *src, int n)
 {
   int	i;
+  char	*dest;
 
+  if (my_strlen(src) + n - 1 <= 0)
+    return (NULL);
+  if ((dest = malloc(sizeof(char) * (my_strlen(src) + n - 1))) == NULL)
+    return (malloc_fail(),NULL);
   i = 0;
   while (src && i < n && src[i] != '\0')
     {

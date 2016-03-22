@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 17:04:35 2016
-** Last update Fri Mar 18 16:53:26 2016 
+** Last update Tue Mar 22 12:00:34 2016 marel_m
 */
 
 #include "asm.h"
@@ -28,6 +28,16 @@ char	*epure_file_name_com(char *file, int i)
     }
   new[j] = '\0';
   return (new);
+}
+
+int	check_epure_line(char *file, int i)
+{
+  while (file && (file[i] == ' '
+		  || file[i] == '\t' || file[i] == ',') && file[i])
+    i++;
+  if (i == my_strlen(file))
+    return (-1);
+  return (0);
 }
 
 char	*epure_file_instruc(char *file, int i)
@@ -68,7 +78,7 @@ int	check_end_instruc(char *file, int i)
 {
   while (file && file[i] != '\0')
     {
-      if (file[i] == '#')
+      if (file[i] == '#' || file[i] == ';')
 	return (0);
       else if (file[i] != ' ' && file[i] != '\t' && file[i] != ',')
 	return (-1);

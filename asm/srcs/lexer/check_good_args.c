@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Thu Mar 17 14:44:45 2016 
+** Last update Tue Mar 22 11:36:58 2016 marel_m
 */
 
 #include "asm.h"
@@ -55,9 +55,8 @@ int	check_direct_arg(t_instruc *instruc, t_list_instruc *elem,
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
 	 && file[i] != '\0')
     i++;
-  if ((arg = malloc(sizeof(char) * (i + 1))) == NULL)
-    return (malloc_fail(), -1);
-  arg = my_strncpy(arg, file, i);
+  if ((arg = my_strndup(file, i)) == NULL)
+    return (-1);
   if (arg[0] != DIRECT_CHAR
       || (check_if_label(instruc, arg, 1) == -1
 	  && check_if_val(arg, 1) == -1)
@@ -76,9 +75,8 @@ int	check_indirect_arg(t_instruc *instruc, t_list_instruc *elem,
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
 	 && file[i] != '\0')
     i++;
-  if ((arg = malloc(sizeof(char) * (i + 1))) == NULL)
-    return (malloc_fail(), -1);
-  arg = my_strncpy(arg, file, i);
+  if ((arg = my_strndup(file, i)) == NULL)
+    return (-1);
   if ((check_if_label(instruc, arg, 0) == -1
        && check_if_val(arg, 0) == -1)
       || stock_args(elem, arg, pos) == -1)
@@ -97,9 +95,8 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
 	 && file[i] != '\0')
     i++;
-  if ((arg = malloc(sizeof(char) * (i + 1))) == NULL)
-    return (malloc_fail(), -1);
-  arg = my_strncpy(arg, file, i);
+  if ((arg = my_strndup(file, i)) == NULL)
+    return (-1);
   if ((file = malloc(sizeof(char) * my_strlen(arg))) == NULL)
     return (malloc_fail(), -1);
   i = 1;
@@ -111,5 +108,6 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   nb = atoi(file);
   if (nb < 1 || nb > 16 || stock_args(elem, arg, pos) == -1)
     return (-1);
+  free(file);
   return (0);
 }

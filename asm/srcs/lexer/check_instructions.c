@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Mon Mar 21 12:08:44 2016 Marel la plus belle <3
+** Last update Tue Mar 22 13:34:17 2016 marel_m
 */
 
 #include "asm.h"
@@ -40,10 +40,12 @@ int	if_comment_text(char *file)
   int	i;
 
   i = 0;
+  if (file == NULL)
+    exit(1);
   while (file && (file[i] == ' ' || file[i] == '\t' || file[i] == ',')
 	 && file[i] != '\0')
     i++;
-  if (file[i] == '#')
+  if (file[i] == '#' || file[i] == ';')
     return (-1);
   return (0);
 }
@@ -67,29 +69,32 @@ int			check_instruc_arg(t_instruc *instruc,
   if ((new = epure_file_instruc(file, 0)) == NULL
       || check_which_instruc(instruc, elem, new, fd) == -1)
     return (-1);
+  free(new);
   return (0);
 }
 
-int	put_instruc(t_instruc *instruc, int fd)
+int		put_instruc(t_instruc *instruc, int fd)
 {
-  char	*file;
-  static int	i;
+  char		*file;
 
-  i++;
   while ((file = get_next_line(fd)) != NULL)
     {
-      if (file[0] == '#' || epure_file_instruc(file, 0) == NULL
+      instruc->nb_l++;
+      if (file[0] == '#' || file[0] == ';'
+	  || check_epure_line(file, 0) == -1
 	  || my_strlen(file) == 0 || check_line(file) == -1
 	  || if_comment_text(file) == -1)
 	{
 	  if (put_instruc(instruc, fd) == -1)
-	    return (free(file), -1);
-	}
+	    return (-1);
+ 	}
       if (check_instruc_arg(instruc, file, fd) == -1)
 	return (-1);
       if (put_instruc(instruc, fd) == -1)
-	return (free(file), -1);
+	return (-1);
+      free(file);
     }
+  free(file);
   return (0);
 }
 

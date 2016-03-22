@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:20:22 2016 bougon_p
-** Last update Wed Mar 16 23:48:37 2016 bougon_p
+** Last update Mon Mar 21 17:54:48 2016 Marel la plus belle <3
 */
 
 #include "asm.h"
@@ -18,7 +18,7 @@ int	write_magic(int fd)
 
   magic = COREWAR_EXEC_MAGIC;
   magic = convert_littleend_to_bigend_int(magic);
-  if ((write(fd, &magic, sizeof(magic)) == -1) == -1)
+  if (write(fd, &magic, sizeof(magic)) == -1)
     return (1);
   return (0);
 }
