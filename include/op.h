@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 14 20:56:37 2016 marc brout
-** Last update Mon Mar 14 21:21:24 2016 marc brout
+** Last update Tue Mar 22 16:42:34 2016 marc brout
 */
 
 #ifndef OP_H_
@@ -106,7 +106,7 @@ typedef struct s_header t_header;
 */
 
 #define CYCLE_TO_DIE    1536
-#define CYCLE_DELTA     5
-#define NBR_LIVE        40
+#define CYCLE_DELTA     4
+#define NBR_LIVE        2048
 
 #endif /* !OP_H_ */

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 13:29:10 2016 benjamin duhieu
-** Last update Tue Mar 22 00:50:26 2016 marc brout
+** Last update Tue Mar 22 18:06:33 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -35,7 +35,7 @@ int	chk_adress(char **av, int *i, t_data *data)
 
   if (!(add = my_getnbr_prog(av[*i + 1])) || add > MEM_SIZE)
     return (1);
-  data->champ[data->i]->pc->pc = -1;
+  data->champ[data->i]->pc->reg[0] = -1;
   *i += 2;
   return (0);
 }
@@ -65,7 +65,7 @@ int		check_arg(char **av, int *i, t_pars *arg, t_data *dat)
   elem = arg->next;
   while (elem != NULL)
     {
-      my_printf("%s\n", elem->arg);
+      /* my_printf("%s\n", elem->arg); */
       if (!(my_strcmp(av[*i], elem->arg)))
 	{
 	  if ((chk = elem->chk_arg(av, i, dat)) == 1)
