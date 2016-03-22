@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 12:58:17 2016 benjamin duhieu
-** Last update Mon Mar 21 21:28:52 2016 benjamin duhieu
+** Last update Mon Mar 21 23:12:46 2016 benjamin duhieu
 */
 
 #include "pars.h"
@@ -51,7 +51,7 @@ int		main(int argc, char **argv)
 
   if (argc < 2 || !argv)
     return (my_put_usage(argv, 2));
-  data.place_champ = 0;
+  data.i = 0;
   if (!(arg = init_list()))
     return (1);
   if (pars_arg(argv, arg, &data))

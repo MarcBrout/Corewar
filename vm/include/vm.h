@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Mon Mar 21 23:08:46 2016 benjamin duhieu
+** Last update Tue Mar 22 00:03:22 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -76,5 +76,23 @@ typedef struct		s_pars
   int			(*chk_arg)(char **, int *, t_data *);
   struct s_pars		*next;
 }			t_pars;
+
+/*
+** check arguments function: func_arg.c
+*/
+
+int	check_arg(char **, int *, t_pars *, t_data *);
+int	chk_adress(char **, int *, t_data *);
+int	chk_dump(char **, int *, t_data *);
+int	chk_prog_nbr(char **, int *, t_data *);
+
+/*
+** list arguments : list_arg.c
+*/
+
+int	add_adress_in_list(t_pars *);
+int	add_dump_in_list(t_pars *);
+int	add_prog_nbr_in_list(t_pars *);
+t_pars	*init_list();
 
 #endif /* !VM_H_ */

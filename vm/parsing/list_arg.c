@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 13:28:23 2016 benjamin duhieu
-** Last update Mon Mar 21 13:28:56 2016 benjamin duhieu
+** Last update Tue Mar 22 00:03:08 2016 benjamin duhieu
 */
 
 #include "pars.h"
@@ -49,7 +49,7 @@ int		add_adress_in_list(t_pars *root)
   return (0);
 }
 
-t_pars		init_list()
+t_pars		*init_list()
 {
   t_pars	*root;
 
@@ -62,5 +62,5 @@ t_pars		init_list()
     return (NULL);
   if (add_adress_in_list(root))
     return (NULL);
-  return (arg);
+  return (root);
 }
