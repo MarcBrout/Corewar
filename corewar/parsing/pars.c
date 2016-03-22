@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 12:58:17 2016 benjamin duhieu
-** Last update Tue Mar 22 00:53:14 2016 marc brout
+** Last update Tue Mar 22 17:46:26 2016 marc brout
 */
 
 #include <unistd.h>
@@ -32,7 +32,6 @@ int		pars_arg(char **av, t_pars *arg, t_data *data)
 	return (my_put_usage(av, 1));
       else if (chk == 2)
 	{
-	  my_printf("%s %d\n", av[i], i);
 	  if (av[i] == NULL)
 	    my_put_error(MISS_COR, 1);
 	  else if (load_champion(data->champ[data->i], av[i]))
@@ -48,6 +47,10 @@ int		pars_arg(char **av, t_pars *arg, t_data *data)
     }
   recheck_prog_number(data);
   order_champ(data);
+  /* i = -1; */
+  /* while (++i < 4) */
+  /*   if (data->champ[i]->valid) */
+  /*     my_printf("%s\n", data->champ[i]->name); */
   return (0);
 }
 
@@ -64,6 +67,8 @@ int		main(int argc, char **argv)
       init_champs(&data))
     return (1);
   if (pars_arg(argv, arg, &data) || place_all_champions(&data))
+    return (1);
+  if (launch_match(&data))
     return (1);
   return (0);
 }

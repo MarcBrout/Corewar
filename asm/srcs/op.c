@@ -5,7 +5,7 @@
 ** Login   <astek@epitech.net>
 **
 ** Started on  Mon Mar 30 11:14:31 2009 Astek
-** Last update Tue Mar 22 16:44:20 2011 Astek
+** Last update Tue Mar 22 19:00:39 2016 marel_m
 */
 
 /*
@@ -22,11 +22,11 @@ op_t    op_tab[] =
     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition"},
     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction"},
     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
-     "et (and  r1, r2, r3   r1&r2 -> r3"},
+     "et and  r1, r2, r3   r1&r2 -> r3"},
     {"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
-     "ou  (or   r1, r2, r3   r1 | r2 -> r3"},
+     "ou or   r1, r2, r3   r1 | r2 -> r3"},
     {"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
-     "ou (xor  r1, r2, r3   r1^r2 -> r3"},
+     "ou xor  r1, r2, r3   r1^r2 -> r3"},
     {"zjmp", 1, {T_DIR}, 9, 20, "jump if zero"},
     {"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
      "load index"},

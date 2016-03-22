@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Tue Mar 22 23:12:00 2016 bougon_p
+** Last update Tue Mar 22 23:32:44 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -55,6 +55,7 @@ typedef struct		s_list_label
 {
   char			*name;
   int			addr;
+  int			pos;
   struct s_list_label	*next;
   struct s_list_label	*prev;
 }			t_list_label;
@@ -155,6 +156,7 @@ void	free_tab(char **);
 char	*my_strncpy(char *, char *, int);
 char	*my_strndup(char *, int);
 char	*my_strcat(char *, char *);
+void	my_put_nbr_error(int);
 
 /*
 ** FREE
@@ -166,9 +168,9 @@ void	free_list(t_instruc *);
 ** Error
 */
 
-void			malloc_fail();
+void	malloc_fail();
 void	file_wrong(char *);
-void	no_exist_label(t_instruc *, char *);
+void	no_exist_label(t_list_label *);
 void	synthax_error(t_instruc *);
 
 /*
