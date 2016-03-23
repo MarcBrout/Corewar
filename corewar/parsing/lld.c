@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:58:34 2016 benjamin duhieu
-** Last update Wed Mar 23 20:37:46 2016 benjamin duhieu
+** Last update Wed Mar 23 20:49:05 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -67,6 +67,7 @@ int		lld(t_data *data, t_pc *i)
     execute_ld_direct_no_idx(data, i);
   else
     execute_ld_indirect_no_idx(data, i);
+  i->cycle = 10;
   move_pc_ld(first, i);
   return (0);
 }

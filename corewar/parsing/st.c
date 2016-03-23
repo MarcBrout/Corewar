@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:54 2016 benjamin duhieu
-** Last update Wed Mar 23 20:38:53 2016 benjamin duhieu
+** Last update Wed Mar 23 20:48:43 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -56,6 +56,7 @@ int		st(t_data *data, t_pc *i)
     execute_st_indirect(data, i);
   else
     execute_st_reg(data, i);
+  i->cycle = 5;
   move_pc_st(second, i);
   return (0);
 }
