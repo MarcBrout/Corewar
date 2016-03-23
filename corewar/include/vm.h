@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Wed Mar 23 10:38:51 2016 benjamin duhieu
+** Last update Wed Mar 23 10:41:59 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -85,7 +85,7 @@ typedef struct		s_data
   int			dump;
   int			i;
   t_champion		*champ[4];
-  int			(*t_inst_func[17])(struct s_data *, t_pc *);
+  int			(*inst[17])(struct s_data *, t_pc *);
   char			*ram;
   char			*ramv;
 }			t_data;
