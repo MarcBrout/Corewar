@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Wed Mar 23 09:59:27 2016 benjamin duhieu
+** Last update Wed Mar 23 10:13:37 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -25,6 +25,27 @@
 # define MISS_COR "Missing corewar executable\n"
 
 char		g_endian;
+
+typedef enum		e_instructions
+  {
+    VM_ERROR		= 0,
+    VM_LIVE		= 1,
+    VM_LD		= 2,
+    VM_ST		= 3,
+    VM_ADD		= 4,
+    VM_SUB		= 5,
+    VM_AND		= 6,
+    VM_OR		= 7,
+    VM_XOR		= 8,
+    VM_ZJMP		= 9,
+    VM_LDI		= 10,
+    VM_STI		= 11,
+    VM_FORK		= 12,
+    VM_LLD		= 13,
+    VM_LLDI		= 14,
+    VM_LFORK		= 15,
+    VM_AFF		= 16
+  }			t_instructions;
 
 typedef union		s_core_int
 {

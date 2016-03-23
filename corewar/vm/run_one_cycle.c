@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Wed Mar 23 09:33:41 2016 marc brout
+** Last update Wed Mar 23 10:20:23 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -52,7 +52,8 @@ int	run_one_cycle(t_data *data)
 	  tmp = data->champ[i]->pc;
 	  while (tmp)
 	    {
-	      // launch ptrf avec pc = tmp
+	      if (!tmp->cycle)
+		//launchptrf return 1 , fail
 	      tmp = tmp->next;
 	    }
 	}
