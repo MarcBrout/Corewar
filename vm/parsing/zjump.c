@@ -5,12 +5,13 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:56:42 2016 benjamin duhieu
-** Last update Mon Mar 21 22:56:50 2016 benjamin duhieu
+** Last update Tue Mar 22 19:03:28 2016 benjamin duhieu
 */
 
 #include "vm.h"
 
-void	zjump(char *ram, char *ramv, int *i)
+int	zjump(t_data *data, t_pc *i)
 {
-
+  i->reg[0] += 2;
+  return (0);
 }

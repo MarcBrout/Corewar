@@ -5,12 +5,12 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:58:14 2016 benjamin duhieu
-** Last update Mon Mar 21 22:58:24 2016 benjamin duhieu
+** Last update Tue Mar 22 19:11:38 2016 benjamin duhieu
 */
 
 #include "vm.h"
 
-void	fork(char *ram, char *ramv, int *i)
+int	fork(t_data *data, t_pc *i)
 {
-
+  i->reg[0] += 2;
 }

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Tue Mar 22 00:41:07 2016 marc brout
+** Last update Tue Mar 22 19:12:43 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -181,5 +181,81 @@ int			pars_arg(char **, t_pars  *, t_data *);
 int			check_prog_number_value(t_data *);
 void			put_order_in_champ(t_data *, int);
 void			recheck_prog_number(t_data *);
+
+/*
+** st.c
+*/
+
+int	check_integrety_st(unsigned, char *, int);
+int	st(t_data *, t_pc *);
+void	move_pc_st(unsigned, t_pc *);
+
+/*
+** live.c
+*/
+
+int	live(t_data *, t_pc *);
+
+/*
+** ld && lld: ld.c && lld.c
+*/
+
+int	check_integrety_ld(unsigned, char *, int);
+int	ld(t_data *, t_pc *);
+int	lld(t_data *, t_pc *);
+void	move_pc_ld(unsigned, t_pc *);
+
+/*
+** add && sub: add.c && sub.c
+*/
+
+int	add(t_data *, t_pc *);
+int	sub(t_data *, t_pc *);
+
+/*
+** and / or / xor : and.c && or.c && xor.c
+*/
+
+int	and(t_data *, t_pc *);
+int	check_integrety(unsigned, unsigned, char *, int);
+int	or(t_data *, t_pc *);
+int	xor(t_data *, t_pc *);
+void	move_pc(unsigned, unsigned, t_pc *);
+
+/*
+** zjmp: zjump.c
+*/
+
+int	zjump(t_data *, t_pc *);
+
+/*
+** ldi && lldi: ldi.c && lldi.c
+*/
+
+int	check_integrety_ldi(unsigned, unsigned, char *, int);
+int	ldi(t_data *, t_pc *);
+int	lldi(t_data *, t_pc *);
+void	move_pc_ldi(unsigned, unsigned, t_pc *);
+
+/*
+** sti: sti.c
+*/
+
+int	check_integrety_sti(unsigned, unsigned, char *, int);
+int	sti(t_data *, t_pc *);
+void	move_pc_sti(unsigned, unsigned, t_pc *);
+
+/*
+** fork / lfork : fork.c && lfork.c
+*/
+
+int	fork(t_data *, t_pc *);
+int	lfork(t_data *, t_pc *);
+
+/*
+** aff : aff.c
+*/
+
+int	aff(t_data *, t_pc *);
 
 #endif /* !VM_H_ */
