@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 16:16:26 2016 marc brout
-** Last update Wed Mar 23 09:53:05 2016 marc brout
+** Last update Wed Mar 23 10:24:59 2016 marc brout
 */
 
 #include <sys/types.h>
@@ -44,11 +44,8 @@ int		copy_champion_to_ram(t_champion *champion,
 	  return (my_put_file_str(champion->path, CORRUPT, -1));
 	}
       close(fd);
-      /* my_printf("LOL2\n"); */
-      /* my_printf("champsize = %d\n", champion->size); */
       return (champion->size);
     }
-  /* my_printf("LOL3\n"); */
   return (0);
 }
 
@@ -98,8 +95,7 @@ int		place_all_champions(t_data *data)
       if (copy_champion_to_ram(data->champ[first], &data->ram[pos]) < 0)
 	return (1);
       pos += data->champ[first]->size;
-      rest -= (rest_unit + data->champ[first]->size);
-      first += 1;
+      rest -= (rest_unit + data->champ[first]->size), first += 1;
     }
   return (0);
 }
