@@ -5,12 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:25:05 2016 bougon_p
-** Last update Thu Mar 17 15:23:20 2016 bougon_p
+** Last update Tue Mar 22 21:53:44 2016 bougon_p
 */
 
 #include "asm.h"
 
-int	w_live(t_info *info, int fd)
+int	w_live(t_info *info, int fd, t_instruc *instruc)
 {
   char	istr;
   int	arg;
@@ -22,5 +22,6 @@ int	w_live(t_info *info, int fd)
   arg = convert_littleend_to_bigend_int(arg);
   if (write(fd, &arg, sizeof(arg)) == -1)
     return (1);
+  instruc->addr_wrt += 5;
   return (0);
 }

@@ -5,22 +5,24 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Mon Mar 21 19:27:08 2016 Marel la plus belle <3
+** Last update Tue Mar 22 23:32:44 2016 bougon_p
 */
 
 #ifndef HEADER_H_
 # define HEADER_H_
 
-# include "op.h"
-# include "my.h"
-
 # include <unistd.h>
+# include <stdbool.h>
 
 /*
 ** Debug includes
 */
 
 # include <stdio.h>
+
+# include "op.h"
+# include "my.h"
+
 
 # define UNUSED __attribute__((__unused__))
 # define NB_INSTRUCTIONS 16
@@ -52,6 +54,8 @@ typedef struct		s_list_instruc
 typedef struct		s_list_label
 {
   char			*name;
+  int			addr;
+  int			pos;
   struct s_list_label	*next;
   struct s_list_label	*prev;
 }			t_list_label;
@@ -62,6 +66,9 @@ typedef struct		s_instruc
   t_list_instruc	*root;
   int			lenght_label;
   t_list_label		*lab;
+  int			nb_l;
+  int			addr_wrt;
+  int			addr_vir;
 }			t_instruc;
 
 enum			three_args
@@ -85,7 +92,7 @@ typedef struct		s_three_args
 
 typedef struct  s_tabinstr
 {
-  int           (**tabinstr)(t_info *, int);
+  int           (**tabinstr)(t_info *, int, t_instruc *);
 }               t_tabinstr;
 
 /*
@@ -100,11 +107,11 @@ int			check_char(char);
 int			create_list(t_instruc *);
 t_list_instruc		*add_list_after(t_instruc *);
 char			*epure_file_instruc(char *, int);
-void			malloc_fail();
-int			check_comment(t_header *, char *);
+int			check_comment(t_header *, t_instruc *, char *);
 int			check_instructions(t_instruc *, int);
 int			check_instruc_label(t_instruc *, t_list_instruc *,
 					    char *, int);
+int			check_epure_line(char *, int);
 int			check_which_instruc(t_instruc *, t_list_instruc *,
 					    char *, int);
 int			check_stock_good_args(t_instruc *, t_list_instruc *,
@@ -131,25 +138,40 @@ int			check_line(char *);
 */
 
 int	parser(char *, t_header *, t_instruc *);
-int	write_header(int, t_header *);
+int	write_header(int, t_header *, t_instruc *);
 int	write_code(int, t_instruc *, t_tabinstr *, char **);
 void	set_line_null(char *, int);
 int	convert_littleend_to_bigend_int(int);
 int	convert_littleend_to_bigend_short(int);
 int	create_file(char *);
+bool	check_short_lab(t_info *, t_instruc *);
+bool	check_int_lab(t_info *, t_instruc *);
+int	write_prog_size(t_header *, t_instruc *, int);
 
 /*
 ** TOOLS
 */
 
+void	free_tab(char **);
+char	*my_strncpy(char *, char *, int);
 char	*my_strndup(char *, int);
 char	*my_strcat(char *, char *);
+void	my_put_nbr_error(int);
 
 /*
 ** FREE
 */
 
 void	free_list(t_instruc *);
+
+/*
+** Error
+*/
+
+void	malloc_fail();
+void	file_wrong(char *);
+void	no_exist_label(t_list_label *);
+void	synthax_error(t_instruc *);
 
 /*
 ** Instruction functions
@@ -159,21 +181,21 @@ int	w_reg(int, char *);
 int	w_int(int, char *);
 int	w_short(int, char *);
 char	w_coding_byte(int, t_info *);
-int	w_live(t_info *, int);
-int	w_ld(t_info *, int);
-int	w_st(t_info *, int);
-int	w_add(t_info *, int);
-int	w_sub(t_info *, int);
-int	w_and(t_info *, int);
-int	w_or(t_info *, int);
-int	w_xor(t_info *, int);
-int	w_zjmp(t_info *, int);
-int	w_ldi(t_info *, int);
-int	w_sti(t_info *, int);
-int	w_fork(t_info *, int);
-int	w_lld(t_info *, int);
-int	w_lldi(t_info *, int);
-int	w_lfork(t_info *, int);
-int	w_aff(t_info *, int);
+int	w_live(t_info *, int, t_instruc *);
+int	w_ld(t_info *, int, t_instruc *);
+int	w_st(t_info *, int, t_instruc *);
+int	w_add(t_info *, int, t_instruc *);
+int	w_sub(t_info *, int, t_instruc *);
+int	w_and(t_info *, int, t_instruc *);
+int	w_or(t_info *, int, t_instruc *);
+int	w_xor(t_info *, int, t_instruc *);
+int	w_zjmp(t_info *, int, t_instruc *);
+int	w_ldi(t_info *, int, t_instruc *);
+int	w_sti(t_info *, int, t_instruc *);
+int	w_fork(t_info *, int, t_instruc *);
+int	w_lld(t_info *, int, t_instruc *);
+int	w_lldi(t_info *, int, t_instruc *);
+int	w_lfork(t_info *, int, t_instruc *);
+int	w_aff(t_info *, int, t_instruc *);
 
 #endif /* !HEADER_H_ */

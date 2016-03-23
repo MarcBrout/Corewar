@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Mon Mar 21 19:20:49 2016 Marel la plus belle <3
+## Last update Wed Mar 23 08:34:10 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -18,21 +18,48 @@ WHITE	=	\033[0m
 
 ECHO	=	echo -e
 
+# COREWAR VARIABLES
 
-# SOURCES VARIABLES
+VM		=	corewar/vm/
 
-PARSER		=	srcs/parser/
+PARSING		=	corewar/parsing/
 
-LEXER		=	srcs/lexer/
+LOAD		=	corewar/load_file/
 
-TOOLS		=	srcs/tools/
+SRCCOR		=	$(PARSING)pars.c \
+			$(PARSING)prog_number.c \
+			$(PARSING)order_champ.c \
+			$(PARSING)list_arg.c \
+			$(PARSING)my_getnbr.c \
+			$(PARSING)func_arg.c \
+			$(LOAD)load_file.c \
+			$(LOAD)my_bzero.c \
+			$(VM)vm.c \
+			$(VM)launch_match.c \
+			$(VM)dump.c \
+			$(VM)run_one_cycle.c \
+			$(VM)misc.c \
+			$(VM)get_high_scores.c \
+			$(VM)set_vm_memory.c
 
-ERROR		=	srcs/error/
+OBJSCOR    	=	$(SRCCOR:.c=.o)
 
-FREE		=	srcs/free/
 
-SRC		=	srcs/main.c \
-			srcs/op.c \
+# ASM VARIABLES
+
+PARSER		=	asm/srcs/parser/
+
+LEXER		=	asm/srcs/lexer/
+
+TOOLS		=	asm/srcs/tools/
+
+ERROR		=	asm/srcs/error/
+
+FREE		=	asm/srcs/free/
+
+SRC		=	asm/srcs/main.c \
+			asm/srcs/print_list.c \
+			asm/srcs/op.c \
 			$(PARSER)parser.c \
 			$(PARSER)create_file.c \
 			$(PARSER)convert.c \
@@ -56,6 +83,7 @@ SRC		=	srcs/main.c \
 			$(PARSER)aff.c \
 			$(PARSER)code_byte.c \
 			$(PARSER)w_args.c \
+			$(PARSER)labs.c \
 			$(LEXER)lexer.c \
 			$(LEXER)check_name.c \
 			$(LEXER)check_comment.c \
@@ -69,11 +97,12 @@ SRC		=	srcs/main.c \
 			$(LEXER)verif_args.c \
 			$(LEXER)instruc_three_args.c \
 			$(LEXER)check_good_args.c \
-			$(LEXER)my_strncmp.c \
-			$(LEXER)my_strndup.c \
-			$(LEXER)print_list.c \
 			$(TOOLS)str_null.c \
 			$(TOOLS)my_strcat.c \
+			$(TOOLS)my_strncmp.c \
+			$(TOOLS)my_strndup.c \
+			$(TOOLS)my_put_nbr_error.c \
+			$(FREE)free_tab.c \
 			$(FREE)free_list_instruc.c \
 			$(ERROR)error_stop.c
 
@@ -82,7 +111,9 @@ OBJS    	=	$(SRC:.c=.o)
 
 # LIBRARY VARIABLES
 
-LIBPATH =       ../lib/
+LIBPATH =       lib/
+
+LIB	=	lib/libmy.a
 
 SRCLIB	=	$(LIBPATH)my/get_next_line.c \
 		$(LIBPATH)my/my_getnbr.c \
@@ -104,35 +135,52 @@ LDFLAGS =       -lmy -L$(LIBPATH)
 
 OBJSLIB	=	$(SRCLIB:.c=.o)
 
+
 # PROJECT VARIABLES
 
-NAME	=	asm
+NAME	=	asm/asm
 
-IFLAG	=	-Iinclude/
+COREWAR =	corewar/corewar
 
-CFLAGS  =	-W -Wall -Wextra $(IFLAG)
+IFLAG	=	-Iasm/include/ -Icorewar/include/
 
-CC      =	gcc -g $(CFLAGS)
+CFLAGS  =	-W -Wall -Wextra
 
+CC      =	gcc -g $(CFLAGS) $(IFLAG)
 
 
 # PROJECT RULES
 
-$(NAME)		: 	$(OBJSLIB) $(OBJS)
-			@ar rc $(LIBPATH)libmy.a $(OBJSLIB)
-			@ranlib $(LIBPATH)libmy.a
-			@$(ECHO) "$(GREEN)\n> Compiling project\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+$(NAME)		: 	$(LIB) $(COREWAR) $(OBJS)
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n\<<<<<<< HEAD Linking \"$(NAME)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>>\
+ \t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+
+$(COREWAR)	:	$(OBJSLIB) $(OBJSCOR)
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\ Linking \"$(COREWAR)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+
+$(COREWAR)	:	$(OBJSCOR)
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\n> Compiling \"$(COREWAR)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(CC) -o $(COREWAR) $(OBJSCOR) $(LDFLAGS)
+
+$(LIB)		:	$(OBJSLIB)
+			@ar rc $(LIB) $(OBJSLIB)
+			@ranlib $(LIB)
+			@$(ECHO) "$(GREEN)\n> Compiling Library\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+
 
 all		:	$(NAME)
 
 clean		:
 			@$(RM) $(OBJS)
 			@$(RM) $(OBJSLIB)
+			@$(RM) $(OBJSCOR)
 			@$(ECHO) "$(GREEN)\n> Cleaning repository\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 
 fclean		: 	clean
 			@$(RM) $(NAME)
+			@$(RM) $(COREWAR)
 			@$(RM) $(LIBPATH)/libmy.a
 			@$(ECHO) "$(GREEN)\n> Cleaning exec\t\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 

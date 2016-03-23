@@ -5,48 +5,56 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:32:23 2016 bougon_p
-** Last update Thu Mar 17 19:19:52 2016 bougon_p
+** Last update Tue Mar 22 22:15:33 2016 bougon_p
 */
 
 #include "asm.h"
 
-int	sti_arg_2(int fd, t_info *info, char byte)
+int	sti_arg_2(int fd, t_info *info, char byte, t_instruc *instruc)
 {
   char	check;
 
-  check = (byte >> 4);
-  if (check == 0x07 || check == 0x06)
+  check = ((byte & 0x30) >> 4);
+  if (check == 0x03 || check == 0x02)
     {
+      if (check_short_lab(info, instruc) == true)
+	return (0);
       if (w_short(fd, info->arg_2) == 1)
 	return (1);
+      instruc->addr_wrt += 2;
     }
   else
     {
       if (w_reg(fd, info->arg_2) == 1)
 	return (1);
+      instruc->addr_wrt += 1;
     }
   return (0);
 }
 
-int	sti_arg_3(int fd, t_info *info, char byte)
+int	sti_arg_3(int fd, t_info *info, char byte, t_instruc *instruc)
 {
   char	check;
 
   check = ((byte & 0x0C) >> 2);
-  if (check == 0x02 || check == 0x03)
+  if (check == 0x02)
     {
+      if (check_short_lab(info, instruc) == true)
+	return (0);
       if (w_short(fd, info->arg_3) == 1)
 	return (1);
+      instruc->addr_wrt += 2;
     }
   else
     {
       if (w_reg(fd, info->arg_3) == 1)
 	return (1);
+      instruc->addr_wrt += 1;
     }
   return (0);
 }
 
-int	w_sti(t_info *info, int fd)
+int	w_sti(t_info *info, int fd, t_instruc *instruc)
 {
   char	istr;
   char	byte;
@@ -58,9 +66,10 @@ int	w_sti(t_info *info, int fd)
     return (1);
   if (w_reg(fd, info->arg_1) == 1)
     return (1);
-  if (sti_arg_2(fd, info, byte) == 1)
+  instruc->addr_wrt += 3;
+  if (sti_arg_2(fd, info, byte, instruc) == 1)
     return (1);
-  if (sti_arg_3(fd, info, byte) == 1)
+  if (sti_arg_3(fd, info, byte, instruc) == 1)
     return (1);
   return (0);
 }
