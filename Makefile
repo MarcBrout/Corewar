@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Tue Mar 22 19:11:46 2016 marc brout
+## Last update Wed Mar 23 08:34:10 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -45,7 +45,7 @@ SRCCOR		=	$(PARSING)pars.c \
 OBJSCOR    	=	$(SRCCOR:.c=.o)
 
 
-# SOURCES VARIABLES
+# ASM VARIABLES
 
 PARSER		=	asm/srcs/parser/
 
@@ -83,6 +83,7 @@ SRC		=	asm/srcs/main.c \
 			$(PARSER)aff.c \
 			$(PARSER)code_byte.c \
 			$(PARSER)w_args.c \
+			$(PARSER)labs.c \
 			$(LEXER)lexer.c \
 			$(LEXER)check_name.c \
 			$(LEXER)check_comment.c \
@@ -111,6 +112,8 @@ OBJS    	=	$(SRC:.c=.o)
 # LIBRARY VARIABLES
 
 LIBPATH =       lib/
+
+LIB	=	lib/libmy.a
 
 SRCLIB	=	$(LIBPATH)my/get_next_line.c \
 		$(LIBPATH)my/my_getnbr.c \
@@ -148,18 +151,24 @@ CC      =	gcc -g $(CFLAGS) $(IFLAG)
 
 # PROJECT RULES
 
-$(NAME)		: 	$(COREWAR) $(OBJS)
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n\
- Linking \"$(NAME)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>>\
+$(NAME)		: 	$(LIB) $(COREWAR) $(OBJS)
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n\<<<<<<< HEAD Linking \"$(NAME)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>>\
  \t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 $(COREWAR)	:	$(OBJSLIB) $(OBJSCOR)
-			@$(ECHO) "$(GREEN)\n> Compiling Library\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
-			@ar rc $(LIBPATH)libmy.a $(OBJSLIB)
-			@ranlib $(LIBPATH)libmy.a
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\n Linking \"$(COREWAR)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\ Linking \"$(COREWAR)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+
+$(COREWAR)	:	$(OBJSCOR)
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\n> Compiling \"$(COREWAR)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 			@$(CC) -o $(COREWAR) $(OBJSCOR) $(LDFLAGS)
+
+$(LIB)		:	$(OBJSLIB)
+			@ar rc $(LIB) $(OBJSLIB)
+			@ranlib $(LIB)
+			@$(ECHO) "$(GREEN)\n> Compiling Library\t >>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+
 
 all		:	$(NAME)
 

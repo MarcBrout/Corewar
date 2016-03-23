@@ -5,12 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:35:07 2016 bougon_p
-** Last update Fri Mar 18 17:39:01 2016 bougon_p
+** Last update Tue Mar 22 20:17:07 2016 bougon_p
 */
 
 #include "asm.h"
 
-int	w_aff(t_info *info, int fd)
+int	w_aff(t_info *info, int fd, t_instruc *instruc)
 {
   char	istr;
 
@@ -21,5 +21,6 @@ int	w_aff(t_info *info, int fd)
     return (1);
   if (w_reg(fd, info->arg_1) == 1)
     return (1);
+  instruc->addr_wrt += 3;
   return (0);
 }

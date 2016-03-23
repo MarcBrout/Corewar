@@ -5,12 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:28:06 2016 bougon_p
-** Last update Thu Mar 17 19:48:52 2016 bougon_p
+** Last update Tue Mar 22 21:31:12 2016 bougon_p
 */
 
 #include "asm.h"
 
-int	w_sub(t_info *info, int fd)
+int	w_sub(t_info *info, int fd, t_instruc *instruc)
 {
   char	istr;
 
@@ -25,5 +25,6 @@ int	w_sub(t_info *info, int fd)
     return (1);
   if ((w_reg(fd, info->arg_3)) == 1)
     return (1);
+  instruc->addr_wrt += 5;
   return (0);
 }
