@@ -5,12 +5,12 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 23:01:38 2016 benjamin duhieu
-** Last update Mon Mar 21 23:01:45 2016 benjamin duhieu
+** Last update Tue Mar 22 19:11:44 2016 benjamin duhieu
 */
 
 #include "vm.h"
 
-void	lfork(char *ram, char *ramv, int *i)
+int	lfork(t_data *data, t_pc *i)
 {
-
+  i->reg[0] += 2;
 }
