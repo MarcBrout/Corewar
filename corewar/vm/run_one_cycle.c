@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Wed Mar 23 09:33:41 2016 marc brout
+** Last update Wed Mar 23 10:20:59 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -39,10 +39,30 @@ int	add_pc(t_pc *pc, int pos, int cycle)
   return (0);
 }
 
-int	run_one_cycle(t_data *data)
+void		init_inst(t_data *data)
 {
-  int	i;
-  t_pc  *tmp;
+  data->inst[VM_ERROR] = &nothing;
+  data->inst[VM_LIVE] = &live;
+  data->inst[VM_LD] = &ld;
+  data->inst[VM_ST] = &st;
+  data->inst[VM_ADD] = &add;
+  data->inst[VM_SUB] = &sub;
+  data->inst[VM_AND] = &and;
+  data->inst[VM_XOR] = &xor;
+  data->inst[VM_OR] = &or;
+  data->inst[VM_LDI] = &ldi;
+  data->inst[VM_LLDI] = &lldi;
+  data->inst[VM_STI] = &sti;
+  data->inst[VM_FORK] = &frk;
+  data->inst[VM_LFORK] = &lfork;
+  data->inst[VM_AFF] = &aff;
+  data->inst[VM_ZJMP] = &zjump;
+}
+
+int		run_one_cycle(t_data *data)
+{
+  int		i;
+  t_pc		*tmp;
 
   i = 0;
   while (i < 4)

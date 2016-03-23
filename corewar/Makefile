@@ -5,7 +5,7 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Mon Mar 21 23:17:37 2016 marc brout
-## Last update Wed Mar 23 08:57:40 2016 marc brout
+## Last update Wed Mar 23 10:26:10 2016 benjamin duhieu
 ##
 
 # USEFUL VARIABLES
@@ -33,6 +33,22 @@ SRC		=	$(PARSING)pars.c \
 			$(PARSING)list_arg.c \
 			$(PARSING)my_getnbr.c \
 			$(PARSING)func_arg.c \
+			$(PARSING)add.c \
+			$(PARSING)aff.c \
+			$(PARSING)and.c \
+			$(PARSING)fork.c \
+			$(PARSING)lfork.c \
+			$(PARSING)ld.c \
+			$(PARSING)ldi.c \
+			$(PARSING)live.c \
+			$(PARSING)lld.c \
+			$(PARSING)lldi.c \
+			$(PARSING)or.c \
+			$(PARSING)xor.c \
+			$(PARSING)sub.c \
+			$(PARSING)st.c \
+			$(PARSING)sti.c \
+			$(PARSING)zjump.c \
 			$(LOAD)load_file.c \
 			$(LOAD)my_bzero.c \
 			$(VM)vm.c \
