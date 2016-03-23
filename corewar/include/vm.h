@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Wed Mar 23 10:49:36 2016 benjamin duhieu
+** Last update Wed Mar 23 11:10:06 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -73,7 +73,6 @@ typedef struct		s_champion
   char			valid;
   int			alive;
   int			order;
-  int			fd;
   unsigned int		size;
   char			name[PROG_NAME_LENGTH + 1];
   t_pc			*pc;
