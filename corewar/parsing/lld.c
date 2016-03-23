@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:58:34 2016 benjamin duhieu
-** Last update Wed Mar 23 20:49:05 2016 benjamin duhieu
+** Last update Wed Mar 23 21:04:38 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -57,8 +57,8 @@ int		lld(t_data *data, t_pc *i)
   unsigned	first;
   unsigned	second;
 
-  first = (data->ram[MM(i->reg[0] + 1)] << 6) & (char)3;
-  second = (data->ram[MM(i->reg[0] + 1)] << 4) & (char)3;
+  first = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
+  second = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
   if ((first != 2 && first != 3) || second != 1)
     return (0);
   else if (check_integrety_ld(first, data->ram, i->reg[0]))

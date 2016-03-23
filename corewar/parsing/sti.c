@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Wed Mar 23 14:24:47 2016 marc brout
+** Last update Wed Mar 23 21:05:38 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -71,9 +71,9 @@ int		sti(t_data *data, t_pc *i)
 {
   t_inst	arg;
 
-  arg.fi = (data->ram[MM(i->reg[0] + 1)] << 6) & (char)3;
-  arg.sd = (data->ram[MM(i->reg[0] + 1)] << 4) & (char)3;
-  arg.th = (data->ram[MM(i->reg[0] + 1)] << 2) & (char)3;
+  arg.fi = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
+  arg.sd = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
+  arg.th = (data->ram[MM(i->reg[0] + 1)] >> 2) & (char)3;
   if (arg.fi != 1 || (arg.sd != 1 && arg.sd != 2 && arg.sd != 3) ||
       (arg.th != 1 && arg.th != 2))
     return (0);

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:59:12 2016 benjamin duhieu
-** Last update Wed Mar 23 17:49:32 2016 marc brout
+** Last update Wed Mar 23 21:04:51 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -60,9 +60,9 @@ int		lldi(t_data *data, t_pc *i)
   t_val		val;
   int		move;
 
-  inst.fi = (data->ram[i->reg[0]] << 6) & (char)3;
-  inst.sd = (data->ram[i->reg[0]] << 4) & (char)3;
-  inst.th = (data->ram[i->reg[0]] << 2) & (char)3;
+  inst.fi = (data->ram[i->reg[0]] >> 6) & (char)3;
+  inst.sd = (data->ram[i->reg[0]] >> 4) & (char)3;
+  inst.th = (data->ram[i->reg[0]] >> 2) & (char)3;
   if ((inst.fi != 1 && inst.fi != 2 && inst.fi != 3) ||
       (inst.sd != 1 && inst.sd != 2) || inst.th != 1)
     return (0);
