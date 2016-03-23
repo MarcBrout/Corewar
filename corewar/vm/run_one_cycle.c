@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Wed Mar 23 10:39:07 2016 benjamin duhieu
+** Last update Wed Mar 23 10:57:44 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -31,6 +31,7 @@ int	add_pc(t_pc *pc, int pos, int cycle)
   if (!(elem = malloc(sizeof(t_pc))))
     return (1);
   copy_registres(pc, elem);
+  elem->champ = pc->champ;
   elem->reg[0] = pos;
   elem->carry = pc->carry;
   elem->cycle = cycle;
