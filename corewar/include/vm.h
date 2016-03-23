@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Tue Mar 22 18:48:23 2016 marc brout
+** Last update Wed Mar 23 09:41:26 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -25,6 +25,18 @@
 # define MISS_COR "Missing corewar executable\n"
 
 char		g_endian;
+
+typedef union		s_core_int
+{
+  int			value;
+  unsigned char		bytes[4];
+}			t_core_int;
+
+typedef union		s_core_short
+{
+  short			value;
+  unsigned char		bytes[2];
+}			t_core_short;
 
 typedef	struct		s_pc
 {
@@ -192,5 +204,15 @@ int			count_players_alive(t_champion *champ[4]);
 void			set_players(t_champion *champ[4]);
 void			check_winner(t_champion *champ[4]);
 int			launch_match(t_data *data);
+void			copy_order_to_reg(t_champion *champ[4]);
+
+/*
+** read_from_ram.c
+*/
+
+int			read_int_from_ram(char *ram,
+					  int pos);
+short			read_short_from_ram(char *ram,
+					    int pos);
 
 #endif /* !VM_H_ */

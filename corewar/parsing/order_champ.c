@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 21:08:10 2016 benjamin duhieu
-** Last update Mon Mar 21 23:49:06 2016 marc brout
+** Last update Wed Mar 23 09:38:35 2016 marc brout
 */
 
 #include "vm.h"
@@ -35,4 +35,5 @@ void		order_champ(t_data *data)
 	  continue ;
 	}
     }
+  copy_order_to_reg(data->champ);
 }

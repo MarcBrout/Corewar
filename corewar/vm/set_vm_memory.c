@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 16:16:26 2016 marc brout
-** Last update Tue Mar 22 17:33:34 2016 marc brout
+** Last update Wed Mar 23 09:53:05 2016 marc brout
 */
 
 #include <sys/types.h>
@@ -92,16 +92,10 @@ int		place_all_champions(t_data *data)
   pos = data->champ[0]->size;
   while (first < 4 && nb > 0)
     {
-      /* my_printf("MEM_SIZE = %d\n rest = %d  ", MEM_SIZE, rest); */
-      /* my_printf("sizechamps = %d\n", size_champs(data->champ, first, &nb)); */
       rest_unit = (rest - size_champs(data->champ, first, &nb)) /
-		   (nb + 1);
-      /* my_printf("rest_unit = %d  \n", rest_unit); */
+	(nb + 1);
       pos += rest_unit;
-      /* my_printf("first = %d, nb = %d\n", first,  nb); */
-      /* my_printf("pos = %d\n", pos); */
-      if (copy_champion_to_ram(data->champ[first],
-			       &data->ram[pos]) < 0)
+      if (copy_champion_to_ram(data->champ[first], &data->ram[pos]) < 0)
 	return (1);
       pos += data->champ[first]->size;
       rest -= (rest_unit + data->champ[first]->size);

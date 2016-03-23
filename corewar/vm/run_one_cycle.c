@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Tue Mar 22 18:39:14 2016 marc brout
+** Last update Wed Mar 23 09:33:41 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -34,7 +34,7 @@ int	add_pc(t_pc *pc, int pos, int cycle)
   elem->reg[0] = pos;
   elem->carry = pc->carry;
   elem->cycle = cycle;
-  elem->next = NULL;
+  elem->next = pc->next;
   pc->next = elem;
   return (0);
 }
