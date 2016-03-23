@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Wed Mar 23 09:58:04 2016 marc brout
+** Last update Wed Mar 23 09:59:27 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -254,7 +254,7 @@ void	move_pc_sti(unsigned, unsigned, t_pc *);
 ** fork / lfork : fork.c && lfork.c
 */
 
-int	fork(t_data *, t_pc *);
+int	frk(t_data *, t_pc *);
 int	lfork(t_data *, t_pc *);
 
 /*
