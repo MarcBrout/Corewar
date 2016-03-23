@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:54:20 2016 benjamin duhieu
-** Last update Wed Mar 23 16:15:41 2016 marc brout
+** Last update Wed Mar 23 17:25:57 2016 marc brout
 */
 
 #include "vm.h"
@@ -40,27 +40,46 @@ int		recup_val(t_data *data,
 
   pos = 2;
   if (inst->fi == 1)
-    val->inte[1] = i->reg[(int)data->ram[M(i->reg[0] + pos)]], pos += 1;
+    val->inte[0] = i->reg[(int)data->ram[M(i->reg[0] + pos)]], pos += 1,
+      val->type[0] = 1;
   if (inst->fi == 2)
-    val->shrt[1] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2;
+    val->shrt[0] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2,
+      val->type[0] = 0;
   if (inst->fi == 3)
-    val->inte[1] = RIFM(data->ram, M(i->reg[0] + pos)), pos += 4;
+    val->inte[0] = RIFM(data->ram, M(i->reg[0] + pos)), pos += 4,
+      val->type[0] = 1;
   if (inst->sd == 1)
-    val->inte[2] = i->reg[(int)data->ram[M(i->reg[0] + pos)]], pos += 1;
+    val->inte[1] = i->reg[(int)data->ram[M(i->reg[0] + pos)]], pos += 1,
+      val->type[1] = 1;
   if (inst->sd == 2)
-    val->shrt[2] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2;
+    val->shrt[1] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2,
+      val->type[1] = 0;
   if (inst->sd == 3)
-    val->inte[2] = RIFM(data->ram, M(i->reg[0] + pos)), pos += 4;
-  val->inte[3] = i->reg[(int)data->ram[MM(i->reg[0] + pos)]], pos += 1;
+    val->inte[1] = RIFM(data->ram, M(i->reg[0] + pos)), pos += 4,
+      val->type[1] = 1;
+  val->inte[2] = (int)data->ram[MM(i->reg[0] + pos)], pos += 1;
   return (pos);
 }
 
-/* int		perform_and(t_data *data, */
-/* 			    t_pc *i, */
-/* 			    t_inst *inst, */
-/* 			    t_val *val) */
-/* { */
-/* } */
+int		perform_and(t_pc *i,
+			    t_val *val)
+{
+  if (val->type[0])
+    {
+      if (val->type[1])
+	i->reg[val->inte[2]] = val->inte[0] & val->inte[1];
+      else
+	i->reg[val->inte[2]] = val->inte[0] & val->shrt[1];
+    }
+  else
+    {
+      if (val->type[1])
+	i->reg[val->inte[2]] = val->shrt[0] & val->inte[1];
+      else
+	i->reg[val->inte[2]] = val->shrt[0] & val->shrt[1];
+    }
+  return (i->reg[val->inte[2]]);
+}
 
 int		and(t_data *data, t_pc *i)
 {
@@ -77,6 +96,10 @@ int		and(t_data *data, t_pc *i)
   if (check_integrety(inst.fi, inst.sd, data->ram, i->reg[0] + 1))
     return (0);
   move = recup_val(data, i, &inst, &val);
+  if (perform_and(i, &val))
+    i->carry = 0;
+  else
+    i->carry = 1;
   i->reg[0] = MM(i->reg[0] + move);
   i->cycle = 6;
   return (0);
