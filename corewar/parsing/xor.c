@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:55:45 2016 benjamin duhieu
-** Last update Wed Mar 23 10:35:52 2016 benjamin duhieu
+** Last update Wed Mar 23 16:15:08 2016 marc brout
 */
 
 #include "vm.h"
@@ -26,7 +26,7 @@ int		xor(t_data *data, t_pc *i)
     return (0);
   else if (check_integrety(first, second, data->ram, i->reg[0]))
     return (0);
-  else
-    move_pc(first, second, i);
+  /* else */
+  /*   move_pc(first, second, i); */
   return (0);
 }

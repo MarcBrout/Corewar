@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Wed Mar 23 11:02:17 2016 marc brout
+** Last update Wed Mar 23 16:01:10 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -23,6 +23,11 @@
 # define NOCOREWAR " is not a corewar executable\n"
 # define CORRUPT " is corrupted\n"
 # define MISS_COR "Missing corewar executable\n"
+
+# define M(x) ((x) % MEM_SIZE)
+# define MM(x) ((x) % MEM_SIZE)
+# define RSFM read_short_from_ram
+# define RIFM read_int_from_ram
 
 char		g_endian;
 
@@ -46,6 +51,19 @@ typedef enum		e_instructions
     VM_LFORK		= 15,
     VM_AFF		= 16
   }			t_instructions;
+
+typedef struct		s_val
+{
+  short			shrt[3];
+  int			inte[3];
+}			t_val;
+
+typedef struct		s_inst
+{
+  unsigned		fi;
+  unsigned		sd;
+  unsigned		th;
+}			t_inst;
 
 typedef union		s_core_int
 {
