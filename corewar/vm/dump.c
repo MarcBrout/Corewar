@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 10:46:07 2016 marc brout
-** Last update Tue Mar 22 12:33:22 2016 marc brout
+** Last update Wed Mar 23 12:16:14 2016 marc brout
 */
 
 #include <unistd.h>
@@ -24,8 +24,16 @@ void		octect_to_base(char octect, char hexa[2],
   b = b | ((octect & 0x0F));
   a = a % my_strlen(base);
   b = b % my_strlen(base);
-  hexa[0] = base[(int)a];
-  hexa[1] = base[(int)b];
+  if (g_endian)
+    {
+      hexa[0] = base[(int)a];
+      hexa[1] = base[(int)b];
+    }
+  else
+    {
+      hexa[1] = base[(int)a];
+      hexa[0] = base[(int)b];
+    }
 }
 
 void		dump(char *ram)

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Wed Mar 23 10:57:44 2016 marc brout
+** Last update Wed Mar 23 14:27:04 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -60,6 +60,30 @@ void		init_inst(t_data *data)
   data->inst[VM_ZJMP] = &zjump;
 }
 
+int		test_instruction(t_data *data, t_pc *pc)
+{
+  int		i;
+  char		instruction;
+
+  i = 0;
+  instruction = data->ram[pc->reg[0]];
+  if (instruction <= 0 || instruction > VM_AFF)
+    {
+      pc->reg[0] += 1;
+      return (0);
+    }
+  while (i <= VM_AFF)
+    {
+      if (i == instruction)
+	{
+	  if (data->inst[i](data, pc))
+	    return (1);
+	}
+      i += 1;
+    }
+  return (0);
+}
+
 int		run_one_cycle(t_data *data)
 {
   int		i;
@@ -74,7 +98,12 @@ int		run_one_cycle(t_data *data)
 	  while (tmp)
 	    {
 	      if (!tmp->cycle)
-		//launchptrf return 1 , fail
+		{
+		  if (test_instruction(data, tmp))
+		    return (1);
+		}
+	      else
+		tmp->cycle--;
 	      tmp = tmp->next;
 	    }
 	}

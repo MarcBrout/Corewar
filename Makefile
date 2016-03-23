@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Wed Mar 23 08:34:10 2016 marc brout
+## Last update Wed Mar 23 16:28:04 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -32,9 +32,27 @@ SRCCOR		=	$(PARSING)pars.c \
 			$(PARSING)list_arg.c \
 			$(PARSING)my_getnbr.c \
 			$(PARSING)func_arg.c \
+			$(PARSING)nothing.c \
+			$(PARSING)add.c \
+			$(PARSING)aff.c \
+                        $(PARSING)and.c \
+			$(PARSING)fork.c \
+			$(PARSING)lfork.c \
+			$(PARSING)ld.c \
+			$(PARSING)ldi.c \
+			$(PARSING)live.c \
+			$(PARSING)lld.c \
+			$(PARSING)lldi.c \
+			$(PARSING)or.c \
+			$(PARSING)xor.c \
+			$(PARSING)sub.c \
+			$(PARSING)st.c \
+			$(PARSING)sti.c \
+			$(PARSING)zjump.c \
 			$(LOAD)load_file.c \
 			$(LOAD)my_bzero.c \
 			$(VM)vm.c \
+			$(VM)read_from_ram.c \
 			$(VM)launch_match.c \
 			$(VM)dump.c \
 			$(VM)run_one_cycle.c \
@@ -154,10 +172,6 @@ CC      =	gcc -g $(CFLAGS) $(IFLAG)
 $(NAME)		: 	$(LIB) $(COREWAR) $(OBJS)
 			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n\<<<<<<< HEAD Linking \"$(NAME)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>>\
  \t DONE\n$(WHITE)"
-			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
-
-$(COREWAR)	:	$(OBJSLIB) $(OBJSCOR)
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\ Linking \"$(COREWAR)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 $(COREWAR)	:	$(OBJSCOR)

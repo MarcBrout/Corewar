@@ -5,28 +5,42 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:51:39 2016 benjamin duhieu
-** Last update Wed Mar 23 10:28:02 2016 benjamin duhieu
+** Last update Wed Mar 23 15:08:08 2016 marc brout
 */
 
 #include "vm.h"
 
+int		add_registres(t_data *data, t_pc *i)
+{
+  int		val;
+
+  val = i->reg[(int)data->ram[MM(i->reg[0] + 2)]] +
+    i->reg[(int)data->ram[MM(i->reg[0] + 3)]];
+  i->reg[(int)data->ram[MM(i->reg[0] + 4)]] = val;
+  return (val);
+}
+
 int		add(t_data *data, t_pc *i)
 {
-  unsigned	first;
-  unsigned	second;
-  unsigned	third;
+  t_inst	inst;
 
-  if (g_endian)
-    swap_integer(data->ram[i->reg[0]]);
-  first = (data->ram[i->reg[0]] << 6) & (char)3;
-  second = (data->ram[i->reg[0]] << 4) & (char)3;
-  third = (data->ram[i->reg[0]] << 2) & (char)3;
-  if (first != 1 || second != 1 || third != 1)
+  inst.fi = data->ram[MM(i->reg[0] + 1)] << 6 & (char)3;
+  inst.sd = data->ram[MM(i->reg[0] + 1)] << 4 & (char)3;
+  inst.th = data->ram[MM(i->reg[0] + 1)] << 2 & (char)3;
+  if (inst.fi != 1 || inst.sd != 1 || inst.th != 1)
     return (0);
-  else if ((data->ram[i->reg[0] + 1] < 1 || data->ram[i->reg[0] + 1] > 16) ||
-	   (data->ram[i->reg[0] + 2] < 1 || data->ram[i->reg[0] + 2] > 16) ||
-	   (data->ram[i->reg[0] + 3] < 1 || data->ram[i->reg[0] + 3] > 16))
+  if ((data->ram[MM(i->reg[0] + 2)] < 1 ||
+       data->ram[MM(i->reg[0] + 2)] > 16) ||
+      (data->ram[MM(i->reg[0] + 3)] < 1 ||
+       data->ram[MM(i->reg[0] + 3)] > 16) ||
+      (data->ram[MM(i->reg[0] + 4)] < 1 ||
+       data->ram[MM(i->reg[0] + 4)] > 16))
     return (0);
-  i->reg[0] += 4;
+  if (add_registres(data, i))
+    i->carry = 0;
+  else
+    i->carry = 1;
+  i->cycle = 10;
+  i->reg[0] += 5;
   return (0);
 }
