@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 15:44:56 2016 marc brout
-** Last update Wed Mar 23 10:21:17 2016 benjamin duhieu
+** Last update Wed Mar 23 11:02:29 2016 marc brout
 */
 
 #include "vm.h"
@@ -91,7 +91,8 @@ int		launch_match(t_data *data)
   set_players(data->champ);
   while (go && nb_turn >= 0)
     {
-      run_one_cycle(data);
+      if (run_one_cycle(data))
+	return (1);
       if (data->dump > 0)
 	if (!(data->dump -= 1))
 	  return (dump(data->ram), 0);

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Wed Mar 23 11:10:06 2016 benjamin duhieu
+** Last update Wed Mar 23 12:28:32 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -64,6 +64,7 @@ typedef	struct		s_pc
   int			carry;
   int			reg[16];
   int			cycle;
+  struct s_champion	*champ;
   struct s_pc		*next;
 }			t_pc;
 
