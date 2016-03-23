@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Wed Mar 23 16:01:10 2016 marc brout
+** Last update Wed Mar 23 17:43:51 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -24,6 +24,7 @@
 # define CORRUPT " is corrupted\n"
 # define MISS_COR "Missing corewar executable\n"
 
+# define IDX(x) ((x) % IDX_MOD)
 # define M(x) ((x) % MEM_SIZE)
 # define MM(x) ((x) % MEM_SIZE)
 # define RSFM read_short_from_ram
@@ -54,6 +55,7 @@ typedef enum		e_instructions
 
 typedef struct		s_val
 {
+  int			type[3];
   short			shrt[3];
   int			inte[3];
 }			t_val;
@@ -262,6 +264,7 @@ int			sub(t_data *, t_pc *);
 ** and / or / xor : and.c && or.c && xor.c
 */
 
+int			recup_val(t_data *, t_pc *, t_inst *, t_val *);
 int			and(t_data *, t_pc *);
 int			check_integrety(unsigned, unsigned, char *, int);
 int			or(t_data *, t_pc *);

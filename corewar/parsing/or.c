@@ -5,28 +5,51 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:55:18 2016 benjamin duhieu
-** Last update Wed Mar 23 16:15:16 2016 marc brout
+** Last update Wed Mar 23 17:25:57 2016 marc brout
 */
 
 #include "vm.h"
 
+int		perform_or(t_pc *i,
+			   t_val *val)
+{
+  if (val->type[0])
+    {
+      if (val->type[1])
+	i->reg[val->inte[2]] = val->inte[0] | val->inte[1];
+      else
+	i->reg[val->inte[2]] = val->inte[0] | val->shrt[1];
+    }
+  else
+    {
+      if (val->type[1])
+	i->reg[val->inte[2]] = val->shrt[0] | val->inte[1];
+      else
+	i->reg[val->inte[2]] = val->shrt[0] | val->shrt[1];
+    }
+  return (i->reg[val->inte[2]]);
+}
+
 int		or(t_data *data, t_pc *i)
 {
-  unsigned	first;
-  unsigned	second;
-  unsigned	third;
+  t_inst	inst;
+  t_val		val;
+  int		move;
 
-  if (g_endian)
-    swap_integer(data->ram[i->reg[0]]);
-  first = (data->ram[i->reg[0]] << 6) & (char)3;
-  second = (data->ram[i->reg[0]] << 4) & (char)3;
-  third = (data->ram[i->reg[0]] << 2) & (char)3;
-  if ((first != 1 && first != 2 && first != 3) ||
-      (second != 1 && second != 2 && second != 3) || third != 1)
+  inst.fi = (data->ram[MM(i->reg[0] + 1)] << 6) & (char)3;
+  inst.sd = (data->ram[MM(i->reg[0] + 1)] << 4) & (char)3;
+  inst.th = (data->ram[MM(i->reg[0] + 1)] << 2) & (char)3;
+  if ((inst.fi != 1 && inst.fi != 2 && inst.fi != 3) ||
+      (inst.sd != 1 && inst.sd != 2 && inst.sd != 3) || inst.th != 1)
     return (0);
-  else if (check_integrety(first, second, data->ram, i->reg[0]))
+  if (check_integrety(inst.fi, inst.sd, data->ram, i->reg[0]))
     return (0);
-  /* else */
-  /*   move_pc(first, second, i); */
+  move = recup_val(data, i, &inst, &val);
+  if (perform_or(i, &val))
+    i->carry = 0;
+  else
+    i->carry = 1;
+  i->cycle = 6;
+  i->reg[0] = MM(i->reg[0] + move);
   return (0);
 }
