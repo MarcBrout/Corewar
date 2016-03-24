@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 15:44:56 2016 marc brout
-** Last update Thu Mar 24 12:25:29 2016 marc brout
+** Last update Thu Mar 24 14:36:31 2016 marc brout
 */
 
 #include "vm.h"
@@ -20,13 +20,9 @@ int		count_players_alive(t_champion *champ[4])
   total = 0;
   while (i < 4)
     {
+      my_printf("champ[%d]->alive = %d\n", i, champ[i]->alive);
       if (champ[i]->alive >= 1)
-	{
-	  my_printf("Le joueur %d %s est en vie\n",
-		    champ[i]->order,
-		    champ[i]->name);
-	  total += 1;
-	}
+	total += 1;
       i += 1;
     }
   return (total);
@@ -54,6 +50,7 @@ void		check_winner(t_champion *champ[4])
 
   i = 0;
   winner = 0;
+  my_printf("CHECKING VICTOR\n");
   while (++i < 4)
     if (champ[i]->alive > 0 && (winner = 1))
       my_printf("Le joueur %d %s à gagné\n", champ[i]->order,
@@ -102,9 +99,11 @@ int		launch_match(t_data *data)
       if (i >= nb_turn && !(i = 0))
 	{
 	  go = count_players_alive(data->champ);
+	  my_printf("go = %d\n", go);
 	  set_players(data->champ);
 	}
-      printf("turn :%d\nlive : %d\n\n", nb_turn, data->nblive);
+      my_printf(" i : %d turn :%d live : %d\n\n",
+	     i, nb_turn, data->nblive);
       i += 1;
     }
   check_winner(data->champ);
