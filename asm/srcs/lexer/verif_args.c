@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 11:45:19 2016
-** Last update Tue Mar 22 12:02:08 2016 marel_m
+** Last update Thu Mar 24 16:13:08 2016 marel_m
 */
 
 #include "asm.h"
@@ -16,10 +16,10 @@ int	verif_one_arg(t_instruc *instruc, t_list_instruc *elem,
   if (i == 0 || i == 14 || i == 11 || i == 8)
     {
       if (check_direct_arg(instruc, elem, file, 1) == -1)
-	return (synthax_error(instruc), -1);
+	return (-1);
     }
   else if (i == 15)
-    if (check_registre_arg(elem, file, 1) == -1)
+    if (check_registre_arg(instruc, elem, file, 1) == -1)
       return (synthax_error(instruc), -1);
   if (check_end_instruc(file, my_strlen(elem->info->arg_1)) == -1)
     return (synthax_error(instruc), -1);
@@ -37,15 +37,15 @@ int	verif_two_args(t_instruc *instruc, t_list_instruc *elem,
 	   && check_indirect_arg(instruc, elem, file, 1) == -1)
 	  || ((new = epure_file_instruc(file,
 					my_strlen(elem->info->arg_1))) == NULL)
-	  || check_registre_arg(elem, new, 2) == -1)
+	  || check_registre_arg(instruc, elem, new, 2) == -1)
 	return (synthax_error(instruc), -1);
     }
   else if (i == 2)
-    if (check_registre_arg(elem, file, 1) == -1
+    if (check_registre_arg(instruc, elem, file, 1) == -1
 	|| (new = epure_file_instruc(file,
 				     my_strlen(elem->info->arg_1))) == NULL
 	|| (check_indirect_arg(instruc, elem, new, 2) == -1
-	    && check_registre_arg(elem, new, 2) == -1))
+	    && check_registre_arg(instruc, elem, new, 2) == -1))
       return (synthax_error(instruc), -1);
   if (check_end_instruc(new, my_strlen(elem->info->arg_2)) == -1)
     return (synthax_error(instruc), -1);
