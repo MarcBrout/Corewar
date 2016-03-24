@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:58:34 2016 benjamin duhieu
-** Last update Thu Mar 24 11:44:15 2016 marc brout
+** Last update Thu Mar 24 12:26:14 2016 marc brout
 */
 
 #include "vm.h"
@@ -30,7 +30,7 @@ void		execute_ld_direct_no_idx(t_data *data, t_pc *i)
 {
   int		dir;
 
-  dir = RIFM(data->ram, i->reg[0] + 2);
+  dir = RIFM(data->ram, MM(i->reg[0] + 2));
   if (dir == 0)
     i->carry = 1;
   else
@@ -43,8 +43,8 @@ void		execute_ld_indirect_no_idx(t_data *data, t_pc *i)
   int		indir;
   int		value;
 
-  value = RSFM(data->ram, i->reg[0] + 2);
-  indir = RIFM(data->ram, i->reg[0] + value);
+  value = RSFM(data->ram, MM(i->reg[0] + 2));
+  indir = RIFM(data->ram, MM(i->reg[0] + value));
   if (indir == 0)
     i->carry = 1;
   else

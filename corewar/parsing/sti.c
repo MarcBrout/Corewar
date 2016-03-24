@@ -5,7 +5,8 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Thu Mar 24 11:12:59 2016 marc brout
+** Last update Thu Mar 24 12:26:03 2016 marc brout
+** Last update Thu Mar 24 12:02:52 2016 benjamin duhieu
 */
 
 #include "my.h"
@@ -35,11 +36,11 @@ void	move_pc_sti(unsigned second, unsigned third, t_pc *i)
 {
   if (((second == 2 || second == 3) && third == 1) ||
       (second == 1 && third == 2))
-    i->reg[0] += 6;
+    i->reg[0] = MM(i->reg[0] + 6);
   else if (((second == 2 || second == 3) && third == 2))
-    i->reg[0] += 7;
+    i->reg[0] = MM(i->reg[0] + 7);
   else
-    i->reg[0] += 5;
+    i->reg[0] = MM(i->reg[0] + 5);
 }
 
 void		execut_sti(t_data *data, t_inst *arg, t_pc *pc)
