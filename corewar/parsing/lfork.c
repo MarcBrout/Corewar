@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 23:01:38 2016 benjamin duhieu
-** Last update Wed Mar 23 14:45:22 2016 marc brout
+** Last update Thu Mar 24 11:47:19 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -24,6 +24,6 @@ int	lfork(t_data *data, t_pc *i)
   else
     i->carry = 0;
   i->cycle = 1000;
-  i->reg[0] += 3;
+  i->reg[0] = MM(i->reg[0] + 3);
   return (0);
 }

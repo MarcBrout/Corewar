@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:58:34 2016 benjamin duhieu
-** Last update Thu Mar 24 10:24:57 2016 benjamin duhieu
+** Last update Thu Mar 24 11:51:48 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -21,16 +21,16 @@ int	check_integrety_ld(unsigned first, char *ram, int i)
 void	move_pc_ld(unsigned first, t_pc *i)
 {
   if (first == 2)
-    i->reg[0] += 7;
+    i->reg[0] = MM(i->reg[0] + 7);
   else
-    i->reg[0] += 5;
+    i->reg[0] = MM(i->reg[0] + 5);
 }
 
 void		execute_ld_direct_no_idx(t_data *data, t_pc *i)
 {
   int		dir;
 
-  dir = RIFM(data->ram, i->reg[0] + 2);
+  dir = RIFM(data->ram, MM(i->reg[0] + 2));
   if (dir == 0)
     i->carry = 1;
   else
@@ -43,8 +43,8 @@ void		execute_ld_indirect_no_idx(t_data *data, t_pc *i)
   int		indir;
   int		value;
 
-  value = RSFM(data->ram, i->reg[0] + 2);
-  indir = RIFM(data->ram, i->reg[0] + value);
+  value = RSFM(data->ram, MM(i->reg[0] + 2));
+  indir = RIFM(data->ram, MM(i->reg[0] + value));
   if (indir == 0)
     i->carry = 1;
   else

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 21:40:56 2016 benjamin duhieu
-** Last update Thu Mar 24 11:07:37 2016 benjamin duhieu
+** Last update Thu Mar 24 11:44:56 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -22,6 +22,6 @@ int	live(t_data *data, t_pc *i)
       data->champ[a]->alive = 1;
   i->cycle = 10;
   data->nblive++;
-  i->reg[0] += 4;
+  i->reg[0] = MM(i->reg[0] + 5);
   return (0);
 }

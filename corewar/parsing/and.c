@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:54:20 2016 benjamin duhieu
-** Last update Thu Mar 24 10:22:38 2016 benjamin duhieu
+** Last update Thu Mar 24 11:56:38 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -93,7 +93,7 @@ int		and(t_data *data, t_pc *i)
   if ((inst.fi != 1 && inst.fi != 2 && inst.fi != 3) ||
       (inst.sd != 1 && inst.sd != 2 && inst.sd != 3) || inst.th != 1)
     return (0);
-  if (check_integrety(inst.fi, inst.sd, data->ram, i->reg[0] + 1))
+  if (check_integrety(inst.fi, inst.sd, data->ram, i->reg[0]))
     return (0);
   move = recup_val(data, i, &inst, &val);
   if (perform_and(i, &val))

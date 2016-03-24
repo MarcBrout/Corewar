@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:12 2016 benjamin duhieu
-** Last update Wed Mar 23 21:03:56 2016 benjamin duhieu
+** Last update Thu Mar 24 11:55:31 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -14,12 +14,12 @@ void		execute_ld_direct(t_data *data, t_pc *i)
 {
   int		dir;
 
-  dir = IDX(RIFM(data->ram, i->reg[0] + 2));
+  dir = IDX(RIFM(data->ram, MM(i->reg[0] + 2)));
   if (dir == 0)
     i->carry = 1;
   else
     i->carry = 0;
-  i->reg[(int)data->ram[MM(i->reg[0] + 3)]] = dir;
+  i->reg[(int)data->ram[MM(i->reg[0] + 6)]] = dir;
 }
 
 void		execute_ld_indirect(t_data *data, t_pc *i)
@@ -27,13 +27,13 @@ void		execute_ld_indirect(t_data *data, t_pc *i)
   int		indir;
   int		value;
 
-  value = IDX(RSFM(data->ram, i->reg[0] + 2));
-  indir = IDX(RIFM(data->ram, i->reg[0] + value));
+  value = IDX(RSFM(data->ram, MM(i->reg[0] + 2)));
+  indir = IDX(RIFM(data->ram, MM(i->reg[0] + value)));
   if (indir == 0)
     i->carry = 1;
   else
     i->carry = 0;
-  i->reg[(int)data->ram[MM(i->reg[0] + 3)]] = indir;
+  i->reg[(int)data->ram[MM(i->reg[0] + 4)]] = indir;
 }
 
 int		ld(t_data *data, t_pc *i)

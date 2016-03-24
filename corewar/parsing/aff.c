@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 23:01:53 2016 benjamin duhieu
-** Last update Wed Mar 23 21:03:21 2016 benjamin duhieu
+** Last update Thu Mar 24 11:45:41 2016 benjamin duhieu
 */
 
 #include <unistd.h>
@@ -25,6 +25,6 @@ int		aff(t_data *data, t_pc *i)
   c = i->reg[(int)data->ram[MM(i->reg[0] + 2)]] % 256;
   write(1, &c, 1);
   i->cycle = 2;
-  i->reg[0] += 3;
+  i->reg[0] = MM(i->reg[0] + 3);
   return (0);
 }
