@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Thu Mar 24 12:21:05 2016 marc brout
+** Last update Thu Mar 24 13:24:58 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -80,6 +80,7 @@ int		test_instruction(t_data *data, t_pc *pc)
 	{
 	  if (data->inst[i](data, pc))
 	    return (1);
+	  return (0);
 	}
       i += 1;
     }
@@ -99,6 +100,7 @@ int		run_one_cycle(t_data *data)
 	  tmp = data->champ[i]->pc;
 	  while (tmp)
 	    {
+	      my_printf("COUCOU\n");
 	      if (!tmp->cycle)
 		{
 		  if (test_instruction(data, tmp))
@@ -109,7 +111,9 @@ int		run_one_cycle(t_data *data)
 	      tmp = tmp->next;
 	    }
 	}
+      my_printf("============ i = %d ==============\n", i);
       i += 1;
     }
+  my_printf("============ FIN CYCLE ==============\n");
   return (0);
 }
