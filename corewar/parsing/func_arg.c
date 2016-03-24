@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 13:29:10 2016 benjamin duhieu
-** Last update Tue Mar 22 18:06:33 2016 marc brout
+** Last update Thu Mar 24 16:25:30 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -16,12 +16,6 @@ int	chk_dump(char **av, int *i, t_data *data)
 {
   int	res;
 
-  if (!(my_strcmp(av[*i + 1], "-a")) || !(my_strcmp(av[*i + 1], "-n")))
-    {
-      data->dump = -1;
-      *i += 1;
-      return (0);
-    }
   if (!(res = my_getnbr_prog(av[*i + 1])) || res > CYCLE_TO_DIE)
     return (1);
   data->dump = res;

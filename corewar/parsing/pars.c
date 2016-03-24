@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 12:58:17 2016 benjamin duhieu
-** Last update Thu Mar 24 11:34:13 2016 marc brout
+** Last update Thu Mar 24 16:25:56 2016 marc brout
 */
 
 #include <unistd.h>
@@ -59,6 +59,7 @@ int		main(int argc, char **argv)
   if (argc < 2 || !argv)
     return (my_put_usage(argv, 2));
   data.i = 0;
+  data.dump = -1;
   g_endian = endianness();
   if (!(arg = init_list()) || init_ram(&data) ||
       init_champs(&data))
