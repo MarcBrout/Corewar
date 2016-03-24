@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Wed Mar 23 14:27:04 2016 marc brout
+** Last update Wed Mar 23 20:50:17 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -67,6 +67,7 @@ int		test_instruction(t_data *data, t_pc *pc)
 
   i = 0;
   instruction = data->ram[pc->reg[0]];
+  my_printf("%d\n", instruction);
   if (instruction <= 0 || instruction > VM_AFF)
     {
       pc->reg[0] += 1;

@@ -5,23 +5,27 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Wed Mar 23 14:24:47 2016 marc brout
+** Last update Wed Mar 23 21:03:47 2016 marc brout
 */
 
+#include "my.h"
 #include "vm.h"
 
 int	check_integrety_sti(unsigned sc, unsigned th, char *ram, int i)
 {
-  if (((sc == 1 && th == 1) && ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16) ||
-				(ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
-				(ram[MM(i + 3)] < 1 || ram[MM(i + 3)] > 16))) ||
-      ((sc == 1 && th == 2) && ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16) ||
-				(ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16))) ||
+  if (((sc == 1 && th == 1) &&
+       ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16) ||
+	(ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
+	(ram[MM(i + 3)] < 1 || ram[MM(i + 3)] > 16))) ||
+      ((sc == 1 && th == 2) &&
+       ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16) ||
+	(ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16))) ||
       (((sc == 2 || sc == 3) && th == 1) && ((ram[MM(i + 1)] < 1 ||
 					      ram[MM(i + 1)] > 16) ||
 					     (ram[MM(i + 1)] < 1 ||
 					      ram[MM(i + 4)] > 16))) ||
-      ((sc != 1 && th != 1) && ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16))))
+      ((sc != 1 && th != 1) &&
+       ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16))))
     return (1);
   return (0);
 }
@@ -71,14 +75,15 @@ int		sti(t_data *data, t_pc *i)
 {
   t_inst	arg;
 
-  arg.fi = (data->ram[MM(i->reg[0] + 1)] << 6) & (char)3;
-  arg.sd = (data->ram[MM(i->reg[0] + 1)] << 4) & (char)3;
-  arg.th = (data->ram[MM(i->reg[0] + 1)] << 2) & (char)3;
+  arg.fi = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
+  arg.sd = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
+  arg.th = (data->ram[MM(i->reg[0] + 1)] >> 2) & (char)3;
   if (arg.fi != 1 || (arg.sd != 1 && arg.sd != 2 && arg.sd != 3) ||
       (arg.th != 1 && arg.th != 2))
     return (0);
   if (check_integrety_sti(arg.sd, arg.th, data->ram, i->reg[0]))
     return (0);
+  my_printf("%d, %d, %d, %d\n", arg.fi, arg.sd, arg.th, data->ram[MM(i->reg[0] + 1)]);
   execut_sti(data, &arg, i);
   i->cycle = 25;
   move_pc_sti(arg.sd, arg.th, i);

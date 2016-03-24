@@ -5,9 +5,10 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 21:40:56 2016 benjamin duhieu
-** Last update Wed Mar 23 20:37:24 2016 benjamin duhieu
+** Last update Wed Mar 23 20:47:52 2016 marc brout
 */
 
+#include "my.h"
 #include "vm.h"
 
 int	live(t_data *data, t_pc *i)
@@ -23,6 +24,7 @@ int	live(t_data *data, t_pc *i)
   /*   } */
   /* else */
   /*   { */
+  my_printf("test\n");
   chk = read_int_from_ram(data->ram, i->reg[0]);
   a = -1;
   while (data->champ[++a])
