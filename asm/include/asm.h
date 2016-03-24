@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Tue Mar 22 23:32:44 2016 bougon_p
+** Last update Thu Mar 24 16:08:45 2016 marel_m
 */
 
 #ifndef HEADER_H_
@@ -67,6 +67,7 @@ typedef struct		s_instruc
   int			lenght_label;
   t_list_label		*lab;
   int			nb_l;
+  int			reg_err;
   int			addr_wrt;
   int			addr_vir;
 }			t_instruc;
@@ -119,10 +120,11 @@ int			check_stock_good_args(t_instruc *, t_list_instruc *,
 void			print_list(t_instruc *);
 int			check_direct_arg(t_instruc *, t_list_instruc *,
 					 char *, int);
-int			check_registre_arg(t_list_instruc *, char *, int);
+int			check_registre_arg(t_instruc *, t_list_instruc *,
+					   char *, int);
 int			check_indirect_arg(t_instruc *, t_list_instruc *,
 					   char *, int);
-int			stock_args(t_list_instruc *, char *, int);
+void			stock_args(t_list_instruc *, char *, int);
 int			check_end_instruc(char *, int);
 int			check_if_label_exist(t_instruc *);
 int			create_list_label(t_instruc *);

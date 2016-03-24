@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Tue Mar 22 17:32:11 2016 marel_m
+** Last update Thu Mar 24 16:12:20 2016 marel_m
 */
 
 #include "asm.h"
@@ -60,9 +60,9 @@ int	check_direct_arg(t_instruc *instruc, t_list_instruc *elem,
     return (-1);
   if (arg[0] != DIRECT_CHAR
       || (check_if_label(instruc, arg, 1) == -1
-	  && check_if_val(arg, 1) == -1)
-      || stock_args(elem, arg, pos) == -1)
+	  && check_if_val(arg, 1) == -1))
     return (-1);
+  stock_args(elem, arg, pos);
   return (0);
 }
 
@@ -78,14 +78,15 @@ int	check_indirect_arg(t_instruc *instruc, t_list_instruc *elem,
     i++;
   if ((arg = my_strndup(file, i)) == NULL)
     return (-1);
-  if ((check_if_label(instruc, arg, 0) == -1
+  if (check_if_label(instruc, arg, 0) == -1
        && check_if_val(arg, 0) == -1)
-      || stock_args(elem, arg, pos) == -1)
     return (-1);
+  stock_args(elem, arg, pos);
   return (0);
 }
 
-int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
+int	check_registre_arg(t_instruc *instruc, t_list_instruc *elem,
+			   char *file, int pos)
 {
   int	i;
   int	nb;
@@ -108,7 +109,11 @@ int	check_registre_arg(t_list_instruc *elem, char *file, int pos)
   file[j] = '\0';
   nb = atoi(file);
   free(file);
-  if (nb < 1 || nb > 16 || stock_args(elem, arg, pos) == -1)
-    return (free(arg), -1);
+  if (nb < 1 || nb > 16)
+    {
+      instruc->reg_err++;
+      return (free(arg), -1);
+    }
+  stock_args(elem, arg, pos);
   return (0);
 }

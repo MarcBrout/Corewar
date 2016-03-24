@@ -1,20 +1,16 @@
 /*
-** op.c for  korewar
+** op.c for op in /home/marel_m/Rendu/Semestre_2/CPE/CPE_2015_corewar
 **
-** Made by Astek
-** Login   <astek@epitech.net>
+** Made by marel_m
+** Login   <marel_m@epitech.net>
 **
-** Started on  Mon Mar 30 11:14:31 2009 Astek
-** Last update Tue Mar 22 19:00:39 2016 marel_m
-*/
-
-/*
-** Ne pas passer ce fichier dans la moulinette de Norme.
+** Started on  Thu Mar 24 16:14:12 2016 marel_m
+** Last update Thu Mar 24 16:14:15 2016 marel_m
 */
 
 #include "op.h"
 
-op_t    op_tab[] =
+t_op    op_tab[] =
   {
     {"live", 1, {T_DIR}, 1, 10, "alive"},
     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load"},

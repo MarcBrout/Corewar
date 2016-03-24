@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 14 20:56:37 2016 marc brout
-** Last update Tue Mar 22 18:56:20 2016 marc brout
+** Last update Thu Mar 24 16:14:47 2016 marel_m
 */
 
 #ifndef OP_H_
@@ -64,7 +64,7 @@ typedef char    t_args_type;
 
 #define T_LAB           8
 
-typedef struct  op_s
+typedef struct  s_op
 {
    char         *mnemonique;
    char         nbr_args;
@@ -72,9 +72,9 @@ typedef struct  op_s
    char         code;
    int          nbr_cycles;
    char         *comment;
-}		op_t;
+}		t_op;
 
-extern op_t op_tab[];
+extern t_op op_tab[];
 
 /*
 ** size en octet
