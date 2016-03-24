@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Wed Mar 23 09:59:27 2016 benjamin duhieu
+** Last update Wed Mar 23 20:39:54 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -24,7 +24,49 @@
 # define CORRUPT " is corrupted\n"
 # define MISS_COR "Missing corewar executable\n"
 
+# define IDX(x) ((x) % IDX_MOD)
+# define M(x) ((x) % MEM_SIZE)
+# define MM(x) ((x) % MEM_SIZE)
+# define IDX(x) ((x) % IDX_MOD)
+# define RSFM read_short_from_ram
+# define RIFM read_int_from_ram
+
 char		g_endian;
+
+typedef enum		e_instructions
+  {
+    VM_ERROR		= 0,
+    VM_LIVE		= 1,
+    VM_LD		= 2,
+    VM_ST		= 3,
+    VM_ADD		= 4,
+    VM_SUB		= 5,
+    VM_AND		= 6,
+    VM_OR		= 7,
+    VM_XOR		= 8,
+    VM_ZJMP		= 9,
+    VM_LDI		= 10,
+    VM_STI		= 11,
+    VM_FORK		= 12,
+    VM_LLD		= 13,
+    VM_LLDI		= 14,
+    VM_LFORK		= 15,
+    VM_AFF		= 16
+  }			t_instructions;
+
+typedef struct		s_val
+{
+  int			type[3];
+  short			shrt[3];
+  int			inte[3];
+}			t_val;
+
+typedef struct		s_inst
+{
+  unsigned		fi;
+  unsigned		sd;
+  unsigned		th;
+}			t_inst;
 
 typedef union		s_core_int
 {
@@ -43,6 +85,7 @@ typedef	struct		s_pc
   int			carry;
   int			reg[16];
   int			cycle;
+  struct s_champion	*champ;
   struct s_pc		*next;
 }			t_pc;
 
@@ -52,7 +95,6 @@ typedef struct		s_champion
   char			valid;
   int			alive;
   int			order;
-  int			fd;
   unsigned int		size;
   char			name[PROG_NAME_LENGTH + 1];
   t_pc			*pc;
@@ -64,6 +106,7 @@ typedef struct		s_data
   int			dump;
   int			i;
   t_champion		*champ[4];
+  int			(*inst[17])(struct s_data *, t_pc *);
   char			*ram;
   char			*ramv;
 }			t_data;
@@ -187,81 +230,87 @@ void			put_order_in_champ(t_data *, int);
 void			recheck_prog_number(t_data *);
 
 /*
-<<<<<<< HEAD:vm/include/vm.h
 ** st.c
 */
 
-int	check_integrety_st(unsigned, char *, int);
-int	st(t_data *, t_pc *);
-void	move_pc_st(unsigned, t_pc *);
+int			check_integrety_st(unsigned, char *, int);
+int			st(t_data *, t_pc *);
+void			move_pc_st(unsigned, t_pc *);
 
 /*
 ** live.c
 */
 
-int	live(t_data *, t_pc *);
+int			live(t_data *, t_pc *);
 
 /*
 ** ld && lld: ld.c && lld.c
 */
 
-int	check_integrety_ld(unsigned, char *, int);
-int	ld(t_data *, t_pc *);
-int	lld(t_data *, t_pc *);
-void	move_pc_ld(unsigned, t_pc *);
+int			check_integrety_ld(unsigned, char *, int);
+int			ld(t_data *, t_pc *);
+int			lld(t_data *, t_pc *);
+void			move_pc_ld(unsigned, t_pc *);
 
 /*
 ** add && sub: add.c && sub.c
 */
 
-int	add(t_data *, t_pc *);
-int	sub(t_data *, t_pc *);
+int			add(t_data *, t_pc *);
+int			sub(t_data *, t_pc *);
 
 /*
 ** and / or / xor : and.c && or.c && xor.c
 */
 
-int	and(t_data *, t_pc *);
-int	check_integrety(unsigned, unsigned, char *, int);
-int	or(t_data *, t_pc *);
-int	xor(t_data *, t_pc *);
-void	move_pc(unsigned, unsigned, t_pc *);
+int			recup_val(t_data *, t_pc *, t_inst *, t_val *);
+int			and(t_data *, t_pc *);
+int			check_integrety(unsigned, unsigned, char *, int);
+int			or(t_data *, t_pc *);
+int			xor(t_data *, t_pc *);
+void			move_pc(unsigned, unsigned, t_pc *);
 
 /*
 ** zjmp: zjump.c
 */
 
-int	zjump(t_data *, t_pc *);
+int			zjump(t_data *, t_pc *);
 
 /*
 ** ldi && lldi: ldi.c && lldi.c
 */
 
-int	check_integrety_ldi(unsigned, unsigned, char *, int);
-int	ldi(t_data *, t_pc *);
-int	lldi(t_data *, t_pc *);
-void	move_pc_ldi(unsigned, unsigned, t_pc *);
+int			check_integrety_ldi(unsigned, unsigned, char *, int);
+int			ldi(t_data *, t_pc *);
+int			lldi(t_data *, t_pc *);
+void			move_pc_ldi(unsigned, unsigned, t_pc *);
 
 /*
 ** sti: sti.c
 */
 
-int	check_integrety_sti(unsigned, unsigned, char *, int);
-int	sti(t_data *, t_pc *);
-void	move_pc_sti(unsigned, unsigned, t_pc *);
+int			check_integrety_sti(unsigned, unsigned, char *, int);
+int			sti(t_data *, t_pc *);
+void			move_pc_sti(unsigned, unsigned, t_pc *);
 
 /*
 ** fork / lfork : fork.c && lfork.c
 */
 
-int	frk(t_data *, t_pc *);
-int	lfork(t_data *, t_pc *);
+int			frk(t_data *, t_pc *);
+int			lfork(t_data *, t_pc *);
 
 /*
 ** aff : aff.c
 */
 
-int	aff(t_data *, t_pc *);
+int			aff(t_data *, t_pc *);
+
+/*
+** nothing: nothing.c
+*/
+
+int			nothing(t_data *, t_pc *);
 
 /*
 ** run_one_cycle.c
@@ -269,6 +318,7 @@ int	aff(t_data *, t_pc *);
 
 void			copy_registres(t_pc *src,
 				       t_pc *dst);
+void			init_inst(t_data *);
 int			add_pc(t_pc *pc, int pos,
 			       int cycle);
 int			run_one_cycle(t_data *data);

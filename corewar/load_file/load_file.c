@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 12:07:50 2016 marc brout
-** Last update Tue Mar 22 18:07:20 2016 marc brout
+** Last update Wed Mar 23 20:41:25 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -82,6 +82,7 @@ int		init_champs(t_data *data)
 	  !(data->champ[i]->pc = malloc(sizeof(t_pc))))
 	return (my_put_error(MALLOC_ERROR, 1));
       my_bzero(data->champ[i]->pc->reg, sizeof(int) * 16, 0);
+      data->champ[i]->pc->champ = data->champ[i];
       data->champ[i]->pc->reg[0] = -1;
       data->champ[i]->pc->cycle = 0;
       data->champ[i]->pc->carry = 0;
