@@ -5,15 +5,17 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:56:42 2016 benjamin duhieu
-** Last update Wed Mar 23 14:25:23 2016 marc brout
+** Last update Thu Mar 24 11:42:35 2016 marc brout
 */
 
 #include "vm.h"
+#include "my.h"
 
 int		zjump(t_data *data, t_pc *i)
 {
   short		jump_size;
 
+  my_printf("ZJUMP\n");
   if (i->carry)
     {
       jump_size = read_short_from_ram(data->ram, i->reg[0]);

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Wed Mar 23 14:27:04 2016 marc brout
+** Last update Thu Mar 24 12:21:05 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -35,7 +35,7 @@ int	add_pc(t_pc *pc, int pos, int cycle)
   elem->reg[0] = pos;
   elem->carry = pc->carry;
   elem->cycle = cycle;
-  elem->next = pc->next;
+  elem->next = elem->next;
   pc->next = elem;
   return (0);
 }
@@ -67,6 +67,8 @@ int		test_instruction(t_data *data, t_pc *pc)
 
   i = 0;
   instruction = data->ram[pc->reg[0]];
+  my_printf("instruction = %d, reg[0] = %d\n", instruction,
+	    pc->reg[0]);
   if (instruction <= 0 || instruction > VM_AFF)
     {
       pc->reg[0] += 1;

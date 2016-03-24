@@ -5,10 +5,11 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:12 2016 benjamin duhieu
-** Last update Thu Mar 24 11:55:31 2016 benjamin duhieu
+** Last update Thu Mar 24 12:49:45 2016 benjamin duhieu
 */
 
 #include "vm.h"
+#include "my.h"
 
 void		execute_ld_direct(t_data *data, t_pc *i)
 {
@@ -41,6 +42,7 @@ int		ld(t_data *data, t_pc *i)
   unsigned	first;
   unsigned	second;
 
+  my_printf("LD\n");
   first = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
   second = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
   if ((first != 2 && first != 3) || second != 1)
@@ -51,7 +53,7 @@ int		ld(t_data *data, t_pc *i)
     execute_ld_direct(data, i);
   else
     execute_ld_indirect(data, i);
-  i->cycle = 10;
+  i->cycle = 5;
   move_pc_ld(first, i);
   return (0);
 }

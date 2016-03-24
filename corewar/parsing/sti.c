@@ -5,9 +5,11 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
+** Last update Thu Mar 24 12:26:03 2016 marc brout
 ** Last update Thu Mar 24 12:02:52 2016 benjamin duhieu
 */
 
+#include "my.h"
 #include <stdio.h>
 #include "vm.h"
 
@@ -83,6 +85,7 @@ int		sti(t_data *data, t_pc *i)
     return (0);
   if (check_integrety_sti(arg.sd, arg.th, data->ram, i->reg[0]))
     return (0);
+  my_printf("%d, %d, %d, %d\n", arg.fi, arg.sd, arg.th, data->ram[MM(i->reg[0] + 1)]);
   execut_sti(data, &arg, i);
   i->cycle = 25;
   move_pc_sti(arg.sd, arg.th, i);
