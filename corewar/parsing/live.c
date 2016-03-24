@@ -5,7 +5,8 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 21:40:56 2016 benjamin duhieu
-** Last update Wed Mar 23 20:47:52 2016 marc brout
+** Last update Thu Mar 24 11:41:53 2016 marc brout
+** Last update Thu Mar 24 11:07:37 2016 benjamin duhieu
 */
 
 #include "my.h"
@@ -16,22 +17,14 @@ int	live(t_data *data, t_pc *i)
   int	chk;
   int	a;
 
-  /* if (!i->said_alive) */
-  /*   { */
-  /*     i->champ->live_value = read_int_from_ram(data->ram, i->reg[0]); */
-  /*     i->champ->said_alive = 1; */
-  /*     i->champ->alive = 1; */
-  /*   } */
-  /* else */
-  /*   { */
-  my_printf("test\n");
+  my_printf("LIVE\n");
   chk = read_int_from_ram(data->ram, i->reg[0]);
   a = -1;
-  while (data->champ[++a])
-    if (chk != data->champ[a]->pc->reg[1])
+  while (++a < 4)
+    if (chk == data->champ[a]->pc->reg[1])
       data->champ[a]->alive = 1;
   i->cycle = 10;
   data->nblive++;
-  i->reg[0] += 4;
+  i->reg[0] += 5;
   return (0);
 }

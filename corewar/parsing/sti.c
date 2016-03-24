@@ -5,28 +5,29 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Wed Mar 23 21:03:47 2016 marc brout
+** Last update Thu Mar 24 11:12:59 2016 marc brout
 */
 
 #include "my.h"
+#include <stdio.h>
 #include "vm.h"
 
 int	check_integrety_sti(unsigned sc, unsigned th, char *ram, int i)
 {
-  if (((sc == 1 && th == 1) &&
-       ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16) ||
-	(ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
-	(ram[MM(i + 3)] < 1 || ram[MM(i + 3)] > 16))) ||
-      ((sc == 1 && th == 2) &&
-       ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16) ||
-	(ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16))) ||
-      (((sc == 2 || sc == 3) && th == 1) && ((ram[MM(i + 1)] < 1 ||
-					      ram[MM(i + 1)] > 16) ||
-					     (ram[MM(i + 1)] < 1 ||
-					      ram[MM(i + 4)] > 16))) ||
-      ((sc != 1 && th != 1) &&
-       ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16))))
-    return (1);
+  if (((sc == 1 && th == 1) && ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
+				(ram[MM(i + 3)] < 1 || ram[MM(i + 3)] > 16) ||
+				(ram[MM(i + 4)] < 1 || ram[MM(i + 4)] > 16))) ||
+      ((sc == 1 && th == 2) && ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
+				(ram[MM(i + 3)] < 1 || ram[MM(i + 3)] > 16))) ||
+      (((sc == 2 || sc == 3) && th == 1) && ((ram[MM(i + 2)] < 1 ||
+					      ram[MM(i + 2)] > 16) ||
+					     (ram[MM(i + 5)] < 1 ||
+					      ram[MM(i + 5)] > 16))) ||
+      ((sc != 1 && th != 1) && ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16))))
+    {
+      printf("reg i + 1 : %d, reg i + 2 : %d, reg i + 3 : %d, reg i + 4 : %d", ram[MM(i + 1)], ram[MM(i + 2)], ram[MM(i + 3)], ram[MM(i + 4)]);
+      return (1);
+    }
   return (0);
 }
 

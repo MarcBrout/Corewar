@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 23:01:53 2016 benjamin duhieu
-** Last update Wed Mar 23 14:50:50 2016 marc brout
+** Last update Wed Mar 23 21:03:21 2016 benjamin duhieu
 */
 
 #include <unistd.h>
@@ -16,7 +16,7 @@ int		aff(t_data *data, t_pc *i)
   unsigned	first;
   char		c;
 
-  first = (data->ram[MM(i->reg[0] + 1)] << 6) & (char)3;
+  first = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
   if (first != 1)
     return (0);
   if (data->ram[MM(i->reg[0] + 2)] < 1 ||
