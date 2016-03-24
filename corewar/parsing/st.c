@@ -5,16 +5,16 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:54 2016 benjamin duhieu
-** Last update Wed Mar 23 21:05:20 2016 benjamin duhieu
+** Last update Thu Mar 24 10:29:08 2016 benjamin duhieu
 */
 
 #include "vm.h"
 
 int	check_integrety_st(unsigned second, char *ram, int i)
 {
-  if ((second != 1 && (ram[i + 1] < 1 || ram[i + 1] > 16)) ||
-      (second == 1 && ((ram[i + 1] < 1 || ram[i + 1] > 16) ||
-		       (ram[i + 2] < 1 || ram[i + 2] > 16))))
+  if ((second != 1 && (ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16)) ||
+      (second == 1 && ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
+		       (ram[MM(i + 3)] < 1 || ram[MM(i + 3)] > 16))))
     return (1);
   return (0);
 }

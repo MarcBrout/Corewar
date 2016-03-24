@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:59:12 2016 benjamin duhieu
-** Last update Wed Mar 23 21:04:51 2016 benjamin duhieu
+** Last update Thu Mar 24 10:27:23 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -13,17 +13,17 @@
 int	check_integrety_ldi(unsigned first, unsigned second, char *ram, int i)
 {
   if (((first == 1 && second == 2) &&
-       ((ram[i + 1] < 1 || ram[i + 1] > 16) ||
-	(ram[i + 4] < 1 || ram[i + 4] > 16))) ||
+       ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
+	(ram[MM(i + 5)] < 1 || ram[MM(i + 5)] > 16))) ||
       (((first == 2 || first == 3) && second == 1) &&
-       ((ram[i + 3] < 1 || ram[i + 3] > 16) ||
-	(ram[i + 4] < 1 || ram[i + 4] > 16))) ||
+       ((ram[MM(i + 4)] < 1 || ram[MM(i + 4)] > 16) ||
+	(ram[MM(i + 5)] < 1 || ram[MM(i + 5)] > 16))) ||
       (((first == 2 || first == 3) && second == 2) &&
-       (ram[i + 5] < 1 || ram[i + 5] > 16)) ||
+       (ram[MM(i + 6)] < 1 || ram[MM(i + 6)] > 16)) ||
       ((first == 1 && second == 1) &&
-       ((ram[i + 1] < 1 || ram[i + 1] > 16) ||
-	(ram[i + 2] < 1 || ram[i + 2] > 16) ||
-	(ram[i + 2] < 1 || ram[i + 3] > 16))))
+       ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
+	(ram[MM(i + 3)] < 1 || ram[MM(i + 3)] > 16) ||
+	(ram[MM(i + 4)] < 1 || ram[MM(i + 4)] > 16))))
     return (1);
   return (0);
 }
