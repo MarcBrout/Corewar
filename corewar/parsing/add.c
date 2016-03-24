@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:51:39 2016 benjamin duhieu
-** Last update Wed Mar 23 21:03:11 2016 benjamin duhieu
+** Last update Thu Mar 24 11:45:22 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -41,6 +41,6 @@ int		add(t_data *data, t_pc *i)
   else
     i->carry = 1;
   i->cycle = 10;
-  i->reg[0] += 5;
+  i->reg[0] = MM(i->reg[0] + 5);
   return (0);
 }

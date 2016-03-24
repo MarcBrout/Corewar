@@ -5,28 +5,28 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:54:20 2016 benjamin duhieu
-** Last update Wed Mar 23 21:03:35 2016 benjamin duhieu
+** Last update Thu Mar 24 11:56:38 2016 benjamin duhieu
 */
 
 #include "vm.h"
 
 int	check_integrety(unsigned f, unsigned s, char *r, int i)
 {
-  if (((f == 3 && s == 3) && (r[M(i + 5)] < 1 || r[M(i + 5)] > 16)) ||
-      ((f == 2 && s == 2) && (r[M(i + 9)] < 1 || r[M(i + 9)] > 16)) ||
+  if (((f == 3 && s == 3) && (r[M(i + 6)] < 1 || r[M(i + 6)] > 16)) ||
+      ((f == 2 && s == 2) && (r[M(i + 10)] < 1 || r[M(i + 10)] > 16)) ||
       (((f == 3 && s == 2) || (f == 2 && s == 3)) &&
-       (r[M(i + 7)] < 1 || r[M(i + 7)] > 16)) ||
-      ((f == 1 && s == 2) && ((r[M(i + 1)] < 1 || r[M(i + 1)] > 16) ||
-			      (r[M(i + 6)] < 1 || r[M(i + 6)] > 16))) ||
-      ((f == 1 && s == 3) && ((r[M(i + 1)] < 1 || r[M(i + 1)] > 16) ||
-			      (r[M(i + 4)] < 1 || r[M(i + 4)] > 16))) ||
-      ((f == 2 && s == 1) && ((r[M(i + 5)] < 1 || r[M(i + 5)] > 16) ||
-			      (r[M(i + 6)] < 1 || r[M(i + 6)] > 16))) ||
-      ((f == 3 && s == 1) && ((r[M(i + 3)] < 1 || r[M(i + 3)] > 16) ||
-			      (r[M(i + 4)] < 1 || r[M(i + 4)] > 16))) ||
-      ((f == 1 && s == 1) && ((r[M(i + 1)] < 1 || r[M(i + 1)] > 16) ||
-			      (r[M(i + 2)] < 1 || r[M(i + 2)] > 16) ||
-			      (r[M(i + 3)] < 1 || r[M(i + 3)] > 16))))
+       (r[M(i + 8)] < 1 || r[M(i + 8)] > 16)) ||
+      ((f == 1 && s == 2) && ((r[M(i + 2)] < 1 || r[M(i + 2)] > 16) ||
+			      (r[M(i + 7)] < 1 || r[M(i + 7)] > 16))) ||
+      ((f == 1 && s == 3) && ((r[M(i + 2)] < 1 || r[M(i + 2)] > 16) ||
+			      (r[M(i + 5)] < 1 || r[M(i + 5)] > 16))) ||
+      ((f == 2 && s == 1) && ((r[M(i + 6)] < 1 || r[M(i + 6)] > 16) ||
+			      (r[M(i + 7)] < 1 || r[M(i + 7)] > 16))) ||
+      ((f == 3 && s == 1) && ((r[M(i + 4)] < 1 || r[M(i + 4)] > 16) ||
+			      (r[M(i + 5)] < 1 || r[M(i + 5)] > 16))) ||
+      ((f == 1 && s == 1) && ((r[M(i + 2)] < 1 || r[M(i + 2)] > 16) ||
+			      (r[M(i + 3)] < 1 || r[M(i + 3)] > 16) ||
+			      (r[M(i + 4)] < 1 || r[M(i + 4)] > 16))))
     return (1);
   return (0);
 }
@@ -93,7 +93,7 @@ int		and(t_data *data, t_pc *i)
   if ((inst.fi != 1 && inst.fi != 2 && inst.fi != 3) ||
       (inst.sd != 1 && inst.sd != 2 && inst.sd != 3) || inst.th != 1)
     return (0);
-  if (check_integrety(inst.fi, inst.sd, data->ram, i->reg[0] + 1))
+  if (check_integrety(inst.fi, inst.sd, data->ram, i->reg[0]))
     return (0);
   move = recup_val(data, i, &inst, &val);
   if (perform_and(i, &val))
