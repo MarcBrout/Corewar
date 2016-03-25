@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Thu Mar 24 15:38:27 2016 marc brout
+** Last update Fri Mar 25 17:11:10 2016 benjamin duhieu
 ** Last update Thu Mar 24 12:02:52 2016 benjamin duhieu
 */
 
@@ -57,21 +57,20 @@ void		execut_sti(t_data *data, t_inst *arg, t_pc *pc)
     {
       val2 = pc->reg[(int)data->ram[MM(pc->reg[0] + 3)]];
       if (arg->th == 2)
-	val3 = read_short_from_ram(data->ram, MM(pc->reg[0] + 4));
+	val3 = RIFM(data->ram, MM(pc->reg[0] + 4));
       else if (arg->th == 1)
 	val3 = pc->reg[(int)data->ram[MM(pc->reg[0] + 4)]];
     }
   else
     {
       if (arg->sd == 3)
-	val2 = data->ram[MM(pc->reg[0] + RSFM(data->ram,
-					      MM(pc->reg[0] + 3)))];
+	val2 = RIFM(data->ram, IDX(RSFM(data->ram, MM(pc->reg[0] + 3))));
       else if (arg->sd == 2)
-	val2 = read_short_from_ram(data->ram, MM(pc->reg[0] + 3));
+	val2 = RIFM(data->ram, MM(pc->reg[0] + 3));
       if (arg->th == 1)
 	val3 = pc->reg[(int)data->ram[MM(pc->reg[0] + 5)]];
       else if (arg->th == 2)
-	val3 = read_short_from_ram(data->ram, MM(pc->reg[0] + 5));
+	val3 = RIFM(data->ram, MM(pc->reg[0] + 5));
     }
   write_int_to_ram(data->ram, val, MM(pc->reg[0] + val2 + val3));
 }
