@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Mon Mar 14 11:30:23 2016
-** Last update Wed Mar 16 19:01:53 2016 
+** Last update Fri Mar 25 00:36:31 2016 bougon_p
 */
 
 #include "asm.h"
@@ -38,7 +38,8 @@ void			print_list(/* t_header *header,  */t_instruc *instruc)
     {
       if (tmp->info->label != NULL)
 	printf("label : %s ", tmp->info->label);
-      printf("%s %s %s %s\n", tmp->info->name, tmp->info->arg_1, tmp->info->arg_2, tmp->info->arg_3);
+      printf("%s %s %s %s\n", tmp->info->name,
+	     tmp->info->arg_1, tmp->info->arg_2, tmp->info->arg_3);
       tmp = tmp->next;
       i++;
     }

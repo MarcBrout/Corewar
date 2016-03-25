@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Tue Mar 22 23:32:44 2016 bougon_p
+** Last update Fri Mar 25 00:33:42 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -22,10 +22,12 @@
 
 # include "op.h"
 # include "my.h"
-
+# include "list.h"
 
 # define UNUSED __attribute__((__unused__))
+
 # define NB_INSTRUCTIONS 16
+# define HEADER_SIZE 2192
 
 typedef struct		s_header
 {
@@ -62,6 +64,7 @@ typedef struct		s_list_label
 
 typedef struct		s_instruc
 {
+  int			fd;
   int			lenght;
   t_list_instruc	*root;
   int			lenght_label;
@@ -69,6 +72,8 @@ typedef struct		s_instruc
   int			nb_l;
   int			addr_wrt;
   int			addr_vir;
+  t_arglist		real_lab;
+  t_arglist		call_to_lab;
 }			t_instruc;
 
 enum			three_args
@@ -144,9 +149,13 @@ void	set_line_null(char *, int);
 int	convert_littleend_to_bigend_int(int);
 int	convert_littleend_to_bigend_short(int);
 int	create_file(char *);
-bool	check_short_lab(t_info *, t_instruc *);
-bool	check_int_lab(t_info *, t_instruc *);
+bool	check_short_lab(t_info *, t_instruc *, char *);
+bool	check_int_lab(t_info *, t_instruc *, char *);
 int	write_prog_size(t_header *, t_instruc *, int);
+int	create_labcdlist(t_cdlist **);
+int	add_last_labcdl(t_cdlist *, void *);
+int	write_labels(t_instruc *);
+int	w_label(int, t_cdlist *, t_cdlist *);
 
 /*
 ** TOOLS
@@ -155,6 +164,7 @@ int	write_prog_size(t_header *, t_instruc *, int);
 void	free_tab(char **);
 char	*my_strncpy(char *, char *, int);
 char	*my_strndup(char *, int);
+char	*my_strduplab(char *);
 char	*my_strcat(char *, char *);
 void	my_put_nbr_error(int);
 

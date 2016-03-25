@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:31:15 2016 bougon_p
-** Last update Tue Mar 22 21:48:19 2016 bougon_p
+** Last update Wed Mar 23 23:50:23 2016 bougon_p
 */
 
 #include "asm.h"
@@ -17,8 +17,11 @@ int	w_zjmp(t_info *info, int fd, t_instruc *instruc)
   istr = 0x09;
   if (write(fd, &istr, sizeof(istr)) == -1)
     return (1);
+  instruc->addr_wrt += 1;
+  if (check_short_lab(info, instruc, info->arg_1) == true)
+    return (0);
   if (w_short(fd, info->arg_1) == 1)
     return (1);
-  instruc->addr_wrt += 3;
+  instruc->addr_wrt += 2;
   return (0);
 }

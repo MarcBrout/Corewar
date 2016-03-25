@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Wed Mar 23 16:28:04 2016 bougon_p
+## Last update Wed Mar 23 23:22:58 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -35,7 +35,7 @@ SRCCOR		=	$(PARSING)pars.c \
 			$(PARSING)nothing.c \
 			$(PARSING)add.c \
 			$(PARSING)aff.c \
-                        $(PARSING)and.c \
+			$(PARSING)and.c \
 			$(PARSING)fork.c \
 			$(PARSING)lfork.c \
 			$(PARSING)ld.c \
@@ -102,6 +102,7 @@ SRC		=	asm/srcs/main.c \
 			$(PARSER)code_byte.c \
 			$(PARSER)w_args.c \
 			$(PARSER)labs.c \
+			$(PARSER)initlist.c \
 			$(LEXER)lexer.c \
 			$(LEXER)check_name.c \
 			$(LEXER)check_comment.c \

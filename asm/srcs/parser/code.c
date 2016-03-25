@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:23:04 2016 bougon_p
-** Last update Tue Mar 22 18:04:05 2016 bougon_p
+** Last update Thu Mar 24 02:02:48 2016 bougon_p
 */
 
 #include "asm.h"
@@ -24,13 +24,19 @@ int	check_instruct(char *name, char **tabname)
   return (i);
 }
 
-/* int	write_line(t_info *line, int fd, */
-/* 		   t_tabinstr *tabinstr, char **instr) */
-/* { */
+int	stock_real_lab(t_instruc *instruc, t_info *info)
+{
+  t_lablist     *lab;
 
-
-/*   return (0); */
-/* } */
+  if ((lab = malloc(sizeof(t_lablist))) == NULL)
+    return (1);
+  lab->addr = instruc->addr_vir + instruc->addr_wrt;
+  lab->name = my_strduplab(info->label);
+  lab->nb_bytes = 0;
+  printf("INSTR = %s\n", info->name);
+  add_last_labcdl(instruc->real_lab.root, lab);
+  return (0);
+}
 
 int		write_code(int fd, t_instruc *instruc,
 			   t_tabinstr *tabinstr, char **instr)
@@ -43,6 +49,11 @@ int		write_code(int fd, t_instruc *instruc,
     {
       if ((index = check_instruct(act_instr->info->name, instr)) == -1)
 	return (1);
+      if (act_instr->info->label)
+      	{
+      	  printf("SUR CETTE LIGNE LABEL = %s\n", act_instr->info->label);
+      	  stock_real_lab(instruc, act_instr->info);
+      	}
       if (tabinstr->tabinstr[index](act_instr->info, fd, instruc))
 	return (1);
       act_instr = act_instr->next;

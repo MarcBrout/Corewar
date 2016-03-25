@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:32:23 2016 bougon_p
-** Last update Tue Mar 22 22:15:33 2016 bougon_p
+** Last update Wed Mar 23 23:17:14 2016 bougon_p
 */
 
 #include "asm.h"
@@ -17,7 +17,7 @@ int	sti_arg_2(int fd, t_info *info, char byte, t_instruc *instruc)
   check = ((byte & 0x30) >> 4);
   if (check == 0x03 || check == 0x02)
     {
-      if (check_short_lab(info, instruc) == true)
+      if (check_short_lab(info, instruc, info->arg_2) == true)
 	return (0);
       if (w_short(fd, info->arg_2) == 1)
 	return (1);
@@ -39,7 +39,7 @@ int	sti_arg_3(int fd, t_info *info, char byte, t_instruc *instruc)
   check = ((byte & 0x0C) >> 2);
   if (check == 0x02)
     {
-      if (check_short_lab(info, instruc) == true)
+      if (check_short_lab(info, instruc, info->arg_3) == true)
 	return (0);
       if (w_short(fd, info->arg_3) == 1)
 	return (1);
