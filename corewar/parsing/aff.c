@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 23:01:53 2016 benjamin duhieu
-** Last update Thu Mar 24 11:45:41 2016 benjamin duhieu
+** Last update Fri Mar 25 16:40:30 2016 marc brout
 */
 
 #include <unistd.h>
@@ -22,7 +22,7 @@ int		aff(t_data *data, t_pc *i)
   if (data->ram[MM(i->reg[0] + 2)] < 1 ||
       data->ram[MM(i->reg[0] + 2)] > 16)
     return (0);
-  c = i->reg[(int)data->ram[MM(i->reg[0] + 2)]] % 256;
+  c = ((unsigned)i->reg[(int)data->ram[MM(i->reg[0] + 2)]]) % 256;
   write(1, &c, 1);
   i->cycle = 2;
   i->reg[0] = MM(i->reg[0] + 3);

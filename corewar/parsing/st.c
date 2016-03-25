@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:54 2016 benjamin duhieu
-** Last update Thu Mar 24 12:01:44 2016 benjamin duhieu
+** Last update Fri Mar 25 14:43:59 2016 marc brout
 */
 
 #include "vm.h"
@@ -37,8 +37,9 @@ void		execute_st_indirect(t_data *data, t_pc *i)
 {
   int		value;
 
-  value = IDX(RSFM(data->ram, i->reg[0] + 3));
-  data->ram[i->reg[0] + value] = data->ram[i->reg[0] + 2];
+  value = IDX(RSFM(data->ram, MM(i->reg[0] + 3)));
+  data->ram[MM(i->reg[0] + value)] =
+    i->reg[(int)data->ram[MM(i->reg[0] + 2)]];
 }
 
 int		st(t_data *data, t_pc *i)
@@ -56,6 +57,7 @@ int		st(t_data *data, t_pc *i)
     execute_st_indirect(data, i);
   else
     execute_st_reg(data, i);
+  /* my_printf("st->reg[2] = %d\n", i->reg[1]); */
   i->cycle = 5;
   move_pc_st(second, i);
   return (0);
