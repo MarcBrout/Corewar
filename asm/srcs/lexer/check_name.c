@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:09:07 2016
-** Last update Tue Mar 22 15:22:08 2016 marel_m
+** Last update Fri Mar 25 17:18:28 2016 marel_m
 */
 
 #include <stdlib.h>
@@ -52,18 +52,12 @@ int	check_name(t_header *header, char *file)
     return (-1);
   if (my_strncmp(new, ".name", 5) != 0
       || (new[5] != ' ' && new[5] != '\t'))
-    {
-      write(2, "wrong .name\n", 12);
-      return (-1);
-    }
+    return (write(2, "wrong .name\n", 12), -1);
   free(new);
   if ((new = epure_file_name_com(file, 6)) == NULL)
     return (-1);
   if (check_double_quote_name(new) == -1)
-    {
-      write(2, "wrong .name\n", 12);
-      return (-1);
-    }
+    return (write(2, "wrong .name\n", 12), -1);
   stock_name(header, new);
   free(new);
   return (0);

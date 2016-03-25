@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:27:31 2016 bougon_p
-** Last update Tue Mar 22 20:16:23 2016 bougon_p
+** Last update Fri Mar 25 17:44:56 2016 marel_m
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	w_add(t_info *info, int fd, t_instruc *instruc)
