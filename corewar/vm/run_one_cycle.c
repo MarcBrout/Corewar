@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Thu Mar 24 13:24:58 2016 marc brout
+** Last update Fri Mar 25 10:59:49 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -26,17 +26,21 @@ void	copy_registres(t_pc *src, t_pc *dst)
 
 int	add_pc(t_pc *pc, int pos, int cycle)
 {
+  t_pc	*tmp;
   t_pc	*elem;
 
   if (!(elem = malloc(sizeof(t_pc))))
     return (1);
-  copy_registres(pc, elem);
-  elem->champ = pc->champ;
+  tmp = pc;
+  while (tmp->next)
+    tmp = tmp->next;
+  copy_registres(tmp, elem);
+  elem->champ = tmp->champ;
   elem->reg[0] = pos;
-  elem->carry = pc->carry;
+  elem->carry = tmp->carry;
   elem->cycle = cycle;
-  elem->next = elem->next;
-  pc->next = elem;
+  elem->next = NULL;
+  tmp->next = elem;
   return (0);
 }
 
@@ -66,9 +70,8 @@ int		test_instruction(t_data *data, t_pc *pc)
   char		instruction;
 
   i = 0;
+  /* my_printf("pc->reg[0] = %d\n", pc->reg[0]); */
   instruction = data->ram[pc->reg[0]];
-  my_printf("instruction = %d, reg[0] = %d\n", instruction,
-	    pc->reg[0]);
   if (instruction <= 0 || instruction > VM_AFF)
     {
       pc->reg[0] += 1;
@@ -87,33 +90,47 @@ int		test_instruction(t_data *data, t_pc *pc)
   return (0);
 }
 
-int		run_one_cycle(t_data *data)
+int		launch_one_champ_pc(t_data *data, t_champion *champ,
+				    int pc, char *go)
 {
-  int		i;
   t_pc		*tmp;
 
-  i = 0;
-  while (i < 4)
+  tmp = champ->pc;
+  while (pc > 0 && tmp)
+    tmp = tmp->next;
+  if (tmp)
     {
-      if (data->champ[i]->alive >= 0)
-	{
-	  tmp = data->champ[i]->pc;
-	  while (tmp)
-	    {
-	      my_printf("COUCOU\n");
-	      if (!tmp->cycle)
-		{
-		  if (test_instruction(data, tmp))
-		    return (1);
-		}
-	      else
-		tmp->cycle--;
-	      tmp = tmp->next;
-	    }
-	}
-      my_printf("============ i = %d ==============\n", i);
-      i += 1;
+      if (tmp->cycle)
+	tmp->cycle--;
+      else
+	if (test_instruction(data, tmp))
+	  return (1);
+      if (tmp->next)
+	*go = 1;
     }
-  my_printf("============ FIN CYCLE ==============\n");
+  return (0);
+}
+
+int		run_one_cycle(t_data *data)
+{
+  static int	i = 0;
+  char		go;
+
+  go = 0;
+  if (data->champ[0]->valid >= 0)
+    if (launch_one_champ_pc(data, data->champ[0], i, &go))
+      return (1);
+  if (data->champ[1]->valid >= 0)
+    if (launch_one_champ_pc(data, data->champ[1], i, &go))
+      return (1);
+  if (data->champ[2]->valid >= 0)
+    if (launch_one_champ_pc(data, data->champ[2], i, &go))
+      return (1);
+  if (data->champ[3]->valid >= 0)
+    if (launch_one_champ_pc(data, data->champ[3], i, &go))
+      return (1);
+  i += 1;
+  if (!go)
+    i = 0;
   return (0);
 }

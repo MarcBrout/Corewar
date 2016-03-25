@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Tue Mar 22 23:11:33 2016 bougon_p
+** Last update Fri Mar 25 00:39:05 2016 bougon_p
 */
 
 #include "asm.h"
@@ -90,14 +90,28 @@ int		parser(char *name, t_header *head, t_instruc *instruc)
 
   instruc->addr_wrt = 0;
   instruc->addr_vir = 0;
+  if (create_labcdlist(&instruc->real_lab.root) == 1 ||
+      create_labcdlist(&instruc->call_to_lab.root) == 1)
+    return (1);
   if ((fd = create_file(name)) == 1)
     return (1);
+  instruc->fd = fd;
   if (write_header(fd, head, instruc) == 1)
     return (1);
   init_tabinstr(&tabinstr);
   instr = init_instr();
   if (write_code(fd, instruc, &tabinstr, instr) == 1)
     return (1);
+
+  /*
+  ** DEBUG CALL
+  */
+  debug_lists(instruc);
+  /*
+  ** END OF DEBUG
+  */
+
+  write_labels(instruc);
   if (write_prog_size(head, instruc, fd) == 1)
     return (1);
   close(fd);

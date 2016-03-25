@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Mon Oct  5 11:17:08 2015 maud marel
-** Last update Tue Mar 22 11:37:45 2016 marel_m
+** Last update Thu Mar 24 01:32:02 2016 bougon_p
 */
 
 #include <stdlib.h>
@@ -19,13 +19,30 @@ char	*my_strndup(char *src, int n)
   if (my_strlen(src) + n - 1 <= 0)
     return (NULL);
   if ((dest = malloc(sizeof(char) * (my_strlen(src) + n - 1))) == NULL)
-    return (malloc_fail(),NULL);
+    return (malloc_fail(), NULL);
   i = 0;
   while (src && i < n && src[i] != '\0')
     {
       dest[i] = src[i];
       i++;
     }
+  dest[i] = '\0';
+  return (dest);
+}
+
+char	*my_strduplab(char *src)
+{
+  int	i;
+  char	*dest;
+
+  if (my_strlen(src) - 1 < 0)
+    return (NULL);
+  if ((dest = malloc(sizeof(char) * (my_strlen(src) + 1))) == NULL)
+    return (malloc_fail(), NULL);
+  i = -1;
+  while (src[++i] != '\0'
+	 && (src[i] != ':' && src[i] != ' '))
+    dest[i] = src[i];
   dest[i] = '\0';
   return (dest);
 }
