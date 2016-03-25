@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 12:58:17 2016 benjamin duhieu
-** Last update Tue Mar 22 17:46:26 2016 marc brout
+** Last update Thu Mar 24 11:34:13 2016 marc brout
 */
 
 #include <unistd.h>
@@ -38,6 +38,7 @@ int		pars_arg(char **av, t_pars *arg, t_data *data)
 	    return (my_put_file_str
 		    (data->champ[data->i]->path,
 		     CORRUPT, 2));
+	  data->champ[data->i]->alive = 1;
 	  data->champ[data->i]->valid = 1;
 	  i += 1;
 	  data->i += 1;
@@ -47,10 +48,6 @@ int		pars_arg(char **av, t_pars *arg, t_data *data)
     }
   recheck_prog_number(data);
   order_champ(data);
-  /* i = -1; */
-  /* while (++i < 4) */
-  /*   if (data->champ[i]->valid) */
-  /*     my_printf("%s\n", data->champ[i]->name); */
   return (0);
 }
 

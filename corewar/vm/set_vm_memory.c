@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 16:16:26 2016 marc brout
-** Last update Wed Mar 23 10:24:59 2016 marc brout
+** Last update Thu Mar 24 12:05:50 2016 marc brout
 */
 
 #include <sys/types.h>
@@ -85,6 +85,7 @@ int		place_all_champions(t_data *data)
   if ((rest = copy_champion_to_ram(data->champ[0], data->ram))
       < 0)
     return (1);
+  data->champ[0]->pc->reg[0] = 0;
   rest = MEM_SIZE - rest;
   pos = data->champ[0]->size;
   while (first < 4 && nb > 0)
@@ -92,6 +93,7 @@ int		place_all_champions(t_data *data)
       rest_unit = (rest - size_champs(data->champ, first, &nb)) /
 	(nb + 1);
       pos += rest_unit;
+        data->champ[first]->pc->reg[0] = pos;
       if (copy_champion_to_ram(data->champ[first], &data->ram[pos]) < 0)
 	return (1);
       pos += data->champ[first]->size;

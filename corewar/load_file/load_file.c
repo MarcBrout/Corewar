@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 12:07:50 2016 marc brout
-** Last update Wed Mar 23 10:56:51 2016 marc brout
+** Last update Thu Mar 24 12:20:15 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -86,10 +86,9 @@ int		init_champs(t_data *data)
       data->champ[i]->pc->reg[0] = -1;
       data->champ[i]->pc->cycle = 0;
       data->champ[i]->pc->carry = 0;
-      data->champ[i]->said_alive = 0;
-      data->champ[i]->live_value = 0;
+      data->champ[i]->pc->next = NULL;
       data->champ[i]->valid = 0;
-      data->champ[i]->alive = 1;
+      data->champ[i]->alive = -1;
       data->champ[i]->order = -1;
       my_bzero(data->champ[i]->name,
 	       PROG_NAME_LENGTH + 1, 0);

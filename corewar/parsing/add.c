@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:51:39 2016 benjamin duhieu
-** Last update Wed Mar 23 15:08:08 2016 marc brout
+** Last update Thu Mar 24 11:45:22 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -24,9 +24,9 @@ int		add(t_data *data, t_pc *i)
 {
   t_inst	inst;
 
-  inst.fi = data->ram[MM(i->reg[0] + 1)] << 6 & (char)3;
-  inst.sd = data->ram[MM(i->reg[0] + 1)] << 4 & (char)3;
-  inst.th = data->ram[MM(i->reg[0] + 1)] << 2 & (char)3;
+  inst.fi = data->ram[MM(i->reg[0] + 1)] >> 6 & (char)3;
+  inst.sd = data->ram[MM(i->reg[0] + 1)] >> 4 & (char)3;
+  inst.th = data->ram[MM(i->reg[0] + 1)] >> 2 & (char)3;
   if (inst.fi != 1 || inst.sd != 1 || inst.th != 1)
     return (0);
   if ((data->ram[MM(i->reg[0] + 2)] < 1 ||
@@ -41,6 +41,6 @@ int		add(t_data *data, t_pc *i)
   else
     i->carry = 1;
   i->cycle = 10;
-  i->reg[0] += 5;
+  i->reg[0] = MM(i->reg[0] + 5);
   return (0);
 }

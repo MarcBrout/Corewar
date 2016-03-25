@@ -5,24 +5,30 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Wed Mar 23 14:24:47 2016 marc brout
+** Last update Thu Mar 24 12:26:03 2016 marc brout
+** Last update Thu Mar 24 12:02:52 2016 benjamin duhieu
 */
 
+#include "my.h"
+#include <stdio.h>
 #include "vm.h"
 
 int	check_integrety_sti(unsigned sc, unsigned th, char *ram, int i)
 {
-  if (((sc == 1 && th == 1) && ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16) ||
-				(ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
+  if (((sc == 1 && th == 1) && ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
+				(ram[MM(i + 3)] < 1 || ram[MM(i + 3)] > 16) ||
+				(ram[MM(i + 4)] < 1 || ram[MM(i + 4)] > 16))) ||
+      ((sc == 1 && th == 2) && ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||
 				(ram[MM(i + 3)] < 1 || ram[MM(i + 3)] > 16))) ||
-      ((sc == 1 && th == 2) && ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16) ||
-				(ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16))) ||
-      (((sc == 2 || sc == 3) && th == 1) && ((ram[MM(i + 1)] < 1 ||
-					      ram[MM(i + 1)] > 16) ||
-					     (ram[MM(i + 1)] < 1 ||
-					      ram[MM(i + 4)] > 16))) ||
-      ((sc != 1 && th != 1) && ((ram[MM(i + 1)] < 1 || ram[MM(i + 1)] > 16))))
-    return (1);
+      (((sc == 2 || sc == 3) && th == 1) && ((ram[MM(i + 2)] < 1 ||
+					      ram[MM(i + 2)] > 16) ||
+					     (ram[MM(i + 5)] < 1 ||
+					      ram[MM(i + 5)] > 16))) ||
+      ((sc != 1 && th != 1) && ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16))))
+    {
+      printf("reg i + 1 : %d, reg i + 2 : %d, reg i + 3 : %d, reg i + 4 : %d", ram[MM(i + 1)], ram[MM(i + 2)], ram[MM(i + 3)], ram[MM(i + 4)]);
+      return (1);
+    }
   return (0);
 }
 
@@ -30,11 +36,11 @@ void	move_pc_sti(unsigned second, unsigned third, t_pc *i)
 {
   if (((second == 2 || second == 3) && third == 1) ||
       (second == 1 && third == 2))
-    i->reg[0] += 6;
+    i->reg[0] = MM(i->reg[0] + 6);
   else if (((second == 2 || second == 3) && third == 2))
-    i->reg[0] += 7;
+    i->reg[0] = MM(i->reg[0] + 7);
   else
-    i->reg[0] += 5;
+    i->reg[0] = MM(i->reg[0] + 5);
 }
 
 void		execut_sti(t_data *data, t_inst *arg, t_pc *pc)
@@ -71,14 +77,15 @@ int		sti(t_data *data, t_pc *i)
 {
   t_inst	arg;
 
-  arg.fi = (data->ram[MM(i->reg[0] + 1)] << 6) & (char)3;
-  arg.sd = (data->ram[MM(i->reg[0] + 1)] << 4) & (char)3;
-  arg.th = (data->ram[MM(i->reg[0] + 1)] << 2) & (char)3;
+  arg.fi = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
+  arg.sd = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
+  arg.th = (data->ram[MM(i->reg[0] + 1)] >> 2) & (char)3;
   if (arg.fi != 1 || (arg.sd != 1 && arg.sd != 2 && arg.sd != 3) ||
       (arg.th != 1 && arg.th != 2))
     return (0);
   if (check_integrety_sti(arg.sd, arg.th, data->ram, i->reg[0]))
     return (0);
+  my_printf("%d, %d, %d, %d\n", arg.fi, arg.sd, arg.th, data->ram[MM(i->reg[0] + 1)]);
   execut_sti(data, &arg, i);
   i->cycle = 25;
   move_pc_sti(arg.sd, arg.th, i);
