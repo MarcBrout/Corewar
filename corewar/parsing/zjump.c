@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:56:42 2016 benjamin duhieu
-** Last update Thu Mar 24 16:49:31 2016 marc brout
+** Last update Fri Mar 25 18:22:31 2016 marc brout
 */
 
 #include "vm.h"
@@ -15,11 +15,11 @@ int		zjump(t_data *data, t_pc *i)
 {
   short		jump_size;
 
-  /* my_printf("ZJUMP carry = %d\n", i->carry); */
+  my_printf("ZJUMP carry = %d\n", i->carry);
   if (i->carry)
     {
       jump_size = read_short_from_ram(data->ram, MM(i->reg[0] + 1));
-      /* my_printf("jump value = %d\n", jump_size); */
+      my_printf("jump value = %d\n", jump_size);
       i->reg[0] = i->reg[0] + (jump_size % IDX_MOD);
       if (i->reg[0] < 0)
 	i->reg[0] = MEM_SIZE - i->reg[0];
