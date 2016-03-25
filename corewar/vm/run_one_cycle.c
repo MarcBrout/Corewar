@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Fri Mar 25 10:18:17 2016 marc brout
+** Last update Fri Mar 25 11:46:41 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -70,7 +70,7 @@ int		test_instruction(t_data *data, t_pc *pc)
   char		instruction;
 
   i = 0;
-  my_printf("pc->reg[0] = %d\n", pc->reg[0]);
+  /* my_printf("pc->reg[0] = %d\n", pc->reg[0]); */
   instruction = data->ram[pc->reg[0]];
   if (instruction <= 0 || instruction > VM_AFF)
     {
@@ -96,8 +96,9 @@ int		launch_one_champ_pc(t_data *data, t_champion *champ,
   t_pc		*tmp;
 
   tmp = champ->pc;
-  while (pc > 0 && tmp)
+  while (--pc >= 0 && tmp->next)
     tmp = tmp->next;
+
   if (tmp)
     {
       if (tmp->cycle)
@@ -105,32 +106,41 @@ int		launch_one_champ_pc(t_data *data, t_champion *champ,
       else
 	if (test_instruction(data, tmp))
 	  return (1);
+      /* my_printf("tmp->next %p\n", tmp->next); */
       if (tmp->next)
 	*go = 1;
+      else
+	*go = 0;
     }
   return (0);
 }
 
 int		run_one_cycle(t_data *data)
 {
-  static int	i = 0;
-  char		go;
-
-  go = 0;
-  if (data->champ[0]->valid >= 0)
-    if (launch_one_champ_pc(data, data->champ[0], i, &go))
-      return (1);
-  if (data->champ[1]->valid >= 0)
-    if (launch_one_champ_pc(data, data->champ[1], i, &go))
-      return (1);
-  if (data->champ[2]->valid >= 0)
-    if (launch_one_champ_pc(data, data->champ[2], i, &go))
-      return (1);
-  if (data->champ[3]->valid >= 0)
-    if (launch_one_champ_pc(data, data->champ[3], i, &go))
-      return (1);
+  static int	i = 1;
+  char		go = 0;
+  int		test;
+  /* my_printf("============= turn %d live : %d ============\n", i, */
+  /* 	    data->champ[0]->valid); */
+  test = -1;
+  while (++test < i)
+    {
+      if (data->champ[0]->valid >= 0)
+	if (launch_one_champ_pc(data, data->champ[0], test, &go))
+	  return (1);
+      if (data->champ[1]->valid >= 0)
+	if (launch_one_champ_pc(data, data->champ[1], test, &go))
+	  return (1);
+      if (data->champ[2]->valid >= 0)
+	if (launch_one_champ_pc(data, data->champ[2], test, &go))
+	  return (1);
+      if (data->champ[3]->valid >= 0)
+	if (launch_one_champ_pc(data, data->champ[3], test, &go))
+	  return (1);
+    }
   i += 1;
+  /* my_printf("go = %d\n", go); */
   if (!go)
-    i = 0;
+    i = 1;
   return (0);
 }

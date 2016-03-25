@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 16:16:26 2016 marc brout
-** Last update Thu Mar 24 12:05:50 2016 marc brout
+** Last update Fri Mar 25 10:37:39 2016 marc brout
 */
 
 #include <sys/types.h>
@@ -33,7 +33,7 @@ int		copy_champion_to_ram(t_champion *champion,
   t_header	head;
   int		fd;
 
-  if (champion->valid)
+  if (champion->valid > 0)
     {
       if ((fd = open(champion->path, O_RDONLY)) < 0)
 	return (my_put_file_noaccess(champion->path, -1));
@@ -61,7 +61,7 @@ int		size_champs(t_champion *champ[4],
   *nb = 0;
   while (i < 4)
     {
-      if (champ[i]->valid)
+      if (champ[i]->valid > 0)
 	{
 	  total += champ[i]->size;
 	  *nb += 1;
