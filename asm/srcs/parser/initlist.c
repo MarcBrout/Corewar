@@ -5,43 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Mar 23 22:24:42 2016 bougon_p
-** Last update Thu Mar 24 00:38:59 2016 bougon_p
+** Last update Fri Mar 25 15:45:49 2016 bougon_p
 */
 
 #include "asm.h"
-
-void		debug_lists(t_instruc *instruc)
-{
-  t_cdlist	*tmp;
-
-  /*
-  ** CALL TO LABS
-  */
-
-  tmp = instruc->call_to_lab.root->next;
-  while (tmp != instruc->call_to_lab.root)
-    {
-      printf("\n###NOUVEAU MAILLON __ CALL_TO __###\n");
-      printf("NAME = %s\n", tmp->data->name);
-      printf("ADDR = %d\n", tmp->data->addr);
-      printf("NB BYTES = %d\n\n", tmp->data->nb_bytes);
-      tmp = tmp->next;
-    }
-
-  /*
-  ** REAL LABS
-  */
-
-  tmp = instruc->real_lab.root->next;
-  while (tmp != instruc->real_lab.root)
-    {
-      printf("\n###NOUVEAU MAILLON __ REAL __###\n");
-      printf("NAME = %s\n", tmp->data->name);
-      printf("ADDR = %d\n", tmp->data->addr);
-      printf("NB BYTES = %d\n\n", tmp->data->nb_bytes);
-      tmp = tmp->next;
-    }
-}
 
 int		create_labcdlist(t_cdlist **root)
 {

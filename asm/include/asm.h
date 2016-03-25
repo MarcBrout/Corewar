@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Fri Mar 25 01:09:23 2016 bougon_p
+** Last update Fri Mar 25 14:19:32 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -75,6 +75,7 @@ typedef struct		s_instruc
   int			addr_vir;
   t_arglist		real_lab;
   t_arglist		call_to_lab;
+  int			instr_addr;
 }			t_instruc;
 
 enum			three_args

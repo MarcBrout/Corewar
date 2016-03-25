@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Wed Mar 23 23:22:58 2016 bougon_p
+## Last update Fri Mar 25 13:06:26 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -171,8 +171,8 @@ CC      =	gcc -g $(CFLAGS) $(IFLAG)
 # PROJECT RULES
 
 $(NAME)		: 	$(LIB) $(COREWAR) $(OBJS)
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n\<<<<<<< HEAD Linking \"$(NAME)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>>\
- \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n<<<<<<< HEAD Linking \"$(NAME)\"\n\twith \
+\"$(CC)\"\n\n>>>>>>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 $(COREWAR)	:	$(OBJSCOR)
