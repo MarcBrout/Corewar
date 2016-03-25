@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 12:58:17 2016 benjamin duhieu
-** Last update Thu Mar 24 16:25:56 2016 marc brout
+** Last update Fri Mar 25 11:46:17 2016 benjamin duhieu
 */
 
 #include <unistd.h>
@@ -43,8 +43,6 @@ int		pars_arg(char **av, t_pars *arg, t_data *data)
 	  i += 1;
 	  data->i += 1;
 	}
-      else if (chk == 3)
-	return (1);
     }
   recheck_prog_number(data);
   order_champ(data);

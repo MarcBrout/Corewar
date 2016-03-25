@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar 16 11:24:18 2016
-** Last update Thu Mar 24 16:09:40 2016 marel_m
+** Last update Fri Mar 25 15:24:14 2016 marel_m
 */
 
 #include "asm.h"
@@ -21,9 +21,9 @@ int	reg_reg_reg(t_instruc *instruc, t_list_instruc *elem,
       || check_registre_arg(instruc, elem, new, 2) == -1
       || (new2 = epure_file_instruc(new, my_strlen(elem->info->arg_2))) == NULL
       || check_registre_arg(instruc, elem, new2, 3) == -1)
-    return (synthax_error(instruc), -1);
+    return (synthax_error(instruc, -1), -1);
   if (check_end_instruc(new2, my_strlen(elem->info->arg_3)) == -1)
-    return (synthax_error(instruc), -1);
+    return (synthax_error(instruc, 0), -1);
   free(new);
   free(new2);
   return (0);
@@ -35,18 +35,14 @@ int	regdirin_regdirin_reg(t_instruc *instruc, t_list_instruc *elem,
   char	*new;
   char	*new2;
 
-  if ((check_registre_arg(instruc, elem, file, 1) == -1
-       && check_direct_arg(instruc, elem, file, 1) == -1
-       && check_indirect_arg(instruc, elem, file, 1) == -1)
+  if (check_first_rdi_rdi_r(instruc, elem, file) == -1
       || (new = epure_file_instruc(file, my_strlen(elem->info->arg_1))) == NULL
-      || (check_registre_arg(instruc, elem, new, 2) == -1
-	  && check_direct_arg(instruc, elem, new, 2) == -1
-	  && check_indirect_arg(instruc, elem, new, 2) == -1)
+      || check_second_rdi_rdi_r(instruc, elem, new) == -1
       || (new2 = epure_file_instruc(new, my_strlen(elem->info->arg_2))) == NULL
       || check_registre_arg(instruc, elem, new2, 3) == -1)
-    return (synthax_error(instruc), -1);
+    return (synthax_error(instruc, -1), -1);
   if (check_end_instruc(new2, my_strlen(elem->info->arg_3)) == -1)
-    return (synthax_error(instruc), -1);
+    return (synthax_error(instruc, 0), -1);
   free(new);
   free(new2);
   return (0);
@@ -58,17 +54,14 @@ int	regdirin_regdir_reg(t_instruc *instruc, t_list_instruc *elem,
   char	*new;
   char	*new2;
 
-  if ((check_registre_arg(instruc, elem, file, 1) == -1
-       && check_direct_arg(instruc, elem, file, 1) == -1
-       && check_indirect_arg(instruc, elem, file, 1) == -1)
+  if (check_first_rdi_rd_r(instruc, elem, file) == -1
       || (new = epure_file_instruc(file, my_strlen(elem->info->arg_1))) == NULL
-      || (check_registre_arg(instruc, elem, new, 2) == -1
-	  && check_direct_arg(instruc, elem, new, 2) == -1)
+      || check_second_rdi_rd_r(instruc, elem, new) == -1
       || (new2 = epure_file_instruc(new, my_strlen(elem->info->arg_2))) == NULL
       || check_registre_arg(instruc, elem, new2, 3) == -1)
-    return (synthax_error(instruc), -1);
+    return (synthax_error(instruc, -1), -1);
   if (check_end_instruc(new2, my_strlen(elem->info->arg_3)) == -1)
-    return (synthax_error(instruc), -1);
+    return (synthax_error(instruc, 0), -1);
   free(new);
   free(new2);
   return (0);
@@ -82,15 +75,12 @@ int	reg_regdirin_regdir(t_instruc *instruc, t_list_instruc *elem,
 
   if (check_registre_arg(instruc, elem, file, 1) == -1
       || (new = epure_file_instruc(file, my_strlen(elem->info->arg_1))) == NULL
-      || (check_registre_arg(instruc, elem, new, 2) == -1
-	  && check_direct_arg(instruc, elem, new, 2) == -1
-	  && check_indirect_arg(instruc, elem, new, 2) == -1)
+      || check_second_r_rdi_rd(instruc, elem, new) == -1
       || (new2 = epure_file_instruc(new, my_strlen(elem->info->arg_2))) == NULL
-      || (check_registre_arg(instruc, elem, new2, 3) == -1
-	  && check_direct_arg(instruc, elem, new2, 3) == -1))
-    return (synthax_error(instruc), -1);
+      || check_third_r_rdi_rd(instruc, elem, new2) == -1)
+    return (synthax_error(instruc, -1), -1);
   if (check_end_instruc(new2, my_strlen(elem->info->arg_3)) == -1)
-    return (synthax_error(instruc), -1);
+    return (synthax_error(instruc, 0), -1);
   free(new);
   free(new2);
   return (0);

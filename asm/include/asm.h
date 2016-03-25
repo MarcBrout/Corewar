@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Fri Mar 25 14:19:32 2016 bougon_p
+** Last update Fri Mar 25 15:47:25 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -140,6 +140,18 @@ int			verif_three_args(t_instruc *, t_list_instruc *,
 t_three_args		*init_tab_three_args();
 int			if_comment_text(char *);
 int			check_line(char *);
+int			check_first_rdi_rdi_r(t_instruc *, t_list_instruc *,
+					      char *);
+int			check_second_rdi_rdi_r(t_instruc *, t_list_instruc *,
+					       char *);
+int			check_first_rdi_rd_r(t_instruc *, t_list_instruc *,
+					     char *);
+int			check_second_rdi_rd_r(t_instruc *, t_list_instruc *,
+					      char *);
+int			check_second_r_rdi_rd(t_instruc *, t_list_instruc *,
+					      char *);
+int			check_third_r_rdi_rd(t_instruc *, t_list_instruc *,
+					     char *);
 
 /*
 ** Parser functions
@@ -184,7 +196,7 @@ void	free_list(t_instruc *);
 void	malloc_fail();
 void	file_wrong(char *);
 void	no_exist_label(t_list_label *);
-void	synthax_error(t_instruc *);
+void	synthax_error(t_instruc *, int);
 
 /*
 ** Instruction functions
