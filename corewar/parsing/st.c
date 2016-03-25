@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:54 2016 benjamin duhieu
-** Last update Fri Mar 25 14:43:55 2016 benjamin duhieu
+** Last update Fri Mar 25 18:40:31 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -22,9 +22,9 @@ int	check_integrety_st(unsigned second, char *ram, int i)
 void	move_pc_st(unsigned second, t_pc *i)
 {
   if (second == 3)
-    i->reg[0] = MM(i->reg[0] + 5);
-  else
     i->reg[0] = MM(i->reg[0] + 4);
+  else
+    i->reg[0] = MM(i->reg[0] + 3);
 }
 
 void		execute_st_reg(t_data *data, t_pc *i)
