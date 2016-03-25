@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:20:22 2016 bougon_p
-** Last update Tue Mar 22 23:23:14 2016 bougon_p
+** Last update Fri Mar 25 00:37:29 2016 bougon_p
 */
 
 #include "asm.h"
@@ -37,7 +37,7 @@ int	write_name(t_header *head, int fd)
   return (0);
 }
 
-int	write_prog_size(UNUSED t_header *head, t_instruc *instruc ,int fd)
+int	write_prog_size(UNUSED t_header *head, t_instruc *instruc, int fd)
 {
   int		prog_size;
   int		addr;

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:33:50 2016 bougon_p
-** Last update Tue Mar 22 21:54:44 2016 bougon_p
+** Last update Wed Mar 23 22:41:08 2016 bougon_p
 */
 
 #include "asm.h"
@@ -17,7 +17,7 @@ int	lldi_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
   check = ((byte & 0xC0) >> 6);
   if (check == 0x02 || check == 0x03)
     {
-      if (check_short_lab(info, instruc) == true)
+      if (check_short_lab(info, instruc, info->arg_1) == true)
 	return (0);
       if (w_short(fd, info->arg_1) == 1)
         return (1);
@@ -39,7 +39,7 @@ int	lldi_arg_2(int fd, t_info *info, char byte, t_instruc *instruc)
   check = ((byte & 0x30) >> 4);
   if (check == 0x02)
     {
-      if (check_short_lab(info, instruc) == true)
+      if (check_short_lab(info, instruc, info->arg_2) == true)
 	return (0);
       if (w_short(fd, info->arg_2) == 1)
 	return (1);

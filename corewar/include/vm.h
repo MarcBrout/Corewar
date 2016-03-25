@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Wed Mar 23 20:39:54 2016 benjamin duhieu
+** Last update Fri Mar 25 10:27:55 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -103,6 +103,7 @@ typedef struct		s_champion
 typedef struct		s_data
 {
   int			nblive;
+  int			last;
   int			dump;
   int			i;
   t_champion		*champ[4];
@@ -329,7 +330,8 @@ int			run_one_cycle(t_data *data);
 
 int			count_players_alive(t_champion *champ[4]);
 void			set_players(t_champion *champ[4]);
-void			check_winner(t_champion *champ[4]);
+void			check_winner(t_data *data,
+				     t_champion *champ[4]);
 int			launch_match(t_data *data);
 void			copy_order_to_reg(t_champion *champ[4]);
 
@@ -341,5 +343,11 @@ int			read_int_from_ram(char *ram,
 					  int pos);
 short			read_short_from_ram(char *ram,
 					    int pos);
+void			write_int_to_ram(char *ram,
+					 int val,
+					 int pos);
+void			write_short_to_ram(char *ram,
+					   short val,
+					   int pos);
 
 #endif /* !VM_H_ */
