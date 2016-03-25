@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:12 2016 benjamin duhieu
-** Last update Thu Mar 24 15:38:49 2016 marc brout
+** Last update Fri Mar 25 10:59:51 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -35,7 +35,7 @@ void		execute_ld_indirect(t_data *data, t_pc *i)
     i->carry = 1;
   else
     i->carry = 0;
-  my_printf("check exec ld ind%d\n", (int)data->ram[MM(i->reg[0] + 4)]);
+  /* my_printf("check exec ld ind%d\n", (int)data->ram[MM(i->reg[0] + 4)]); */
   i->reg[(int)data->ram[MM(i->reg[0] + 4)]] = indir;
 }
 

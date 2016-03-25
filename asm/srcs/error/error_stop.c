@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 14:10:16 2016
-** Last update Thu Mar 24 16:13:11 2016 marel_m
+** Last update Fri Mar 25 15:30:29 2016 marel_m
 */
 
 #include "asm.h"
@@ -32,9 +32,9 @@ void	no_exist_label(t_list_label *label)
   write(2, "\n", 1);
 }
 
-void	synthax_error(t_instruc *instruc)
+void	synthax_error(t_instruc *instruc, int nb)
 {
-  if (instruc->reg_err != 0)
+  if (instruc->reg_err == 1 && nb == -1)
     write(2, "no such register line ", 22);
   else
     write(2, "Synthax error line ", 19);

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:29:39 2016 bougon_p
-** Last update Wed Mar 23 22:39:24 2016 bougon_p
+** Last update Fri Mar 25 14:23:37 2016 bougon_p
 */
 
 #include "asm.h"
@@ -74,9 +74,11 @@ int	w_and(t_info *info, int fd, t_instruc *instruc)
   istr = 0x06;
   if (write(fd, &istr, sizeof(istr)) == -1)
     return (1);
+  instruc->addr_wrt += 1;
+  instruc->instr_addr = instruc->addr_wrt + instruc->addr_vir;
   if ((byte = w_coding_byte(fd, info)) == -1)
     return (1);
-  instruc->addr_wrt += 2;
+  instruc->addr_wrt += 1;
   if (and_arg_1(fd, info, byte, instruc) == 1)
     return (1);
   if (and_arg_2(fd, info, byte, instruc) == 1)

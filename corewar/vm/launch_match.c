@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 15:44:56 2016 marc brout
-** Last update Fri Mar 25 13:47:03 2016 marc brout
+** Last update Fri Mar 25 17:48:26 2016 marc brout
 */
 
 #include "vm.h"
@@ -101,8 +101,8 @@ int		launch_match(t_data *data)
 	  /* my_printf("go = %d\n", go); */
 	  set_players(data->champ);
 	}
-      /* my_printf(" i : %d turn :%d live : %d\n", */
-      /* 	     i, nb_turn, data->nblive); */
+      my_printf(" i : %d turn :%d live : %d\n",
+      	     i, nb_turn, data->nblive);
       i += 1;
     }
   check_winner(data, data->champ);
