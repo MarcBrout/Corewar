@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Wed Mar 23 23:22:58 2016 bougon_p
+## Last update Fri Mar 25 15:54:06 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -115,6 +115,9 @@ SRC		=	asm/srcs/main.c \
 			$(LEXER)check_if_label_exist.c \
 			$(LEXER)verif_args.c \
 			$(LEXER)instruc_three_args.c \
+			$(LEXER)reg_regdirin_regdir.c \
+			$(LEXER)regdirin_regdir_reg.c \
+			$(LEXER)regdirin_regdirin_reg.c \
 			$(LEXER)check_good_args.c \
 			$(TOOLS)str_null.c \
 			$(TOOLS)my_strcat.c \
@@ -171,12 +174,12 @@ CC      =	gcc -g $(CFLAGS) $(IFLAG)
 # PROJECT RULES
 
 $(NAME)		: 	$(LIB) $(COREWAR) $(OBJS)
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n\<<<<<<< HEAD Linking \"$(NAME)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>>\
- \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n<<<<<<< Linking \"$(NAME)\"\n\twith \
+\"$(CC)\"\n\n>>>>>>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 $(COREWAR)	:	$(OBJSCOR)
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\n> Compiling \"$(COREWAR)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>\n\n> Linking \"$(COREWAR)\"\n\twith \"$(CC)\"\n\n>>>>>>>>>>>>>>> \t DONE\n$(WHITE)"
 			@$(CC) -o $(COREWAR) $(OBJSCOR) $(LDFLAGS)
 
 $(LIB)		:	$(OBJSLIB)

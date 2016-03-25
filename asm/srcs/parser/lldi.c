@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:33:50 2016 bougon_p
-** Last update Wed Mar 23 22:41:08 2016 bougon_p
+** Last update Fri Mar 25 14:27:07 2016 bougon_p
 */
 
 #include "asm.h"
@@ -62,9 +62,11 @@ int	w_lldi(t_info *info, int fd, t_instruc *instruc)
   istr = 0x0e;
   if (write(fd, &istr, sizeof(istr)) == -1)
     return (1);
+  instruc->addr_wrt += 1;
+  instruc->instr_addr = instruc->addr_wrt + instruc->addr_vir;
   if ((byte = w_coding_byte(fd, info)) == -1)
     return (1);
-  instruc->addr_wrt += 2;
+  instruc->addr_wrt += 1;
   if (lldi_arg_1(fd, info, byte, instruc) == 1)
     return (1);
   if (lldi_arg_2(fd, info, byte, instruc) == 1)

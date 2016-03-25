@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Fri Mar 25 00:39:05 2016 bougon_p
+** Last update Fri Mar 25 15:45:24 2016 bougon_p
 */
 
 #include "asm.h"
@@ -102,15 +102,6 @@ int		parser(char *name, t_header *head, t_instruc *instruc)
   instr = init_instr();
   if (write_code(fd, instruc, &tabinstr, instr) == 1)
     return (1);
-
-  /*
-  ** DEBUG CALL
-  */
-  debug_lists(instruc);
-  /*
-  ** END OF DEBUG
-  */
-
   write_labels(instruc);
   if (write_prog_size(head, instruc, fd) == 1)
     return (1);

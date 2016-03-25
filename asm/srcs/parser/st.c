@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:27:09 2016 bougon_p
-** Last update Tue Mar 22 21:26:07 2016 bougon_p
+** Last update Fri Mar 25 14:28:58 2016 bougon_p
 */
 
 #include "asm.h"
@@ -38,9 +38,11 @@ int	w_st(t_info *info, int fd, t_instruc *instruc)
   istr = 0x03;
   if (write(fd, &istr, sizeof(istr)) == -1)
     return (1);
+  instruc->addr_wrt += 1;
+  instruc->instr_addr = instruc->addr_wrt + instruc->addr_vir;
   if ((byte = w_coding_byte(fd, info)) == -1)
     return (1);
-  instruc->addr_wrt += 2;
+  instruc->addr_wrt += 1;
   if (w_reg(fd, info->arg_1) == 1)
     return (1);
   instruc->addr_wrt += 1;

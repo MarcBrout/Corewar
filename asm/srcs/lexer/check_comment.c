@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Tue Mar 22 17:21:10 2016 marel_m
+** Last update Fri Mar 25 14:24:33 2016 marel_m
 */
 
 #include <stdlib.h>
@@ -69,7 +69,7 @@ int	check_comment(t_header *header, t_instruc *instruc, char *file)
   if ((new = epure_file_name_com(file, 9)) == NULL)
     return (-1);
   if (check_double_quote_comment(new) == -1)
-    return (synthax_error(instruc), -1);
+    return (synthax_error(instruc, 0), -1);
   stock_comment(header, new);
   free(new);
   return (0);

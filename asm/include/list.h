@@ -5,20 +5,18 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Mar 23 22:47:58 2016 bougon_p
-** Last update Thu Mar 24 01:58:42 2016 bougon_p
+** Last update Fri Mar 25 15:44:24 2016 bougon_p
 */
 
 #ifndef LIST_H_
 # define LIST_H_
 
-# include <stdbool.h>
-
 typedef	struct		s_lablist
 {
   char			*name;
   int			addr;
+  int			pos;
   int			nb_bytes;
-  bool			zjmp;
 }			t_lablist;
 
 typedef struct          s_cdlist

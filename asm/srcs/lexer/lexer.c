@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:41:48 2016
-** Last update Tue Mar 22 15:34:17 2016 marel_m
+** Last update Fri Mar 25 15:20:06 2016 marel_m
 */
 
 #include <string.h>
@@ -40,6 +40,7 @@ int	lexer(t_header *header, t_instruc *instruc, char *str)
   if ((fd = open(str, O_RDONLY)) == -1)
     return (file_wrong(str), -1);
   instruc->nb_l = 0;
+  instruc->reg_err = 0;
   while (((file = get_next_line(fd)) != NULL && strlen(file) == 0)
 	 || if_comment_text(file) == -1)
     {
