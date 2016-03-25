@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:58:14 2016 benjamin duhieu
-** Last update Thu Mar 24 11:46:18 2016 benjamin duhieu
+** Last update Fri Mar 25 10:22:59 2016 marc brout
 */
 
 #include "vm.h"
@@ -15,9 +15,11 @@ int	frk(t_data *data, t_pc *i)
   int	val;
 
   val = (read_short_from_ram(data->ram, MM(i->reg[0] + 1)) % IDX_MOD);
+  my_printf("val = %d\n", val);
   if (add_pc(i, MM(i->reg[0] + val), 800))
     return (1);
-  //  printf("test\n");
+  my_printf("val = %d\n", i->next->reg[0]);
+   printf("test\n");
   if (i->next->reg[0] < 0)
     i->next->reg[0] = MEM_SIZE - i->next->reg[0];
   i->cycle = 800;

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 21:40:56 2016 benjamin duhieu
-** Last update Thu Mar 24 15:57:21 2016 marc brout
+** Last update Thu Mar 24 16:53:41 2016 marc brout
 */
 
 #include "my.h"
@@ -22,8 +22,8 @@ int	live(t_data *data, t_pc *i)
   /* my_printf("reg : %d\n", i->reg[0]); */
   while (++a < 4)
     {
-      if (chk == data->champ[a]->pc->reg[1] &&
-	  data->champ[a]->alive == 0)
+      /* my_printf("data->champ[%d]->pc->reg[1] = %d\n", a, data->champ[a]->pc->reg[1]); */
+      if (chk == data->champ[a]->pc->reg[1])
 	{
 	  my_printf("Le joueur %d %s est en vie.\n",
 		    data->champ[a]->order, data->champ[a]->name);
