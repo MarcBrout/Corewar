@@ -5,12 +5,13 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:20:22 2016 bougon_p
-** Last update Fri Mar 25 00:37:29 2016 bougon_p
+** Last update Fri Mar 25 17:42:21 2016 marel_m
 */
 
-#include "asm.h"
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include "asm.h"
 
 int	write_magic(int fd)
 {
@@ -43,7 +44,6 @@ int	write_prog_size(UNUSED t_header *head, t_instruc *instruc, int fd)
   int		addr;
   static bool	need_writtin = false;
 
-  printf("J'écris le prog size\n");
   prog_size = 0;
   addr = 136;
   if (!need_writtin)

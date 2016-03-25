@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:31:15 2016 bougon_p
-** Last update Fri Mar 25 14:30:35 2016 bougon_p
+** Last update Fri Mar 25 17:46:20 2016 marel_m
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	w_zjmp(t_info *info, int fd, t_instruc *instruc)

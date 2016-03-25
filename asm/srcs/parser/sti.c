@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:32:23 2016 bougon_p
-** Last update Fri Mar 25 14:22:30 2016 bougon_p
+** Last update Fri Mar 25 17:47:29 2016 marel_m
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	sti_arg_2(int fd, t_info *info, char byte, t_instruc *instruc)

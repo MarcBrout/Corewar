@@ -1,11 +1,11 @@
 /*
 ** free_list_instruc.c for free_list_instruc
 **
-** Made by Marel la plus belle <3
+** Made by marel_m
 ** Login   <marel_m@epitech.net>
 **
-** Started on  Mon Mar 21 18:09:15 2016 Marel la plus belle <3
-** Last update Fri Mar 25 00:35:50 2016 bougon_p
+** Started on  Mon Mar 21 18:09:15 2016 marel_m
+** Last update Fri Mar 25 16:53:26 2016 marel_m
 */
 
 #include "asm.h"

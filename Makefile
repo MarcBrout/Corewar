@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Fri Mar 25 15:54:06 2016 bougon_p
+## Last update Fri Mar 25 17:28:51 2016 marel_m
 ##
 
 # USEFUL VARIABLES
@@ -76,7 +76,6 @@ ERROR		=	asm/srcs/error/
 FREE		=	asm/srcs/free/
 
 SRC		=	asm/srcs/main.c \
-			asm/srcs/print_list.c \
 			asm/srcs/op.c \
 			$(PARSER)parser.c \
 			$(PARSER)create_file.c \
@@ -108,6 +107,7 @@ SRC		=	asm/srcs/main.c \
 			$(LEXER)check_comment.c \
 			$(LEXER)check_instructions.c \
 			$(LEXER)check_label.c \
+			$(LEXER)check_registre.c \
 			$(LEXER)epure_file.c \
 			$(LEXER)put_in_list.c \
 			$(LEXER)check_char.c \

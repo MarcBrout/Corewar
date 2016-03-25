@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Mar 15 19:47:32 2016
-** Last update Tue Mar 22 15:16:43 2016 marel_m
+** Last update Fri Mar 25 17:24:56 2016 marel_m
 */
 
 #include "asm.h"
@@ -20,9 +20,9 @@ char	*copy_lab(char *str)
     i = 2;
   else
     i = 1;
-  j = 0;
   if ((new = malloc(sizeof(char) * (my_strlen(str) - 1))) == NULL)
     return (malloc_fail(), NULL);
+  j = 0;
   while (str[i] != '\0')
     {
       new[j] = str[i];
@@ -45,9 +45,9 @@ int		check_in_list(t_instruc *instruc, char *lab)
     return (-1);
   while (i < instruc->lenght - 1)
     {
-      if (tmp->info->label != NULL)
-	if (my_strncmp(tmp->info->label, new, my_strlen(new)) == 0)
-	  return (free(new), 0);
+      if (tmp->info->label != NULL &&
+	  my_strncmp(tmp->info->label, new, my_strlen(new)) == 0)
+	return (free(new), 0);
       tmp = tmp->next;
       i++;
     }

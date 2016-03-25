@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:31:48 2016 bougon_p
-** Last update Fri Mar 25 14:25:55 2016 bougon_p
+** Last update Fri Mar 25 17:47:10 2016 marel_m
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	ldi_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
