@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:23:04 2016 bougon_p
-** Last update Thu Mar 24 02:02:48 2016 bougon_p
+** Last update Fri Mar 25 17:50:18 2016 bougon_p
 */
 
 #include "asm.h"
@@ -43,17 +43,17 @@ int		write_code(int fd, t_instruc *instruc,
 {
   t_list_instruc	*act_instr;
   int			index;
+  int			i;
 
+  i = 0;
   act_instr = instruc->root->next;
   while (act_instr != instruc->root)
     {
+      i++;
       if ((index = check_instruct(act_instr->info->name, instr)) == -1)
 	return (1);
       if (act_instr->info->label)
-      	{
-      	  printf("SUR CETTE LIGNE LABEL = %s\n", act_instr->info->label);
-      	  stock_real_lab(instruc, act_instr->info);
-      	}
+	stock_real_lab(instruc, act_instr->info);
       if (tabinstr->tabinstr[index](act_instr->info, fd, instruc))
 	return (1);
       act_instr = act_instr->next;
