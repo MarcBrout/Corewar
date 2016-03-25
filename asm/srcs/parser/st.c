@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:27:09 2016 bougon_p
-** Last update Fri Mar 25 14:28:58 2016 bougon_p
+** Last update Fri Mar 25 18:49:52 2016 bougon_p
 */
 
 #include "asm.h"
@@ -17,7 +17,7 @@ int	st_arg_2(int fd, t_info *info, char byte, t_instruc *instruc)
   check = ((byte & 0x30) >> 4);
   if (check == 0x03)
     {
-      if (w_short(fd, info->arg_2) == 1)
+      if (w_short(fd, info->arg_2, instruc) == 1)
         return (1);
       instruc->addr_wrt += 2;
     }

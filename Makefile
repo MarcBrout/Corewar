@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Fri Mar 25 16:06:40 2016 bougon_p
+## Last update Fri Mar 25 19:07:15 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -126,7 +126,8 @@ SRC		=	asm/srcs/main.c \
 			$(TOOLS)my_put_nbr_error.c \
 			$(FREE)free_tab.c \
 			$(FREE)free_list_instruc.c \
-			$(ERROR)error_stop.c
+			$(ERROR)error_stop.c \
+			$(ERROR)error.c
 
 OBJS    	=	$(SRC:.c=.o)
 

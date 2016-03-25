@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:33:27 2016 bougon_p
-** Last update Fri Mar 25 14:26:51 2016 bougon_p
+** Last update Fri Mar 25 18:43:36 2016 bougon_p
 */
 
 #include "asm.h"
@@ -25,7 +25,7 @@ int	lld_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
     }
   else if (check == 0x03)
     {
-      if (w_short(fd, info->arg_1) == 1)
+      if (w_short(fd, info->arg_1, instruc) == 1)
         return (1);
       instruc->addr_wrt += 2;
     }
@@ -45,9 +45,8 @@ int	w_lld(t_info *info, int fd, t_instruc *instruc)
   if ((byte = w_coding_byte(fd, info)) == -1)
     return (1);
   instruc->addr_wrt += 1;
-  if (lld_arg_1(fd, info, byte, instruc) == 1)
-    return (1);
-  if (w_reg(fd, info->arg_2) == 1)
+  if (lld_arg_1(fd, info, byte, instruc) == 1 ||
+      w_reg(fd, info->arg_2) == 1)
     return (1);
   instruc->addr_wrt += 1;
   return (0);

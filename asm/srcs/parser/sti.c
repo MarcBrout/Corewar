@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:32:23 2016 bougon_p
-** Last update Fri Mar 25 14:22:30 2016 bougon_p
+** Last update Fri Mar 25 18:52:31 2016 bougon_p
 */
 
 #include "asm.h"
@@ -19,7 +19,7 @@ int	sti_arg_2(int fd, t_info *info, char byte, t_instruc *instruc)
     {
       if (check_short_lab(info, instruc, info->arg_2) == true)
 	return (0);
-      if (w_short(fd, info->arg_2) == 1)
+      if (w_short(fd, info->arg_2, instruc) == 1)
 	return (1);
       instruc->addr_wrt += 2;
     }
@@ -41,7 +41,7 @@ int	sti_arg_3(int fd, t_info *info, char byte, t_instruc *instruc)
     {
       if (check_short_lab(info, instruc, info->arg_3) == true)
 	return (0);
-      if (w_short(fd, info->arg_3) == 1)
+      if (w_short(fd, info->arg_3, instruc) == 1)
 	return (1);
       instruc->addr_wrt += 2;
     }
@@ -69,9 +69,8 @@ int	w_sti(t_info *info, int fd, t_instruc *instruc)
   if (w_reg(fd, info->arg_1) == 1)
     return (1);
   instruc->addr_wrt += 2;
-  if (sti_arg_2(fd, info, byte, instruc) == 1)
-    return (1);
-  if (sti_arg_3(fd, info, byte, instruc) == 1)
+  if (sti_arg_2(fd, info, byte, instruc) == 1 ||
+      sti_arg_3(fd, info, byte, instruc) == 1)
     return (1);
   return (0);
 }

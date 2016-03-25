@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 17 15:33:53 2016 bougon_p
-** Last update Fri Mar 25 17:48:22 2016 bougon_p
+** Last update Fri Mar 25 19:22:09 2016 bougon_p
 */
 
 #include "asm.h"
@@ -40,8 +40,8 @@ int	w_short(int fd, char *arg, t_instruc *instruc)
   else
       {
 	arg_nb = my_getnbr(arg);
-	if (arg_nb > 512)
-	  my_putstr_err("Warning Indirection to far line %d\n",
+	if (arg_nb > IDX_MOD)
+	  direct_too_big("Warning Indirection to far line ",
 			instruc->nb_l);
     }
   arg_nb = convert_littleend_to_bigend_short(arg_nb);

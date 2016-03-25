@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:23:04 2016 bougon_p
-** Last update Fri Mar 25 17:50:18 2016 bougon_p
+** Last update Fri Mar 25 18:23:18 2016 bougon_p
 */
 
 #include "asm.h"
@@ -50,6 +50,7 @@ int		write_code(int fd, t_instruc *instruc,
   while (act_instr != instruc->root)
     {
       i++;
+      instruc->nb_l = i;
       if ((index = check_instruct(act_instr->info->name, instr)) == -1)
 	return (1);
       if (act_instr->info->label)

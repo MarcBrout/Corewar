@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Fri Mar 25 15:47:25 2016 bougon_p
+** Last update Fri Mar 25 19:10:05 2016 bougon_p
 */
 
 #ifndef HEADER_H_
@@ -193,6 +193,7 @@ void	free_list(t_instruc *);
 ** Error
 */
 
+void	direct_too_big(char *, int);
 void	malloc_fail();
 void	file_wrong(char *);
 void	no_exist_label(t_list_label *);
@@ -204,7 +205,7 @@ void	synthax_error(t_instruc *, int);
 
 int	w_reg(int, char *);
 int	w_int(int, char *);
-int	w_short(int, char *);
+int	w_short(int, char *, t_instruc *);
 char	w_coding_byte(int, t_info *);
 int	w_live(t_info *, int, t_instruc *);
 int	w_ld(t_info *, int, t_instruc *);
