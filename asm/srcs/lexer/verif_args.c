@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 11:45:19 2016
-** Last update Fri Mar 25 17:27:46 2016 marel_m
+** Last update Fri Mar 25 18:22:37 2016 marel_m
 */
 
 #include "asm.h"
@@ -70,12 +70,16 @@ int	verif_three_args(t_instruc *instruc, t_list_instruc *elem,
 int	how_many_args(t_instruc *instruc, t_list_instruc *elem,
 		      char *new, int i)
 {
-  if (op_tab[i].nbr_args == 3
-      && verif_three_args(instruc, elem, new, i) == -1)
-    return (-1);
-  else if (op_tab[i].nbr_args == 2
-	   && verif_two_args(instruc, elem, new, i) == -1)
-    return (-1);
+  if (op_tab[i].nbr_args == 3)
+    {
+      if (verif_three_args(instruc, elem, new, i) == -1)
+	return (-1);
+    }
+  else if (op_tab[i].nbr_args == 2)
+    {
+      if (verif_two_args(instruc, elem, new, i) == -1)
+	return (-1);
+    }
   else
     if (verif_one_arg(instruc, elem, new, i) == -1)
       return (-1);
