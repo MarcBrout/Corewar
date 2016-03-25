@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Mar 25 16:55:31 2016 bougon_p
-** Last update Fri Mar 25 19:20:44 2016 bougon_p
+** Last update Fri Mar 25 19:46:10 2016 bougon_p
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 void	direct_too_big(char *str, int line)

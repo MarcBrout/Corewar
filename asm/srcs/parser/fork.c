@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:32:55 2016 bougon_p
-** Last update Fri Mar 25 18:37:41 2016 bougon_p
+** Last update Fri Mar 25 19:43:00 2016 bougon_p
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	w_fork(t_info *info, int fd, t_instruc *instruc)

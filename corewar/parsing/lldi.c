@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:59:12 2016 benjamin duhieu
-** Last update Thu Mar 24 10:27:23 2016 benjamin duhieu
+** Last update Fri Mar 25 15:57:45 2016 marc brout
 */
 
 #include "vm.h"
@@ -35,23 +35,51 @@ int		perform_lldi(t_data *data, t_val *val, t_pc *i)
     {
       if (val->type[1])
 	i->reg[val->inte[2]] =
-	  (int)data->ram[MM(i->reg[0] + val->inte[0])] + val->inte[1];
+	  RIFM(data->ram, MM(i->reg[0] + val->inte[0] + val->inte[1]));
       else
 	i->reg[val->inte[2]] =
-	  (int)data->ram[MM(i->reg[0] + val->inte[0])] + val->shrt[1];
+	  RIFM(data->ram, MM(i->reg[0] + val->inte[0] + val->shrt[1]));
     }
   else
     {
       if (val->type[1])
 	i->reg[val->inte[2]] =
-	  (int)data->ram[MM(i->reg[0] + val->shrt[0])] +
-	  val->inte[1];
+	  RIFM(data->ram, MM(i->reg[0] + val->shrt[0] + val->inte[1]));
       else
 	i->reg[val->inte[2]] =
-	  (int)data->ram[MM(i->reg[0] + IDX(val->shrt[0]))] +
-	  val->shrt[1];
+	  RIFM(data->ram, MM(i->reg[0] + val->shrt[0] + val->shrt[1]));
     }
   return (i->reg[val->inte[2]]);
+}
+
+int		recup_val_lldi(t_data *data,
+			      t_pc *i,
+			      t_inst *inst,
+			      t_val *val)
+{
+  int		pos;
+
+  pos = 2;
+  if (inst->fi == 1)
+    val->inte[0] = i->reg[(int)data->ram[M(i->reg[0] + pos)]], pos += 1,
+      val->type[0] = 1;
+  if (inst->fi == 2)
+    val->shrt[0] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2,
+      val->type[0] = 0;
+  if (inst->fi == 3)
+    val->shrt[0] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2,
+      val->type[0] = 0;
+  if (inst->sd == 1)
+    val->inte[1] = i->reg[(int)data->ram[M(i->reg[0] + pos)]], pos += 1,
+      val->type[1] = 1;
+  if (inst->sd == 2)
+    val->shrt[1] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2,
+      val->type[1] = 0;
+  if (inst->sd == 3)
+    val->shrt[1] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2,
+      val->type[1] = 0;
+  val->inte[2] = (int)data->ram[MM(i->reg[0] + pos)], pos += 1;
+  return (pos);
 }
 
 int		lldi(t_data *data, t_pc *i)

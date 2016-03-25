@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:35:07 2016 bougon_p
-** Last update Fri Mar 25 18:33:14 2016 bougon_p
+** Last update Fri Mar 25 19:43:01 2016 bougon_p
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	w_aff(t_info *info, int fd, t_instruc *instruc)

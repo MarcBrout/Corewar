@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:54 2016 benjamin duhieu
-** Last update Thu Mar 24 12:01:44 2016 benjamin duhieu
+** Last update Fri Mar 25 18:44:46 2016 marc brout
 */
 
 #include "vm.h"
@@ -31,14 +31,21 @@ void		execute_st_reg(t_data *data, t_pc *i)
 {
   i->reg[(int)data->ram[MM(i->reg[0] + 3)]] =
     i->reg[(int)data->ram[MM(i->reg[0] + 2)]];
+  my_printf("st reg: st->reg[%d] = %d\n", (int)data->ram[MM(i->reg[0] + 3)],
+	    i->reg[(int)data->ram[MM(i->reg[0] + 2)]]);
+
 }
 
 void		execute_st_indirect(t_data *data, t_pc *i)
 {
   int		value;
 
-  value = IDX(RSFM(data->ram, i->reg[0] + 3));
-  data->ram[i->reg[0] + value] = data->ram[i->reg[0] + 2];
+  value = IDX(RSFM(data->ram, MM(i->reg[0] + 3)));
+  my_printf("Value =%d\n", value);
+  write_int_to_ram(data->ram, i->reg[(int)data->ram[MM(i->reg[0] + 2)]],
+		   MM(i->reg[0] + value));
+  my_printf("st indir st->reg[%d] = %d\n", (int)data->ram[MM(i->reg[0] + 2)],
+	        i->reg[(int)data->ram[MM(i->reg[0] + 2)]]);
 }
 
 int		st(t_data *data, t_pc *i)

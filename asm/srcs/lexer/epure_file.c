@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 17:04:35 2016
-** Last update Tue Mar 22 14:36:26 2016 marel_m
+** Last update Fri Mar 25 17:19:52 2016 marel_m
 */
 
 #include "asm.h"
@@ -15,7 +15,8 @@ char	*epure_file_name_com(char *file, int i)
   int	j;
   char	*new;
 
-  while (file && (file[i] == ' ' || file[i] == '\t') && file[i])
+  while (file && (file[i] == ' ' || file[i] == '\t'
+		  || file[i] == ',') && file[i])
     i++;
   if ((new = malloc(sizeof(char) * (my_strlen(file) - i + 1))) == NULL)
     return (malloc_fail(), NULL);
@@ -35,8 +36,8 @@ char	*epure_file_instruc(char *file, int i)
   int	j;
   char	*new;
 
-  while (file && (file[i] == ' '
-		  || file[i] == '\t' || file[i] == ',') && file[i])
+  while (file && (file[i] == ' ' || file[i] == '\t'
+		  || file[i] == ',') && file[i])
     i++;
   if ((new = malloc(sizeof(char) * (my_strlen(file) - i + 1))) == NULL)
     return (malloc_fail(), NULL);
@@ -56,8 +57,8 @@ int	check_line(char *file)
   int	i;
 
   i = 0;
-  while (file && (file[i] == ' '
-		  || file[i] == '\t' || file[i] == ',') && file[i])
+  while (file && (file[i] == ' ' || file[i] == '\t'
+		  || file[i] == ',') && file[i])
     i++;
   if (i == my_strlen(file))
     return (-1);

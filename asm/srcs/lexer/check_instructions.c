@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Fri Mar 25 13:58:05 2016 marel_m
+** Last update Fri Mar 25 17:16:26 2016 marel_m
 */
 
 #include "asm.h"
@@ -21,7 +21,8 @@ int	check_which_instruc(t_instruc *instruc, t_list_instruc *elem,
       if (my_strncmp(file,
 		     op_tab[i].mnemonique, my_strlen(op_tab[i].mnemonique)) == 0
 	  && (file[my_strlen(op_tab[i].mnemonique)] == ' '
-	      || file[my_strlen(op_tab[i].mnemonique)] == '\t'))
+	      || file[my_strlen(op_tab[i].mnemonique)] == '\t'
+	      || file[my_strlen(op_tab[i].mnemonique)] == ','))
 	{
 	  elem->info->name = my_strdup(op_tab[i].mnemonique);
 	  if (check_stock_good_args(instruc, elem, file, i) == -1)
@@ -29,9 +30,9 @@ int	check_which_instruc(t_instruc *instruc, t_list_instruc *elem,
 	  return (0);
 	}
     }
-  if (elem->info->label == NULL)
-    if (check_instruc_label(instruc, elem, file, fd) == -1)
-      return (-1);
+  if (elem->info->label == NULL &&
+      check_instruc_label(instruc, elem, file, fd) == -1)
+    return (-1);
   return (0);
 }
 
@@ -73,9 +74,9 @@ int			check_instruc_arg(t_instruc *instruc,
   return (0);
 }
 
-int		put_instruc(t_instruc *instruc, int fd)
+int	put_instruc(t_instruc *instruc, int fd)
 {
-  char		*file;
+  char	*file;
 
   while ((file = get_next_line(fd)) != NULL)
     {
@@ -98,9 +99,8 @@ int		put_instruc(t_instruc *instruc, int fd)
 
 int	check_instructions(t_instruc *instruc, int fd)
 {
-  if (create_list(instruc) == -1 || create_list_label(instruc) == -1)
-    return (-1);
-  if (put_instruc(instruc, fd) == -1)
+  if (create_list(instruc) == -1 || create_list_label(instruc) == -1
+      || put_instruc(instruc, fd) == -1)
     return (-1);
   return (0);
 }

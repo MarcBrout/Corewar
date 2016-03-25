@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:23:04 2016 bougon_p
-** Last update Fri Mar 25 18:23:18 2016 bougon_p
+** Last update Fri Mar 25 19:43:01 2016 bougon_p
 */
 
 #include "asm.h"
@@ -33,7 +33,6 @@ int	stock_real_lab(t_instruc *instruc, t_info *info)
   lab->addr = instruc->addr_vir + instruc->addr_wrt;
   lab->name = my_strduplab(info->label);
   lab->nb_bytes = 0;
-  printf("INSTR = %s\n", info->name);
   add_last_labcdl(instruc->real_lab.root, lab);
   return (0);
 }

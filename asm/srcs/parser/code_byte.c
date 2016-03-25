@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Mar 16 20:14:07 2016 bougon_p
-** Last update Thu Mar 17 15:40:43 2016 bougon_p
+** Last update Fri Mar 25 17:49:03 2016 marel_m
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 char	check_arg1(t_info *info, int i)

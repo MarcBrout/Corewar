@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Mar 23 08:36:28 2016 marc brout
-** Last update Thu Mar 24 15:05:00 2016 marc brout
+** Last update Fri Mar 25 18:50:52 2016 marc brout
 */
 
 #include <stdio.h>
@@ -16,6 +16,7 @@ int		read_int_from_ram(char *ram, int pos)
 {
   t_core_int	nb;
 
+  pos = (pos < 0) ? MEM_SIZE + pos : pos;
   if (g_endian)
     {
       nb.bytes[3] = ram[pos % MEM_SIZE];
@@ -37,6 +38,7 @@ short		read_short_from_ram(char* ram, int pos)
 {
   t_core_short	nb;
 
+  pos = (pos < 0) ? MEM_SIZE + pos : pos;
   if (g_endian)
     {
       nb.bytes[1] = ram[pos % MEM_SIZE];
@@ -55,10 +57,13 @@ void		write_int_to_ram(char *ram, int val, int pos)
   t_core_int	nb;
 
   nb.value = val;
+  pos = (pos < 0) ? MEM_SIZE + pos : pos;
   if (g_endian)
     {
       ram[pos % MEM_SIZE] = nb.bytes[3];
+      my_printf("pos = %d\n", pos % MEM_SIZE);
       ram[(pos + 1) % MEM_SIZE] = nb.bytes[2];
+      my_printf("pos = %d\n", (pos + 1) % MEM_SIZE);
       ram[(pos + 2) % MEM_SIZE] = nb.bytes[1];
       ram[(pos + 3) % MEM_SIZE] = nb.bytes[0];
     }
@@ -76,6 +81,7 @@ void		write_short_to_ram(char *ram, short val, int pos)
   t_core_short	nb;
 
   nb.value = val;
+  pos = (pos < 0) ? MEM_SIZE + pos : pos;
   if (g_endian)
     {
       ram[(pos + 2) % MEM_SIZE] = nb.bytes[1];

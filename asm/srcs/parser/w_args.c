@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 17 15:33:53 2016 bougon_p
-** Last update Fri Mar 25 19:22:09 2016 bougon_p
+** Last update Fri Mar 25 19:40:06 2016 bougon_p
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	w_reg(int fd, char *arg)
