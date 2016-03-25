@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Wed Mar 23 23:22:58 2016 bougon_p
+## Last update Fri Mar 25 15:02:49 2016 marel_m
 ##
 
 # USEFUL VARIABLES
@@ -115,6 +115,9 @@ SRC		=	asm/srcs/main.c \
 			$(LEXER)check_if_label_exist.c \
 			$(LEXER)verif_args.c \
 			$(LEXER)instruc_three_args.c \
+			$(LEXER)reg_regdirin_regdir.c \
+			$(LEXER)regdirin_regdir_reg.c \
+			$(LEXER)regdirin_regdirin_reg.c \
 			$(LEXER)check_good_args.c \
 			$(TOOLS)str_null.c \
 			$(TOOLS)my_strcat.c \

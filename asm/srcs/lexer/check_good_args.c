@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Thu Mar 24 16:12:20 2016 marel_m
+** Last update Fri Mar 25 15:31:42 2016 marel_m
 */
 
 #include "asm.h"
@@ -97,7 +97,7 @@ int	check_registre_arg(t_instruc *instruc, t_list_instruc *elem,
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
 	 && file[i] != '\0')
     i++;
-  if ((arg = my_strndup(file, i)) == NULL)
+  if ((arg = my_strndup(file, i)) == NULL || arg[0] != 'r')
     return (-1);
   if ((file = malloc(sizeof(char) * my_strlen(arg))) == NULL)
     return (malloc_fail(), -1);

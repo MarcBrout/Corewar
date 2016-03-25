@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar 16 11:03:52 2016
-** Last update Tue Mar 22 14:56:08 2016 marel_m
+** Last update Fri Mar 25 14:25:19 2016 marel_m
 */
 
 #include "asm.h"
@@ -36,7 +36,7 @@ int	check_instruc_label(t_instruc *instruc, t_list_instruc *elem,
   i = -1;
   while (new && new[++i] != '\0' && new[i] != LABEL_CHAR)
     if (check_char(new[i]) == -1)
-      return (synthax_error(instruc), -1);
+      return (synthax_error(instruc, 0), -1);
   if (new[i] == LABEL_CHAR)
     {
       elem->info->label = my_strndup(new, i + 1);
@@ -48,5 +48,5 @@ int	check_instruc_label(t_instruc *instruc, t_list_instruc *elem,
       free(new);
       return (0);
     }
-  return (synthax_error(instruc), -1);
+  return (synthax_error(instruc, 0), -1);
 }
