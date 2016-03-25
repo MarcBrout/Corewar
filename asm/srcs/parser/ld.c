@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:26:16 2016 bougon_p
-** Last update Tue Mar 22 22:19:51 2016 bougon_p
+** Last update Fri Mar 25 00:42:07 2016 bougon_p
 */
 
 #include "asm.h"
@@ -17,7 +17,7 @@ int     ld_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
   check = ((byte & 0xC0) >> 6);
   if (check == 0x02)
     {
-      if (check_int_lab(info, instruc) == true)
+      if (check_int_lab(info, instruc, info->arg_1) == true)
 	return (0);
       if (w_int(fd, info->arg_1) == 1)
 	return (1);
