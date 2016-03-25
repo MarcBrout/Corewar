@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 13:29:10 2016 benjamin duhieu
-** Last update Fri Mar 25 11:50:21 2016 benjamin duhieu
+** Last update Fri Mar 25 14:40:14 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -16,7 +16,7 @@ int	chk_dump(char **av, int *i, t_data *data)
 {
   int	res;
 
-  if (!(res = my_getnbr_prog(av[*i + 1])) || res > CYCLE_TO_DIE)
+  if (!(res = my_getnbr_prog(av[*i + 1])))
     return (1);
   data->dump = res;
   *i += 2;

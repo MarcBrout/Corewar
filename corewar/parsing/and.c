@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:54:20 2016 benjamin duhieu
-** Last update Thu Mar 24 11:56:38 2016 benjamin duhieu
+** Last update Fri Mar 25 15:51:47 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -42,19 +42,19 @@ int		recup_val(t_data *data,
   if (inst->fi == 1)
     val->inte[0] = i->reg[(int)data->ram[M(i->reg[0] + pos)]], pos += 1,
       val->type[0] = 1;
-  if (inst->fi == 2)
+  if (inst->fi == 3)
     val->shrt[0] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2,
       val->type[0] = 0;
-  if (inst->fi == 3)
+  if (inst->fi == 2)
     val->inte[0] = RIFM(data->ram, M(i->reg[0] + pos)), pos += 4,
       val->type[0] = 1;
   if (inst->sd == 1)
     val->inte[1] = i->reg[(int)data->ram[M(i->reg[0] + pos)]], pos += 1,
       val->type[1] = 1;
-  if (inst->sd == 2)
+  if (inst->sd == 3)
     val->shrt[1] = RSFM(data->ram, M(i->reg[0] + pos)), pos += 2,
       val->type[1] = 0;
-  if (inst->sd == 3)
+  if (inst->sd == 2)
     val->inte[1] = RIFM(data->ram, M(i->reg[0] + pos)), pos += 4,
       val->type[1] = 1;
   val->inte[2] = (int)data->ram[MM(i->reg[0] + pos)], pos += 1;
