@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 12:58:17 2016 benjamin duhieu
-** Last update Fri Mar 25 11:46:17 2016 benjamin duhieu
+** Last update Fri Mar 25 13:38:22 2016 benjamin duhieu
 */
 
 #include <unistd.h>
@@ -64,6 +64,11 @@ int		main(int argc, char **argv)
     return (1);
   if (pars_arg(argv, arg, &data) || place_all_champions(&data))
     return (1);
+  if (count_players_alive(data.champ) == 1)
+    {
+      my_printf("Draw.\n");
+      return (0);
+    }
   if (launch_match(&data))
     return (1);
   return (0);
