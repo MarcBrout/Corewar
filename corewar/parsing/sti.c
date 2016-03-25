@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Fri Mar 25 17:11:10 2016 benjamin duhieu
+** Last update Fri Mar 25 17:46:18 2016 marc brout
 ** Last update Thu Mar 24 12:02:52 2016 benjamin duhieu
 */
 
@@ -46,33 +46,31 @@ void	move_pc_sti(unsigned second, unsigned third, t_pc *i)
     i->reg[0] = MM(i->reg[0] + 5);
 }
 
-void		execut_sti(t_data *data, t_inst *arg, t_pc *pc)
+void		execut_sti(t_data *d, t_inst *arg, t_pc *pc)
 {
   int		val;
   int		val2;
   int		val3;
+  int		pos;
 
-  val = pc->reg[(int)data->ram[MM(pc->reg[0] + 2)]];
+  pos = 2;
+  val = pc->reg[(int)d->ram[MM(pc->reg[0] + pos)]], pos += 1;
   if (arg->sd == 1)
-    {
-      val2 = pc->reg[(int)data->ram[MM(pc->reg[0] + 3)]];
-      if (arg->th == 2)
-	val3 = RIFM(data->ram, MM(pc->reg[0] + 4));
-      else if (arg->th == 1)
-	val3 = pc->reg[(int)data->ram[MM(pc->reg[0] + 4)]];
-    }
-  else
-    {
-      if (arg->sd == 3)
-	val2 = RIFM(data->ram, IDX(RSFM(data->ram, MM(pc->reg[0] + 3))));
-      else if (arg->sd == 2)
-	val2 = RIFM(data->ram, MM(pc->reg[0] + 3));
-      if (arg->th == 1)
-	val3 = pc->reg[(int)data->ram[MM(pc->reg[0] + 5)]];
-      else if (arg->th == 2)
-	val3 = RIFM(data->ram, MM(pc->reg[0] + 5));
-    }
-  write_int_to_ram(data->ram, val, MM(pc->reg[0] + val2 + val3));
+    val2 = pc->reg[(int)d->ram[MM(pc->reg[0] + pos)]], pos += 1;
+  if (arg->sd == 2)
+    val2 = RSFM(d->ram, MM(pc->reg[0] + pos)), pos += 2;
+  if (arg->sd == 3)
+    val2 = RIFM
+      (d->ram, MM(pc->reg[0] +
+		  IDX(RSFM(d->ram, MM(pc->reg[0] + pos))))),
+      pos += 2;
+  if (arg->th == 1)
+    val3 = pc->reg[(int)d->ram[MM(pc->reg[0] + pos)]];
+  if (arg->th == 2)
+    val3 = RSFM(d->ram, MM(pc->reg[0] + pos));
+  /* my_printf("write %d to pos(%d) + val2(%d) + val3(%d)\n", */
+  /* 	    val, pc->reg[0], val2, val3); */
+  write_int_to_ram(d->ram, val, MM(pc->reg[0] + val2 + val3));
 }
 
 int		sti(t_data *data, t_pc *i)
@@ -87,8 +85,8 @@ int		sti(t_data *data, t_pc *i)
     return (0);
   if (check_integrety_sti(arg.sd, arg.th, data->ram, i->reg[0]))
     return (0);
-  /* my_printf("%d, %d, %d, %d\n", arg.fi, arg.sd,
- arg.th, data->ram[MM(i->reg[0] + 1)]); */
+  /* my_printf("%d, %d, %d, %d\n", arg.fi, arg.sd, */
+ /* arg.th, data->ram[MM(i->reg[0] + 1)]); */
   execut_sti(data, &arg, i);
   i->cycle = 25;
   move_pc_sti(arg.sd, arg.th, i);
