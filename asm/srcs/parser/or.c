@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:30:32 2016 bougon_p
-** Last update Fri Mar 25 14:28:22 2016 bougon_p
+** Last update Fri Mar 25 19:42:58 2016 bougon_p
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	or_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
@@ -25,7 +26,7 @@ int	or_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
     }
   else if (check == 0x03)
     {
-      if (w_short(fd, info->arg_1) == 1)
+      if (w_short(fd, info->arg_1, instruc) == 1)
         return (1);
       instruc->addr_wrt += 2;
     }
@@ -53,7 +54,7 @@ int	or_arg_2(int fd, t_info *info, char byte, t_instruc *instruc)
     }
   else if (check == 0x03)
     {
-      if (w_short(fd, info->arg_2) == 1)
+      if (w_short(fd, info->arg_2, instruc) == 1)
 	return (1);
       instruc->addr_wrt += 2;
     }
@@ -79,11 +80,9 @@ int	w_or(t_info *info, int fd, t_instruc *instruc)
   if ((byte = w_coding_byte(fd, info)) == -1)
     return (1);
   instruc->addr_wrt += 1;
-  if (or_arg_1(fd, info, byte, instruc) == 1)
-    return (1);
-  if (or_arg_2(fd, info, byte, instruc) == 1)
-    return (1);
-  if (w_reg(fd, info->arg_3) == 1)
+  if (or_arg_1(fd, info, byte, instruc) == 1 ||
+      or_arg_2(fd, info, byte, instruc) == 1 ||
+      w_reg(fd, info->arg_3) == 1)
     return (1);
   instruc->addr_wrt += 1;
   return (0);

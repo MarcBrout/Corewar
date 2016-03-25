@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:12 2016 benjamin duhieu
-** Last update Fri Mar 25 10:59:51 2016 benjamin duhieu
+** Last update Fri Mar 25 21:20:42 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -20,7 +20,7 @@ void		execute_ld_direct(t_data *data, t_pc *i)
     i->carry = 1;
   else
     i->carry = 0;
-  /* my_printf("check exec ld dir%d\n", (int)data->ram[MM(i->reg[0] + 6)]); */
+  /* my_printf("check exec ld dir%d , dir = %d\n", (int)data->ram[MM(i->reg[0] + 6)], dir); */
   i->reg[(int)data->ram[MM(i->reg[0] + 6)]] = dir;
 }
 
@@ -35,7 +35,7 @@ void		execute_ld_indirect(t_data *data, t_pc *i)
     i->carry = 1;
   else
     i->carry = 0;
-  /* my_printf("check exec ld ind%d\n", (int)data->ram[MM(i->reg[0] + 4)]); */
+  /* my_printf("check exec ld ind %d, indir = %d\n", (int)data->ram[MM(i->reg[0] + 4)], indir); */
   i->reg[(int)data->ram[MM(i->reg[0] + 4)]] = indir;
 }
 

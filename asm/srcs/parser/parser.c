@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Fri Mar 25 15:45:24 2016 bougon_p
+** Last update Fri Mar 25 17:41:12 2016 marel_m
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	init_tabinstr(t_tabinstr *tabinstr)

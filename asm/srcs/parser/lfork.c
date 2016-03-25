@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:34:20 2016 bougon_p
-** Last update Tue Mar 22 22:21:10 2016 bougon_p
+** Last update Fri Mar 25 19:42:59 2016 bougon_p
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	w_lfork(t_info *info, int fd, t_instruc *instruc)
@@ -17,7 +18,7 @@ int	w_lfork(t_info *info, int fd, t_instruc *instruc)
   istr = 0x0f;
   if (write(fd, &istr, sizeof(istr)) == -1)
     return (1);
-  if (w_short(fd, info->arg_1) == 1)
+  if (w_short(fd, info->arg_1, instruc) == 1)
     return (1);
   instruc->addr_wrt += 3;
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 23:01:38 2016 benjamin duhieu
-** Last update Thu Mar 24 11:47:19 2016 benjamin duhieu
+** Last update Fri Mar 25 13:31:25 2016 marc brout
 */
 
 #include "vm.h"
@@ -15,7 +15,7 @@ int	lfork(t_data *data, t_pc *i)
   int	val;
 
   val = (read_short_from_ram(data->ram, MM(i->reg[0] + 1)));
-  if (add_pc(i, MM(i->reg[0] + val), 0))
+  if (add_pc(i, MM(i->reg[0] + val), 1000))
     return (1);
   if (i->next->reg[0] < 0)
     i->next->reg[0] = MEM_SIZE - i->next->reg[0];

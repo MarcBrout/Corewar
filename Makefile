@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Fri Mar 25 15:54:06 2016 bougon_p
+## Last update Fri Mar 25 19:39:50 2016 bougon_p
 ##
 
 # USEFUL VARIABLES
@@ -76,7 +76,6 @@ ERROR		=	asm/srcs/error/
 FREE		=	asm/srcs/free/
 
 SRC		=	asm/srcs/main.c \
-			asm/srcs/print_list.c \
 			asm/srcs/op.c \
 			$(PARSER)parser.c \
 			$(PARSER)create_file.c \
@@ -108,6 +107,7 @@ SRC		=	asm/srcs/main.c \
 			$(LEXER)check_comment.c \
 			$(LEXER)check_instructions.c \
 			$(LEXER)check_label.c \
+			$(LEXER)check_registre.c \
 			$(LEXER)epure_file.c \
 			$(LEXER)put_in_list.c \
 			$(LEXER)check_char.c \
@@ -126,7 +126,8 @@ SRC		=	asm/srcs/main.c \
 			$(TOOLS)my_put_nbr_error.c \
 			$(FREE)free_tab.c \
 			$(FREE)free_list_instruc.c \
-			$(ERROR)error_stop.c
+			$(ERROR)error_stop.c \
+			$(ERROR)error.c
 
 OBJS    	=	$(SRC:.c=.o)
 
@@ -174,7 +175,7 @@ CC      =	gcc -g $(CFLAGS) $(IFLAG)
 # PROJECT RULES
 
 $(NAME)		: 	$(LIB) $(COREWAR) $(OBJS)
-			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n<<<<<<< Linking \"$(NAME)\"\n\twith \
+			@$(ECHO) "$(GREEN)\n>>>>>>>>>>>>>>>>\n\n> Linking \"$(NAME)\"\n\twith \
 \"$(CC)\"\n\n>>>>>>>>>>>>>>>\t DONE\n$(WHITE)"
 			@$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 

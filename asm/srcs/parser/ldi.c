@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:31:48 2016 bougon_p
-** Last update Fri Mar 25 14:25:55 2016 bougon_p
+** Last update Fri Mar 25 19:42:59 2016 bougon_p
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	ldi_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
@@ -19,7 +20,7 @@ int	ldi_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
     {
       if (check_short_lab(info, instruc, info->arg_1) == true)
 	return (0);
-      if (w_short(fd, info->arg_1) == 1)
+      if (w_short(fd, info->arg_1, instruc) == 1)
 	return (1);
       instruc->addr_wrt += 2;
     }
@@ -41,7 +42,7 @@ int	ldi_arg_2(int fd, t_info *info, char byte, t_instruc *instruc)
     {
       if (check_short_lab(info, instruc, info->arg_2) == true)
 	return (0);
-      if (w_short(fd, info->arg_2) == 1)
+      if (w_short(fd, info->arg_2, instruc) == 1)
         return (1);
       instruc->addr_wrt += 2;
     }
@@ -67,11 +68,9 @@ int	w_ldi(t_info *info, int fd, t_instruc *instruc)
   if ((byte = w_coding_byte(fd, info)) == -1)
     return (1);
   instruc->addr_wrt += 1;
-  if (ldi_arg_1(fd, info, byte, instruc) == 1)
-    return (1);
-  if (ldi_arg_2(fd, info, byte, instruc) == 1)
-    return (1);
-  if (w_reg(fd, info->arg_3) == 1)
+  if (ldi_arg_1(fd, info, byte, instruc) == 1 ||
+      ldi_arg_2(fd, info, byte, instruc) == 1 ||
+      w_reg(fd, info->arg_3) == 1)
     return (1);
   instruc->addr_wrt += 1;
   return (0);

@@ -5,9 +5,11 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 22 20:39:57 2016 bougon_p
-** Last update Fri Mar 25 15:45:36 2016 bougon_p
+** Last update Fri Mar 25 17:49:54 2016 marel_m
 */
 
+#include <unistd.h>
+#include <sys/types.h>
 #include "asm.h"
 
 void		refind_the_lab(t_instruc *instruc, t_cdlist *to_find)

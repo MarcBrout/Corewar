@@ -5,9 +5,10 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 17 15:33:53 2016 bougon_p
-** Last update Fri Mar 25 15:45:02 2016 bougon_p
+** Last update Fri Mar 25 19:40:06 2016 bougon_p
 */
 
+#include <unistd.h>
 #include "asm.h"
 
 int	w_reg(int fd, char *arg)
@@ -31,14 +32,19 @@ int	w_int(int fd, char *arg)
   return (0);
 }
 
-int	w_short(int fd, char *arg)
+int	w_short(int fd, char *arg, t_instruc *instruc)
 {
   short	arg_nb;
 
   if (arg[0] == '%')
     arg_nb = my_getnbr(&arg[1]);
   else
-    arg_nb = my_getnbr(arg);
+      {
+	arg_nb = my_getnbr(arg);
+	if (arg_nb > IDX_MOD)
+	  direct_too_big("Warning Indirection to far line ",
+			instruc->nb_l);
+    }
   arg_nb = convert_littleend_to_bigend_short(arg_nb);
   if (write(fd, &arg_nb, sizeof(arg_nb)) == -1)
     return (1);

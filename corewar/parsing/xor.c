@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:55:45 2016 benjamin duhieu
-** Last update Wed Mar 23 21:06:03 2016 benjamin duhieu
+** Last update Fri Mar 25 21:22:49 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -27,6 +27,7 @@ int		perform_xor(t_pc *i,
       else
 	i->reg[val->inte[2]] = val->shrt[0] ^ val->shrt[1];
     }
+  /* my_printf("i->reg[%d] = %d\n", val->inte[2], i->reg[val->inte[2]]); */
   return (i->reg[val->inte[2]]);
 }
 
