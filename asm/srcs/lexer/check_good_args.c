@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Sat Mar 26 15:43:37 2016 marel_m
+** Last update Sat Mar 26 16:35:20 2016 marel_m
 */
 
 #include <unistd.h>
@@ -83,7 +83,8 @@ int	check_indirect_arg(t_instruc *instruc, t_list_instruc *elem,
 	 && file[i] != '\0')
     i++;
   if ((arg = my_strndup(file, i)) == NULL
-      || check_if_val(instruc, arg, 0, 0) == -1)
+      || (check_if_label(instruc, arg, 0) == -1
+	  && check_if_val(instruc, arg, 0, 1) == -1))
     return (-1);
   stock_args(elem, arg, pos);
   return (0);
