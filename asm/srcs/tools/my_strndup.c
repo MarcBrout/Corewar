@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Mon Oct  5 11:17:08 2015 maud marel
-** Last update Thu Mar 24 01:32:02 2016 bougon_p
+** Last update Sat Mar 26 20:39:16 2016 marel_m
 */
 
 #include <stdlib.h>
@@ -18,7 +18,7 @@ char	*my_strndup(char *src, int n)
 
   if (my_strlen(src) + n - 1 <= 0)
     return (NULL);
-  if ((dest = malloc(sizeof(char) * (my_strlen(src) + n - 1))) == NULL)
+  if ((dest = malloc(sizeof(char) * (my_strlen(src) + n))) == NULL)
     return (malloc_fail(), NULL);
   i = 0;
   while (src && i < n && src[i] != '\0')
