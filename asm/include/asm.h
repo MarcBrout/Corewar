@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Fri Mar 25 19:45:29 2016 bougon_p
+** Last update Sat Mar 26 15:45:22 2016 marel_m
 */
 
 #ifndef HEADER_H_
@@ -197,6 +197,7 @@ char			*my_strndup(char *, int);
 char			*my_strduplab(char *);
 char			*my_strcat(char *, char *);
 void			my_put_nbr_error(int);
+int			my_overflow(char *);
 
 /*
 ** FREE
