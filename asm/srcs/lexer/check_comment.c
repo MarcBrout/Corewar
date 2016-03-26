@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Fri Mar 25 14:24:33 2016 marel_m
+** Last update Sat Mar 26 18:51:44 2016 marel_m
 */
 
 #include <stdlib.h>
@@ -27,14 +27,14 @@ int	check_double_quote_comment(char *file)
   i = 1;
   while (file[i] != '"')
     i++;
-  if (i != (my_strlen(file) - 1) || i > 2050)
+  if (i != (my_strlen(file) - 1) || i >= 2049)
     return (-1);
   return (0);
 }
 
 void	no_comment(t_header *header)
 {
-  header->comment[0] = '\0';
+  set_line_null(&header->comment[0], 2049);
   write(1, "warning: no comment specified\n", 30);
 }
 
