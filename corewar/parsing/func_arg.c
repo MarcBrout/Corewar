@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 13:29:10 2016 benjamin duhieu
-** Last update Fri Mar 25 14:40:14 2016 benjamin duhieu
+** Last update Sat Mar 26 18:00:08 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -59,7 +59,6 @@ int		check_arg(char **av, int *i, t_pars *arg, t_data *dat)
   elem = arg->next;
   while (elem != NULL)
     {
-      /* my_printf("%s\n", elem->arg); */
       if (!(my_strcmp(av[*i], elem->arg)))
 	{
 	  if ((chk = elem->chk_arg(av, i, dat)) == 1)

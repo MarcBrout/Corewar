@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Sat Mar 26 20:27:05 2016 marc brout
+** Last update Sat Mar 26 20:29:16 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -73,14 +73,11 @@ int		test_instruction(t_data *data, t_pc *pc)
   char		instruction;
 
   instruction = data->ram[pc->reg[0]];
-  /* my_printf("instruction pc->reg[0] = %d\n", data->ram[pc->reg[0]]); */
-  /* my_printf("pc->reg[0] = %d\n", pc->reg[0]); */
   if (instruction <= 0 || instruction > VM_AFF)
     {
       pc->reg[0] = MM(pc->reg[0] + 1);
       return (0);
     }
-  /* my_printf("i = %d, pc = %p\n", i, pc); */
   if (data->inst[(int)instruction](data, pc))
     return (1);
   return (0);
@@ -98,7 +95,6 @@ int		launch_one_champ_pc(t_data *data, t_champion *champ,
     {
       if (test_instruction(data, tmp))
 	return (1);
-      /* my_printf("tmp->next %p\n", tmp->next); */
       if (tmp->next)
 	*go = 1;
       else
@@ -111,8 +107,6 @@ int		run_one_cycle(t_data *data)
 {
   char		go;
   int		test;
-  /* my_printf("============= turn %d live : %d ============\n", i, */
-  /* 	    data->champ[0]->valid); */
 
   test = -1;
   go = 1;
@@ -132,6 +126,5 @@ int		run_one_cycle(t_data *data)
 	if (launch_one_champ_pc(data, data->champ[3], test, &go))
 	  return (1);
     }
-  /* my_printf("go = %d\n", go); */
   return (0);
 }

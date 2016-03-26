@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:51:39 2016 benjamin duhieu
-** Last update Sat Mar 26 13:25:12 2016 marc brout
+** Last update Sat Mar 26 20:34:29 2016 marc brout
 */
 
 #include "my.h"
@@ -18,8 +18,6 @@ int		add_registres(t_data *data, t_pc *i)
   val = i->reg[(int)data->ram[MM(i->reg[0] + 2)]] +
     i->reg[(int)data->ram[MM(i->reg[0] + 3)]];
   i->reg[(int)data->ram[MM(i->reg[0] + 4)]] = val;
-  /* my_printf("i->reg[%d] = %d\n", (int)data->ram[MM(i->reg[0] + 4)], */
-  /* 	    i->reg[(int)data->ram[MM(i->reg[0] + 4)]]); */
   return (val);
 }
 

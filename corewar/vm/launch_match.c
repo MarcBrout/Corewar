@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 15:44:56 2016 marc brout
-** Last update Sat Mar 26 19:49:22 2016 marc brout
+** Last update Sat Mar 26 20:29:45 2016 marc brout
 */
 
 #include "vm.h"
@@ -20,7 +20,6 @@ int		count_players_alive(t_champion *champ[4])
   total = 0;
   while (i < 4)
     {
-      /* my_printf("champ[%d]->alive = %d\n", i, champ[i]->alive); */
       if (champ[i]->alive >= 1)
 	total += 1;
       i += 1;
@@ -98,11 +97,8 @@ int		launch_match(t_data *data)
       if (i >= nb_turn && !(i = 0))
 	{
 	  go = count_players_alive(data->champ);
-	  /* my_printf("go = %d\n", go); */
 	  set_players(data->champ);
 	}
-      my_printf(" i : %d turn :%d live : %d\n",
-      	     i, nb_turn, data->nblive);
       i += 1;
     }
   dump(data->ram);

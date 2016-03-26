@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:55:18 2016 benjamin duhieu
-** Last update Sat Mar 26 12:29:39 2016 marc brout
+** Last update Sat Mar 26 18:01:29 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -27,7 +27,6 @@ int		perform_or(t_pc *i,
       else
 	i->reg[val->inte[2]] = val->shrt[0] | val->shrt[1];
     }
-  /* my_printf("i->reg[%d] = %d\n", val->inte[2], i->reg[val->inte[2]]); */
   return (i->reg[val->inte[2]]);
 }
 

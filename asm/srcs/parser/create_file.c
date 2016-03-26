@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Mar 11 15:29:29 2016 bougon_p
-** Last update Mon Mar 21 19:28:30 2016 Marel la plus belle <3
+** Last update Sat Mar 26 15:52:38 2016 bougon_p
 */
 
 #include "asm.h"
@@ -32,9 +32,6 @@ int	create_file(char *name)
   int   fd;
   char  *new_name;
 
-  if ((new_name = malloc(sizeof(char) * my_strlen(name) + 1)) == NULL)
-    return (1);
-  set_line_null(new_name, my_strlen(name));
   new_name = my_strndup(name, my_strlen(name) - sizeofextens(name));
   if ((new_name = realloc
        (new_name, my_strlen(name) - sizeofextens(name) + 5)) == NULL)

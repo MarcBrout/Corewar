@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Thu Mar 10 15:08:25 2016 bougon_p
-** Last update Fri Mar 25 17:41:12 2016 marel_m
+** Last update Sat Mar 26 16:29:42 2016 bougon_p
 */
 
 #include <unistd.h>
@@ -35,52 +35,41 @@ int	init_tabinstr(t_tabinstr *tabinstr)
   return (0);
 }
 
-char	**init_instr_end(char **tab)
-{
-  if ((tab[9] = my_strdup("ldi")) == NULL)
-    return (NULL);
-  if ((tab[10] = my_strdup("sti")) == NULL)
-    return (NULL);
-  if ((tab[11] = my_strdup("fork")) == NULL)
-    return (NULL);
-  if ((tab[12] = my_strdup("lld")) == NULL)
-    return (NULL);
-  if ((tab[13] = my_strdup("lldi")) == NULL)
-    return (NULL);
-  if ((tab[14] = my_strdup("lfork")) == NULL)
-    return (NULL);
-  if ((tab[15] = my_strdup("aff")) == NULL)
-    return (NULL);
-  tab[16] = NULL;
-  return (tab);
-}
-
 char	**init_instr()
 {
   char	**tab;
 
   if ((tab = malloc(sizeof(char *) * (NB_INSTRUCTIONS + 1))) == NULL)
     return (NULL);
-  if ((tab[0] = my_strdup("live")) == NULL)
+  if ((tab[0] = my_strdup("live")) == NULL ||
+      (tab[1] = my_strdup("ld")) == NULL ||
+      (tab[2] = my_strdup("st")) == NULL ||
+      (tab[3] = my_strdup("add")) == NULL ||
+      (tab[4] = my_strdup("sub")) == NULL ||
+      (tab[5] = my_strdup("and")) == NULL ||
+      (tab[6] = my_strdup("or")) == NULL ||
+      (tab[7] = my_strdup("xor")) == NULL ||
+      (tab[8] = my_strdup("zjmp")) == NULL ||
+      (tab[9] = my_strdup("ldi")) == NULL ||
+      (tab[10] = my_strdup("sti")) == NULL ||
+      (tab[11] = my_strdup("fork")) == NULL ||
+      (tab[12] = my_strdup("lld")) == NULL ||
+      (tab[13] = my_strdup("lldi")) == NULL ||
+      (tab[14] = my_strdup("lfork")) == NULL ||
+      (tab[15] = my_strdup("aff")) == NULL)
     return (NULL);
-  if ((tab[1] = my_strdup("ld")) == NULL)
-    return (NULL);
-  if ((tab[2] = my_strdup("st")) == NULL)
-    return (NULL);
-  if ((tab[3] = my_strdup("add")) == NULL)
-    return (NULL);
-  if ((tab[4] = my_strdup("sub")) == NULL)
-    return (NULL);
-  if ((tab[5] = my_strdup("and")) == NULL)
-    return (NULL);
-  if ((tab[6] = my_strdup("or")) == NULL)
-    return (NULL);
-  if ((tab[7] = my_strdup("xor")) == NULL)
-    return (NULL);
-  if ((tab[8] = my_strdup("zjmp")) == NULL)
-    return (NULL);
-  init_instr_end(tab);
+  tab[16] = NULL;
   return (tab);
+}
+
+void	free_all(int fd, char **instr, t_tabinstr *tabinstr,
+		 t_instruc *instruc)
+{
+  close(fd);
+  free_tab(instr);
+  free(tabinstr->tabinstr);
+  free_lablist(&instruc->real_lab);
+  free_lablist(&instruc->call_to_lab);
 }
 
 int		parser(char *name, t_header *head, t_instruc *instruc)
@@ -106,8 +95,6 @@ int		parser(char *name, t_header *head, t_instruc *instruc)
   write_labels(instruc);
   if (write_prog_size(head, instruc, fd) == 1)
     return (1);
-  close(fd);
-  free_tab(instr);
-  free(tabinstr.tabinstr);
+  free_all(fd, instr, &tabinstr, instruc);
   return (0);
 }
