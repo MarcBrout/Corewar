@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:54 2016 benjamin duhieu
-** Last update Sat Mar 26 18:02:35 2016 benjamin duhieu
+** Last update Sat Mar 26 20:31:26 2016 marc brout
 */
 
 #include "vm.h"
@@ -36,11 +36,15 @@ void		execute_st_reg(t_data *data, t_pc *i)
 void		execute_st_indirect(t_data *data, t_pc *i)
 {
   int		value;
+  int		pos;
 
   value = IDX(RSFM(data->ram, MM(i->reg[0] + 3)));
+  pos = MM(i->reg[0] + value);
+  if (pos < 0)
+    pos = MEM_SIZE + pos;
   write_int_to_ram(data->ram, (unsigned int)
 		   i->reg[(int)data->ram[MM(i->reg[0] + 2)]],
-		   MM(i->reg[0] + value));
+		   pos);
 }
 
 int		st(t_data *data, t_pc *i)
