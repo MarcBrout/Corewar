@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:20:22 2016 bougon_p
-** Last update Sat Mar 26 19:01:12 2016 bougon_p
+** Last update Sat Mar 26 19:31:58 2016 bougon_p
 */
 
 #include <string.h>
@@ -44,7 +44,7 @@ int	write_prog_size(UNUSED t_header *head, t_instruc *instruc, int fd)
   int		addr;
   static bool	need_writtin = false;
 
-  prog_size = 0;
+  prog_size = 1;
   addr = 136;
   if (!need_writtin)
     write(fd, &prog_size, sizeof(prog_size));
@@ -66,6 +66,7 @@ int	write_comment(t_header *head, int fd)
 
   size = 2049;
   i = -1;
+  printf("size = %d\n", my_strlen(&head->comment[0]));
   size -= my_strlen(&head->comment[0]);
   write(fd, &head->comment[0], my_strlen(&head->comment[0]));
   while (++i < size + 3)

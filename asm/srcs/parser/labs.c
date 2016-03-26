@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 22 20:39:57 2016 bougon_p
-** Last update Sat Mar 26 17:03:37 2016 bougon_p
+** Last update Sat Mar 26 20:15:31 2016 bougon_p
 */
 
 #include <unistd.h>
@@ -54,10 +54,14 @@ bool		check_short_lab(UNUSED t_info *info, t_instruc *instruc, char *arg)
 	return (false);
       lab->addr = instruc->instr_addr;
       lab->pos = instruc->addr_vir + instruc->addr_wrt;
+      printf("%s\n", arg);
       if (arg[1] == ':')
 	lab->name = my_strdup(&arg[2]);
       else
-	lab->name = my_strdup(&arg[1]);
+	{
+	  printf("%s\n", &arg[1]);
+	  lab->name = my_strdup(&arg[1]);
+	}
       lab->nb_bytes = 2;
       add_last_labcdl(instruc->call_to_lab.root, lab);
       instruc->addr_vir += 2;

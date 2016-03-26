@@ -1,11 +1,11 @@
 /*
-** main.c for main in /home/marel_m/Rendu/Semestre_2/CPE/CPE_2015_corewar/asm/srcs
+** main.c for main
 **
 ** Made by
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 13:57:07 2016
-** Last update Fri Mar 25 17:40:27 2016 marel_m
+** Last update Sat Mar 26 19:07:42 2016 bougon_p
 */
 
 #include <unistd.h>
