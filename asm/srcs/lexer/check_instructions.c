@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 18:05:32 2016
-** Last update Fri Mar 25 17:16:26 2016 marel_m
+** Last update Sat Mar 26 20:07:24 2016 marel_m
 */
 
 #include "asm.h"
@@ -97,10 +97,17 @@ int	put_instruc(t_instruc *instruc, int fd)
   return (0);
 }
 
-int	check_instructions(t_instruc *instruc, int fd)
+int	check_instructions(t_instruc *instruc, int fd, int c)
 {
-  if (create_list(instruc) == -1 || create_list_label(instruc) == -1
-      || put_instruc(instruc, fd) == -1)
+  if (create_list(instruc) == -1 || create_list_label(instruc) == -1)
     return (-1);
+  if (c == 0)
+    {
+      if (put_instruc(instruc, fd) == -1)
+	return (-1);
+    }
+  else
+    if (put_instruc_no_comm(instruc, fd) == -1)
+      return (-1);
   return (0);
 }

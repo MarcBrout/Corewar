@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:41:48 2016
-** Last update Fri Mar 25 15:20:06 2016 marel_m
+** Last update Sat Mar 26 20:06:58 2016 marel_m
 */
 
 #include <string.h>
@@ -17,6 +17,7 @@
 int	check_file(t_header *header, t_instruc *instruc, int fd)
 {
   char	*file;
+  int	c;
 
   while (((file = get_next_line(fd)) != NULL && strlen(file) == 0)
 	 || if_comment_text(file) == -1)
@@ -24,8 +25,8 @@ int	check_file(t_header *header, t_instruc *instruc, int fd)
       free(file);
       instruc->nb_l++;
     }
-  if (check_comment(header, instruc, file) == -1
-      || check_instructions(instruc, fd) == -1
+  if ((c = check_comment(header, instruc, file)) == -1
+      || check_instructions(instruc, fd, c) == -1
       || check_if_label_exist(instruc) == -1)
     return (-1);
   free(file);
