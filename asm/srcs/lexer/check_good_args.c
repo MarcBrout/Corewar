@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Sat Mar 26 16:56:08 2016 marel_m
+** Last update Sat Mar 26 17:13:59 2016 marel_m
 */
 
 #include <unistd.h>
@@ -82,7 +82,7 @@ int	check_indirect_arg(t_instruc *instruc, t_list_instruc *elem,
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
 	 && file[i] != '\0')
     i++;
-  if ((arg = my_strndup(file, i)) == NULL
+  if ((arg = my_strndup(file, (i + 1))) == NULL
       || (check_if_label(instruc, arg, 0) == -1
 	  && check_if_val(instruc, arg, 0, 1) == -1))
     return (-1);
