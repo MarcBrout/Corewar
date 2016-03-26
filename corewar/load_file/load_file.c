@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 12:07:50 2016 marc brout
-** Last update Sat Mar 26 11:11:04 2016 marc brout
+** Last update Sat Mar 26 20:15:32 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -88,6 +88,7 @@ int		init_champs(t_data *data)
       data->champ[i]->pc->carry = 0;
       data->champ[i]->pc->run = 0;
       data->champ[i]->pc->next = NULL;
+      data->champ[i]->pc->prev = NULL;
       data->champ[i]->valid = -1;
       data->champ[i]->alive = -1;
       data->champ[i]->order = -1;

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Sat Mar 26 12:32:30 2016 marc brout
+** Last update Sat Mar 26 20:27:05 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -37,12 +37,12 @@ int	add_pc(t_pc *pc, int pos, int cycle)
   copy_registres(tmp, elem);
   elem->champ = tmp->champ;
   elem->reg[0] = (pos < 0) ? MEM_SIZE + pos : pos % MEM_SIZE;
-  my_printf("fork pos = %d\n", elem->reg[0]);
   elem->carry = tmp->carry;
   elem->cycle = cycle;
   elem->cycle = 0;
   elem->run = 0;
   elem->next = NULL;
+  elem->prev = tmp;
   tmp->next = elem;
   return (0);
 }
@@ -70,28 +70,19 @@ void		init_inst(t_data *data)
 
 int		test_instruction(t_data *data, t_pc *pc)
 {
-  int		i;
   char		instruction;
 
-  i = 0;
-  /* my_printf("pc->reg[0] = %d\n", pc->reg[0]); */
   instruction = data->ram[pc->reg[0]];
+  /* my_printf("instruction pc->reg[0] = %d\n", data->ram[pc->reg[0]]); */
+  /* my_printf("pc->reg[0] = %d\n", pc->reg[0]); */
   if (instruction <= 0 || instruction > VM_AFF)
     {
-      pc->reg[0] += 1;
+      pc->reg[0] = MM(pc->reg[0] + 1);
       return (0);
     }
-  while (i <= VM_AFF)
-    {
-      if (i == instruction)
-	{
-	  /* my_printf("i = %d, pc = %p\n", i, pc); */
-	  if (data->inst[i](data, pc))
-	    return (1);
-	  return (0);
-	}
-      i += 1;
-    }
+  /* my_printf("i = %d, pc = %p\n", i, pc); */
+  if (data->inst[(int)instruction](data, pc))
+    return (1);
   return (0);
 }
 
@@ -118,14 +109,16 @@ int		launch_one_champ_pc(t_data *data, t_champion *champ,
 
 int		run_one_cycle(t_data *data)
 {
-  static int	i = 1;
-  char		go = 0;
+  char		go;
   int		test;
   /* my_printf("============= turn %d live : %d ============\n", i, */
   /* 	    data->champ[0]->valid); */
+
   test = -1;
-  while (++test < i)
+  go = 1;
+  while (go)
     {
+      test++;
       if (data->champ[0]->valid >= 0)
 	if (launch_one_champ_pc(data, data->champ[0], test, &go))
 	  return (1);
@@ -139,9 +132,6 @@ int		run_one_cycle(t_data *data)
 	if (launch_one_champ_pc(data, data->champ[3], test, &go))
 	  return (1);
     }
-  i += 1;
   /* my_printf("go = %d\n", go); */
-  if (!go)
-    i = 1;
   return (0);
 }

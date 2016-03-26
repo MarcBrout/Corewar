@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:12 2016 benjamin duhieu
-** Last update Sat Mar 26 11:13:54 2016 marc brout
+** Last update Sat Mar 26 13:25:47 2016 marc brout
 */
 
 #include "vm.h"
@@ -21,7 +21,7 @@ void		execute_ld_direct(t_data *data, t_pc *i)
     i->carry = 1;
   else
     i->carry = 0;
-  my_printf("check exec ld reg %d , dir = %u\n", (int)data->ram[MM(i->reg[0] + 6)], (unsigned int)dir);
+  /* my_printf("check exec ld reg %d , dir = %u\n", (int)data->ram[MM(i->reg[0] + 6)], (unsigned int)dir); */
   i->reg[(int)data->ram[MM(i->reg[0] + 6)]] = dir;
 }
 
@@ -36,7 +36,7 @@ void		execute_ld_indirect(t_data *data, t_pc *i)
     i->carry = 1;
   else
     i->carry = 0;
-  my_printf("check exec ld ind %d, indir = %d\n", (int)data->ram[MM(i->reg[0] + 4)], indir);
+  /* my_printf("check exec ld ind %d, indir = %d\n", (int)data->ram[MM(i->reg[0] + 4)], indir); */
   i->reg[(int)data->ram[MM(i->reg[0] + 4)]] = indir;
 }
 
@@ -47,12 +47,12 @@ int		ld(t_data *data, t_pc *i)
 
   if (can_i_run(i, 5))
     return (0);
-  my_printf("LD pos = %d\n", i->reg[0]);
-  my_printf("code byte = %d\n", (int)data->ram[MM(i->reg[0] + 1)]);
+  /* my_printf("LD pos = %d\n", i->reg[0]); */
+  /* my_printf("code byte = %d\n", (int)data->ram[MM(i->reg[0] + 1)]); */
   first = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
   second = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
-  my_printf("first byte = %d\n", first);
-  my_printf("second byte = %d\n", second);
+  /* my_printf("first byte = %d\n", first); */
+  /* my_printf("second byte = %d\n", second); */
   if ((first != 2 && first != 3) || second != 1)
     return (0);
   if (check_integrety_ld(first, data->ram, i->reg[0]))

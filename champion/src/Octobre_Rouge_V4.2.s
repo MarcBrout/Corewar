@@ -89,23 +89,6 @@ back_wall:      live	%42
 		st	r8,-400
 		st	r8,-400
 		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
-		st	r8,-400
 		ld	%0,r15
 		zjmp	%:back_wall
 
