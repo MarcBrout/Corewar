@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Sat Mar 26 17:13:59 2016 marel_m
+** Last update Sat Mar 26 18:04:51 2016 marel_m
 */
 
 #include <unistd.h>
@@ -18,7 +18,7 @@ int		check_if_label(t_instruc *instruc, char *file, int i)
   if (file[i] != LABEL_CHAR)
     return (-1);
   i++;
-  while ((file[i] != ' ' || file[i] != '\t' || file[i] != ',')
+  while (file[i] != ' ' && file[i] != '\t' && file[i] != ','
 	 && file[i] != '\0')
     {
       if (check_char(file[i]) == -1)
@@ -37,7 +37,7 @@ int	check_if_val(t_instruc *instruc, char *file, int i, int d)
   if (file[i] < '0' && file[i] > '9' && file[i] != '-')
     return (-1);
   i++;
-  while ((file[i] != ' ' || file[i] != '\t' || file[i] != ',')
+  while (file[i] != ' ' && file[i] != '\t' && file[i] != ','
 	 && file[i] != '\0')
     {
       if (file[i] < '0' || file[i] > '9')
@@ -67,7 +67,7 @@ int	check_direct_arg(t_instruc *instruc, t_list_instruc *elem,
       || arg[0] != DIRECT_CHAR
       || (check_if_label(instruc, arg, 1) == -1
 	  && check_if_val(instruc, arg, 1, 1) == -1))
-    return (-1);
+    return (free(arg), -1);
   stock_args(elem, arg, pos);
   return (0);
 }
@@ -84,8 +84,8 @@ int	check_indirect_arg(t_instruc *instruc, t_list_instruc *elem,
     i++;
   if ((arg = my_strndup(file, (i + 1))) == NULL
       || (check_if_label(instruc, arg, 0) == -1
-	  && check_if_val(instruc, arg, 0, 1) == -1))
-    return (-1);
+	  && check_if_val(instruc, arg, 0, 0) == -1))
+    return (free(arg), -1);
   stock_args(elem, arg, pos);
   return (0);
 }
