@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 16:16:26 2016 marc brout
-** Last update Sat Mar 26 23:17:33 2016 benjamin duhieu
+** Last update Sun Mar 27 00:19:57 2016 marc brout
 */
 
 #include <sys/types.h>
@@ -18,12 +18,9 @@
 
 int	init_ram(t_data *data)
 {
-  if (!(data->ram = malloc(MEM_SIZE + 1)) ||
-      !(data->ramv = malloc(MEM_SIZE + 1)))
+  if (!(data->ram = malloc(MEM_SIZE + 1)))
     return (my_put_error(MALLOC_ERROR, 1));
   my_bzero(data->ram, MEM_SIZE, 0);
-  my_bzero(data->ramv, MEM_SIZE - 1, 1);
-  data->ramv[MEM_SIZE] = 0;
   return (0);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:59:12 2016 benjamin duhieu
-** Last update Sat Mar 26 22:55:23 2016 benjamin duhieu
+** Last update Sun Mar 27 00:47:52 2016 marc brout
 */
 
 #include "vm.h"
@@ -28,7 +28,6 @@ int	check_integrety_ldi(unsigned first, unsigned second,
     return (1);
   return (0);
 }
-
 
 int		perform_lldi(t_data *data, t_val *val, t_pc *i)
 {

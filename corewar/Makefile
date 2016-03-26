@@ -5,7 +5,7 @@
 ## Login   <brout_m@epitech.net>
 ## 
 ## Started on  Mon Mar 21 23:17:37 2016 marc brout
-## Last update Sat Mar 26 23:10:12 2016 benjamin duhieu
+## Last update Sun Mar 27 00:20:22 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -60,7 +60,8 @@ SRC		=	$(PARSING)pars.c \
 			$(VM)run_one_cycle.c \
 			$(VM)misc.c \
 			$(VM)get_high_scores.c \
-			$(VM)set_vm_memory.c
+			$(VM)set_vm_memory.c \
+			$(VM)free.c
 
 OBJS    	=	$(SRC:.c=.o)
 

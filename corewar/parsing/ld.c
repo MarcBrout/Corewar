@@ -5,11 +5,10 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:50:12 2016 benjamin duhieu
-** Last update Sat Mar 26 20:32:50 2016 marc brout
+** Last update Sun Mar 27 00:49:29 2016 marc brout
 */
 
 #include "vm.h"
-#include <stdio.h>
 #include "my.h"
 
 void		execute_ld_direct(t_data *data, t_pc *i)

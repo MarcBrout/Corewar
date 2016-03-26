@@ -5,11 +5,10 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Sat Mar 26 22:50:54 2016 benjamin duhieu
+** Last update Sun Mar 27 00:48:52 2016 marc brout
 */
 
 #include "my.h"
-#include <stdio.h>
 #include "vm.h"
 
 int	check_integrety_sti(unsigned sc, unsigned th, char *ram, int i)

@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Mar 23 08:36:28 2016 marc brout
-** Last update Sat Mar 26 23:18:40 2016 benjamin duhieu
+** Last update Sun Mar 27 00:46:33 2016 marc brout
 */
 
 #include <stdio.h>
@@ -33,7 +33,6 @@ unsigned int	read_uint_from_ram(char *ram, int pos)
     }
   return (nb.value);
 }
-
 
 int	read_int_from_ram(char *ram, int pos)
 {

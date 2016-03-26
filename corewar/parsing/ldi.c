@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:05 2016 benjamin duhieu
-** Last update Sat Mar 26 18:00:48 2016 benjamin duhieu
+** Last update Sun Mar 27 00:48:33 2016 marc brout
 */
 
 #include "vm.h"
@@ -39,7 +39,6 @@ int		recup_val_ldi(t_data *data,
   val->inte[2] = (int)data->ram[MM(i->reg[0] + pos)], pos += 1;
   return (pos);
 }
-
 
 int		perform_ldi(t_data *data, t_val *val, t_pc *i)
 {

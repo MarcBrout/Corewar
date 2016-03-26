@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Sat Mar 26 23:25:10 2016 benjamin duhieu
+** Last update Sun Mar 27 00:51:31 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -89,12 +89,11 @@ typedef	struct		s_pc
   char			run;
   struct s_champion	*champ;
   struct s_pc		*next;
-  struct s_pc		*prev;
 }			t_pc;
 
 typedef struct		s_champion
 {
-  const char		*path;
+  char			*path;
   char			valid;
   int			alive;
   int			order;
@@ -112,7 +111,6 @@ typedef struct		s_data
   t_champion		*champ[4];
   int			(*inst[17])(struct s_data *, t_pc *);
   char			*ram;
-  char			*ramv;
 }			t_data;
 
 typedef struct		s_pars
@@ -142,7 +140,7 @@ int			check_header(int fd, t_header *head);
 void			copy(char *src, char *dst);
 int			init_champs(t_data *data);
 int			load_champion(t_champion *champion,
-				      const char *champion_file);
+				      char *champion_file);
 
 /*
 ** vm.c
@@ -216,7 +214,6 @@ int			my_strcmp(char *, char *);
 
 void			order_champ(t_data *);
 void			swap_champ(t_data *, int);
-
 
 /*
 ** begin parsing arguments: pars.c
@@ -362,5 +359,12 @@ void			write_int_to_ram(char *ram,
 void			write_short_to_ram(char *ram,
 					   unsigned short val,
 					   int pos);
+
+/*
+** free.c
+*/
+
+void			free_args(t_pars *root);
+void			free_data(t_data *data);
 
 #endif /* !VM_H_ */

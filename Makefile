@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Sat Mar 26 23:26:47 2016 benjamin duhieu
+## Last update Sun Mar 27 00:44:29 2016 marc brout
 ##
 
 # USEFUL VARIABLES
@@ -58,6 +58,7 @@ SRCCOR		=	$(PARSING)pars.c \
 			$(VM)init.c \
 			$(VM)run_one_cycle.c \
 			$(VM)misc.c \
+			$(VM)free.c \
 			$(VM)get_high_scores.c \
 			$(VM)set_vm_memory.c
 
