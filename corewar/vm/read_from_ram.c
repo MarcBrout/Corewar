@@ -5,14 +5,14 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Mar 23 08:36:28 2016 marc brout
-** Last update Fri Mar 25 21:26:57 2016 benjamin duhieu
+** Last update Sat Mar 26 09:52:40 2016 marc brout
 */
 
 #include <stdio.h>
 #include "vm.h"
 #include "my.h"
 
-int		read_int_from_ram(char *ram, int pos)
+unsigned int	read_uint_from_ram(char *ram, int pos)
 {
   t_core_int	nb;
 
@@ -34,7 +34,30 @@ int		read_int_from_ram(char *ram, int pos)
   return (nb.value);
 }
 
-short		read_short_from_ram(char* ram, int pos)
+
+int	read_int_from_ram(char *ram, int pos)
+{
+  t_core_int	nb;
+
+  pos = (pos < 0) ? MEM_SIZE + pos : pos;
+  if (g_endian)
+    {
+      nb.bytes[3] = ram[pos % MEM_SIZE];
+      nb.bytes[2] = ram[(pos + 1) % MEM_SIZE];
+      nb.bytes[1] = ram[(pos + 2) % MEM_SIZE];
+      nb.bytes[0] = ram[(pos + 3) % MEM_SIZE];
+    }
+  else
+    {
+      nb.bytes[0] = ram[pos % MEM_SIZE];
+      nb.bytes[1] = ram[(pos + 1) % MEM_SIZE];
+      nb.bytes[2] = ram[(pos + 2) % MEM_SIZE];
+      nb.bytes[3] = ram[(pos + 3) % MEM_SIZE];
+    }
+  return (nb.value);
+}
+
+short	read_short_from_ram(char* ram, int pos)
 {
   t_core_short	nb;
 
@@ -52,7 +75,7 @@ short		read_short_from_ram(char* ram, int pos)
   return (nb.value);
 }
 
-void		write_int_to_ram(char *ram, int val, int pos)
+void		write_int_to_ram(char *ram, unsigned int val, int pos)
 {
   t_core_int	nb;
 
@@ -76,7 +99,7 @@ void		write_int_to_ram(char *ram, int val, int pos)
     }
 }
 
-void		write_short_to_ram(char *ram, short val, int pos)
+void		write_short_to_ram(char *ram, unsigned short val, int pos)
 {
   t_core_short	nb;
 

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:05 2016 benjamin duhieu
-** Last update Fri Mar 25 21:21:35 2016 benjamin duhieu
+** Last update Sat Mar 26 12:27:43 2016 marc brout
 */
 
 #include "vm.h"
@@ -74,6 +74,8 @@ int		ldi(t_data *data, t_pc *i)
   t_val		val;
   int		move;
 
+  if (can_i_run(i, 25))
+    return (0);
   inst.fi = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
   inst.sd = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
   inst.th = (data->ram[MM(i->reg[0] + 1)] >> 2) & (char)3;
@@ -91,6 +93,5 @@ int		ldi(t_data *data, t_pc *i)
     i->carry = 1;
   /* my_printf("i->reg[2] = %d\n", i->reg[2]); */
   i->reg[0] = MM(i->reg[0] + move);
-  i->cycle = 25;
   return (0);
 }

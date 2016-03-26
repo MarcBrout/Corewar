@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:58:34 2016 benjamin duhieu
-** Last update Thu Mar 24 15:41:50 2016 marc brout
+** Last update Sat Mar 26 11:40:32 2016 marc brout
 */
 
 #include "vm.h"
@@ -33,12 +33,12 @@ void		execute_ld_direct_no_idx(t_data *data, t_pc *i)
 {
   int		dir;
 
-  dir = RIFM(data->ram, MM(i->reg[0] + 2));
+  dir = RUIFM(data->ram, MM(i->reg[0] + 2));
   if (dir == 0)
     i->carry = 1;
   else
     i->carry = 0;
-  i->reg[(int)data->ram[MM(i->reg[0] + 3)]] = dir;
+  i->reg[(int)data->ram[MM(i->reg[0] + 6)]] = dir;
 }
 
 void		execute_ld_indirect_no_idx(t_data *data, t_pc *i)
@@ -47,12 +47,12 @@ void		execute_ld_indirect_no_idx(t_data *data, t_pc *i)
   int		value;
 
   value = RSFM(data->ram, MM(i->reg[0] + 2));
-  indir = RIFM(data->ram, MM(i->reg[0] + value));
+  indir = RUIFM(data->ram, MM(i->reg[0] + value));
   if (indir == 0)
     i->carry = 1;
   else
     i->carry = 0;
-  i->reg[(int)data->ram[MM(i->reg[0] + 3)]] = indir;
+  i->reg[(int)data->ram[MM(i->reg[0] + 4)]] = indir;
 }
 
 int		lld(t_data *data, t_pc *i)
@@ -60,6 +60,8 @@ int		lld(t_data *data, t_pc *i)
   unsigned	first;
   unsigned	second;
 
+  if (can_i_run(i, 10))
+    return (0);
   first = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
   second = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
   if ((first != 2 && first != 3) || second != 1)
@@ -70,7 +72,6 @@ int		lld(t_data *data, t_pc *i)
     execute_ld_direct_no_idx(data, i);
   else
     execute_ld_indirect_no_idx(data, i);
-  i->cycle = 10;
   move_pc_ld(first, i);
   return (0);
 }

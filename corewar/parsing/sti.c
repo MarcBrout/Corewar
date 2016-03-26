@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Fri Mar 25 17:46:18 2016 marc brout
+** Last update Sat Mar 26 12:31:18 2016 marc brout
 ** Last update Thu Mar 24 12:02:52 2016 benjamin duhieu
 */
 
@@ -77,6 +77,8 @@ int		sti(t_data *data, t_pc *i)
 {
   t_inst	arg;
 
+  if (can_i_run(i, 25))
+    return (0);
   arg.fi = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
   arg.sd = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
   arg.th = (data->ram[MM(i->reg[0] + 1)] >> 2) & (char)3;
@@ -88,7 +90,6 @@ int		sti(t_data *data, t_pc *i)
   /* my_printf("%d, %d, %d, %d\n", arg.fi, arg.sd, */
  /* arg.th, data->ram[MM(i->reg[0] + 1)]); */
   execut_sti(data, &arg, i);
-  i->cycle = 25;
   move_pc_sti(arg.sd, arg.th, i);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:54:20 2016 benjamin duhieu
-** Last update Fri Mar 25 17:18:31 2016 marc brout
+** Last update Sat Mar 26 12:36:09 2016 marc brout
 */
 
 #include "vm.h"
@@ -78,7 +78,7 @@ int		perform_and(t_pc *i,
       else
 	i->reg[val->inte[2]] = val->shrt[0] & val->shrt[1];
     }
-  my_printf("i->reg[%d] = %d\n", val->inte[2], i->reg[val->inte[2]]);
+  my_printf("AND i->reg[%d] = %d\n", val->inte[2], i->reg[val->inte[2]]);
   return (i->reg[val->inte[2]]);
 }
 
@@ -88,6 +88,8 @@ int		and(t_data *data, t_pc *i)
   t_val		val;
   int		move;
 
+  if (can_i_run(i, 6))
+    return (0);
   inst.fi = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
   inst.sd = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
   inst.th = (data->ram[MM(i->reg[0] + 1)] >> 2) & (char)3;
@@ -102,6 +104,5 @@ int		and(t_data *data, t_pc *i)
   else
     i->carry = 1;
   i->reg[0] = MM(i->reg[0] + move);
-  i->cycle = 6;
   return (0);
 }

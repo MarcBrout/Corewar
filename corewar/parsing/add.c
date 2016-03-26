@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:51:39 2016 benjamin duhieu
-** Last update Fri Mar 25 16:51:32 2016 marc brout
+** Last update Sat Mar 26 12:32:53 2016 marc brout
 */
 
 #include "my.h"
@@ -27,6 +27,8 @@ int		add(t_data *data, t_pc *i)
 {
   t_inst	inst;
 
+  if (can_i_run(i, 10))
+    return (0);
   inst.fi = data->ram[MM(i->reg[0] + 1)] >> 6 & (char)3;
   inst.sd = data->ram[MM(i->reg[0] + 1)] >> 4 & (char)3;
   inst.th = data->ram[MM(i->reg[0] + 1)] >> 2 & (char)3;
@@ -43,7 +45,6 @@ int		add(t_data *data, t_pc *i)
     i->carry = 0;
   else
     i->carry = 1;
-  i->cycle = 10;
   i->reg[0] = MM(i->reg[0] + 5);
   return (0);
 }

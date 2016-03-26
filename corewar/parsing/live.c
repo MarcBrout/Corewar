@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 21:40:56 2016 benjamin duhieu
-** Last update Fri Mar 25 21:21:51 2016 benjamin duhieu
+** Last update Sat Mar 26 11:14:14 2016 marc brout
 */
 
 #include "my.h"
@@ -16,13 +16,15 @@ int	live(t_data *data, t_pc *i)
   int	chk;
   int	a;
 
+  if (can_i_run(i, 10))
+    return (0);
   chk = read_int_from_ram(data->ram, MM(i->reg[0] + 1));
-  /* my_printf("LIVE : %d\n", chk); */
+  my_printf("reg : %d\n", i->reg[0]);
+  my_printf("LIVE : %d\n", chk);
   a = -1;
-  /* my_printf("reg : %d\n", i->reg[0]); */
   while (++a < 4)
     {
-      /* my_printf("data->champ[%d]->pc->reg[1] = %d\n", a, data->champ[a]->pc->reg[1]); */
+      my_printf("data->champ[%d]->pc->reg[1] = %d\n", a, data->champ[a]->pc->reg[1]);
       if (chk == data->champ[a]->pc->reg[1])
 	{
 	  my_printf("Le joueur %d %s est en vie.\n",
@@ -31,7 +33,6 @@ int	live(t_data *data, t_pc *i)
 	  data->last = data->champ[a]->order;
 	}
     }
-  i->cycle = 10;
   data->nblive++;
   i->reg[0] = MM(i->reg[0] + 5);
   return (0);

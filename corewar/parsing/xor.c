@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:55:45 2016 benjamin duhieu
-** Last update Fri Mar 25 21:22:49 2016 benjamin duhieu
+** Last update Sat Mar 26 12:32:09 2016 marc brout
 */
 
 #include "vm.h"
@@ -37,6 +37,8 @@ int		xor(t_data *data, t_pc *i)
   t_val		val;
   int		move;
 
+  if (can_i_run(i, 6))
+    return (0);
   inst.fi = (data->ram[MM(i->reg[0] + 1)] >> 6) & (char)3;
   inst.sd = (data->ram[MM(i->reg[0] + 1)] >> 4) & (char)3;
   inst.th = (data->ram[MM(i->reg[0] + 1)] >> 2) & (char)3;
@@ -51,6 +53,5 @@ int		xor(t_data *data, t_pc *i)
   else
     i->carry = 1;
   i->reg[0] = MM(i->reg[0] + move);
-  i->cycle = 6;
   return (0);
 }

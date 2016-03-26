@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Fri Mar 25 10:27:55 2016 benjamin duhieu
+** Last update Sat Mar 26 11:15:14 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -30,6 +30,7 @@
 # define IDX(x) ((x) % IDX_MOD)
 # define RSFM read_short_from_ram
 # define RIFM read_int_from_ram
+# define RUIFM read_uint_from_ram
 
 char		g_endian;
 
@@ -70,13 +71,13 @@ typedef struct		s_inst
 
 typedef union		s_core_int
 {
-  int			value;
+  unsigned int		value;
   unsigned char		bytes[4];
 }			t_core_int;
 
 typedef union		s_core_short
 {
-  short			value;
+  unsigned short	value;
   unsigned char		bytes[2];
 }			t_core_short;
 
@@ -85,6 +86,7 @@ typedef	struct		s_pc
   int			carry;
   int			reg[16];
   int			cycle;
+  char			run;
   struct s_champion	*champ;
   struct s_pc		*next;
 }			t_pc;
@@ -298,6 +300,7 @@ void			move_pc_sti(unsigned, unsigned, t_pc *);
 ** fork / lfork : fork.c && lfork.c
 */
 
+int			can_i_run(t_pc *, int);
 int			frk(t_data *, t_pc *);
 int			lfork(t_data *, t_pc *);
 
@@ -341,13 +344,15 @@ void			copy_order_to_reg(t_champion *champ[4]);
 
 int			read_int_from_ram(char *ram,
 					  int pos);
+unsigned int		read_uint_from_ram(char *ram,
+					  int pos);
 short			read_short_from_ram(char *ram,
 					    int pos);
 void			write_int_to_ram(char *ram,
-					 int val,
+					 unsigned int val,
 					 int pos);
 void			write_short_to_ram(char *ram,
-					   short val,
+					   unsigned short val,
 					   int pos);
 
 #endif /* !VM_H_ */

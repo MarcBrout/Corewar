@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Fri Mar 25 12:00:22 2016 benjamin duhieu
+** Last update Sat Mar 26 12:32:30 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -36,9 +36,12 @@ int	add_pc(t_pc *pc, int pos, int cycle)
     tmp = tmp->next;
   copy_registres(tmp, elem);
   elem->champ = tmp->champ;
-  elem->reg[0] = pos;
+  elem->reg[0] = (pos < 0) ? MEM_SIZE + pos : pos % MEM_SIZE;
+  my_printf("fork pos = %d\n", elem->reg[0]);
   elem->carry = tmp->carry;
   elem->cycle = cycle;
+  elem->cycle = 0;
+  elem->run = 0;
   elem->next = NULL;
   tmp->next = elem;
   return (0);
@@ -56,6 +59,7 @@ void		init_inst(t_data *data)
   data->inst[VM_XOR] = &xor;
   data->inst[VM_OR] = &or;
   data->inst[VM_LDI] = &ldi;
+  data->inst[VM_LLD] = &lld;
   data->inst[VM_LLDI] = &lldi;
   data->inst[VM_STI] = &sti;
   data->inst[VM_FORK] = &frk;
@@ -81,6 +85,7 @@ int		test_instruction(t_data *data, t_pc *pc)
     {
       if (i == instruction)
 	{
+	  /* my_printf("i = %d, pc = %p\n", i, pc); */
 	  if (data->inst[i](data, pc))
 	    return (1);
 	  return (0);
@@ -98,14 +103,10 @@ int		launch_one_champ_pc(t_data *data, t_champion *champ,
   tmp = champ->pc;
   while (--pc >= 0 && tmp->next)
     tmp = tmp->next;
-
   if (tmp)
     {
-      if (tmp->cycle)
-	tmp->cycle--;
-      else
-	if (test_instruction(data, tmp))
-	  return (1);
+      if (test_instruction(data, tmp))
+	return (1);
       /* my_printf("tmp->next %p\n", tmp->next); */
       if (tmp->next)
 	*go = 1;

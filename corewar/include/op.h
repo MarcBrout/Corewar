@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 14 20:56:37 2016 marc brout
-** Last update Fri Mar 25 21:28:31 2016 benjamin duhieu
+** Last update Sat Mar 26 08:34:08 2016 marc brout
 */
 
 #ifndef OP_H_
@@ -109,6 +109,6 @@ extern t_op op_tab[];
 
 #define CYCLE_TO_DIE    1536
 #define CYCLE_DELTA     4
-#define NBR_LIVE        30
+#define NBR_LIVE        2048
 
 #endif /* !OP_H_ */
