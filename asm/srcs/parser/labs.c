@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 22 20:39:57 2016 bougon_p
-** Last update Fri Mar 25 17:49:54 2016 marel_m
+** Last update Sat Mar 26 17:03:37 2016 bougon_p
 */
 
 #include <unistd.h>
@@ -48,13 +48,16 @@ bool		check_short_lab(UNUSED t_info *info, t_instruc *instruc, char *arg)
   short		pad;
   t_lablist	*lab;
 
-  if (arg[1] == ':')
+  if (arg[1] == ':' || arg[0] == ':')
     {
       if ((lab = malloc(sizeof(t_lablist))) == NULL)
 	return (false);
       lab->addr = instruc->instr_addr;
       lab->pos = instruc->addr_vir + instruc->addr_wrt;
-      lab->name = my_strdup(&arg[2]);
+      if (arg[1] == ':')
+	lab->name = my_strdup(&arg[2]);
+      else
+	lab->name = my_strdup(&arg[1]);
       lab->nb_bytes = 2;
       add_last_labcdl(instruc->call_to_lab.root, lab);
       instruc->addr_vir += 2;
@@ -70,13 +73,16 @@ bool	check_int_lab(UNUSED t_info *info, t_instruc *instruc, char *arg)
   int		pad;
   t_lablist	*lab;
 
-  if (arg[1] == ':')
+  if (arg[1] == ':' || arg[0] == ':')
     {
       if ((lab = malloc(sizeof(t_lablist))) == NULL)
 	return (false);
       lab->addr = instruc->instr_addr;
       lab->pos = instruc->addr_vir + instruc->addr_wrt;
-      lab->name = my_strdup(&arg[2]);
+      if (arg[1] == ':')
+	lab->name = my_strdup(&arg[2]);
+      else
+	lab->name = my_strdup(&arg[1]);
       lab->nb_bytes = 4;
       add_last_labcdl(instruc->call_to_lab.root, lab);
       instruc->addr_vir += 4;

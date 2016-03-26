@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:26:16 2016 bougon_p
-** Last update Fri Mar 25 19:43:00 2016 bougon_p
+** Last update Sat Mar 26 17:10:39 2016 bougon_p
 */
 
 #include <unistd.h>
@@ -26,6 +26,8 @@ int     ld_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
     }
   else if (check == 0x03)
     {
+      if (check_short_lab(info, instruc, info->arg_1) == true)
+	return (0);
       if (w_short(fd, info->arg_1, instruc) == 1)
         return (1);
       instruc->addr_wrt += 2;
