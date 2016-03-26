@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Mar 23 22:24:42 2016 bougon_p
-** Last update Fri Mar 25 15:45:49 2016 bougon_p
+** Last update Sat Mar 26 16:34:56 2016 bougon_p
 */
 
 #include "asm.h"
@@ -41,15 +41,18 @@ int		add_last_labcdl(t_cdlist *root, void *_data)
 
 int		free_lablist(t_arglist *arg)
 {
-  int		i;
   t_cdlist	*tmp;
+  t_cdlist	*tmp2;
 
-  i = 0;
   tmp = arg->root->next;
   while (tmp != arg->root)
     {
-      i++;
-      tmp = tmp->next;
+      /* if (tmp->data->name != NULL) */
+      /* 	free(tmp->data->name); */
+      tmp2 = tmp->next;
+      free(tmp);
+      tmp = tmp2;
     }
+  free(tmp);
   return (0);
 }
