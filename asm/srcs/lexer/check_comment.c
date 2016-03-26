@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Sat Mar 26 20:23:22 2016 bougon_p
+** Last update Sat Mar 26 20:44:44 2016 bougon_p
 */
 
 #include <stdlib.h>
@@ -42,7 +42,6 @@ void	stock_comment(t_header *header, char *file)
   while (++i != (my_strlen(file) - 1))
     header->comment[j++] = file[i];
   header->comment[j] = '\0';
-  printf("%s\n", header->comment);
 }
 
 int	no_comment(t_instruc *instruc, t_header *header, char *new)
