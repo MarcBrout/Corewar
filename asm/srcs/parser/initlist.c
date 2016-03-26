@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Mar 23 22:24:42 2016 bougon_p
-** Last update Sat Mar 26 16:39:34 2016 bougon_p
+** Last update Sat Mar 26 21:45:15 2016 bougon_p
 */
 
 #include "asm.h"
@@ -47,8 +47,6 @@ int		free_lablist(t_arglist *arg)
   tmp = arg->root->next;
   while (tmp != arg->root)
     {
-      /* if (tmp->data->name != NULL) */
-      /* 	free(tmp->data->name); */
       tmp2 = tmp->next;
       if (tmp->data->name != NULL)
 	free(tmp->data->name);

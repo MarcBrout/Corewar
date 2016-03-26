@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Mar 11 15:29:29 2016 bougon_p
-** Last update Sat Mar 26 18:13:20 2016 bougon_p
+** Last update Sat Mar 26 21:42:56 2016 bougon_p
 */
 
 #include "asm.h"
@@ -28,14 +28,29 @@ int	sizeofextens(char *name)
   return (p + 1);
 }
 
+int	sizeofpath(char *name)
+{
+  int   i;
+
+  i = my_strlen(name);
+  while (i >= 0 && name[--i] != '/');
+  if (i == -1)
+    return (0);
+  return (i + 1);
+}
+
 int	create_file(char *name)
 {
   int   fd;
   char  *new_name;
+  int	start;
 
-  new_name = my_strndup(name, my_strlen(name) - sizeofextens(name));
+  start = sizeofpath(name);
+  printf("%s\n", &name[start]);
+  new_name = my_strndup
+    (&name[start], my_strlen(name) - sizeofextens(name) - start);
   if ((new_name = realloc
-       (new_name, my_strlen(name) - sizeofextens(name) + 5)) == NULL)
+       (new_name, my_strlen(name) - sizeofextens(name) - start + 5)) == NULL)
     return (malloc_fail(), 1);
   my_strcat(new_name, ".cor");
   if ((fd = open(new_name, O_WRONLY | O_CREAT | O_TRUNC,
