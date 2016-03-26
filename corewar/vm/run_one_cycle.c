@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Sat Mar 26 23:20:02 2016 benjamin duhieu
+** Last update Sat Mar 26 23:23:18 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -14,26 +14,16 @@
 
 int		test_instruction(t_data *data, t_pc *pc)
 {
-  int		i;
   char		instruction;
 
-  i = 0;
   instruction = data->ram[pc->reg[0]];
   if (instruction <= 0 || instruction > VM_AFF)
     {
-      pc->reg[0] += 1;
+      pc->reg[0] = MM(pc->reg[0] + 1);
       return (0);
     }
-  while (i <= VM_AFF)
-    {
-      if (i == instruction)
-	{
-	  if (data->inst[i](data, pc))
-	    return (1);
-	  return (0);
-	}
-      i += 1;
-    }
+  if (data->inst[(int)instruction](data, pc))
+    return (1);
   return (0);
 }
 

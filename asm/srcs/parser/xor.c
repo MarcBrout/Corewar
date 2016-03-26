@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:59:22 2016 bougon_p
-** Last update Fri Mar 25 19:42:47 2016 bougon_p
+** Last update Sat Mar 26 22:01:13 2016 bougon_p
 */
 
 #include <unistd.h>
@@ -20,20 +20,19 @@ int	xor_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
     {
       if (check_int_lab(info, instruc, info->arg_1) == true)
 	return (0);
-      if (w_int(fd, info->arg_1) == 1)
-        return (1);
+      w_int(fd, info->arg_1);
       instruc->addr_wrt += 4;
     }
   else if (check == 0x03)
     {
-      if (w_short(fd, info->arg_1, instruc) == 1)
-        return (1);
+      if (check_short_lab(info, instruc, info->arg_1) == true)
+	return (0);
+      w_short(fd, info->arg_1, instruc);
       instruc->addr_wrt += 2;
     }
   else if (check == 0x01)
     {
-      if (w_reg(fd, info->arg_1) == 1)
-        return (1);
+      w_reg(fd, info->arg_1);
       instruc->addr_wrt += 1;
     }
   return (0);
@@ -48,20 +47,19 @@ int	xor_arg_2(int fd, t_info *info, char byte, t_instruc *instruc)
     {
       if (check_int_lab(info, instruc, info->arg_2) == true)
 	return (0);
-      if (w_int(fd, info->arg_2) == 1)
-        return (1);
+      w_int(fd, info->arg_2);
       instruc->addr_wrt += 4;
     }
   else if (check == 0x03)
     {
-      if (w_short(fd, info->arg_2, instruc) == 1)
-        return (1);
+      if (check_short_lab(info, instruc, info->arg_2) == true)
+	return (0);
+      w_short(fd, info->arg_2, instruc);
       instruc->addr_wrt += 2;
     }
   else
     {
-      if (w_reg(fd, info->arg_2) == 1)
-        return (1);
+      w_reg(fd, info->arg_2);
       instruc->addr_wrt += 1;
     }
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar 13 15:47:40 2016
-** Last update Sat Mar 26 18:04:51 2016 marel_m
+** Last update Sat Mar 26 20:39:31 2016 marel_m
 */
 
 #include <unistd.h>
@@ -27,7 +27,7 @@ int		check_if_label(t_instruc *instruc, char *file, int i)
     }
   if ((new = add_list_after_label(instruc)) == NULL)
     return (-1);
-  new->name = my_strdup(file);
+  new->name = my_strndup(file, i);
   new->pos = instruc->nb_l;
   return (0);
 }
@@ -82,7 +82,7 @@ int	check_indirect_arg(t_instruc *instruc, t_list_instruc *elem,
   while (file[i] != ' ' && file[i] != ',' && file[i] != '\t'
 	 && file[i] != '\0')
     i++;
-  if ((arg = my_strndup(file, (i + 1))) == NULL
+  if ((arg = my_strndup(file, i)) == NULL
       || (check_if_label(instruc, arg, 0) == -1
 	  && check_if_val(instruc, arg, 0, 0) == -1))
     return (free(arg), -1);

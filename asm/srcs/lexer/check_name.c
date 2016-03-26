@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:09:07 2016
-** Last update Fri Mar 25 17:18:28 2016 marel_m
+** Last update Sat Mar 26 18:47:26 2016 marel_m
 */
 
 #include <stdlib.h>
@@ -27,7 +27,7 @@ int	check_double_quote_name(char *file)
   i = 1;
   while (file[i] != '"')
     i++;
-  if (i != (my_strlen(file) - 1) || i > 130)
+  if (i != (my_strlen(file) - 1) || i >= 129)
     return (-1);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Fri Mar 25 14:24:33 2016 marel_m
+** Last update Sat Mar 26 20:44:44 2016 bougon_p
 */
 
 #include <stdlib.h>
@@ -27,15 +27,9 @@ int	check_double_quote_comment(char *file)
   i = 1;
   while (file[i] != '"')
     i++;
-  if (i != (my_strlen(file) - 1) || i > 2050)
+  if (i != (my_strlen(file) - 1) || i >= 2049)
     return (-1);
   return (0);
-}
-
-void	no_comment(t_header *header)
-{
-  header->comment[0] = '\0';
-  write(1, "warning: no comment specified\n", 30);
 }
 
 void	stock_comment(t_header *header, char *file)
@@ -50,7 +44,17 @@ void	stock_comment(t_header *header, char *file)
   header->comment[j] = '\0';
 }
 
-int	check_comment(t_header *header, t_instruc *instruc, char *file)
+int	no_comment(t_instruc *instruc, t_header *header, char *new)
+{
+  header->comment[0] = '\0';
+  write(2, "Warning: no comment specified.\n", 31);
+  if ((instruc->first_no_c = my_strdup(new)) == NULL)
+    return (-1);
+  return (0);
+}
+
+int	check_comment(t_header *header, t_instruc *instruc,
+		      char *file)
 {
   char	*new;
 
@@ -61,7 +65,8 @@ int	check_comment(t_header *header, t_instruc *instruc, char *file)
     {
       if (my_strncmp(new, ".name", 5) == 0)
 	return (write(2, "Name can only be defined once.\n", 31), -1);
-      no_comment(header);
+      if (no_comment(instruc, header, new) == -1)
+	return (-1);
       return (free(new), 1);
     }
   free(new);
@@ -72,5 +77,24 @@ int	check_comment(t_header *header, t_instruc *instruc, char *file)
     return (synthax_error(instruc, 0), -1);
   stock_comment(header, new);
   free(new);
+  return (0);
+}
+
+int	put_instruc_no_comm(t_instruc *instruc, int fd)
+{
+  instruc->nb_l++;
+  if (instruc->first_no_c[0] == '#' || instruc->first_no_c[0] == ';'
+      || my_strlen(instruc->first_no_c) == 0
+      || check_line(instruc->first_no_c) == -1
+      || if_comment_text(instruc->first_no_c) == -1)
+    {
+      if (put_instruc(instruc, fd) == -1)
+	return (-1);
+    }
+  else if (check_instruc_arg(instruc, instruc->first_no_c, fd) == -1
+	   || put_instruc(instruc, fd) == -1)
+    return (-1);
+  free(instruc->first_no_c);
+  put_instruc(instruc, fd);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 18:20:22 2016 bougon_p
-** Last update Fri Mar 25 17:42:21 2016 marel_m
+** Last update Sat Mar 26 20:43:27 2016 bougon_p
 */
 
 #include <string.h>
@@ -44,7 +44,7 @@ int	write_prog_size(UNUSED t_header *head, t_instruc *instruc, int fd)
   int		addr;
   static bool	need_writtin = false;
 
-  prog_size = 0;
+  prog_size = 1;
   addr = 136;
   if (!need_writtin)
     write(fd, &prog_size, sizeof(prog_size));

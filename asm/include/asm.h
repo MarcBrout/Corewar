@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Sat Mar 26 15:45:22 2016 marel_m
+** Last update Sat Mar 26 20:00:23 2016 marel_m
 */
 
 #ifndef HEADER_H_
@@ -60,6 +60,7 @@ typedef struct		s_instruc
   t_list_instruc	*root;
   int			lenght_label;
   t_list_label		*lab;
+  char			*first_no_c;
   int			nb_l;
   int			reg_err;
   int			addr_wrt;
@@ -106,9 +107,12 @@ int			create_list(t_instruc *);
 t_list_instruc		*add_list_after(t_instruc *);
 char			*epure_file_instruc(char *, int);
 int			check_comment(t_header *, t_instruc *, char *);
-int			check_instructions(t_instruc *, int);
+int			check_instructions(t_instruc *, int, int);
 int			check_instruc_label(t_instruc *, t_list_instruc *,
 					    char *, int);
+int			put_instruc_no_comm(t_instruc *, int);
+int			put_instruc(t_instruc *, int);
+int			check_instruc_arg(t_instruc *, char *, int);
 int			check_epure_line(char *, int);
 int			check_which_instruc(t_instruc *, t_list_instruc *,
 					    char *, int);

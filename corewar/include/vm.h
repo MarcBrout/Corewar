@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Sat Mar 26 23:20:12 2016 benjamin duhieu
+** Last update Sat Mar 26 23:25:10 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -84,11 +84,12 @@ typedef union		s_core_short
 typedef	struct		s_pc
 {
   int			carry;
-  int			reg[16];
+  unsigned int		reg[16];
   int			cycle;
   char			run;
   struct s_champion	*champ;
   struct s_pc		*next;
+  struct s_pc		*prev;
 }			t_pc;
 
 typedef struct		s_champion
