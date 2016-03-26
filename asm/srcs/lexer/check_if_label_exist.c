@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Mar 15 19:47:32 2016
-** Last update Fri Mar 25 17:24:56 2016 marel_m
+** Last update Sat Mar 26 16:58:08 2016 marel_m
 */
 
 #include "asm.h"
@@ -20,7 +20,7 @@ char	*copy_lab(char *str)
     i = 2;
   else
     i = 1;
-  if ((new = malloc(sizeof(char) * (my_strlen(str) - 1))) == NULL)
+  if ((new = malloc(sizeof(char) * (my_strlen(str)))) == NULL)
     return (malloc_fail(), NULL);
   j = 0;
   while (str[i] != '\0')
