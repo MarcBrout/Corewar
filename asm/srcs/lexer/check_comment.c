@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Sat Mar 26 19:01:11 2016 marel_m
+** Last update Sat Mar 26 19:06:32 2016 marel_m
 */
 
 #include <stdlib.h>
@@ -40,16 +40,13 @@ void	stock_comment(t_header *header, char *file)
   i = 0;
   j = 0;
   while (++i != (my_strlen(file) - 1))
-    {
-      printf("d\n");
-      header->comment[j++] = file[i];
-    }
+    header->comment[j++] = file[i];
   header->comment[j] = '\0';
 }
 
 void	no_comment(t_header *header)
 {
-  stock_comment(header, "");
+  stock_comment(header, "gg");
   write(1, "warning: no comment specified\n", 30);
 }
 
