@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Sat Mar 26 12:32:30 2016 marc brout
+** Last update Sat Mar 26 18:06:55 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -37,7 +37,6 @@ int	add_pc(t_pc *pc, int pos, int cycle)
   copy_registres(tmp, elem);
   elem->champ = tmp->champ;
   elem->reg[0] = (pos < 0) ? MEM_SIZE + pos : pos % MEM_SIZE;
-  my_printf("fork pos = %d\n", elem->reg[0]);
   elem->carry = tmp->carry;
   elem->cycle = cycle;
   elem->cycle = 0;
@@ -74,7 +73,6 @@ int		test_instruction(t_data *data, t_pc *pc)
   char		instruction;
 
   i = 0;
-  /* my_printf("pc->reg[0] = %d\n", pc->reg[0]); */
   instruction = data->ram[pc->reg[0]];
   if (instruction <= 0 || instruction > VM_AFF)
     {
@@ -85,7 +83,6 @@ int		test_instruction(t_data *data, t_pc *pc)
     {
       if (i == instruction)
 	{
-	  /* my_printf("i = %d, pc = %p\n", i, pc); */
 	  if (data->inst[i](data, pc))
 	    return (1);
 	  return (0);
@@ -107,7 +104,6 @@ int		launch_one_champ_pc(t_data *data, t_champion *champ,
     {
       if (test_instruction(data, tmp))
 	return (1);
-      /* my_printf("tmp->next %p\n", tmp->next); */
       if (tmp->next)
 	*go = 1;
       else
@@ -118,14 +114,14 @@ int		launch_one_champ_pc(t_data *data, t_champion *champ,
 
 int		run_one_cycle(t_data *data)
 {
-  static int	i = 1;
-  char		go = 0;
+  char		go;
   int		test;
-  /* my_printf("============= turn %d live : %d ============\n", i, */
-  /* 	    data->champ[0]->valid); */
+
   test = -1;
-  while (++test < i)
+  go = 1;
+  while (go)
     {
+      test++;
       if (data->champ[0]->valid >= 0)
 	if (launch_one_champ_pc(data, data->champ[0], test, &go))
 	  return (1);
@@ -139,9 +135,5 @@ int		run_one_cycle(t_data *data)
 	if (launch_one_champ_pc(data, data->champ[3], test, &go))
 	  return (1);
     }
-  i += 1;
-  /* my_printf("go = %d\n", go); */
-  if (!go)
-    i = 1;
   return (0);
 }

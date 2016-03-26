@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:58:34 2016 benjamin duhieu
-** Last update Sat Mar 26 11:40:32 2016 marc brout
+** Last update Sat Mar 26 18:01:08 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -21,12 +21,10 @@ int	check_integrety_ld(unsigned first, char *ram, int i)
 
 void	move_pc_ld(unsigned first, t_pc *i)
 {
-  /* my_printf("LD - i->reg[0] BEFORE MOVE = %d\n", i->reg[0]); */
   if (first == 2)
     i->reg[0] = MM(i->reg[0] + 7);
   else
     i->reg[0] = MM(i->reg[0] + 5);
-  /* my_printf("LD - i->reg[0] AFTER MOVE = %d\n", i->reg[0]); */
 }
 
 void		execute_ld_direct_no_idx(t_data *data, t_pc *i)
