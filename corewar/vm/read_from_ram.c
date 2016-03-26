@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Mar 23 08:36:28 2016 marc brout
-** Last update Sat Mar 26 09:52:40 2016 marc brout
+** Last update Sat Mar 26 18:04:43 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -84,9 +84,7 @@ void		write_int_to_ram(char *ram, unsigned int val, int pos)
   if (g_endian)
     {
       ram[pos % MEM_SIZE] = nb.bytes[3];
-      /* my_printf("pos = %d\n", pos % MEM_SIZE); */
       ram[(pos + 1) % MEM_SIZE] = nb.bytes[2];
-      /* my_printf("pos = %d\n", (pos + 1) % MEM_SIZE); */
       ram[(pos + 2) % MEM_SIZE] = nb.bytes[1];
       ram[(pos + 3) % MEM_SIZE] = nb.bytes[0];
     }
