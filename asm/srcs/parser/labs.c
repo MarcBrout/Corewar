@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 22 20:39:57 2016 bougon_p
-** Last update Sat Mar 26 20:15:31 2016 bougon_p
+** Last update Sat Mar 26 20:28:47 2016 bougon_p
 */
 
 #include <unistd.h>
@@ -43,7 +43,8 @@ int		write_labels(t_instruc *instruc)
   return (0);
 }
 
-bool		check_short_lab(UNUSED t_info *info, t_instruc *instruc, char *arg)
+bool		check_short_lab(UNUSED t_info *info,
+				t_instruc *instruc, char *arg)
 {
   short		pad;
   t_lablist	*lab;
