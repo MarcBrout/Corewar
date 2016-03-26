@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 25 16:59:26 2016 marel_m
-** Last update Fri Mar 25 17:03:36 2016 marel_m
+** Last update Sat Mar 26 15:53:44 2016 marel_m
 */
 
 #include "asm.h"
@@ -40,7 +40,7 @@ int     check_registre_arg(t_instruc *instruc, t_list_instruc *elem,
     i++;
   if ((arg = my_strndup(file, i)) == NULL || arg[0] != 'r'
       || (file = copy_nb_registre(arg)) == NULL)
-    return (-1);
+    return (free(arg), -1);
   nb = atoi(file);
   free(file);
   if (nb < 1 || nb > 16)
