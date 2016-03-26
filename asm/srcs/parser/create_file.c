@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Mar 11 15:29:29 2016 bougon_p
-** Last update Sat Mar 26 15:52:38 2016 bougon_p
+** Last update Sat Mar 26 17:46:29 2016 bougon_p
 */
 
 #include "asm.h"
@@ -22,7 +22,8 @@ int	sizeofextens(char *name)
   i = my_strlen(name);
   while (i >= 0 && name[--i] != '.')
     p++;
-  if (i == -1)
+  if ((my_strcmp(&name[p], ".s") != 0)
+      || i == -1)
     return (0);
   return (p + 1);
 }
