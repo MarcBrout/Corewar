@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 16:16:26 2016 marc brout
-** Last update Fri Mar 25 10:37:39 2016 marc brout
+** Last update Sat Mar 26 23:17:33 2016 benjamin duhieu
 */
 
 #include <sys/types.h>
@@ -74,7 +74,7 @@ int		size_champs(t_champion *champ[4],
 int		place_all_champions(t_data *data)
 {
   int		rest;
-  int		rest_unit;
+  int		runit;
   int		nb;
   int		pos;
   int		first;
@@ -82,22 +82,20 @@ int		place_all_champions(t_data *data)
   if ((MEM_SIZE - size_champs(data->champ, 0, &nb)) <= 0)
     return (my_put_error(OVERLAP, 1));
   first = 1;
-  if ((rest = copy_champion_to_ram(data->champ[0], data->ram))
-      < 0)
+  if ((rest = copy_champion_to_ram(data->champ[0], data->ram)) < 0)
     return (1);
   data->champ[0]->pc->reg[0] = 0;
   rest = MEM_SIZE - rest;
   pos = data->champ[0]->size;
   while (first < 4 && nb > 0)
     {
-      rest_unit = (rest - size_champs(data->champ, first, &nb)) /
-	(nb + 1);
-      pos += rest_unit;
-        data->champ[first]->pc->reg[0] = pos;
+      runit = (rest - size_champs(data->champ, first, &nb)) / (nb + 1);
+      pos += runit;
+      data->champ[first]->pc->reg[0] = pos;
       if (copy_champion_to_ram(data->champ[first], &data->ram[pos]) < 0)
 	return (1);
       pos += data->champ[first]->size;
-      rest -= (rest_unit + data->champ[first]->size), first += 1;
+      rest -= (runit + data->champ[first]->size), first += 1;
     }
   return (0);
 }

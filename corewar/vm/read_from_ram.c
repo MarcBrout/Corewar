@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Wed Mar 23 08:36:28 2016 marc brout
-** Last update Sat Mar 26 18:04:43 2016 benjamin duhieu
+** Last update Sat Mar 26 23:18:40 2016 benjamin duhieu
 */
 
 #include <stdio.h>
@@ -97,7 +97,8 @@ void		write_int_to_ram(char *ram, unsigned int val, int pos)
     }
 }
 
-void		write_short_to_ram(char *ram, unsigned short val, int pos)
+void		write_short_to_ram(char *ram, unsigned short val,
+				   int pos)
 {
   t_core_short	nb;
 

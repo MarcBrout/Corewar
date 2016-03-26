@@ -5,8 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:57:35 2016 benjamin duhieu
-** Last update Sat Mar 26 18:03:10 2016 benjamin duhieu
-** Last update Thu Mar 24 12:02:52 2016 benjamin duhieu
+** Last update Sat Mar 26 22:50:54 2016 benjamin duhieu
 */
 
 #include "my.h"
@@ -28,9 +27,7 @@ int	check_integrety_sti(unsigned sc, unsigned th, char *ram, int i)
 					      ram[MM(i + 5)] > 16))) ||
       ((sc != 1 && th != 1) &&
        ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16))))
-    {
-      return (1);
-    }
+    return (1);
   return (0);
 }
 

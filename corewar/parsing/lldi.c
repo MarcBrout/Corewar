@@ -5,12 +5,13 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 22:59:12 2016 benjamin duhieu
-** Last update Sat Mar 26 12:29:03 2016 marc brout
+** Last update Sat Mar 26 22:55:23 2016 benjamin duhieu
 */
 
 #include "vm.h"
 
-int	check_integrety_ldi(unsigned first, unsigned second, char *ram, int i)
+int	check_integrety_ldi(unsigned first, unsigned second,
+			    char *ram, int i)
 {
   if (((first == 1 && second == 2) &&
        ((ram[MM(i + 2)] < 1 || ram[MM(i + 2)] > 16) ||

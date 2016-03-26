@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 15:44:56 2016 marc brout
-** Last update Sat Mar 26 18:04:24 2016 benjamin duhieu
+** Last update Sat Mar 26 23:20:37 2016 benjamin duhieu
 */
 
 #include "vm.h"
@@ -74,33 +74,11 @@ void		copy_order_to_reg(t_champion *champ[4])
 
 int		launch_match(t_data *data)
 {
-  char		go;
-  int		i;
-  int		nb_turn;
-
-  i = 0;
   data->nblive = 0;
-  nb_turn = CYCLE_TO_DIE;
-  go = 1;
   init_inst(data);
   set_players(data->champ);
-  while (go && nb_turn >= 0)
-    {
-      if (run_one_cycle(data))
-	return (1);
-      if (data->dump > 0)
-	if (!(data->dump -= 1))
-	  return (dump(data->ram), 0);
-      if (data->nblive >= NBR_LIVE && !(data->nblive = 0))
-	if ((nb_turn -= CYCLE_DELTA) <= 0)
-	  break ;
-      if (i >= nb_turn && !(i = 0))
-	{
-	  go = count_players_alive(data->champ);
-	  set_players(data->champ);
-	}
-      i += 1;
-    }
+  if (ready_to_cycle(data))
+    return (1);
   dump(data->ram);
   check_winner(data, data->champ);
   return (0);

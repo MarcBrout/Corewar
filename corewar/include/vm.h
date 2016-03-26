@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Sat Mar 26 11:15:14 2016 marc brout
+** Last update Sat Mar 26 23:20:12 2016 benjamin duhieu
 */
 
 #ifndef VM_H_
@@ -320,12 +320,11 @@ int			nothing(t_data *, t_pc *);
 ** run_one_cycle.c
 */
 
-void			copy_registres(t_pc *src,
-				       t_pc *dst);
-void			init_inst(t_data *);
-int			add_pc(t_pc *pc, int pos,
-			       int cycle);
 int			run_one_cycle(t_data *data);
+int			launch_one_champ_pc(t_data *, t_champion *,
+					    int, char *);
+int			test_instruction(t_data *, t_pc *);
+int 			ready_to_cycle(t_data *);
 
 /*
 ** launch_match.c
@@ -337,6 +336,14 @@ void			check_winner(t_data *data,
 				     t_champion *champ[4]);
 int			launch_match(t_data *data);
 void			copy_order_to_reg(t_champion *champ[4]);
+
+/*
+** init.c
+*/
+
+int			add_pc(t_pc *, int, int);
+void			copy_registres(t_pc *, t_pc *);
+void			init_inst(t_data *);
 
 /*
 ** read_from_ram.c

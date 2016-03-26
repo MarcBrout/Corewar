@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 12:07:50 2016 marc brout
-** Last update Sat Mar 26 11:11:04 2016 marc brout
+** Last update Sat Mar 26 22:49:25 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
@@ -15,25 +15,6 @@
 #include <fcntl.h>
 #include "vm.h"
 #include "op.h"
-
-char		endianness()
-{
-  int		i;
-  char		*x;
-
-  i = 1;
-  x = (char *)&i;
-  return (x[0]);
-}
-
-int		swap_integer(int nb)
-{
-  int		ret;
-
-  ret = ((nb >> 24) & 0xff) | ((nb <<8) & 0xff0000) |
-    ((nb >> 8) & 0xff00) | ((nb << 24) & 0xff000000);
-  return (ret);
-}
 
 int		check_header(int fd, t_header *head)
 {

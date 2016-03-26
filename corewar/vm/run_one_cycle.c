@@ -5,67 +5,12 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 17:00:44 2016 marc brout
-** Last update Sat Mar 26 18:06:55 2016 benjamin duhieu
+** Last update Sat Mar 26 23:20:02 2016 benjamin duhieu
 */
 
 #include <stdlib.h>
 #include "vm.h"
 #include "op.h"
-
-void	copy_registres(t_pc *src, t_pc *dst)
-{
-  int	i;
-
-  i = 0;
-  while (i < 16)
-    {
-      dst->reg[i] = src->reg[i];
-      i += 1;
-    }
-}
-
-int	add_pc(t_pc *pc, int pos, int cycle)
-{
-  t_pc	*tmp;
-  t_pc	*elem;
-
-  if (!(elem = malloc(sizeof(t_pc))))
-    return (1);
-  tmp = pc;
-  while (tmp->next)
-    tmp = tmp->next;
-  copy_registres(tmp, elem);
-  elem->champ = tmp->champ;
-  elem->reg[0] = (pos < 0) ? MEM_SIZE + pos : pos % MEM_SIZE;
-  elem->carry = tmp->carry;
-  elem->cycle = cycle;
-  elem->cycle = 0;
-  elem->run = 0;
-  elem->next = NULL;
-  tmp->next = elem;
-  return (0);
-}
-
-void		init_inst(t_data *data)
-{
-  data->inst[VM_ERROR] = &nothing;
-  data->inst[VM_LIVE] = &live;
-  data->inst[VM_LD] = &ld;
-  data->inst[VM_ST] = &st;
-  data->inst[VM_ADD] = &add;
-  data->inst[VM_SUB] = &sub;
-  data->inst[VM_AND] = &and;
-  data->inst[VM_XOR] = &xor;
-  data->inst[VM_OR] = &or;
-  data->inst[VM_LDI] = &ldi;
-  data->inst[VM_LLD] = &lld;
-  data->inst[VM_LLDI] = &lldi;
-  data->inst[VM_STI] = &sti;
-  data->inst[VM_FORK] = &frk;
-  data->inst[VM_LFORK] = &lfork;
-  data->inst[VM_AFF] = &aff;
-  data->inst[VM_ZJMP] = &zjump;
-}
 
 int		test_instruction(t_data *data, t_pc *pc)
 {
@@ -134,6 +79,35 @@ int		run_one_cycle(t_data *data)
       if (data->champ[3]->valid >= 0)
 	if (launch_one_champ_pc(data, data->champ[3], test, &go))
 	  return (1);
+    }
+  return (0);
+}
+
+int	ready_to_cycle(t_data *data)
+{
+  int	i;
+  int	nb_turn;
+  int	go;
+
+  i = 0;
+  go = 1;
+  nb_turn = CYCLE_TO_DIE;
+  while (go && nb_turn >= 0)
+    {
+      if (run_one_cycle(data))
+	return (1);
+      if (data->dump > 0)
+	if (!(data->dump -= 1))
+	  return (dump(data->ram), 0);
+      if (data->nblive >= NBR_LIVE && !(data->nblive = 0))
+	if ((nb_turn -= CYCLE_DELTA) <= 0)
+	  break ;
+      if (i >= nb_turn && !(i = 0))
+	{
+	  go = count_players_alive(data->champ);
+	  set_players(data->champ);
+	}
+      i += 1;
     }
   return (0);
 }

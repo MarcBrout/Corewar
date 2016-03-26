@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Mon Mar 21 12:58:17 2016 benjamin duhieu
-** Last update Fri Mar 25 13:38:22 2016 benjamin duhieu
+** Last update Sat Mar 26 22:52:51 2016 benjamin duhieu
 */
 
 #include <unistd.h>
@@ -35,9 +35,8 @@ int		pars_arg(char **av, t_pars *arg, t_data *data)
 	  if (av[i] == NULL)
 	    my_put_error(MISS_COR, 1);
 	  else if (load_champion(data->champ[data->i], av[i]))
-	    return (my_put_file_str
-		    (data->champ[data->i]->path,
-		     CORRUPT, 2));
+	    return (my_put_file_str(data->champ[data->i]->path,
+				    CORRUPT, 2));
 	  data->champ[data->i]->alive = 1;
 	  data->champ[data->i]->valid = 1;
 	  i += 1;
