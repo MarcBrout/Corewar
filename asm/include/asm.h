@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:32:59 2016
-** Last update Sat Mar 26 20:00:23 2016 marel_m
+** Last update Sun Mar 27 12:27:55 2016 marel_m
 */
 
 #ifndef HEADER_H_
@@ -100,8 +100,9 @@ typedef struct		s_tabinstr
 
 int			lexer(t_header *, t_instruc *, char *);
 char			*get_next_line(int);
-int			check_name(t_header *, char *);
+int			check_name(t_instruc *, t_header *, char *);
 char			*epure_file_name_com(char *, int);
+char			*epure_bt_file_name_com(t_instruc *, char *, int);
 int			check_char(char);
 int			create_list(t_instruc *);
 t_list_instruc		*add_list_after(t_instruc *);

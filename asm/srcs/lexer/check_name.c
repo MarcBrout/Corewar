@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:09:07 2016
-** Last update Sat Mar 26 18:47:26 2016 marel_m
+** Last update Sun Mar 27 12:10:44 2016 marel_m
 */
 
 #include <stdlib.h>
@@ -44,17 +44,15 @@ void	stock_name(t_header *header, char *file)
   header->prog_name[j] = '\0';
 }
 
-int	check_name(t_header *header, char *file)
+int	check_name(t_instruc *instruc, t_header *header, char *file)
 {
   char	*new;
 
   if ((new = epure_file_name_com(file, 0)) == NULL)
     return (-1);
-  if (my_strncmp(new, ".name", 5) != 0
-      || (new[5] != ' ' && new[5] != '\t'))
+  if (my_strncmp(new, ".name", 5) != 0)
     return (write(2, "wrong .name\n", 12), -1);
-  free(new);
-  if ((new = epure_file_name_com(file, 6)) == NULL)
+  if ((new = epure_bt_file_name_com(instruc, new, 5)) == NULL)
     return (-1);
   if (check_double_quote_name(new) == -1)
     return (write(2, "wrong .name\n", 12), -1);
