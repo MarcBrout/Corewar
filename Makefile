@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ##
 ## Started on  Thu Mar 10 14:59:56 2016 bougon_p
-## Last update Sun Mar 27 00:44:29 2016 marc brout
+## Last update Sun Mar 27 11:30:30 2016 marel_m
 ##
 
 # USEFUL VARIABLES
@@ -172,7 +172,7 @@ IFLAG	=	-Iasm/include/ -Icorewar/include/
 
 CFLAGS  =	-W -Wall -Wextra
 
-CC      =	gcc -g $(CFLAGS) $(IFLAG)
+CC      =	gcc $(CFLAGS) $(IFLAG)
 
 
 # PROJECT RULES
