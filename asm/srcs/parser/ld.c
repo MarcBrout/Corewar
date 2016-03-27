@@ -5,13 +5,13 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Tue Mar 15 20:26:16 2016 bougon_p
-** Last update Sat Mar 26 20:10:05 2016 bougon_p
+** Last update Sun Mar 27 01:38:55 2016 bougon_p
 */
 
 #include <unistd.h>
 #include "asm.h"
 
-int     ld_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
+int	ld_arg_1(int fd, t_info *info, char byte, t_instruc *instruc)
 {
   char  check;
 

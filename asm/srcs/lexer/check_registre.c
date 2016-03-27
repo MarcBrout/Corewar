@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 25 16:59:26 2016 marel_m
-** Last update Sat Mar 26 15:53:44 2016 marel_m
+** Last update Sun Mar 27 01:39:22 2016 bougon_p
 */
 
 #include "asm.h"
@@ -27,7 +27,7 @@ char	*copy_nb_registre(char *arg)
   return (file);
 }
 
-int     check_registre_arg(t_instruc *instruc, t_list_instruc *elem,
+int	check_registre_arg(t_instruc *instruc, t_list_instruc *elem,
 			   char *file, int pos)
 {
   int   i;
