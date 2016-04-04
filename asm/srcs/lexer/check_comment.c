@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 17:20:59 2016
-** Last update Sat Mar 26 20:44:44 2016 bougon_p
+** Last update Sun Mar 27 12:28:04 2016 marel_m
 */
 
 #include <stdlib.h>
@@ -18,17 +18,17 @@
 #include <string.h>
 #include "asm.h"
 
-int	check_double_quote_comment(char *file)
+int	check_double_quote_comment(t_instruc *instruc, char *file)
 {
   int   i;
 
   if (file[0] != '"')
-    return (-1);
+    return (synthax_error(instruc, 0), -1);
   i = 1;
   while (file[i] != '"')
     i++;
   if (i != (my_strlen(file) - 1) || i >= 2049)
-    return (-1);
+    return (synthax_error(instruc, 0), -1);
   return (0);
 }
 
@@ -46,10 +46,12 @@ void	stock_comment(t_header *header, char *file)
 
 int	no_comment(t_instruc *instruc, t_header *header, char *new)
 {
+  if (my_strlen(new) == 0)
+    return (synthax_error(instruc, 0), -1);
   header->comment[0] = '\0';
-  write(2, "Warning: no comment specified.\n", 31);
   if ((instruc->first_no_c = my_strdup(new)) == NULL)
     return (-1);
+  write(2, "Warning: no comment specified.\n", 31);
   return (0);
 }
 
@@ -58,23 +60,20 @@ int	check_comment(t_header *header, t_instruc *instruc,
 {
   char	*new;
 
+  instruc->nb_l++;
   if ((new = epure_file_name_com(file, 0)) == NULL)
     return (-1);
-  if (my_strncmp(new, ".comment", 8) != 0
-      || (new[8] != ' ' && new[8] != '\t'))
+  if (my_strncmp(new, ".comment", 8) != 0 || new == NULL)
     {
       if (my_strncmp(new, ".name", 5) == 0)
-	return (write(2, "Name can only be defined once.\n", 31), -1);
+      	return (write(2, "Name can only be defined once.\n", 31), -1);
       if (no_comment(instruc, header, new) == -1)
 	return (-1);
       return (free(new), 1);
     }
-  free(new);
-  instruc->nb_l++;
-  if ((new = epure_file_name_com(file, 9)) == NULL)
+  if ((new = epure_bt_file_name_com(instruc, new, 8)) == NULL
+      || check_double_quote_comment(instruc, new) == -1)
     return (-1);
-  if (check_double_quote_comment(new) == -1)
-    return (synthax_error(instruc, 0), -1);
   stock_comment(header, new);
   free(new);
   return (0);

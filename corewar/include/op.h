@@ -5,13 +5,14 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 14 20:56:37 2016 marc brout
-** Last update Sun Mar 27 12:25:40 2016 marc brout
+** Last update Mon Apr  4 16:02:49 2016 marc brout
 */
 
 #ifndef OP_H_
 # define OP_H_
 
 # define MEM_SIZE                (6 * 1024)
+
 /*
 ** modulo de l'index <
 */

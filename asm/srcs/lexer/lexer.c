@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 10 15:41:48 2016
-** Last update Sat Mar 26 20:06:58 2016 marel_m
+** Last update Sun Mar 27 12:15:08 2016 marel_m
 */
 
 #include <string.h>
@@ -49,7 +49,7 @@ int	lexer(t_header *header, t_instruc *instruc, char *str)
       instruc->nb_l++;
     }
   instruc->nb_l++;
-  if (check_name(header, file) == -1)
+  if (check_name(instruc, header, file) == -1)
     return (-1);
   free(file);
   if (check_file(header, instruc, fd) == -1)

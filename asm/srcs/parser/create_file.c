@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Fri Mar 11 15:29:29 2016 bougon_p
-** Last update Sat Mar 26 21:42:56 2016 bougon_p
+** Last update Sun Mar 27 01:39:49 2016 bougon_p
 */
 
 #include "asm.h"
@@ -46,7 +46,6 @@ int	create_file(char *name)
   int	start;
 
   start = sizeofpath(name);
-  printf("%s\n", &name[start]);
   new_name = my_strndup
     (&name[start], my_strlen(name) - sizeofextens(name) - start);
   if ((new_name = realloc

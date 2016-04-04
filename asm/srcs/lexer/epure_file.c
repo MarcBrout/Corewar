@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 11 17:04:35 2016
-** Last update Fri Mar 25 17:19:52 2016 marel_m
+** Last update Sun Mar 27 12:09:34 2016 marel_m
 */
 
 #include "asm.h"
@@ -28,6 +28,31 @@ char	*epure_file_name_com(char *file, int i)
       j++;
     }
   new[j] = '\0';
+  return (new);
+}
+
+char	*epure_bt_file_name_com(t_instruc *instruc, char *file, int i)
+{
+  int	j;
+  char	*new;
+
+  while (file && file[i] != '"' && file[i])
+    {
+      if (file[i] != ' ' && file[i] != '\t')
+	return (synthax_error(instruc, 0), NULL);
+      i++;
+    }
+  if ((new = malloc(sizeof(char) * (my_strlen(file) - i + 1))) == NULL)
+    return (malloc_fail(), NULL);
+  j = 0;
+  while (file[i] != '\0')
+    {
+      new[j] = file[i];
+      i++;
+      j++;
+    }
+  new[j] = '\0';
+  free(file);
   return (new);
 }
 
