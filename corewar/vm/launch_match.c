@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Tue Mar 22 15:44:56 2016 marc brout
-** Last update Sun Mar 27 00:22:44 2016 marc brout
+** Last update Sun Mar 27 12:16:28 2016 marc brout
 */
 
 #include "vm.h"
@@ -67,7 +67,7 @@ void		copy_order_to_reg(t_champion *champ[4])
   i = 0;
   while (i < 4)
     {
-      champ[i]->pc->reg[1] = champ[i]->order;
+      champ[i]->pc->next->reg[1] = champ[i]->order;
       i += 1;
     }
 }

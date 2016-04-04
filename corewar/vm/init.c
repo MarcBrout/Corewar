@@ -5,7 +5,7 @@
 ** Login   <duhieu_b@epitech.net>
 **
 ** Started on  Sat Mar 26 23:01:09 2016 benjamin duhieu
-** Last update Sat Mar 26 23:01:36 2016 benjamin duhieu
+** Last update Sun Mar 27 12:26:22 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -38,9 +38,10 @@ int	add_pc(t_pc *pc, int pos, int cycle)
   elem->reg[0] = (pos < 0) ? MEM_SIZE + pos : pos % MEM_SIZE;
   elem->carry = tmp->carry;
   elem->cycle = cycle;
-  elem->cycle = 0;
+  /* elem->cycle = 0; */
   elem->run = 0;
   elem->next = NULL;
+  elem->prev = tmp;
   tmp->next = elem;
   return (0);
 }

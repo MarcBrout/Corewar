@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 10:36:14 2016 marc brout
-** Last update Sun Mar 27 00:51:31 2016 marc brout
+** Last update Sun Mar 27 12:43:07 2016 marc brout
 */
 
 #ifndef VM_H_
@@ -88,6 +88,7 @@ typedef	struct		s_pc
   int			cycle;
   char			run;
   struct s_champion	*champ;
+  struct s_pc		*prev;
   struct s_pc		*next;
 }			t_pc;
 
@@ -100,6 +101,7 @@ typedef struct		s_champion
   unsigned int		size;
   char			name[PROG_NAME_LENGTH + 1];
   t_pc			*pc;
+  t_pc			*cur;
 }			t_champion;
 
 typedef struct		s_data
@@ -319,7 +321,7 @@ int			nothing(t_data *, t_pc *);
 */
 
 int			run_one_cycle(t_data *data);
-int			launch_one_champ_pc(t_data *, t_champion *,
+int			launch_one_champ_pc(t_data *, t_pc **,
 					    int, char *);
 int			test_instruction(t_data *, t_pc *);
 int 			ready_to_cycle(t_data *);

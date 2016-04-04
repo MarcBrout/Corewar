@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 **
 ** Started on  Mon Mar 21 12:07:50 2016 marc brout
-** Last update Sun Mar 27 00:34:42 2016 marc brout
+** Last update Sun Mar 27 12:37:01 2016 marc brout
 */
 
 #include <stdlib.h>
@@ -60,21 +60,23 @@ int		init_champs(t_data *data)
   while (i < 4)
     {
       if (!(data->champ[i] = malloc(sizeof(t_champion))) ||
-	  !(data->champ[i]->pc = malloc(sizeof(t_pc))))
+	  !(data->champ[i]->pc = malloc(sizeof(t_pc))) ||
+	  !(data->champ[i]->pc->next = malloc(sizeof(t_pc))))
 	return (my_put_error(MALLOC_ERROR, 1));
-      my_bzero(data->champ[i]->pc->reg, sizeof(int) * 16, 0);
-      data->champ[i]->pc->champ = data->champ[i];
-      data->champ[i]->pc->reg[0] = -1;
-      data->champ[i]->pc->cycle = 0;
-      data->champ[i]->pc->carry = 0;
-      data->champ[i]->pc->run = 0;
-      data->champ[i]->pc->next = NULL;
+      my_bzero(data->champ[i]->pc->next->reg, sizeof(int) * 16, 0);
+      data->champ[i]->pc->next->champ = data->champ[i];
+      data->champ[i]->pc->next->reg[0] = -1;
+      data->champ[i]->pc->next->cycle = 0;
+      data->champ[i]->pc->next->carry = 0;
+      data->champ[i]->pc->next->run = 0;
+      data->champ[i]->pc->next->next = NULL;
+      data->champ[i]->pc->next->prev = data->champ[i]->pc;
+      data->champ[i]->pc->prev = NULL;
       data->champ[i]->valid = -1;
       data->champ[i]->alive = -1;
       data->champ[i]->order = -1;
-      my_bzero(data->champ[i]->name,
-	       PROG_NAME_LENGTH + 1, 0);
-      i += 1;
+      data->champ[i]->cur = data->champ[i]->pc->next;
+      my_bzero(data->champ[i]->name, PROG_NAME_LENGTH + 1, 0), i += 1;
     }
   return (0);
 }
